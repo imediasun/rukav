@@ -2,6 +2,7 @@
 /storage/*.key
 .env
 /vendor/
+/docker/
 /files/
 /app/Http/ArraysClass.php
 public/storage/
@@ -9,6 +10,5 @@ public/storage/
 /storage/
 README.md
 .idea/workspace.xml
-/public/
-
+/node_modules/
 

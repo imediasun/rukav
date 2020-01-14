@@ -1,0 +1,324 @@
+body {
+	margin:20px 0 0 0;
+	font: normal 11pt/15pt arial, sans-serif;
+	padding:0;
+}
+
+p {
+	font: normal 11pt/15pt arial, sans-serif;
+	padding:0;
+	margin:12px 0;
+	text-align:justify;
+}
+
+br {
+	line-height:10px;
+	font: normal 11pt/15pt arial, sans-serif;
+}
+
+
+/*FORMULARE*/
+.bg_antrag {
+	background:none;
+	width:530px;
+	float:none;
+	margin:10px 0 0 10px;
+}
+
+.bg_antrag_head {
+	background:url(../img/bg_antrag_head3.png) no-repeat;
+	width:530px;
+	height:83px;
+	display:block;
+	margin:0 0 20px 0;
+	padding:8px 0 0 0;
+  font-size:10pt !important;
+}
+
+input[type=submit] {
+  font-size:10pt !important;
+  color:#fff !important;
+  font-weight:bold;
+  padding:8px 25px;
+  margin:10px 0 0 0;
+  text-align:center;
+  background: #63B320;
+  background: -moz-linear-gradient(#63B320, #3A6A13);
+  background: -o-linear-gradient(#63B320, #3A6A13);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#63B320), to(#3A6A13));
+  background: -webkit-linear-gradient(#63B320, #3A6A13);
+  border:none;
+  cursor:pointer;
+  float:right;
+  position: relative;
+}
+
+input[type=submit]:hover {
+  background: #fff;
+  background: -moz-linear-gradient(#3A6A13, #63B320);
+  background: -o-linear-gradient(#3A6A13, #63B320);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3A6A13), to(#63B320));
+  background: -webkit-linear-gradient(#3A6A13, #63B320);
+  text-decoration:none;
+}	
+
+input[type=submit].anfrage {
+	background: url("../img/anfrage-btn.png") no-repeat;
+	border: 0 none;
+	float: right;
+	height: 86px;
+	margin: 24px 0 0 0;
+	width: 218px;
+	cursor:pointer;
+}
+
+input.textfeld_summe {
+	border:none;
+	text-align:right;
+	margin:7px 0 0 0;
+}
+
+input {
+	border: 1px solid #c2c2c2;
+	padding:2px 0; 
+}	
+
+input.textfeld_antrag {
+	width:153px;
+}
+
+input.textfeld_antrag_kl {
+	width:100px;
+}	
+
+input.textfeld_antrag_kl1 {
+	width:140px;
+}	
+
+input.textfeld_antrag_mi {
+	width:40px;
+}	
+
+
+input.textfeld_antrag_eingabe {
+	width:208px;
+}
+
+select {
+	border:1px solid #c2c2c2; 
+	padding:1px 0; 
+	width:157px;
+}
+
+select.select_gr {
+	width:226px;
+}
+
+select.tag {
+	width:43px;
+}
+
+select.tag1 {
+	width:53px;
+}
+
+select.monat {
+	width:44px;
+}
+
+select.monat1 {
+	width:47px;
+}
+
+
+select.jahr {
+	width:61px;
+}
+
+select.jahr1 {
+	width:98px;
+}
+
+input.textfeld {
+	width:514px;
+	border:1px solid #C2C2C2;
+}
+
+input.textfeld_kl {
+	width:196px;
+	border:1px solid #C2C2C2;
+}
+
+textarea {
+	width:514px;
+	border:1px solid #C2C2C2;
+}	
+
+
+label {
+  font:normal 10pt/12pt arial, sans-serif;
+}
+
+
+/*Partner Iframe*/
+a, a:link, a:visited, a:active {
+	font: normal 11pt/15pt arial, sans-serif;
+	color:#000;
+	text-decoration:none;
+	outline:none;
+}
+
+a:hover {
+	text-decoration:underline;	
+}
+
+p.copyright {
+	padding:12px 0 0 0;
+	border-top:1px solid #c2c2c2;
+	font: normal 10pt/13pt arial, sans-serif;
+	width: 530px;
+}
+
+p.copyright a {
+	font: normal 10pt/13pt arial, sans-serif;	
+	text-decoration:underline;
+}
+
+h1 {
+	color:#000;
+	font:normal 19pt/24pt arial;
+	margin:0;
+	padding:10px 0 15px 5px;
+}	
+
+h1.partner_last {
+	color:#000;
+	font:normal 19pt/24pt arial;
+	margin:0;
+	padding:10px 0 15px 0;
+}	
+
+div.agb_submit {
+	margin:0 0 0 0;
+}
+
+div.agb_submit1 {
+	margin:0 0 0 0;
+}
+
+div.kreditkarte {
+	background:#e3e3e3;	
+	padding:10px 5px;
+  font:normal 9pt/12pt arial, sans-serif;
+	width:502px;
+	margin:12px 0 0 0;
+}
+
+div.agb1 {
+  font:normal 8pt/12pt arial, sans-serif;
+	float:left;
+	width:240px;
+	background:#e3e3e3;
+	text-align:left;
+	padding:15px 5px 0 5px;
+	margin:24px 0 0 7px;
+	height:71px;
+}
+
+input.weiter {
+	margin:20px 12px 0 0;	
+}
+
+.margin_partner {
+	margin:0 0 0 8px !important;
+}
+
+.padding_partner {
+	padding:0 0 0 8px !important;
+}
+
+table {
+	width:522px;
+}
+
+td {
+	width:180px;
+}
+
+td table td {
+	width:auto;
+}
+
+table table {
+	width:auto;
+}
+
+#eigentum_div table td:first-child {
+	padding: 0px 24px 0px 0px !important;
+}
+
+.agb1 table {
+	width:auto;
+}
+
+.agb1 table td {
+	width:auto;
+}
+
+.partner_bankdaten form, .partner_bankdaten table,  .partner_bankdaten span {
+	color:#000 !important;
+}
+
+div.partner_bankdaten {
+	border-top:1px solid #000;
+	border-bottom:1px solid #000;
+	margin:-10px 0;
+}
+
+#ad_div td {
+	width:auto;
+}	
+
+
+
+.bg_kreditkarte_info {
+	background: url(../img/bg_kreditkarte_info.png) no-repeat;	
+	width:489px;
+	height:202px;
+	display:block;	
+	margin:20px 0 0 10px;
+	color:#fff;
+	font:normal 8pt/9pt arial, sans-serif;	
+}
+
+.bg_kreditkarte_info_pd {
+	padding:10px 10px;
+	text-align:center;
+}
+
+.bg_kreditkarte_info_pd a.oben, .bg_kreditkarte_info_pd a.oben:link, .bg_kreditkarte_info_pd a.oben:visited, .bg_kreditkarte_info_pd a.oben:active, .bg_kreditkarte_info_pd a.oben:hover {
+	text-decoration:underline;
+	color:#fff;
+	font:normal 8pt/9pt arial, sans-serif;	
+}	
+
+.bg_kreditkarte_info_pd a, .bg_kreditkarte_info_pd a:link, .bg_kreditkarte_info_pd a:visited, .bg_kreditkarte_info_pd a:active, .bg_kreditkarte_info_pd a:hover {
+	text-decoration:none;
+	color:#68B022;
+	font:normal 8pt/12pt arial, sans-serif;
+}	
+
+.bg_kreditkarte_info_pd span {
+	color:#68B022;	
+}
+
+input.btn_jetzt_kostenfrei_anfordern, input.btn_jetzt_kostenfrei_anfordern:hover {
+	background:url(../img/btn_jetzt_kostenfrei_anfordern.png) no-repeat;
+	display:block;
+	height:52px;
+	width:280px;
+	margin: 20px auto;
+	border:0;
+	cursor:pointer;
+	float:none;
+}	

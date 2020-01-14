@@ -1,0 +1,141 @@
+@media only screen and (min-width: 1366px)  and (max-width: 1440px) {
+
+    .Hauptantragsteller{
+        color: #5f391b;
+    }
+    .md_2 {
+        width:60px;
+    }
+    .md_4 {
+        width:160px;
+        margin-left:-5px;
+    }
+    .md_2a{
+        width:60px;
+        display:inline-block;
+        margin-left:5px;
+    }
+    .md_4a{
+        width:160px;
+        display:inline-block;
+        margin-left:0px;
+    }
+    #right-panel{
+        width:115px;
+    }
+}
+
+
+@media only screen and (min-width: 1440px)  and (max-width: 1600px) {
+
+    .Hauptantragsteller{
+        color:#db0435;
+    }
+    .md_2 {
+        width:70px;
+    }
+    .md_4 {
+        width:170px;
+        margin-left:-5px;
+    }
+    .md_2a{
+        width:70px;
+        display:inline-block;
+        margin-left:5px;
+    }
+    .md_4a{
+        width:170px;
+        display:inline-block;
+        margin-left:0px;
+    }
+    #right-panel{
+        width:125px;
+    }
+}
+
+@media only screen and (min-width: 1600px)  and (max-width: 1680px) {
+
+    .Hauptantragsteller{
+        color: #0000cf;
+    }
+    .md_2 {
+        width:80px;
+    }
+    .md_4 {
+        width:180px;
+        margin-left:-5px;
+    }
+    .md_2a{
+        width:80px;
+        display:inline-block;
+        margin-left:5px;
+    }
+    .md_4a{
+        width:180px;
+        display:inline-block;
+        margin-left:0px;
+    }
+    #right-panel{
+        width:160px;
+    }
+}
+
+@media only screen and (min-width: 1680px)  and (max-width: 1920px) {
+
+    .Hauptantragsteller{
+        color: blue;
+    }
+    .md_2 {
+        width:92px;
+    }
+    .md_4 {
+        width:192px;
+        margin-left:-5px;
+    }
+    .md_2a{
+        width:92px;
+        display:inline-block;
+        margin-left:5px;
+    }
+    .md_4a{
+        width:192px;
+        display:inline-block;
+        margin-left:0px;
+    }
+    #right-panel{
+        width:180px;
+    }
+}
+@media only screen and (min-width: 1920px)   {
+
+    .Hauptantragsteller{
+        color:darkred;
+    }
+    .md_2 {
+        width:112px;
+    }
+    .md_4 {
+        width:220px;
+        margin-left:-5px;
+    }
+    .md_2a{
+        width:112px;
+        display:inline-block;
+        margin-left:5px;
+    }
+    .md_4a{
+        width:218px;
+        display:inline-block;
+        margin-left:0px;
+    }
+    #right-panel{
+        width:237px;
+    }
+}
+
+
+
+
+
+
+
