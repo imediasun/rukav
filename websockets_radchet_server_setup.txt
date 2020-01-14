@@ -1,0 +1,80 @@
+﻿###### for webSocket ########
+    ProxyPreserveHost On
+    ProxyRequests Off
+    ProxyPass        /ws ws://localhost:3030/
+    ProxyPassReverse /ws ws://localhost:3030/
+############################################
+
+5) добавил больше разрешений для порта 3030
+sudo iptables -A INPUT -p tcp -m tcp --dport 3030 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp -m tcp --dport 3030 -j ACCEPT
+sudo iptables -A FORWARD -p tcp -m tcp --dport 3030 -j ACCEPT
+
+6) добавил больше разрешений для порта 5555
+sudo iptables -A INPUT -p tcp -m tcp --dport 5555 -j ACCEPT
+sudo iptables -A OUTPUT -p tcp -m tcp --dport 5555 -j ACCEPT
+sudo iptables -A FORWARD -p tcp -m tcp --dport 5555 -j ACCEPT
+
+
+Как проверить: как на видео уроке
+
+1) запустить chat-server.php
+2) открыть две вкладки в браузере.
+
+во вкладке 1 в консоли браузера выполнить 
+conn.send('Hello World!');
+во второй вкладке выведется в консоли и на странице Hello world!
+
+<script>
+
+    var conn = new WebSocket('ws://'+location.host+'/ws');
+
+    conn.onopen = function () {
+        console.log('connected');
+    };
+
+    conn.onmessage = function(e) {
+        console.log(e.data);
+        $('#message').text(e.data);
+    };
+
+</script>
+
+~$ wget https://github.com/zeromq/libzmq/releases/download/v4.2.1/zeromq-4.2.1.tar.gz
+~$ tar -xvzf zeromq-4.2.1.tar.gz
+~$ cd zeromq-4.2.1/
+
+~$ sudo apt-get install libtool pkg-config build-essential autoconf automake uuid-dev
+~$ sudo apt-get install checkinstall
+
+~$ ./configure
+~$ make
+~$ sudo checkinstall
+~$ sudo ldconfig
+
+~$ sudo apt-get install php7.2-dev php-pear
+~$ sudo pecl install zmq-beta
+
+
+1. sudo apt-get install php-pear libzmq-dev re2c pkg-config
+2. sudo pecl install channel://pecl.php.net/zmq-1.1.2
+
+Waiting until process will complete...
+
+3. sudo nano/etc/php/7.2/mods-available/zmq.ini 
+
+<< EOF
+; configuration for php ZeroMQ module
+; priority=20
+extension=zmq.so
+EOF
+
+4. Enable module:
+phpenmod zmq
+
+5. Check:
+php -m | grep zmq
+
+
+В конце концов обязательно активировать
+sudo a2enmod proxy_wstunnel

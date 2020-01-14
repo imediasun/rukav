@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'title' => '找到你的夢想家園',
+    'newly_added' => '新增',
+    'what_are_you_looking_for' => '你在找什麼？',
+    'apartments' => '公寓\公寓',
+    'house' => '別墅\樓',
+    'hotel' => '旅館',
+	'land' => '土地',
+    'сommercial' => '廣告',
+    'most_popular_places' => '最熱門的地方',
+    'most_popular_places_sub' => '最受歡迎的地方的房產',
+    'articles_tips' => '文章和提示',
+    'read_more' => '閱讀更多',
+    'submit_property' => '提交財產',
+    'min_price' => '最低價格',
+    'max_price' => '最高價格',
+    'more_option' => '更多的選擇',
+    'less_option' => '減少選項',
+    'min_area' => '印度最小區域',
+    'max_area' => '最大面積印多爾',
+    'sq_m' => '平方米',
+    'text_1' => '我們幫助人們和家人找到對方',
+    'text_2' => '瀏覽屬性',
+    'search_by' => '按ID，城市，標題，描述搜索',
+];

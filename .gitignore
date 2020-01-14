@@ -1,0 +1,14 @@
+/public/.htaccess
+/storage/*.key
+.env
+/vendor/
+/files/
+/app/Http/ArraysClass.php
+public/storage/
+/tmp/
+/storage/
+README.md
+.idea/workspace.xml
+/public/
+
+
