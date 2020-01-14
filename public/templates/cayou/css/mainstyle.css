@@ -1,0 +1,547 @@
+﻿html, body {
+	margin:0;
+	padding:0;
+	height:100%;
+	font:normal 8pt/12pt verdana;
+	color:#000;
+	outline:none;
+}
+
+body {
+	background:url(../images/logo.jpg) bottom right no-repeat fixed;
+}
+
+img {
+	border: none;
+}
+
+h1 span {
+	display:none;
+}
+
+.header {
+	height:69px;
+	background:url(../images/header_bg.jpg);
+	padding:0;
+	margin:0;
+}
+
+
+/* Hauptmenü */
+
+#mainmenu_container{
+	background-image:url(../images/mainmenu_bg.jpg);
+	height:66px;
+	text-align:center;
+}
+
+#mainmenu_container ul {
+	padding:0;
+	margin:0;
+	width: 100%;
+	display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+}
+
+#mainmenu li {
+	list-style-type:none;
+	display:block;
+	flex: 0 1 auto;
+	align-self: auto;
+}
+
+#mainmenu li a, #mainmenu li a:link, #mainmenu li a:visited, #mainmenu li a:active  {
+	margin:1px 0 0 0;
+	padding:33px 0 0 0;
+	background:url(../images/mainbutton.jpg) top center no-repeat;
+	height:19px;
+	display:inline-block;
+	text-decoration:none;
+	font-weight:bold;
+	outline:none;
+	color:#838383;
+}
+
+#mainmenu li a:hover, #mainmenu li a.active{
+	background-position:50% 99%;
+}
+
+#mainmenu li a span {
+
+}
+
+
+/* Untermenü */
+
+#submenu{
+	height:100%;
+	margin:0 1em 0 1em;
+	position:relative;
+	top:-12px;
+	float:left;
+	display:inline-block;
+	background:url(../images/subbutton.jpg) top right repeat-y;
+}
+
+#submenu li{
+	list-style-type:none;
+}
+
+#submenu .category{
+	text-align:right;
+	background:url(../images/category.jpg) top right no-repeat;
+}
+
+#submenu .firstCategory{
+	background:url(../images/submenu_kategory.jpg) top right no-repeat;
+}
+
+#submenu .category .title{
+	margin:0 0 16px 41px;
+	line-height:49px;
+	text-align:left;
+	width:130px;
+	display:inline-block;
+}
+
+#submenu .category li{
+	padding-right:10px;
+	margin-left:10px;
+	text-align:left;
+	line-height:normal;
+}
+
+#submenu .category li * li{
+	padding-right:0em;
+}
+
+#submenu .category li a {
+	color:#b6b6b6;
+	text-decoration:none;
+	font:normal 10pt/13pt verdana;
+	
+}
+
+#submenu .category li a:hover{
+	color:#8c8c8c;
+	text-decoration:underline;
+}
+
+#submenu .category .buttonGotChildren ul{
+	padding-left:0.5em;
+}
+
+/* Inhaltsbereich */
+
+#content{
+	display:block;
+	padding:0 12px 60px 12px;
+	margin: 0 12px;
+}
+
+#content h2{
+	font-size:20px;
+	padding:0;
+	margin:1em 0 0.5em 0;
+	text-decoration:underline;
+}
+
+#content h3 {
+	font:bold 13pt/15pt verdana;
+	padding:20px 0 20px 0;
+	margin:0;
+}
+
+#content h4 {
+	font:bold 10pt/13pt verdana;
+	padding:15px 0 15px 0;
+	margin:0;
+}
+
+#content td {
+	text-align:left;
+}
+
+#content th, #content td{
+	vertical-align:top;
+}
+
+#content th {
+	font-weight:bold;
+	padding-right:2em;
+	text-align:left;
+}
+
+#content table.haupt_tabelle {
+	background:#ADADAD;
+	font:normal 8pt/15pt verdana;	
+}
+
+#content td.grey {
+	background:#E6E6E6;
+}
+
+#content td.grey_label {
+	background:#D6D6D6;
+	font-weight:bold;
+}
+
+
+#content a, #content a:link, #content a:visited, #content a:active {
+	font:normal 9pt/13pt verdana;
+	text-decoration:none;
+	color:#F56F0C;
+}
+
+#content a:hover {
+	text-decoration:underline;
+}
+
+#klein a, #klein a:link, #klein a:visited, #klein a:active {
+	font:normal 8pt/13pt verdana;
+	text-decoration:none;
+	color:#F56F0C;
+}
+
+#klein a:hover {
+	text-decoration:underline;
+}
+
+#content li{
+	margin-left:18em;
+}
+
+tr.grey {
+	background:#E7E7E7;		
+}
+
+.mceToolBar *{
+	text-align:left !important;
+}
+
+.fehler {
+	font:bold 8pt/12pt verdana;
+	color:red;
+	margin:0 0 10px 0;
+} 
+
+.erfolg {
+	font:bold 8pt/12pt verdana;
+	color:green;
+	margin:0 0 10px 0;
+}  
+
+#blatt {
+	margin:15px 0;
+}
+
+.line {
+	margin:10px 0;
+	border-top:1px solid #D2D2D2;
+	width:80%;
+}
+
+/*Formular*/
+input {
+	font:normal 10pt/13pt arial, sans-serif;
+	border:1px solid #CCCCCC;
+	padding:7px;
+}
+
+#listen input {
+	font:normal 10pt/13pt arial, sans-serif;
+	border:1px solid #CCCCCC;
+	padding:2px;
+}
+
+input.submit, button.submit {
+	font:normal 10pt/13pt arial, sans-serif;
+	border: 1px solid #CCCCCC;
+	padding: 2px;
+}
+
+input.radio {
+	font:normal 10pt/13pt arial, sans-serif;
+	border: 0px;
+}
+
+input.textfeld {
+	width:263px;
+}
+
+input.textfeld_kl {
+	width:60px;
+}
+
+input.textfeld_gr {
+	width:174px;
+}
+
+select.tag {
+	width:65px;
+}
+
+select.jahr {
+	width:103px;
+}
+
+textarea {
+	font:normal 10pt/13pt arial, sans-serif;
+	border: 1px solid #CCCCCC;
+	width:655px;
+	height:300px;
+	padding:7px;
+}
+
+textarea.klein {
+	font:normal 10pt/13pt arial, sans-serif;
+	border: 1px solid #CCCCCC;
+	width:392px;
+	height:120px;
+	padding:7px;
+}
+
+select {
+	font: normal 9pt/13pt verdana;
+	border: 1px solid #CCCCCC;
+	padding:7px;
+	width:279px;
+}
+
+#klein {
+	margin:5px 0 25px 0;
+	background:#D6D6D6;
+	padding:5px 10px;
+	width:1200px;
+}
+
+#klein input {
+	width:100px;
+	border:1px solid #C4C4C4;
+	padding:2px;
+	margin:0 5px 0 3px;
+}
+
+#klein select {
+	width:150px;
+	border:1px solid #C4C4C4;
+	padding:2px;
+	margin:0 5px 0 3px;
+}
+
+#klein input.submit {
+	width:80px;
+	border:1px solid #C4C4C4;
+	padding:1px;
+	margin:0;
+}
+
+#klein a, #klein a:link, #klein a:visited, #klein a:active {
+	font:normal 8pt/13pt verdana;
+	text-decoration:none;
+	color:#F56F0C;
+}
+
+#klein a:hover {
+	text-decoration:underline;
+}
+
+#content a.btn, #content a.btn:visited, #content a.btn:active, #content a.btn:link, #content a.btn:hover  {
+	font:normal 9pt/13pt verdana;
+	width:100px;
+	border:1px solid #C4C4C4;
+	padding:2px 10px;
+	margin:0;
+	background:#ECE9D8;
+	color:#000;
+	text-decoration:none;
+}
+
+.kleiner select {
+	width:150px;
+	border:1px solid #C4C4C4;
+	padding:2px;
+	margin:0 5px 0 3px;
+}
+
+.kleiner input {
+	width:150px;
+	border:1px solid #C4C4C4;
+	padding:2px;
+	margin:0 5px 0 3px;
+}
+
+.mini select {
+	width:100px;
+	border:1px solid #C4C4C4;
+	padding:2px;
+	margin:0 5px 0 3px;
+}
+
+.mini input {
+	width:100px;
+	border:1px solid #C4C4C4;
+	padding:2px;
+	margin:0 5px 0 3px;
+}
+
+.mini input[type="checkbox"] {
+	width:auto;
+	margin:6px 0 0 0;
+}
+
+/*Kalender*/
+/* the div that holds the date picker calendar */
+.dpDiv {
+
+}
+
+/* the table (within the div) that holds the date picker calendar */
+.dpTable {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	color: #505050;
+	background-color: #EEE;
+	border: 1px solid #DDD;
+}
+
+/* a table row that holds date numbers (either blank or 1-31) */
+.dpTR {
+
+}
+
+/* the top table row that holds the month, year, and forward/backward buttons */
+.dpTitleTR {
+
+}
+
+/* the second table row, that holds the names of days of the week (Mo, Tu, We, etc.) */
+.dpDayTR {
+	
+}
+
+/* the bottom table row, that has the "This Month" and "Close" buttons */
+.dpTodayButtonTR {
+
+}
+
+/* a table cell that holds a date number (either blank or 1-31) */
+.dpTD {
+	border: 1px solid #ece9d8;
+}
+
+/* a table cell that holds a highlighted day (usually either today's date or the current date field value) */
+.dpDayHighlightTD {
+	background-color: #CCCCCC;
+	border: 1px solid #AAAAAA;
+}
+
+/* the date number table cell that the mouse pointer is currently over (you can use contrasting colors to make it apparent which cell is being hovered over) */
+.dpTDHover {
+	background-color: #fff;
+	border: 1px solid #888888;
+	cursor: pointer;
+	color: red;
+}
+
+/* the table cell that holds the name of the month and the year */
+.dpTitleTD {
+	
+}
+
+/* a table cell that holds one of the forward/backward buttons */
+.dpButtonTD {
+	
+}
+
+/* the table cell that holds the "This Month" or "Close" button at the bottom */
+.dpTodayButtonTD {
+
+}
+
+/* a table cell that holds the names of days of the week (Mo, Tu, We, etc.) */
+.dpDayTD {
+	background-color: #CCCCCC;
+	border: 1px solid #AAAAAA;
+	color: white;
+}
+
+/* additional style information for the text that indicates the month and year */
+.dpTitleText {
+	font-size: 12px;
+	color: gray;
+	font-weight: bold;
+}
+
+/* additional style information for the cell that holds a highlighted day (usually either today's date or the current date field value) */ 
+.dpDayHighlight {
+	color: #fff;
+	font-weight: bold;
+}
+
+/* the forward/backward buttons at the top */
+.dpButton {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: gray;
+	background: #DDD;
+	font-weight: bold;
+	padding: 0px;
+	border:1px solid #BBB;
+}
+
+/* the "This Month" and "Close" buttons at the bottom */
+.dpTodayButton {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: gray;
+	background: #DDD;
+	font-weight: bold;
+	border:1px solid #BBB;
+}
+
+.banner_unten {
+	width:100%;
+	position:fixed;
+	bottom:0;
+	left:0;
+	background:#d6d6d6;
+	padding:6px 0;
+}
+
+.lockNotification {
+  padding: 4px;
+  border: 1px dashed red;
+  background-color: #ffb3b3;
+}
+
+#auxmoneyApiForm {
+    padding: 10px;
+}
+
+#auxmoneyApiForm select {
+    width: 150px;
+    border: 1px solid #C4C4C4;
+    padding: 2px;
+    margin: 0px;
+}
+
+#auxmoneyApiForm select#duration {
+    width: 50px;
+    margin: 10px 0 0;
+}
+
+#auxmoneyApiForm #auxmoneyApiSend {
+    width: 150px;
+    margin: 10px auto;
+    font: normal 10pt/13pt arial, sans-serif;
+    border: 1px solid #CCCCCC;
+    padding: 2px;
+}
+
