@@ -3,7 +3,6 @@
 .env
 /vendor/
 /files/
-/app/Http/ArraysClass.php
 public/storage/
 /tmp/
 /storage/
