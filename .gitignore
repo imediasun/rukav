@@ -2,6 +2,7 @@
 /storage/*.key
 .env
 /vendor/
+/docker/
 /files/
 public/storage/
 /tmp/
