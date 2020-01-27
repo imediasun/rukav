@@ -5,8 +5,13 @@
         <tr>
             <th>#</th>
             <th>Название компании</th>
+            <th>AdminID</th>
             <th>Email администратора</th>
             <th>Телефон</th>
+            <th>Company_address (billing)</th>
+            <th>Company_address (physical)</th>
+            <th>Registration date</th>
+            <th>Logo</th>
             <th>Действия</th>
         </tr>
         </thead>
@@ -15,8 +20,13 @@
         <tr>
             <th class="company_id" scope="row">{{$company->id}}</th>
             <td class="company_name">{{$company->name}}</td>
-            <td class="company_email">{{$company->email}}</td>
+            <td class="company_admin_id">{{$company->admin->id}}</td>
+            <td class="company_email">{{$company->admin->email}}</td>
             <td class="company_phone">{{$company->phone}}</td>
+            <td class="company_biling_address">{{$company->biling_address}}</td>
+            <td class="company_address">{{$company->address}}</td>
+            <td class="company_registration_date">{{$company->registration_date}}</td>
+            <td class="company_logo">{{$company->logo->photo}}</td>
             <td>
                 <a style="height:25px" href="javascript:void(0)" class="PrependChangeCompany btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-right-lg">
                     <i style="position:absolute;top:5px;left:6px" class="fal fa-pencil"></i>

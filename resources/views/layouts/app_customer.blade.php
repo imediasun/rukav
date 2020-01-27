@@ -23,111 +23,159 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <!-- base css -->
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/vendors.bundle.css">
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/app.bundle.css">
-    <link rel="stylesheet" media="screen, print" href="style.css">
+    <link rel="stylesheet" media="screen, print" href="/style.css">
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" sizes="180x180" href="/NewSmartAdmin/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/NewSmartAdmin/img/favicon/favicon-32x32.png">
     <link rel="mask-icon" href="/NewSmartAdmin/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
 
-
+@yield('styles')
     <!--<link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/your_styles.css">-->
 </head>
 <body class="mod-bg-1 ">
 @yield('theme_scripts')
 <!-- DOC: script to save and load page settings -->
-<script>
-    /**
-     *	This script should be placed right after the body tag for fast execution
-     *	Note: the script is written in pure javascript and does not depend on thirdparty library
-     **/
 
-    var company_id='{{$company_id}}';
-
-
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/customer/get_theme", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-        company_id: company_id
-    }));
-    xhr.onload = function() {
-        console.log("HELLO")
-        console.log(this.responseText);
-        var data = JSON.parse(this.responseText);
-        console.log(data);
-        localStorage.setItem("themeSettings",data.theme_options);
-    }
-
-
-
-
-
-
-    'use strict';
-
-    var classHolder = document.getElementsByTagName("BODY")[0],
-        /**
-         * Load from localstorage
-         **/
-        themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
-            {},
-        themeURL = themeSettings.themeURL || '',
-        themeOptions = themeSettings.themeOptions || '';
-    /**
-     * Load theme options
-     **/
-    if (themeSettings.themeOptions)
-    {
-        classHolder.className = themeSettings.themeOptions;
-        console.log("%c✔ Theme settings loaded", "color: #148f32");
-    }
-    else
-    {
-        console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
-    }
-    if (themeSettings.themeURL && !document.getElementById('mytheme'))
-    {
-        var cssfile = document.createElement('link');
-        cssfile.id = 'mytheme';
-        cssfile.rel = 'stylesheet';
-        cssfile.href = themeURL;
-        document.getElementsByTagName('head')[0].appendChild(cssfile);
-    }
-    /**
-     * Save to localstorage
-     **/
-    var saveSettings = function()
-    {
-        themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
-        {
-            return /^(nav|header|mod|display)-/i.test(item);
-        }).join(' ');
-        if (document.getElementById('mytheme'))
-        {
-            themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
-        };
-        localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
-        console.log('Saved Theme setting')
-
-    }
-    /**
-     * Reset settings
-     **/
-    var resetSettings = function()
-    {
-        localStorage.setItem("themeSettings", "");
-    }
-
-</script>
 
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
-    <div class="page-inner">
+
+        <div style="position:absolute;top:0px;left:0px;width:100%;height:250px;background-image: url('/storage/1.jpg') !important;background-position: center;background-size: cover;">
+
+
+        </div>
+    <div class="Menu_giveBadgeWrap__28NpB" style="margin-top:200px" data-toggle="modal" data-target=".default-example-modal-right-lg">Создать</div>
+
+
+    <style>
+
+        .Menu_giveBadgeWrap__28NpB {
+            padding: 34px 0 28px;
+            width: 86px;
+            position: absolute;
+            top: -20px;
+            right: calc(50% - 47px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Sans Semibold,Arial,sans-serif;
+            font-size: 14px;
+            line-height: 24px;
+            text-transform: uppercase;
+            border: 4px solid #fff;
+            border-radius: 50%;
+            background: #62a231;
+            background: linear-gradient(250deg,#c8de49,#62a231);
+            box-shadow: 0 4px 22px 0 rgba(44,47,60,.16);
+            transition: background 1s ease;
+            cursor: pointer;
+            z-index:9999;
+        }
+
+        .single_badge{
+            width:100px;
+            height:100px;
+            transition: all .1s ease-in-out;
+        }
+        .single_badge:hover{
+            cursor:pointer;
+            transform: scale(1.4);
+         }
+        .single_badge:hover >.badge_border{
+            width:170px;
+            height:170px;
+            overflow:hidden;
+        }
+    </style>
+
+
+    <div style="display:block;width:160px;height:160px;position:absolute;top:90px;left:40px;z-index:99999">
+        <img src="/NewSmartAdmin/img/demo/avatars/avatar-admin.png" style="position:relative;width:160px;height:160px;" class="profile-image " alt="Dr. Codex Lantern">
+    </div>
+
+
+
+    <div class="modal fade default-example-modal-right-lg" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-right modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h4">Новая благодарность</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="company_id" name="company_id" >
+   <?$i=1;
+   ?>
+@foreach($company_badges_groups as $group)
+    <h3>{{$group->group->name}}</h3>
+    @foreach($group->badges as $badges)
+        @if($i==1 || (($i%4+1)==2) )
+            <div>
+        @endif
+        <div class="badge_border" style="position:relative;padding:30px;width:170px;height:170px;display:inline-block;border: 1px solid #eee">
+            <input type="hidden" class="badge_num" value="{{$i}}">
+            <input type="hidden" class="badge_id" value="{{$badges->id}}">
+            <input type="hidden" class="badge_name" value="{{$badges->name}}">
+        <img src="/storage/badges/{{$badges->photo}}" style="position:absolute" class="single_badge"></div>
+         @if($i%4==0 )
+            <div style="height:500px;width:100%;background:#eee;position:relative;display:none;padding-top:25px" class="sending_group">
+            <form class="badges_form">
+
+            <h3 class="badge_name"></h3>
+
+                <div class="form-group">
+                    <label class="form-label" for="example-textarea">Тайтл к бэйджу</label>
+                    <input class="form-control sending_badge_title"  />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="example-email-2">Выбрать колегу из списка</label>
+                    <select class="form-control sending_badge_user">
+                        @foreach($collegues as $collegue)
+                            @if(\Auth::user()->id!==$collegue->id)
+                        <option value="{{$collegue->id}}">{{$collegue->name}}</option>
+                            @endif
+                            @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="example-textarea">Сопроводительный текст</label>
+                    <textarea class="form-control sending_badge_textarea"  rows="5"></textarea>
+                </div>
+
+                <button type="button" data-toggle="modal" data-target="#getCroppedCanvasModal" data-dismiss="modal" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }" class=" sending_badge_submit btn btn-primary waves-effect waves-themed">Отправить бэйдж</button>
+                </form>
+            </div>
+            </div>
+             @endif
+
+        <?
+
+
+                            $i++;?>
+    @endforeach
+    @endforeach
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="company_create_close btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="page-inner" style="left:0px;position:relative;margin-top:250px">
         <!-- BEGIN Left Aside -->
 
             <!-- BEGIN PRIMARY NAVIGATION -->
-    @include('layouts.nav_customers')
+    @include('layouts.nav')
             <!-- END PRIMARY NAVIGATION -->
 
         <!-- END Left Aside -->
@@ -1510,6 +1558,26 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         </div>
     </div>
 </div>
+
+
+<div class="modal modal-al modal-alert fade" id="getCroppedCanvasModal" tabindex="-1" aria-labelledby="getCroppedCanvasTitle" role="dialog" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="getCroppedCanvasTitle">Бэйдж успешно отправлен !</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                сообщение послано на email вашего колеги...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- END Page Settings -->
 <!-- base vendor bundle:
 			 DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations
@@ -1534,6 +1602,62 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 <script>
 
 </script>
+<script>
+    $('.single_badge').click(function(){
+
+        var badge_name_h=$(this).parent().parent().find('.sending_group').find('.badge_name')
+        var badge_submit=$(this).parent().parent().find('.sending_group').find('.sending_badge_submit')
+        var current_badge_name=$(this).parent().find('.badge_name').val()
+        var badge=$(this).parent().find('.badge_id').val()
+
+        var sending_group=$(this).parent().parent().find('.sending_group')
+        badge_name_h.text(current_badge_name)
+        $('.sending_group').slideUp({
+            duration: 'slow',
+            easing: 'linear'
+        })
+            sending_group.slideDown({
+                duration: 'slow',
+                easing: 'linear'
+            })
+
+
+        badge_submit.click(function(){
+            var customer=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_user').val()
+            var message=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_textarea').val()
+            var title=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_title').val()
+
+            console.log(customer)
+            console.log(message)
+            console.log(badge)
+            $.ajax({
+                method: 'POST',
+                dataType: 'json',
+                async:false,
+                url: '/customer/badge/send',
+                data: {customer: customer,message:message,badge:badge,title:title
+                },
+                beforeSend: function() {
+                },
+                complete: function() {
+
+                },
+                success: function (data) {
+
+                    $('.default-example-modal-right-lg').modal("hide");
+
+
+
+                    console.log('success')
+
+                }
+            });
+        })
+
+
+    })
+</script>
+@yield('scripts')
 </body>
 </html>
 

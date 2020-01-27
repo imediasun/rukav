@@ -5,21 +5,65 @@ Route::get('/logout', function () {
 
 });
 
-Route::get('/', 'HomeController@index')->name('dashboard')->middleware('auth:web');
-Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('login');
-Route::post('/login', 'Auth\CustomerLoginController@login')->name('login.submit');
+Route::get('/', 'HomeController@index')->name('dashboard')->middleware('auth:admin')->middleware('role:Simple_user|Company_administrator|Manager');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('auth:admin')->middleware('role:Simple_user|Company_administrator|Manager');
+#Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('login');
+#Route::post('/login', 'Auth\CustomerLoginController@login')->name('login.submit');
 Route::get('/staff', 'StaffController@index');
 Route::post('/staff/data', 'StaffController@postData');
 Route::post('/staff/role_update', 'StaffController@postSave');
 Route::post('/staff_permissions/data', 'StaffController@postPermissionsData');
 Route::group(['prefix' => 'customer'],function(){
     Route::post('/get_theme', 'CustomersController@getTheme');
+    Route::post('/user_interface/data', 'CustomersController@postData');
+    Route::post('/user_interface/getData', 'CustomersController@getData');
+    Route::post('/badge/send', 'CustomersController@sendBadgeMessage');
+
+
+
 });
+
+
+Route::group(['prefix' => 'company'],function(){
+    Route::get('/users_list', 'Admin\CustomersController@index')->name('company.users_list.dashboard');
+    Route::post('/users/data', 'Admin\CustomersController@postData');
+    Route::post('/users/get', 'Admin\CustomersController@getCustomer');
+    Route::post('/users/delete', 'Admin\CustomersController@postDelete');
+    Route::post('/users/create', 'Admin\CustomersController@postSave');
+    Route::post('/save_theme', 'Admin\CompaniesController@saveTheme');
+    Route::get('/company_logo', 'Admin\CompaniesController@showLogoPage');
+    Route::get('/custom_badges', 'Admin\CompaniesController@showCustomBadges');
+
+
+
+
+
+    Route::get('/managers_list', 'Admin\ManagersController@index')->name('company.managers_list.dashboard');
+    Route::post('/managers/data', 'Admin\ManagersController@postData');
+    Route::post('/managers/get', 'Admin\ManagersController@getCustomer');
+    Route::post('/managers/delete', 'Admin\ManagersController@postDelete');
+    Route::post('/managers/create', 'Admin\ManagersController@postSave');
+
+
+    Route::get('/themes', 'Admin\CompaniesController@themes')->name('company.themes');
+
+
+
+    Route::post('/logo/data', 'Admin\CompaniesController@postLogosData');
+    Route::post('/logo/get', 'Admin\CompaniesController@getLogo');
+    Route::post('/logo/delete', 'Admin\CompaniesController@postLogoDelete');
+    Route::post('/logo/saveLogoToSession', 'Ajax\CompanyController@saveLogoToSession');
+    Route::post('/logo/create', 'Ajax\CompanyController@postSaveLogo');
+    Route::post('/logo/update_status', 'Ajax\CompanyController@updateLogoStatus');
+
+});
+
+
 
 
 Route::group(['prefix' => 'admin'],function(){
 
-    Route::get('/profile', 'Admin\AdminController@showProfile')->name('admin.profile')->middleware('auth:admin')->middleware('role:Company_administrator|Gods_mode|Main_administrator');
+    Route::get('/profile', 'Admin\AdminController@showProfile')->name('admin.profile')->middleware('auth:admin')->middleware('role:Gods_mode|Main_administrator');
     Route::post('/profile/update', 'Admin\AdminController@postUpdate')->name('admin.profile.update');
 
     Route::get('/profile/{token}', 'Admin\AdminController@showProfile')->name('admin.profile.token')->middleware('auth:admin')->middleware('role:Company_administrator');;
@@ -45,6 +89,7 @@ Route::group(['prefix' => 'admin'],function(){
 
 
     Route::post('/staff_permissions/data', 'Admin\StaffController@postPermissionsData');
+    Route::post('/staff_permissions/change', 'Admin\StaffController@postPermissionsChange');
     Route::post('/staff/data', 'Admin\StaffController@postData');
     Route::post('/staff/role_update', 'Admin\StaffController@postSave');
 
@@ -63,12 +108,7 @@ Route::group(['prefix' => 'admin'],function(){
 
 
         Route::post('/company/data', 'Admin\CompaniesController@postData');
-        Route::post('/company/logo/data', 'Admin\CompaniesController@postLogosData');
-        Route::post('/company/logo/get', 'Admin\CompaniesController@getLogo');
-        Route::post('/company/logo/delete', 'Admin\CompaniesController@postLogoDelete');
-        Route::post('/company/logo/saveLogoToSession', 'Ajax\CompanyController@saveLogoToSession');
-        Route::post('/company/logo/create', 'Ajax\CompanyController@postSaveLogo');
-        Route::post('/company/logo/update_status', 'Ajax\CompanyController@updateLogoStatus');
+
 
 
         Route::get('/badges_groups', 'Admin\AdminController@showBadgesGroups');
@@ -105,29 +145,6 @@ Route::group(['prefix' => 'admin'],function(){
     });
 
 
-    Route::group(['prefix' => 'company'],function(){
-        Route::get('/users_list', 'Admin\CustomersController@index')->name('company.users_list.dashboard');
-        Route::post('/users/data', 'Admin\CustomersController@postData');
-        Route::post('/users/get', 'Admin\CustomersController@getCustomer');
-        Route::post('/users/delete', 'Admin\CustomersController@postDelete');
-        Route::post('/users/create', 'Admin\CustomersController@postSave');
-        Route::post('/save_theme', 'Admin\CompaniesController@saveTheme');
-        Route::get('/company_logo', 'Admin\CompaniesController@showLogoPage');
-        Route::get('/custom_badges', 'Admin\CompaniesController@showCustomBadges');
-
-
-
-
-
-        Route::get('/managers_list', 'Admin\ManagersController@index')->name('company.managers_list.dashboard');
-        Route::post('/managers/data', 'Admin\ManagersController@postData');
-        Route::post('/managers/get', 'Admin\ManagersController@getCustomer');
-        Route::post('/managers/delete', 'Admin\ManagersController@postDelete');
-        Route::post('/managers/create', 'Admin\ManagersController@postSave');
-
-
-        Route::get('/themes', 'Admin\CompaniesController@themes')->name('company.themes');
-    });
 
 
 });

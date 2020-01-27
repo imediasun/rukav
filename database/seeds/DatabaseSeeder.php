@@ -21,6 +21,10 @@ class DatabaseSeeder extends Seeder
         $this->call(CompaniesTableSeeder::class);
         $this->call(ManagersTableSeeder::class);
         $this->call(BadgesTableSeeder::class);
+        $this->call(MessagesTableSeeder::class);
+        $this->call(SettingsTableSeeder::class);
+        $this->call(LogosTableSeeder::class);
+
         //$this->call(LanguagesTableSeeder::class);
     }
 }

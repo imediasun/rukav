@@ -41,7 +41,7 @@ class RoleTableSeeder extends Seeder
             [
                 'name' => 'Simple_user',
                 'description'=> 'Пользователь',
-                'guard_name'=>'web'
+                'guard_name'=>'admin'
             ],
             /*6*/
             [

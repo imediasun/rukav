@@ -19,7 +19,7 @@ class CreatePermissionTables extends Migration
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('guard_name');
+            $table->string('guard_name')->default('admin');
             $table->string('process_name');
             $table->string('process_slug');
             $table->string('type_category');
@@ -31,7 +31,7 @@ class CreatePermissionTables extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->string('guard_name');
+            $table->string('guard_name')->default('admin');
             $table->timestamps();
         });
 

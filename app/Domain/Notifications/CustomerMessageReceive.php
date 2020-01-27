@@ -5,10 +5,11 @@ namespace App\Domain\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\User;
+use App\Domain\Customer\Models\Message;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\User;
 
-class CustomerRegistrationDone extends Notification //implements ShouldQueue
+class CustomerMessageReceive extends Notification //implements ShouldQueue
 {
 //use Queueable;
 
@@ -17,7 +18,7 @@ public $customer;
 public function __construct(User $customer){
     $this->customer=$customer;
 
-    //$this->customer=\App\Domain\Customer\Models\Customer::where('email',$this->customer->email)->first();
+    //$this->customer=\App\User::where('id',$this->customer->user_id)->first();
 }
     /**
      * Get the mail representation of the notification.
@@ -30,14 +31,16 @@ public function __construct(User $customer){
 
         \Log::info($this->customer);
         \Log::info($this->customer);
-        $url = url('/profile/'.$this->customer->remember_token);
+        //$url = url('/badge/'.$this->customer->remember_token);
 
-        return (new MailMessage)
+         $message=(new MailMessage)
             ->greeting('Hello!')
-            ->line('Вы можете залогиниться перейдя по ссылке или нажав кнопку')
-            ->action('Войти в админку', $url)
-            ->line('Логин: '.$this->customer->email)
-        ->line('Временный Пароль: YouCanChangePassword');
+            ->line('Вы получили новый бэйдж');
+            //->action('Войти в систему', $url)
+
+         \Log::info('Message',array($message));
+
+        return $message;
     }
 
     public function via($notifiable)

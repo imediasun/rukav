@@ -33,5 +33,17 @@ class StaffManager extends StaffAbstract implements StaffContract
         return $this->staffRepository->updateOrCreateRole($role['attributes'],$role['values']);
     }
 
+    public function updatePermissionForRole($role,$permission,$value){
+
+        var_dump($permission,$role,$value);
+
+       if( \App\Domain\Staff\Models\RoleHasPermission::where('role_id',$role)->where('permission_id',$permission)->first() && $value=="false"){
+
+           $row=\App\Domain\Staff\Models\RoleHasPermission::where('role_id',$role)->where('permission_id',$permission)->delete();
+           var_dump('popali',$row);
+       }
+       elseif(!\App\Domain\Staff\Models\RoleHasPermission::where('role_id',$role)->where('permission_id',$permission)->first() && $value=="true"){
+        \App\Domain\Staff\Models\RoleHasPermission::insert(['role_id'=>$role,'permission_id'=>$permission]);}
+    }
 
 }

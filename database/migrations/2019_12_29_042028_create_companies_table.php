@@ -20,7 +20,9 @@ class CreateCompaniesTable extends Migration
             $table->text('info');
             $table->string('phone');
             $table->string('address');
+            $table->boolean('status');
             $table->string('biling_address');
+            $table->date('registration_date');
             $table->timestamps();
         });
     }

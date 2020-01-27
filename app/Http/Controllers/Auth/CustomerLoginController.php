@@ -21,7 +21,6 @@ class CustomerLoginController extends Controller
         return redirect('/');
     }
     public function showLoginForm(){
-        dump(123);
         return view('auth.login');
     }
 

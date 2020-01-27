@@ -17,7 +17,7 @@
         </nav>
     </div>
 
-    <div class="modal fade" id="default-example-modal-center" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal fade default-example-modal-center" id="default-example-modal-center" tabindex="-1" role="dialog" aria-hidden="true" >
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -66,7 +66,6 @@
             <div class="panel-content">
                 <div class="border px-3 pt-3 pb-0 rounded">
                     <ul class="nav nav-pills" role="tablist">
-                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#js_pill_border_icon-1"><i class="fal fa-home mr-1"></i>Статусы</a></li>
                         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_pill_border_icon-2"><i class="fal fa-user mr-1"></i>Роли</a></li>
                         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_pill_border_icon-3"><i class="fal fa-clock mr-1"></i>Права ролей</a></li>
                     </ul>
@@ -100,22 +99,15 @@
                                         Роли
                                     </h2>
                                 </div>
+
+
                                 <div class="panel-container show">
                                     <div class="panel-content">
                                         <div class="panel-tag">
-                                            <div class="row">
-                                            <div class="col-xl-4">
-                                            <div class="form-group">
-                                                <label class="form-label" for="simpleinput">Название (русский)</label>
-                                                <input type="text" id="simpleinput" class="form-control">
-                                            </div>
-                                            </div>
-                                            <div class="col-xl-4">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="simpleinput">Название (english)</label>
-                                                    <input type="text" id="simpleinput" class="form-control">
-                                                </div>
-                                            </div>
+                                            <div class="demo">
+                                                <button type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-center">
+                                                    <span class="fal fa-plus  mr-1"></span>
+                                                    Создать новую роль</button>
                                             </div>
 
                                         </div>
@@ -236,6 +228,10 @@
         });
 
     }
+
+    $('#RolesSelectedId').change(function(){
+        reloadData();
+    })
 
     $('.role_change').click(function(){
         console.log(222)

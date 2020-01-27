@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Customer\Services;
+namespace App\Domain\User\Services;
 
 
 
@@ -12,7 +12,7 @@ use App\Domain\Notifications\CustomerRegistrationDone;
 use App\Domain\Notifications\CustomerMessageReceive;
 use App\User;
 
-class CustomerService implements \App\Domain\Customer\Services\CustomerServiceInterface
+class UserService implements \App\Domain\User\Services\UserServiceInterface
 
 {
 
@@ -36,10 +36,5 @@ class CustomerService implements \App\Domain\Customer\Services\CustomerServiceIn
         $customer->notify(new CustomerMessageReceive($customer));
 
     }
-    public function sendCustomerReceiveMessageNotification(User $customer)
-    {
-        return $this->sendMessageNotification($customer);
-    }
-
 
 }

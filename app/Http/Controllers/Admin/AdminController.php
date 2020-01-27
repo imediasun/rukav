@@ -28,10 +28,9 @@ class AdminController extends BaseController
      */
     public function index()
     {
+        $data=$this->mainSettings();
         $data['menu']=$this->menu();
-        $user=\Auth::user();
-        dump($user);
-        $data['user']=$user;
+
         $data['title']="Додати товар";
         $data['keywords']="Ukrainian industry platform";
         $data['description']="Ukrainian industry platform";
@@ -43,7 +42,6 @@ class AdminController extends BaseController
     {
         $data['menu']=$this->menu();
         $user=\Auth::user();
-        dump($user);
         $data['user']=$user;
         $data['title']="Додати товар";
         $data['keywords']="Ukrainian industry platform";

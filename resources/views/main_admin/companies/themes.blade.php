@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_customer')
 @section('theme_scripts')
     <!-- DOC: script to save and load page settings -->
     <script>
@@ -6,6 +6,24 @@
          *	This script should be placed right after the body tag for fast execution
          *	Note: the script is written in pure javascript and does not depend on thirdparty library
          **/
+        var company_id='{{$company_id}}';
+
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/customer/get_theme", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            company_id: company_id
+        }));
+        xhr.onload = function() {
+            console.log("HELLO")
+            console.log(this.responseText);
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+            localStorage.setItem("themeSettings",data.theme_options);
+        }
+
         'use strict';
 
         var classHolder = document.getElementsByTagName("BODY")[0],
@@ -60,7 +78,7 @@
                 method: 'POST',
                 dataType: 'html',
                 async:true,
-                url: '/admin/company/save_theme',
+                url: '/company/save_theme',
                 data: {theme_options: JSON.stringify(themeSettings),company_id:company_id},
                 beforeSend: function() {
                     $('#loader').show();

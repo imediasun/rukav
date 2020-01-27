@@ -16,7 +16,7 @@
             <th  class="logo_id_table" scope="row">{{$logo->id}}
             <input class="logo_id" type="hidden" value="{{$logo->id}}">
             </th>
-            <td class="company_photo">
+            <td class="company_photo" style="background-color:#696969">
                 <span class="profile-image rounded-circle d-inline-block" style="
                         width:50px;height:50px;background-image:url('/storage/logos/{{$logo->photo}}') !important;
                         background-position: center;background: 100% 100% no-repeat;background-size: cover;

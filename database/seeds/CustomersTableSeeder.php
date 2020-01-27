@@ -13,42 +13,45 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {
-
-       DB::table('customers')->insert([
+        DB::table('customers')->insert([
             /*1*/
-           [
-               'name' => 'Andrey ','sername'=>'Lopushansky',
-               'login' => 'imediasun',
-               'email'=> 'imediasun@gmail.com',
-               'password'=> Hash::make('sunimedia'),
-               'department'=> 'developement',
-               'active'=>true,'phone'=>'123',
-               'non_hashed'=>'sunimedia',
-               'photo'=>'/tmp.png',
-               'position'=>'director',
-               'manager_id'=>1,'info'=>'asdf',
-               'address'=>'parusnaya str',
-               'company_id'=>1,
-               'remember_token'=> Str::random(60)
-           ],
-           /*2*/
-           [
-               'name' => 'Sergey ','sername'=>'Miroshnichenko',
-               'login' => 'miroshnichenko',
-               'email'=> 'imediasun8@gmail.com',
-               'password'=> Hash::make('sunimedia'),
-               'department'=> 'developement',
-               'active'=>true,'phone'=>'123',
-               'non_hashed'=>'sunimedia',
-               'photo'=>'/tmp.png',
-               'position'=>'director',
-               'manager_id'=>1,'info'=>'asdf',
-               'address'=>'parusnaya str',
-               'company_id'=>1,
-               'remember_token'=> Str::random(60)
-           ],
+            [
+                'user_id' => 1,
+                'company_id' => 1,
+                'department'=> 'department',
+                'phone'=> '13232',
+                'photo'=> '/avatar.png',
+                'info'=>'info',
+                'position'=>'developer',
+                'active'=>1,
+                'address'=>'address',
+                'location'=>'Kiev',
+                'manager_id'=>1,
+                'birth_date'=>\Carbon\Carbon::now(),
+        'start_date'=>\Carbon\Carbon::now(),
+                'sex'=>1,
 
-       ]);
+            ],
+
+            /*2*/
+            [
+                'user_id' => 5,
+                'company_id' => 1,
+                'department'=> 'department',
+                'phone'=> '13232',
+                'photo'=> '/avatar.png',
+                'info'=>'info',
+                'position'=>'developer',
+                'active'=>1,
+                'address'=>'address',
+                'location'=>'Kiev',
+                'manager_id'=>1,
+                'birth_date'=>\Carbon\Carbon::now(),
+                'start_date'=>\Carbon\Carbon::now(),
+                'sex'=>1,
+            ],
+
+        ]);
 
 
     }

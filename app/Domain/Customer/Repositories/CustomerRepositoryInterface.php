@@ -9,6 +9,7 @@ interface CustomerRepositoryInterface extends BaseCrudRepositoryInterface
 {
 
     public function updateOrCreateCustomer($attributes,$values);
+    public function updateOrCreateMessage($attributes,$values);
 
     public function deleteCustomer($customer);
 

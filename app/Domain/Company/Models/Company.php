@@ -16,5 +16,14 @@ class Company extends Model
 
     ];
 
+    public function admin(){
+        return $this->hasOneThrough('App\User', 'App\AdminCompany','company_id','id','id','admin_id');
+    }
+
+    public function logo(){
+        return $this->hasOne('App\Domain\Company\Models\Logo');
+
+    }
+
 
 }

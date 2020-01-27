@@ -9,6 +9,7 @@
 namespace App\Domain\Base\Services\Contracts;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Domain\Customer\Models\Customer;
 
 /**
  * Interface BaseServiceInterface
@@ -26,4 +27,13 @@ interface BaseServiceInterface
      * @return bool
      */
     public function sendNotification(Model $company);
+
+    /**
+     * Send Message Notification
+     *
+     * @param $company
+     * @param $notification
+     * @return bool
+     */
+    public function sendMessageNotification(Model $company);
 }

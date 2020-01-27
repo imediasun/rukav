@@ -14,4 +14,14 @@ class CompanyBadge extends Model
 
     public $timestamps = false;
 
+    public function badges(){
+        return $this->hasMany('App\Domain\Company\Models\Badge','group_id','badges_group_id');
+
+    }
+
+    public function group(){
+        return $this->hasOne('App\Domain\Admin\Models\BadgesGroup','id','badges_group_id');
+
+    }
+
 }

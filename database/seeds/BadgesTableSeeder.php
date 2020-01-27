@@ -40,17 +40,95 @@ class BadgesTableSeeder extends Seeder
                 'group_id'=>1,
 
             ],
-            /*1*/
+            /*3*/
             [
                 'name' => 'First Badge ',
                 'photo' => '5e1b3aa8ccdbc.png',
-                'group_id'=>2,
+                'group_id'=>1,
             ],
-            /*2*/
+            /*4*/
             [
                 'name' => 'Second Badge ',
                 'photo' => '5e1b3cc77bb25.png',
-                'group_id'=>2,
+                'group_id'=>1,
+
+            ],
+            /*5*/
+            [
+                'name' => 'First Badge ',
+                'photo' => '5e1b3aa8ccdbc.png',
+                'group_id'=>1,
+            ],
+            /*6*/
+            [
+                'name' => 'Second Badge ',
+                'photo' => '5e1b3cc77bb25.png',
+                'group_id'=>1,
+
+            ],
+            /*7*/
+            [
+                'name' => 'First Badge ',
+                'photo' => '5e1b3aa8ccdbc.png',
+                'group_id'=>1,
+            ],
+            /*8*/
+            [
+                'name' => 'Second Badge ',
+                'photo' => '5e1b3cc77bb25.png',
+                'group_id'=>1,
+
+            ],
+            /*9*/
+            [
+                'name' => 'First Badge ',
+                'photo' => '5e1b3aa8ccdbc.png',
+                'group_id'=>1,
+            ],
+            /*10*/
+            [
+                'name' => 'Second Badge ',
+                'photo' => '5e1b3cc77bb25.png',
+                'group_id'=>1,
+
+            ],
+            /*11*/
+            [
+                'name' => 'First Badge ',
+                'photo' => '5e1b3aa8ccdbc.png',
+                'group_id'=>1,
+            ],
+            /*12*/
+            [
+                'name' => 'Second Badge ',
+                'photo' => '5e1b3cc77bb25.png',
+                'group_id'=>1,
+
+            ],
+            /*13*/
+            [
+                'name' => 'First Badge ',
+                'photo' => '5e1b3aa8ccdbc.png',
+                'group_id'=>1,
+            ],
+            /*14*/
+            [
+                'name' => 'Second Badge ',
+                'photo' => '5e1b3cc77bb25.png',
+                'group_id'=>1,
+
+            ],
+            /*15*/
+            [
+                'name' => 'First Badge ',
+                'photo' => '5e1b3aa8ccdbc.png',
+                'group_id'=>1,
+            ],
+            /*16*/
+            [
+                'name' => 'Second Badge ',
+                'photo' => '5e1b3cc77bb25.png',
+                'group_id'=>1,
 
             ],
 
@@ -61,7 +139,7 @@ class BadgesTableSeeder extends Seeder
             [
                 'badges_group_id' => 1,
                 'company_id'=>1,
-                'active'=>0,
+                'active'=>1,
             ],
             /*2*/
             [
@@ -225,16 +303,7 @@ class BadgesTableSeeder extends Seeder
                 'company_id'=>1,
 
             ],
-            /*16*/
-            [
-                'addressant' => 1,
-                'sender'=>2,
-                'title'=>'Example Title16',
-                'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
-                'badge_id'=>2,
-                'company_id'=>1,
 
-            ],
 
         ]);
 

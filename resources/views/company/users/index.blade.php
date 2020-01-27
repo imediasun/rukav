@@ -1,5 +1,93 @@
-@extends('layouts.app')
+@extends('layouts.app_customer')
+@section('theme_scripts')
 
+
+    <script>
+        /**
+         *	This script should be placed right after the body tag for fast execution
+         *	Note: the script is written in pure javascript and does not depend on thirdparty library
+         **/
+
+        var company_id='{{$company_id}}';
+
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/customer/get_theme", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            company_id: company_id
+        }));
+        xhr.onload = function() {
+            console.log("HELLO")
+            console.log(this.responseText);
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+            localStorage.setItem("themeSettings",data.theme_options);
+        }
+
+
+        console.log(company_id)
+
+
+
+        'use strict';
+
+        var classHolder = document.getElementsByTagName("BODY")[0],
+            /**
+             * Load from localstorage
+             **/
+            themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+                {},
+            themeURL = themeSettings.themeURL || '',
+            themeOptions = themeSettings.themeOptions || '';
+        /**
+         * Load theme options
+         **/
+        if (themeSettings.themeOptions)
+        {
+            classHolder.className = themeSettings.themeOptions;
+            console.log("%c✔ Theme settings loaded", "color: #148f32");
+        }
+        else
+        {
+            console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
+        }
+        if (themeSettings.themeURL && !document.getElementById('mytheme'))
+        {
+            var cssfile = document.createElement('link');
+            cssfile.id = 'mytheme';
+            cssfile.rel = 'stylesheet';
+            cssfile.href = themeURL;
+            document.getElementsByTagName('head')[0].appendChild(cssfile);
+        }
+        /**
+         * Save to localstorage
+         **/
+        var saveSettings = function()
+        {
+            themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
+            {
+                return /^(nav|header|mod|display)-/i.test(item);
+            }).join(' ');
+            if (document.getElementById('mytheme'))
+            {
+                themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+            };
+            localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+            console.log('Saved Theme setting')
+
+        }
+        /**
+         * Reset settings
+         **/
+        var resetSettings = function()
+        {
+            localStorage.setItem("themeSettings", "");
+        }
+
+    </script>
+@endsection
 @section('content')
 
 
@@ -11,7 +99,7 @@
 
         <div class="demo">
 
-            <button type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg">
+            <button type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg-user">
                 <span class="fal fa-plus  mr-1"></span>
                 Создать пользователя</button>
         </div>
@@ -55,7 +143,7 @@
         </div>
     </div>
 
-    <div class="modal fade default-example-modal-right-lg" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal fade default-example-modal-right-lg-user" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-right modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -79,6 +167,19 @@
                     <div class="form-group">
                         <label class="form-label" for="customer_sername">Фамилия пользователя</label>
                         <input type="text" id="customer_sername" name="customer_sername" class="form-control" placeholder="Фамилия пользователя">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="customer_sex">Пол</label>
+                        <select class="form-control" id="customer_sex">
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="customer_location">Логин пользователя</label>
+                        <input type="text" id="customer_location" name="customer_location" class="form-control" placeholder="Локация пользователя">
                     </div>
 
                     <div class="form-group">
@@ -121,7 +222,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="customer_create_close btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Закрыть</button>
-                    <button type="button" class="customer_create btn btn-primary waves-effect waves-themed">Сохранить</button>
+                    <button type="button" class="customer_create btn btn-primary waves-effect waves-themed" data-dismiss="modal">Сохранить</button>
                 </div>
             </div>
         </div>
@@ -132,12 +233,14 @@
     <script>
 
         $('.customer_create').click(function(){
-            console.log(222)
+            console.log(222,company_id)
             var customer_name=$('#customer_name').val()
             var customer_sername=$('#customer_sername').val()
+            var customer_sex=$('#customer_sex').val()
+            var customer_location=$('#customer_location').val()
             var customer_id=$('#customer_id').val()
             var customer_login=$('#customer_login').val()
-            var company_id=$('#company_id').val()
+
             var manager_id=$('#manager_id').val()
             var customer_department=$('#customer_department').val()
             var customer_position=$('#customer_position').val()
@@ -145,14 +248,16 @@
             var customer_info=$('#customer_info').val()
             var customer_phone=$('#customer_phone').val()
             var customer_address=$('#customer_address').val()
-            console.log(customer_name,customer_email,customer_info,customer_phone,customer_address)
+            console.log(customer_name,customer_email,customer_info,customer_phone,customer_address,company_id)
 
             $.ajax({
                 method: 'POST',
                 dataType: 'json',
                 async:false,
-                url: '/admin/company/users/create',
-                data: {customer_id: customer_id,customer_name: customer_name,customer_sername: customer_sername,customer_login: customer_login,
+                url: '/company/users/create',
+                data: {customer_id: customer_id,customer_name: customer_name,customer_sername: customer_sername,
+                    customer_sex: customer_sex,customer_location: customer_location,
+                    customer_login: customer_login,
                     customer_department: customer_department,company_id: company_id,manager_id: manager_id,
                     customer_position: customer_position,
                     customer_email:customer_email,
@@ -162,14 +267,14 @@
                 beforeSend: function() {
                 },
                 complete: function() {
-                    $('.customer_create_close').click();
+                    //$('.customer_create_close').click();
                     $('#customer_id').val('')
-                    reloadData();
+
                 },
                 success: function (data) {
 
                     console.log('success')
-
+                    reloadData();
                 }
             });
         })
@@ -185,7 +290,7 @@
         reloadData();
         function reloadData(){
             var module='admin.company.users.data'
-            var url='/admin/company/users/data';
+            var url='/company/users/data';
             $.ajax({
                 method: 'POST',
                 dataType: 'html',

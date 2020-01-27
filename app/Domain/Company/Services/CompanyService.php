@@ -28,5 +28,12 @@ class CompanyService implements CompanyServiceInterface
 
     }
 
+    public function sendMessageNotification(Model $customer)
+    {
+
+        $customer->notify(new CustomerMessageReceive($customer));
+
+    }
+
 
 }

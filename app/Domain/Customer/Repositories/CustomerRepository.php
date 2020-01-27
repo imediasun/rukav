@@ -5,6 +5,7 @@ namespace App\Domain\Customer\Repositories;
 
 use  App\Domain\Base\Repositories\BaseCrudRepository;
 use App\Domain\Customer\Models\Customer;
+use App\Domain\Customer\Models\Message;
 
 
 class CustomerRepository extends BaseCrudRepository implements CustomerRepositoryInterface
@@ -27,6 +28,12 @@ class CustomerRepository extends BaseCrudRepository implements CustomerRepositor
     {
         $this->entityClass= Customer::class;
         return $this->delete($customer);
+    }
+
+    public function updateOrCreateMessage($attributes,$values)
+    {
+        $this->entityClass= Message::class;
+        return $this->updateOrCreate($attributes,$values);
     }
 
 }

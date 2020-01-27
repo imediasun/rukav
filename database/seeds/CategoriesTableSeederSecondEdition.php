@@ -93,7 +93,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 3,
                 'name' => 'Логотип',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/company/company_logo',
+                'link'=> '/company/company_logo',
                 'system_name'=>'company_logo',
                 'type'=>'linked',
                 'permission'=>null
@@ -104,7 +104,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 3,
                 'name' => 'Кастомные бейджи',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/company/custom_badges',
+                'link'=> '/company/custom_badges',
                 'system_name'=>'custom_badges',
                 'type'=>'linked',
                 'permission'=>null
@@ -114,7 +114,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 3,
                 'name' => 'Кастомные подложки',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/company/custom_layouts',
+                'link'=> '/company/custom_layouts',
                 'system_name'=>'custom_layouts',
                 'type'=>'linked',
                 'permission'=>null
@@ -124,7 +124,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Пользователи',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/company/users',
+                'link'=> '/company/users',
                 'system_name'=>'company_users',
                 'type'=>'not_linked',
                 'permission'=>'view_company_users_menu'
@@ -134,7 +134,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 7,
                 'name' => 'Список пользователей',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/company/users_list',
+                'link'=> '/company/users_list',
                 'system_name'=>'company_users_list',
                 'type'=>'linked',
                 'permission'=>null
@@ -144,7 +144,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Статистика администратора',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/company/statistics',
+                'link'=> '/company/statistics',
                 'system_name'=>'company_statistics',
                 'type'=>'not_linked',
                 'permission'=>'view_company_statistics_menu'
@@ -154,7 +154,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 9,
                 'name' => 'Статистика по людям',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/company/users_statistics',
+                'link'=> '/company/users_statistics',
                 'system_name'=>'users_statistics',
                 'type'=>'linked',
                 'permission'=>null
@@ -164,7 +164,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 9,
                 'name' => 'Статистика по менеджерам ',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/company/users_statistics',
+                'link'=> '/company/users_statistics',
                 'system_name'=>'users_statistics',
                 'type'=>'linked',
                 'permission'=>null
@@ -217,14 +217,14 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'link'=> '/admin/profile',
                 'system_name'=>'admin_profile',
                 'type'=>'linked',
-                'permission'=>'view_companies_menu'
+                'permission'=>null
             ],
             /*17*/  //Role=>company_admin
             [
                 'parent_id' => 0,
                 'name' => 'Менеджеры',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/company/managers',
+                'link'=> '/company/managers',
                 'system_name'=>'company_managers',
                 'type'=>'not_linked',
                 'permission'=>'view_company_managers_menu'
@@ -234,7 +234,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 17,
                 'name' => 'Список менеджеров',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/company/managers_list',
+                'link'=> '/company/managers_list',
                 'system_name'=>'company_managers_list',
                 'type'=>'linked',
                 'permission'=>null
@@ -244,7 +244,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 3,
                 'name' => 'Цветовые схеммы',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/company/themes',
+                'link'=> '/company/themes',
                 'system_name'=>'themes',
                 'type'=>'linked',
                 'permission'=>null
@@ -298,6 +298,47 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'system_name'=>'main_admin_custom_badges',
                 'type'=>'linked',
                 'permission'=>null
+            ],
+
+            /*25*/
+            [
+                'parent_id' => 0,
+                'name' => 'News Feed',
+                'icon'=> 'fal fa-info-circle',
+                'link'=> '/news_feed',
+                'system_name'=>'news_feed',
+                'type'=>'linked',
+                'permission'=>'view_customer_interface'
+            ],
+            /*26*/
+            [
+                'parent_id' => 0,
+                'name' => 'My Badges',
+                'icon'=> 'fal fa-info-circle',
+                'link'=> '/my_badges',
+                'system_name'=>'my_badges',
+                'type'=>'linked',
+                'permission'=>'view_customer_interface'
+            ],
+            /*27*/
+            [
+                'parent_id' => 0,
+                'name' => 'Give Feedback',
+                'icon'=> 'fal fa-info-circle',
+                'link'=> '/give_feedback',
+                'system_name'=>'give_feedback',
+                'type'=>'linked',
+                'permission'=>'view_customer_interface'
+            ],
+            /*28*/
+            [
+                'parent_id' => 0,
+                'name' => 'Request Feedback',
+                'icon'=> 'fal fa-info-circle',
+                'link'=> '/request_feedback',
+                'system_name'=>'request_feedback',
+                'type'=>'linked',
+                'permission'=>'view_customer_interface'
             ],
 
 

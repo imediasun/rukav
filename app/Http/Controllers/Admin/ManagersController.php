@@ -33,7 +33,7 @@ class ManagersController extends BaseController
         if($role[0]->id==4){
             $data['manager']=null;
             $data['company']=\Auth::user()->getCompany[0];
-
+            $data['company_id']=\Auth::user()->getCompany[0]->id;
         }
 
 

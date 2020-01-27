@@ -23,9 +23,9 @@ class HomeController extends BaseController
      */
     public function index()
     {
+        $data=$this->mainSettings();
         $data['menu']=$this->menu();
-        $user=\Auth::user();
-        $data['company_id']=$user->company_id;
+
         $data['title']="Додати товар";
         $data['keywords']="Ukrainian industry platform";
         $data['description']="Ukrainian industry platform";

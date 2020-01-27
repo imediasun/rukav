@@ -17,12 +17,14 @@ class CompaniesTableSeeder extends Seeder
        DB::table('companies')->insert([
             /*1*/
            [
-               'name' => 'Andrey ',
+               'name' => 'Awesome ',
                'email'=> 'imediasun@gmail.com',
                'phone'=>'123',
                'info'=>'123',
                'address'=>'parusnaya str',
                'biling_address'=>'parusnaya str',
+               'status'=>1,
+               'registration_date'=>\Carbon\Carbon::now(),
            ],
 
        ]);

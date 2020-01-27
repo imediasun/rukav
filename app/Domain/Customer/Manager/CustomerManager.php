@@ -37,10 +37,7 @@ class CustomerManager extends CustomerAbstract implements CustomerContract
     {
 
         $customer=$this->customerRepository->updateOrCreateCustomer($customer['attributes'],$customer['values']);
-        if($customer){
-                $this->customerService->sendCustomerRegistrationDoneNotification($customer);
 
-        }
         return $customer;
 
     }
@@ -50,6 +47,19 @@ class CustomerManager extends CustomerAbstract implements CustomerContract
         return $this->customerRepository->deleteCustomer($customer);
     }
 
+
+    public function updateMessage($message)
+    {
+
+        $message=$this->customerRepository->updateOrCreateMessage($message['attributes'],$message['values']);
+        if($message){
+        $customer=\App\User::where('id',$message->addressant)->first();
+            $this->customerService->sendCustomerReceiveMessageNotification($customer);
+
+        }
+        return $message;
+
+    }
 
 
 }

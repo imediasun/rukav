@@ -1,14 +1,97 @@
 @extends('layouts.app_customer')
 @section('theme_scripts')
 
+
+    <script>
+        /**
+         *	This script should be placed right after the body tag for fast execution
+         *	Note: the script is written in pure javascript and does not depend on thirdparty library
+         **/
+
+        var company_id='{{$company_id}}';
+
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/customer/get_theme", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            company_id: company_id
+        }));
+        xhr.onload = function() {
+            console.log("HELLO")
+            console.log(this.responseText);
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+            localStorage.setItem("themeSettings",data.theme_options);
+        }
+
+
+        console.log(company_id)
+
+
+
+        'use strict';
+
+        var classHolder = document.getElementsByTagName("BODY")[0],
+            /**
+             * Load from localstorage
+             **/
+            themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+                {},
+            themeURL = themeSettings.themeURL || '',
+            themeOptions = themeSettings.themeOptions || '';
+        /**
+         * Load theme options
+         **/
+        if (themeSettings.themeOptions)
+        {
+            classHolder.className = themeSettings.themeOptions;
+            console.log("%c✔ Theme settings loaded", "color: #148f32");
+        }
+        else
+        {
+            console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
+        }
+        if (themeSettings.themeURL && !document.getElementById('mytheme'))
+        {
+            var cssfile = document.createElement('link');
+            cssfile.id = 'mytheme';
+            cssfile.rel = 'stylesheet';
+            cssfile.href = themeURL;
+            document.getElementsByTagName('head')[0].appendChild(cssfile);
+        }
+        /**
+         * Save to localstorage
+         **/
+        var saveSettings = function()
+        {
+            themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
+            {
+                return /^(nav|header|mod|display)-/i.test(item);
+            }).join(' ');
+            if (document.getElementById('mytheme'))
+            {
+                themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+            };
+            localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+            console.log('Saved Theme setting')
+
+        }
+        /**
+         * Reset settings
+         **/
+        var resetSettings = function()
+        {
+            localStorage.setItem("themeSettings", "");
+        }
+
+    </script>
 @endsection
 @section('content')
     <div class="container">
 
-        <div style="width:100%;height:200px;background-image: url('storage/1.jpg') !important;background-position: center;background: 100% 100% no-repeat;background-size: cover;">
 
-
-        </div>
                 <ol class="breadcrumb page-breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
                     <li class="breadcrumb-item">Application Intel</li>
@@ -45,137 +128,15 @@
                 <div class="row">
 
                     <div class="col-lg-6">
+                        <div class="timeline">
 
-
-                        <div id="vertical-timeline" class="vertical-container light-timeline no-margins">
-
-                            <div class="vertical-timeline-block">
-                                <div class="vertical-timeline-icon navy-bg" style="width:100px;height:100px;background-image: url('storage/badge7.PNG') !important;background-position: center;background: 100% 100% no-repeat;background-size: cover;">
-                                    <i class="fa fa-briefcase"></i>
-                                </div>
-
-                                <div class="vertical-timeline-content" style="background-color: #0f619f;color:#fff">
-                                    <h2>Получен новый бейдж</h2>
-                                    <p>От Юлии Кризеевой
-                                    </p>
-                                    <a href="#" class="btn btn-sm btn-primary"> Обратная связь</a>
-                                    <span class="vertical-date">
-                                        Today <br>
-                                        <small>Dec 24</small>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="vertical-timeline-block" >
-                                <div class="vertical-timeline-icon navy-bg" style="margin-left:7px;background-image: url('storage/ST-03.PNG') !important;background-position: center;background: 100% 100% no-repeat;background-size: cover;">
-                                    <i class="fa fa-briefcase"></i>
-                                </div>
-
-                                <div class="vertical-timeline-content" >
-                                    <h2>Meeting</h2>
-                                    <p>Conference on the sales results for the previous year. Monica please examine sales trends in marketing and products. Below please find the current status of the sale.
-                                    </p>
-                                    <a href="#" class="btn btn-sm btn-primary"> More info</a>
-                                    <span class="vertical-date">
-                                        Today <br>
-                                        <small>Dec 24</small>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="vertical-timeline-block">
-                                <div class="vertical-timeline-icon blue-bg" style="margin-left:7px;background-image: url('storage/ST-17.PNG') !important;background-position: center;background: 100% 100% no-repeat;background-size: cover;">
-                                    <i class="fa fa-file-text"></i>
-                                </div>
-
-                                <div class="vertical-timeline-content">
-                                    <h2>Send documents to Mike</h2>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
-                                    <a href="#" class="btn btn-sm btn-success"> Download document </a>
-                                    <span class="vertical-date">
-                                        Today <br>
-                                        <small>Dec 24</small>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="vertical-timeline-block">
-                                <div class="vertical-timeline-icon lazur-bg" style="background-image: url('storage/badge3.png') !important;background-position: center;background: 100% 100% no-repeat;background-size: cover;">
-                                    <i class="fa fa-coffee"></i>
-                                </div>
-
-                                <div class="vertical-timeline-content">
-                                    <h2>Coffee Break</h2>
-                                    <p>Go to shop and find some products. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. </p>
-                                    <a href="#" class="btn btn-sm btn-info">Read more</a>
-                                    <span class="vertical-date"> Yesterday <br><small>Dec 23</small></span>
-                                </div>
-                            </div>
-
-                            <div class="vertical-timeline-block">
-                                <div class="vertical-timeline-icon yellow-bg" style="background-image: url('storage/badge3.png') !important;background-position: center;background: 100% 100% no-repeat;background-size: cover;">
-                                    <i class="fa fa-phone"></i>
-                                </div>
-
-                                <div class="vertical-timeline-content">
-                                    <h2>Phone with Jeronimo</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-                                    <span class="vertical-date">Yesterday <br><small>Dec 23</small></span>
-                                </div>
-                            </div>
-
-                            <div class="vertical-timeline-block">
-                                <div class="vertical-timeline-icon navy-bg">
-                                    <i class="fa fa-comments"></i>
-                                </div>
-
-                                <div class="vertical-timeline-content">
-                                    <h2>Chat with Monica and Sandra</h2>
-                                    <p>Web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). </p>
-                                    <span class="vertical-date">Yesterday <br><small>Dec 23</small></span>
-                                </div>
-                            </div>
                         </div>
 
+                        <div style="margin-top:50px">
+                            <button class="btn btn-sm btn-primary previous"> Предыдущая страница</button>
+                            <button class="btn btn-sm btn-primary next"> Следующая страница</button>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        </div>
 
                     </div>
 
@@ -330,3 +291,97 @@
                 </div>
     </div>
 @endsection
+<? $current=(!isset($current)) ? 'undefined' : $current;?>
+@section('scripts')
+
+    <script>
+        window.current=null;
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        })
+
+        reloadData('start');
+        function reloadData(action){
+            var last = '{{ $current }}'
+            var module='admin.company.users.data'
+            var url='/customer/user_interface/getData';
+            var view_url='/customer/user_interface/data';
+            var perpage=4
+
+            if(!window.page){
+                var page= 1;
+                console.log('current=>',page)
+            }
+            else{ var page= window.page; console.log('current=>',page)}
+
+            var user_id='{{$user_id}}';
+            $.ajax({
+                method: 'POST',
+                dataType: 'json',
+                async:true,
+                url: url,
+                data: {module: module,page:page,user_id:user_id,action:action,perpage:perpage},
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                success: function (data) {
+                console.log('RESULT=>',data.result)
+                    console.log('PREVIOUS <=',data.previous)
+                    console.log('NEXT =>',data.next)
+                    console.log('NEXT_Button =>',data.next_button)
+                    if(data.next_button==false){
+                    $('.next').hide();
+                    }
+                    else if(data.next_button==true){
+                        $('.next').show();
+                    }
+                    if(data.previous_button==false){
+                        $('.previous').hide();
+                    }
+                    else if(data.previous_button==true){
+                        $('.previous').show();
+                    }
+                    window.page=data.page
+                     //$('.timeline').html(data);
+                    $.ajax({
+                        method: 'POST',
+                        dataType: 'html',
+                        async:true,
+                        url: view_url,
+                        data: {array: data.result},
+                        beforeSend: function() {
+                            $('#loader').show();
+                        },
+                        complete: function() {
+                            $('#loader').hide();
+                        },
+                        success: function (sata) {
+                            $('.timeline').html(sata);
+
+                        }
+                    });
+
+                }
+            });
+
+
+        }
+
+
+        $('.next').click(function(){
+            reloadData('next');
+        })
+
+        $('.previous').click(function(){
+            reloadData('previous');
+        })
+
+
+    </script>
+
+    @endsection

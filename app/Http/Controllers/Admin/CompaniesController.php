@@ -8,6 +8,7 @@ use App\Domain\Company\Models\Company as CompanyModel;
 use App\Domain\Company\Models\Badge as BadgeModel;
 use App\Domain\Company\Models\CompanyBadge as CompanyBadgesModel;
 use App\Domain\Company\Models\Logo as CompanyLogoModel;
+use App\Domain\Admin\Models\BadgesGroup as BadgesGroupModel;
 
 class CompaniesController extends BaseController
 {
@@ -28,8 +29,8 @@ class CompaniesController extends BaseController
      */
     public function index()
     {
+        $data=$this->mainSettings();
         $data['menu']=$this->menu();
-        $user=\Auth::user()->roles;
         $data['title']="Додати товар";
         $data['keywords']="Ukrainian industry platform";
         $data['description']="Ukrainian industry platform";
@@ -41,8 +42,8 @@ class CompaniesController extends BaseController
     public function postData(Request $request){
 
         $data['title']="Company postData";
-        $data['companies']=CompanyModel::get();
-
+        $data['companies']=CompanyModel::with('logo')->with('admin')->get();
+dump($data['companies']);
         return view('main_admin.companies.table',$data);
     }
 
@@ -116,6 +117,7 @@ class CompaniesController extends BaseController
 
     public function themes()
     {
+        $data=$this->mainSettings();
         $data['menu']=$this->menu();
         $user=\Auth::user();
         $data['company_id']=$user->getCompany[0]->id;
@@ -151,6 +153,7 @@ class CompaniesController extends BaseController
 
         $data['menu']=$this->menu();
         $user=\Auth::user();
+        $data['badges_groups']=BadgesGroupModel::get();
         $data['company_id']=$user->getCompany[0]->id;
         $data['title']="Додати товар";
         $data['keywords']="Ukrainian industry platform";

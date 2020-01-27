@@ -31,6 +31,11 @@ class ManagersTableSeeder extends Seeder
                 'company_id' => 1,
 
             ],
+            [
+                'admin_id' => 1,
+                'company_id' => 1,
+
+            ],
 
         ]);
 

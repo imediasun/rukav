@@ -6,12 +6,13 @@ namespace App\Domain\User\Manager;
 use App\Domain\Abstracts\User\UserAbstract;
 use App\Domain\User\Contracts\UserContract;
 use App\Domain\User\Repositories\UserRepositoryInterface;
-
+use App\Domain\User\Services\UserServiceInterface;
 
 class UserManager extends UserAbstract implements UserContract
 
 {
     private $userRepository;
+    private $userService;
 
 
 
@@ -19,9 +20,10 @@ class UserManager extends UserAbstract implements UserContract
      * StaffManager constructor.
      * @param $StaffRepositoryInterface
      */
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository,UserServiceInterface $userService)
     {
         $this->userRepository = $userRepository;
+        $this->userService = $userService;
     }
 
     /**
@@ -30,7 +32,12 @@ class UserManager extends UserAbstract implements UserContract
      */
     public function updateUser($user)
     {
-        return $this->userRepository->updateOrCreateUser($user['attributes'],$user['values']);
+         $user=$this->userRepository->updateOrCreateUser($user['attributes'],$user['values']);
+        if($user){
+            $this->userService->sendCustomerRegistrationDoneNotification($user);
+
+        }
+        return $user;
     }
 
     public function deleteUser($user)

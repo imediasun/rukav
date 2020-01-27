@@ -16,7 +16,7 @@
             <td class="role_description">{{$role->description}}</td>
             <td class="role_name">{{$role->name}}</td>
             <td>
-                <a href="javascript:void(0)" class="PrependChangeRole btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-right-lg">
+                <a href="javascript:void(0)" class="PrependChangeRole btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-center">
                     <i class="fal fa-pencil"></i>
                 </a>
                 <a href="javascript:void(0);" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed">

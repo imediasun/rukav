@@ -61,4 +61,9 @@ class StaffController extends BaseController
     Staff::updateStaffRole($role);
     var_dump($request->input('name'));
     }
+
+    public function postPermissionsChange(Request $request){
+
+        Staff::updatePermissionForRole($request->input('role'),$request->input('permission'),$request->input('value'));
+    }
 }

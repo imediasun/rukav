@@ -17,12 +17,12 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-
-        //dump('guard=>',$guard);
+        $user_interface=false;
 //dd(Auth::guard($guard)->check());
         if (Auth::guard($guard)->check()) {
-            if($guard=='partner'){
-                //dd($guard);
+            $user=Auth::guard('admin')->user();
+            $array=[4,5];
+            if($guard=='admin' && $user->hasRole('Simple_user|Company_administrator|Manager')){
                 return redirect('/dashboard');
             }
             else{

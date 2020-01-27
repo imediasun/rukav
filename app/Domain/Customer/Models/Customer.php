@@ -6,16 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Customer extends Authenticatable
+class Customer extends Model
 {
 
     use Notifiable;
 
-    protected $guard_name = 'web';
 
     protected $table='customers';
     protected $fillable = [
-        'company_id','login','name','sername','email','department','info','phone','photo','address','password','non_hashed','active','position','manager_id','active'
+        'user_id', 'company_id','department','info','phone','photo','address','active','position','manager_id','active','birth_date','start_date','sex','location'
 
     ];
 

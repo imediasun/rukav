@@ -15,12 +15,12 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id')->unsigned();
             $table->integer('company_id')->unsigned();
-            $table->string('name');
-            $table->string('sername');
-            $table->string('login');
-            $table->string('email')->unique();
+            $table->date('birth_date');
+            $table->date('start_date');
             $table->string('department');
+            $table->boolean('sex');
             $table->string('phone');
             $table->string('photo');
             $table->text('info');
@@ -28,9 +28,8 @@ class CreateCustomersTable extends Migration
             $table->integer('manager_id');
             $table->boolean('active')->default(0);
             $table->string('address');
-            $table->string('password');
-            $table->string('non_hashed');
-            $table->rememberToken();
+            $table->string('location');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('company_id')->references('id')->on('companies');
             $table->timestamps();
 

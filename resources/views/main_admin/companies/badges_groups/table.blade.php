@@ -36,7 +36,7 @@
                 method: 'POST',
                 dataType: 'json',
                 async:false,
-                url: '/main_admin/badges_groups/get',
+                url: '/company/badges_groups/get',
                 data: {company_id: company_id
                 },
                 beforeSend: function() {
