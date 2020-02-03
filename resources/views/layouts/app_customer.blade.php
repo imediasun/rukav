@@ -1684,7 +1684,7 @@ function reloadPage(){
             },
             success: function (data) {
             console.log(data)
-                if(data>=3){
+                if(data>=3 && sending_badges_group==3 ){
                     console.log('trying to send Golden badge')
                 alert('Вы уже отправили 3 золотых бэйджа в этом месяце')
                 }else {
