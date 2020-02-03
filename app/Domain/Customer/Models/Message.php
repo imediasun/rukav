@@ -9,7 +9,7 @@ class Message extends Model
     //
 
     protected $fillable = [
-        'id', 'addressant','sender','company_id','title','message','badge_id'
+        'id', 'addressant','sender','company_id','title','message','badge_id','visibility'
 
     ];
 
@@ -20,6 +20,11 @@ class Message extends Model
     }
     public function getSender(){
         return $this->hasOne('App\User','id','sender');
+
+    }
+    public function manager(){
+
+     return $this->hasOneThrough('App\Domain\Manager\Models\Manager', 'App\Domain\Customer\Models\Customer','user_id','id','addressant','manager_id');
 
     }
 }

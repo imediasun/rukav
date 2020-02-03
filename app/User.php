@@ -54,5 +54,12 @@ class User extends Authenticatable
     }
 
 
+    public function manager(){
+
+        return $this->hasOneThrough('App\Domain\Manager\Models\Manager', 'App\Domain\Customer\Models\Customer','user_id','id','id','manager_id');
+
+    }
+
+
 
 }

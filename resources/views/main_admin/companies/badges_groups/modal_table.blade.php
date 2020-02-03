@@ -11,6 +11,7 @@
         </tr>
         </thead>
         <tbody>
+
         @foreach($badges_groups as $badges_group)
             <tr>
                 <?
@@ -22,7 +23,7 @@
                 <th class="company_badges_groups_id" scope="row">{{$badges_group->id}}</th>
                 <td class="company_photo">
                 <span class="profile-image rounded-circle d-inline-block" style="
-                        width:50px;height:50px;background-image:url('/storage/badges/{{$badges_group->badges->first()->photo}}') !important;
+                        width:50px;height:50px;@if($badges_group->badges->first()) background-image:url('/storage/badges/{{$badges_group->badges->first()->photo}}') !important; @endif
                         background-position: center;background: 100% 100% no-repeat;background-size: cover;
                         "></span>
                 </td>

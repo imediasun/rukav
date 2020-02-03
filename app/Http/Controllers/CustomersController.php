@@ -23,12 +23,15 @@ class CustomersController extends BaseController
     }
     public function getTheme(Request $request)
     {
-
         $company_settings=CompanySetting::where('id',$request->input('company_id'))->first();
         return json_encode($company_settings);
     }
 
     public function getData(Request $request){
+        $user=\Auth::user();
+        $data['user_id']=$user->id;
+        $data['manager_id']=$user->manager->user_id;
+        //var_dump($data['manager_id']);
         $data['next_button']=true;
         $data['previous_button']=true;
         $perpage=$request->input('perpage');
@@ -39,14 +42,44 @@ class CustomersController extends BaseController
         //var_dump('current',$current);
         $new_last_message=$request->input('page')+$perpage;
         $show_previous_message=$request->input('id')-$perpage;
-        $users_messages=\App\Domain\Customer\Models\Message::where('addressant',$request->input('user_id'))->with('getSender')->with('badge')->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->get();
+
+        $users_messages=\App\Domain\Customer\Models\Message::with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->get();
+
         $last_message=$users_messages->first();
-        $users_messages_=\App\Domain\Customer\Models\Message::where('addressant',$request->input('user_id'))->with('getSender')->with('badge')->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->get();
+        $users_messages_=\App\Domain\Customer\Models\Message::with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->get();
         $end_message=$users_messages_->first();
         $i=1;
         $count=count($users_messages);
         $result=[];
+        //var_dump($users_messages->first()->manager->user_id);
+        switch($request->input('lenta_filter')){
+            case 0:
+                $filter='';
+                break;
+            case 1:
+            $users_messages=$users_messages->filter(function($message) use($data) {
+                if($message->manager){
+                    return $message->manager->user_id ==$data['manager_id'];}
 
+            });
+                break;
+            case 2:
+                $users_messages=$users_messages->filter(function($message) use($data) {
+                        return $message->addressant ==$data['user_id'];
+
+                });
+                break;
+        }
+        //Отфильтровать только те месаджи которые имеют visibility 1 || 3 && принадлежать этому сотруднику || 2 && текущий сотрудник является менеджером адрессанту
+
+        $users_messages=$users_messages->filter(function($message) use($data) {
+            //найти менеджера аддрессанта
+            $company_id=\App\User::where('id',$message->addressant)->first()->company_id;
+            $manager=\App\Domain\Manager\Models\Manager::where('user_id',$data['user_id'])->where('company_id',$company_id)->first();
+            //dump($message->visibility,$message->addressant);
+            return (($message->visibility==1) || ( $message->visibility==3 && $message->addressant==$data['user_id']) || ($message->visibility==2 && null!==$manager) ) == true;
+
+        });
 
         if($action=='next'){
             $start=($perpage*$page);
@@ -149,6 +182,7 @@ class CustomersController extends BaseController
         'title'=>$request->input('title'),
         'message'=>$request->input('message'),
         'badge_id'=>$request->input('badge'),
+         'visibility'=>$request->input('visibility'),
     ];
 
         $message['attributes']['id']=(null!=($request->input('customer_id')) && !empty($request->input('customer_id'))) ? $request->input('customer_id') : null;
@@ -156,6 +190,69 @@ class CustomersController extends BaseController
 
     }
 
+
+    public function getAddressant(Request $request){
+        //var_dump(\Auth::user()->id);
+$users=\App\User::whereNotIn('id', [\Auth::user()->id])
+    ->where(function($query) use($request)
+{
+    $query->where('name','like','%'.$request->input('q').'%')
+        ->orWhere('sername','like','%'.$request->input('q').'%');
+})->with('getCustomersCompany')->get();//
+//var_dump($users);
+$data=[];
+foreach($users as $user){
+
+   if(isset($user->getCustomersCompany) && $user->getCustomersCompany!==null){
+        //var_dump($user->getCustomersCompany->photo);
+    $data['items'][]=[
+        'id'=>$user->id,
+        'full_name'=>$user->name.' '.$user->sername,
+        'forks_count'=>35,
+        'owner'=>[
+           'avatar_url'=>'/storage/avatars/'.$user->getCustomersCompany->photo
+
+        ]
+    ];
+}
+}
+        $sata=[
+            'items'=>[
+                0=>[
+                    'id'=>1,
+                    'full_name'=>'AS',
+                    'forks_count'=>3,
+                    'owner'=>[
+                        'avatar_url'=>'/storage/avatars/5e1a1b782dda7.jpeg'
+
+                ]
+
+                ]
+
+            ],
+        ];
+
+       return json_encode($data);
+    }
+
+    public function getCustomerInfo(Request $request){
+        $user=\App\User::where('id',$request->input('customer_id'))->first();
+        return json_encode($user);
+    }
+
+
+    public function checkGoldenBadgesCount(Request $request){
+        $today = \Carbon\Carbon::today();
+        $currentMonth = date('m');
+        //golden_badges
+        $golden_badges=\App\Domain\Company\Models\Badge::where('is_golden',true)->get();
+        $golden_array=[];
+        foreach($golden_badges as $golden_badge ){
+            $golden_array[]=$golden_badge->id;
+        }
+        $badges_in_current_month=\App\Domain\Customer\Models\Message::where('sender',$request->input('customer'))->whereRaw('MONTH(created_at) = ?',[$currentMonth])->whereIn('badge_id',$golden_array)->get();
+    return count($badges_in_current_month);
+    }
 
 
 }

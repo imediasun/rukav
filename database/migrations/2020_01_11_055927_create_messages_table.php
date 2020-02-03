@@ -21,6 +21,7 @@ class CreateMessagesTable extends Migration
             $table->string('title');
             $table->string('message');
             $table->integer('badge_id');
+            $table->integer('visibility');
             $table->timestamps();
         });
     }

@@ -18,7 +18,9 @@ Route::group(['prefix' => 'customer'],function(){
     Route::post('/user_interface/data', 'CustomersController@postData');
     Route::post('/user_interface/getData', 'CustomersController@getData');
     Route::post('/badge/send', 'CustomersController@sendBadgeMessage');
-
+    Route::get('/badge/get_addressant', 'CustomersController@getAddressant');
+    Route::post('/get_customer_info', 'CustomersController@getCustomerInfo');
+    Route::post('/golden_badge/check', 'CustomersController@checkGoldenBadgesCount');
 
 
 });
@@ -55,6 +57,13 @@ Route::group(['prefix' => 'company'],function(){
     Route::post('/logo/saveLogoToSession', 'Ajax\CompanyController@saveLogoToSession');
     Route::post('/logo/create', 'Ajax\CompanyController@postSaveLogo');
     Route::post('/logo/update_status', 'Ajax\CompanyController@updateLogoStatus');
+
+    Route::post('/badge/data', 'Admin\CompaniesController@postBadgesData');
+    Route::post('/badge/get', 'Admin\CompaniesController@getBadge');
+    Route::post('/badge/delete', 'Admin\CompaniesController@postBadgeDelete');
+    Route::post('/badge/saveBadgeToSession', 'Ajax\CompanyController@saveBadgeToSession');
+    Route::post('/badge/create', 'Ajax\CompanyController@postSaveBadge');
+    Route::post('/badge/update_status', 'Ajax\CompanyController@updateBadgeStatus');
 
 });
 

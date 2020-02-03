@@ -18,6 +18,7 @@ class CreateBadgesTable extends Migration
             $table->string('name');
             $table->string('photo');
             $table->integer('group_id');
+            $table->boolean('is_golden')->default(false);
             $table->timestamps();
         });
     }

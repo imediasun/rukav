@@ -106,7 +106,7 @@
 
         <div class="demo">
 
-            <button type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg">
+            <button type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg-badges">
                 <span class="fal fa-plus  mr-1"></span>
                 Создать новый бэйдж</button>
         </div>
@@ -150,7 +150,7 @@
         </div>
     </div>
 
-    <div id="modalOneModal" class="modal fade default-example-modal-right-lg" tabindex="-1" role="dialog" aria-labelledby="modalOneLabel" aria-hidden="true" style="display: none;">
+    <div id="modalOneModal" class="modal fade default-example-modal-right-lg-badges" tabindex="-1" role="dialog" aria-labelledby="modalOneLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-right modal-lg">
             <div class="modal-content">
                 <div class="modal-header">

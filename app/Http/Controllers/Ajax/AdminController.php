@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Ajax;
 use Illuminate\Http\Request;
 use App\Domain\Admin\Facades\Admin;
 use App\Http\Controllers\Controller;
+use App\Domain\Company\Facades\Company;
 
 class AdminController extends Controller
 {
@@ -58,6 +59,14 @@ class AdminController extends Controller
         $badgesGroup['values']=['name'=>$request->input('badges_group_name')];
         $badgesGroup['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
         Admin::updateBadgesGroup($badgesGroup);
+
+    }
+
+    public function postSaveBadge(Request $request){
+
+        $companyBadge['values']=['name'=>$request->input('badge_name'),'photo'=> \Session::get('temp_badge_filename'),'group_id'=>$request->input('badges_group_id')];
+        $companyBadge['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
+        Company::updateCompanyBadge($companyBadge);
 
     }
 

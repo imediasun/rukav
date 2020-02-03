@@ -117,6 +117,7 @@ class AdminController extends BaseController
 
     public function showCustomBadges(){
 
+        $data=$this->mainSettings();
         $data['menu']=$this->menu();
         $user=\Auth::user();
         //$data['company_id']=$user->getCompany[0]->id;

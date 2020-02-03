@@ -23,6 +23,10 @@ class BadgesTableSeeder extends Seeder
            [
                'name' => 'Second Badges Group ',
            ],
+           /*3*/
+           [
+               'name' => 'Golden Badges Group ',
+           ],
 
        ]);
 
@@ -131,6 +135,34 @@ class BadgesTableSeeder extends Seeder
                 'group_id'=>1,
 
             ],
+            /*17*/
+            [
+                'name' => 'First Golden Badge ',
+                'photo' => '5e37297c40779.png',
+                'group_id'=>3,
+
+            ],
+            /*18*/
+            [
+                'name' => 'Second Golden Badge ',
+                'photo' => '5e37297c40779.png',
+                'group_id'=>3,
+
+            ],
+            /*19*/
+            [
+                'name' => 'Third Golden Badge ',
+                'photo' => '5e37297c40779.png',
+                'group_id'=>3,
+
+            ],
+            /*20*/
+            [
+                'name' => 'Forth Golden Badge ',
+                'photo' => '5e37297c40779.png',
+                'group_id'=>3,
+
+            ],
 
         ]);
 
@@ -147,6 +179,12 @@ class BadgesTableSeeder extends Seeder
                 'company_id'=>2,
                 'active'=>1
             ],
+            /*2*/
+            [
+                'badges_group_id' => 3,
+                'company_id'=>1,
+                'active'=>1
+            ],
 
         ]);
 
@@ -161,6 +199,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>1,
                 'company_id'=>1,
+                'visibility'=>1
 
             ],
             /*2*/
@@ -171,6 +210,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>2,
                 'company_id'=>1,
+                'visibility'=>2
 
             ],
             /*3*/
@@ -181,6 +221,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>1,
                 'company_id'=>1,
+                'visibility'=>3
 
             ],
             /*4*/
@@ -191,6 +232,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>2,
                 'company_id'=>1,
+                'visibility'=>2
 
             ],
             /*5*/
@@ -201,6 +243,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>1,
                 'company_id'=>1,
+                'visibility'=>1
 
             ],
             /*6*/
@@ -211,6 +254,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>2,
                 'company_id'=>1,
+                'visibility'=>1
 
             ],
             /*7*/
@@ -221,6 +265,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>1,
                 'company_id'=>1,
+                'visibility'=>1
 
             ],
             /*8*/
@@ -231,26 +276,29 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>2,
                 'company_id'=>1,
+                'visibility'=>3
 
             ],
             /*9*/
             [
-                'addressant' => 1,
+                'addressant' => 5,
                 'sender'=>2,
                 'title'=>'Example Title9',
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>1,
                 'company_id'=>1,
+                'visibility'=>1
 
             ],
             /*10*/
             [
-                'addressant' => 1,
+                'addressant' => 5,
                 'sender'=>2,
                 'title'=>'Example Title10',
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>2,
                 'company_id'=>1,
+                'visibility'=>3
 
             ],
             /*11*/
@@ -261,6 +309,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>1,
                 'company_id'=>1,
+                'visibility'=>1
 
             ],
             /*12*/
@@ -271,6 +320,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>2,
                 'company_id'=>1,
+                'visibility'=>1
 
             ],
             /*13*/
@@ -281,6 +331,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>1,
                 'company_id'=>1,
+                'visibility'=>2
 
             ],
             /*14*/
@@ -291,6 +342,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>2,
                 'company_id'=>1,
+                'visibility'=>1
 
             ],
             /*15*/
@@ -301,6 +353,7 @@ class BadgesTableSeeder extends Seeder
                 'message'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 'badge_id'=>1,
                 'company_id'=>1,
+                'visibility'=>3
 
             ],
 

@@ -23,7 +23,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 1',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=> 1,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>3
            ],
            /*2*/
            [
@@ -33,7 +34,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 2',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=>2,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>3
            ],
            /*3*/
            [
@@ -43,7 +45,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 3',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=>3,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>2
            ],
            /*4*/
            [
@@ -53,7 +56,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 4',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=>4,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>3
            ],
            /*5*/
            [
@@ -63,7 +67,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 5',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=> 1,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>3
            ],
            /*6*/
            [
@@ -73,7 +78,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 6',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=>2,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>2
            ],
            /*7*/
            [
@@ -83,7 +89,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 7',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=>3,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>3
            ],
            /*8*/
            [
@@ -93,7 +100,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 8',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=>4,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>3
            ],
 
            /*9*/
@@ -104,7 +112,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 9',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=> 1,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>3
            ],
            /*10*/
            [
@@ -114,7 +123,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 10',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=>2,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>2
            ],
            /*11*/
            [
@@ -124,7 +134,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 11',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=>3,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>3
            ],
            /*12*/
            [
@@ -134,7 +145,8 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 12',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=>4,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>3
            ],
            /*13*/
            [
@@ -144,27 +156,30 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Testing messages 13',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=> 1,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>2
            ],
            /*14*/
            [
-               'addressant' => 5,
+               'addressant' => 1,
                'sender' => 1,
                'company_id' => 1,
                'title' => 'Testing messages 14',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=>2,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>1
            ],
            /*15*/
            [
-               'addressant' => 5,
+               'addressant' => 1,
                'sender' => 1,
                'company_id' => 1,
                'title' => 'Testing messages 15',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=>3,
-               'created_at'=>\Carbon\Carbon::now()
+               'created_at'=>\Carbon\Carbon::now(),
+               'visibility'=>3
            ],
 
 

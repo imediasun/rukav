@@ -17,7 +17,6 @@
 
                 <p> {{$message['title']}}
                 </p>
-            <a href="#" class="btn btn-sm btn-primary"> Обратная связь</a>
             <span class="vertical-date">
              <br>
              <small>{{$message['created_at']}}</small>

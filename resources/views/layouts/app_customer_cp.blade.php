@@ -29,7 +29,6 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="icon" type="image/png" sizes="32x32" href="/NewSmartAdmin/img/favicon/favicon-32x32.png">
     <link rel="mask-icon" href="/NewSmartAdmin/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/formplugins/select2/select2.bundle.css">
-    <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/formplugins/summernote/summernote.css">
 @yield('styles')
     <!--<link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/your_styles.css">-->
 </head>
@@ -45,7 +44,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 
         </div>
-    <div class="Menu_giveBadgeWrap__28NpB" style="margin-top:200px" data-toggle="modal" data-target=".default-example-modal-right-lg" onclick="localStorage.setItem('personalBadegeCustomerId',0);reloadPage()">Создать</div>
+    <div class="Menu_giveBadgeWrap__28NpB" style="margin-top:200px" data-toggle="modal" data-target=".default-example-modal-right-lg">Создать</div>
 
 
     <style>
@@ -87,10 +86,6 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             height:170px;
             overflow:hidden;
         }
-
-        span.select2-container {
-            //z-index:10050;
-        }
     </style>
 
 
@@ -100,12 +95,11 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 
 
-
-    <div class="modal fade default-example-modal-right-lg" id="badges_modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal fade default-example-modal-right-lg" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-right modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title h4 sending_badge_title">Новая благодарность сотруднику</h5>
+                    <h5 class="modal-title h4">Новая благодарность</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fal fa-times"></i></span>
                     </button>
@@ -115,71 +109,78 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 
 
-                    <?$i=1;
-                    ?>
-                    @foreach($company_badges_groups as $group)
-                        <h3>{{$group->group->name}}</h3>
-                        @foreach($group->badges as $badges)
-                            @if($i==1 || (($i%4+1)==2) )
-                                <div>
-                                    @endif
-                                    <div class="badge_border" style="position:relative;padding:30px;width:170px;height:170px;display:inline-block;border: 1px solid #eee">
-                                        <input type="hidden" class="badge_num" value="{{$i}}">
-                                        <input type="hidden" class="badge_id" value="{{$badges->id}}">
-                                        <input type="hidden" class="badge_name" value="{{$badges->name}}">
-                                        <img src="/storage/badges/{{$badges->photo}}" style="position:absolute" class="single_badge"></div>
-                                    @if($i%4==0 )
-                                        <div style="height:750px;width:100%;background:#eee;position:relative;display:none;padding-top:25px" class="sending_group">
-                                            <input type="hidden" class="sending_badges_group" value="{{$group->id}}">
-                                            <input type="hidden" class="sending_badges_customer" value="{{\Auth::user()->id}}">
+   <?$i=1;
+   ?>
+@foreach($company_badges_groups as $group)
+    <h3>{{$group->group->name}}</h3>
+    @foreach($group->badges as $badges)
+        @if($i==1 || (($i%4+1)==2) )
+            <div>
+        @endif
 
-                                            <form class="badges_form" id="badge_form_{{$badges->id}}">
 
-                                                <h3 class="badge_name"></h3>
 
-                                                <input type="hidden" class="sending_badge_user" value="">
-                                                        <div class="form-group personal_select" >
-                                                            <label class="form-label" >
-                                                                Select remote Ajax search
-                                                            </label>
-                                                            <select data-placeholder="Select a state..." class="js-data-example-ajax form-control " ></select>
+        <div class="badge_border" style="position:relative;padding:30px;width:170px;height:170px;display:inline-block;border: 1px solid #eee">
+            <input type="hidden" class="badge_num" value="{{$i}}">
+            <input type="hidden" class="badge_id" value="{{$badges->id}}">
+            <input type="hidden" class="badge_name" value="{{$badges->name}}">
+        <img src="/storage/badges/{{$badges->photo}}" style="position:absolute" class="single_badge"></div>
+         @if($i%4==0 )
+            <div style="height:500px;width:100%;background:#eee;position:relative;display:none;padding-top:25px" class="sending_group">
 
-                                                        </div>
-                                                <div class="form-group">
-                                                    <label class="form-label" for="example-email-2">Облвсть видимости юэйджа</label>
-                                                    <select class="form-control sending_badge_visibility">
 
-                                                                <option value="1">All</option>
-                                                                 <option value="2">Employe & manager</option>
-                                                                 <option value="3">Employe</option>
+            <form class="badges_form">
 
-                                                    </select>
-                                                </div>
+            <h3 class="badge_name"></h3>
 
-                                                <div class="form-group">
+                <div class="panel-container show">
+                    <div class="panel-content" style="height:500px;z-index:999999999 !important;position:relative;">
+                        <div class="form-group">
+                            <label class="form-label" >
+                                Select remote Ajax search
+                            </label>
+                            <select data-placeholder="Select a state..." class="js-data-example-ajax form-control" ></select>
 
-                                                    <input type="hidden" class="form-control sending_badge_title" value="" />
-                                                </div>
+                        </div>
+                    </div></div>
 
-                                                <div class="form-group">
-                                                    <label class="form-label" for="example-textarea">Сопроводительный текст</label>
+                <div class="form-group">
 
-                                                    <div class="js-summernote" id="saveToLocal_{{$badges->id}}"></div>
-                                                    <!--textarea class="form-control sending_badge_textarea"  rows="5"></textarea-->
-                                                </div>
+                    <input type="hidden" class="form-control sending_badge_title" value="" />
+                </div>
 
-                                                <button type="button" data-toggle="modal" data-target="#getCroppedCanvasModal" data-dismiss="modal" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }" class=" sending_badge_submit btn btn-primary waves-effect waves-themed">Отправить бэйдж</button>
-                                            </form>
-                                        </div>
-                                </div>
+                <div class="form-group">
+                    <label class="form-label" for="example-email-2">Выбрать колегу из списка</label>
+                    <select class="form-control sending_badge_user">
+                        @foreach($collegues as $collegue)
+                            @if(\Auth::user()->id!==$collegue->id)
+                        <option value="{{$collegue->id}}">{{$collegue->name}}</option>
                             @endif
+                            @endforeach
+                    </select>
+                </div>
 
-                            <?
+
+
+
+
+                <div class="form-group">
+                    <label class="form-label" for="example-textarea">Сопроводительный текст</label>
+                    <textarea class="form-control sending_badge_textarea"  rows="5"></textarea>
+                </div>
+
+                <button type="button" data-toggle="modal" data-target="#getCroppedCanvasModal" data-dismiss="modal" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }" class=" sending_badge_submit btn btn-primary waves-effect waves-themed">Отправить бэйдж</button>
+                </form>
+            </div>
+            </div>
+             @endif
+
+        <?
 
 
                             $i++;?>
-                        @endforeach
-                    @endforeach
+    @endforeach
+    @endforeach
 
 
                 </div>
@@ -1615,7 +1616,6 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 <script src="/NewSmartAdmin/js/vendors.bundle.js"></script>
 <script src="/NewSmartAdmin/js/app.bundle.js"></script>
 <script src="/NewSmartAdmin/js/formplugins/select2/select2.bundle.js"></script>
-<script src="/NewSmartAdmin/js/formplugins/summernote/summernote.js"></script>
 <script type="text/javascript">
     /* Activate smart panels */
     $('#js-page-content').smartPanel();
@@ -1625,97 +1625,33 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 </script>
 <script>
-$(document).ready(function(){
-    localStorage.setItem("personalBadegeCustomerId",0)
-
-    reloadPage();
-})
-
-function reloadPage(){
-
-   var personalBadegeCustomerId= localStorage.getItem("personalBadegeCustomerId")
-    console.log('personalBadegeCustomerId',personalBadegeCustomerId);
-    if(personalBadegeCustomerId>0){
-       $('.personal_select').hide()
-
-    }
-    else{
-        $('.personal_select').show()
-        $('.sending_badge_title').text('Новая благодарность сотруднику')
-    }
-}
-
     $('.single_badge').click(function(){
 
-
-        localStorage.setItem("summernoteData","")
         var badge_name_h=$(this).parent().parent().find('.sending_group').find('.badge_name')
         var badge_title=$(this).parent().parent().find('.sending_group').find('.sending_badge_title')
-
         var badge_submit=$(this).parent().parent().find('.sending_group').find('.sending_badge_submit')
-
-        var sending_badges_group=$(this).parent().parent().find('.sending_group').find('.sending_badges_group').val()
-        var sending_badges_customer=$(this).parent().parent().find('.sending_group').find('.sending_badges_customer').val()
-        console.log('group_id',sending_badges_group)
         var current_badge_name=$(this).parent().find('.badge_name').val()
         var badge=$(this).parent().find('.badge_id').val()
 
         var sending_group=$(this).parent().parent().find('.sending_group')
         badge_name_h.text(current_badge_name)
         badge_title.val(current_badge_name)
-
         $('.sending_group').slideUp({
             duration: 'slow',
             easing: 'linear'
         })
-        //Проверить сколько золотых бэйджей отправлено в текущем месяце
-
-        $.ajax({
-            method: 'POST',
-            dataType: 'json',
-            async:false,
-            url: '/customer/golden_badge/check',
-            data: {customer: sending_badges_customer
-            },
-            beforeSend: function() {
-            },
-            complete: function() {
-
-            },
-            success: function (data) {
-            console.log(data)
-                if(data>=3){
-                    console.log('trying to send Golden badge')
-                alert('Вы уже отправили 3 золотых бэйджа в этом месяце')
-                }else {
-                    sending_group.slideDown({
-                        duration: 'slow',
-                        easing: 'linear'
-                    })
-                }
-
-
-                console.log('success')
-
-            }
-        });
-
-
-
+            sending_group.slideDown({
+                duration: 'slow',
+                easing: 'linear'
+            })
 
 
         badge_submit.click(function(){
-
-
-            var customer=$(this).parent('.badges_form').find('.sending_badge_user').val()
-
-
-            var visibility=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_visibility').val()
+            var customer=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_user').val()
             var message=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_textarea').val()
-            message=localStorage.getItem("summernoteData")
             var title=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_title').val()
-            console.log('visibility=>',visibility)
-            console.log('customer=>',customer)
+
+            console.log(customer)
             console.log(message)
             console.log(badge)
             $.ajax({
@@ -1723,7 +1659,7 @@ function reloadPage(){
                 dataType: 'json',
                 async:false,
                 url: '/customer/badge/send',
-                data: {customer: customer,message:message,badge:badge,title:title,visibility:visibility
+                data: {customer: customer,message:message,badge:badge,title:title
                 },
                 beforeSend: function() {
                 },
@@ -1740,34 +1676,58 @@ function reloadPage(){
 
                 }
             });
-
-
-
-
-
-
-
         })
 
 
 
-        $(this).parent().parent().find('.sending_group').find('.badges_form').each(function (index, value){
-             var form_id=$(this).attr('id')
-            var dropdown=$(this).find('.form-group').find('.js-data-example-ajax')
-            console.log('dropdown',dropdown);
 
+        $(function()
+        {
+            $('.select2').select2();
 
-
-            dropdown.select2(
+            $(".select2-placeholder-multiple").select2(
                 {
+                    placeholder: "Select State"
+                });
+            $(".js-hide-search").select2(
+                {
+                    minimumResultsForSearch: 1 / 0
+                });
+            $(".js-max-length").select2(
+                {
+                    maximumSelectionLength: 2,
+                    placeholder: "Select maximum 2 items"
+                });
+            $(".select2-placeholder").select2(
+                {
+                    placeholder: "Select a state",
+                    allowClear: true
+                });
 
-                    dropdownParent: $("#"+form_id),
+            $(".js-select2-icons").select2(
+                {
+                    minimumResultsForSearch: 1 / 0,
+                    templateResult: icon,
+                    templateSelection: icon,
+                    escapeMarkup: function(elm)
+                    {
+                        return elm
+                    }
+                });
+
+            function icon(elm)
+            {
+                elm.element;
+                return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+            }
+
+            $(".js-data-example-ajax").select2(
+                {
                     ajax:
                         {
-                            url: "/customer/badge/get_addressant",//"https://api.github.com/search/repositories"
+                            url: "https://api.github.com/search/repositories",
                             dataType: 'json',
                             delay: 250,
-                            type: "GET",
                             data: function(params)
                             {
                                 return {
@@ -1775,14 +1735,8 @@ function reloadPage(){
                                     page: params.page
                                 };
                             },
-                            results: function(resp){
-                                console.log('success',resp);
-                            },
                             processResults: function(data, params)
                             {
-
-                                console.log('results,',data)
-                                console.log(params)
                                 // parse the results into the format expected by Select2
                                 // since we are using custom formatting functions we do not need to
                                 // alter the remote JSON data, except to indicate that infinite
@@ -1797,58 +1751,17 @@ function reloadPage(){
                                         }
                                 };
                             },
-                            success: function(resp){
-                                console.log('success',resp);
-                            },
                             cache: true
                         },
                     placeholder: 'Search for a repository',
-                    formatResult: function(element){
-                        console.log(element.id)
-                        return element.text + ' (' + element.id + ')';
-                    },
-                    success: function(resp){
-                        console.log('success',resp);
-                    },
-                    formatSelection: function(element){
-                        console.log('selection',element.id)
-                        return element.text + ' (' + element.id + ')';
-                    },
-
                     escapeMarkup: function(markup)
                     {
-                        //console.log(markup)
                         return markup;
                     }, // let our custom formatter work
                     minimumInputLength: 1,
                     templateResult: formatRepo,
-                    templateSelection: function (data, container) {
-
-                        var personalBadegeCustomerId= localStorage.getItem("personalBadegeCustomerId")
-                        if(personalBadegeCustomerId==0){
-                        $('#'+form_id).find('.sending_badge_user').val(data.id)
-                        }
-
-                        console.log($('#'+form_id).find('.sending_badge_user').val());
-                        $(data.element).attr('data-custom-attribute', data.id);
-                        return data.full_name;
-                    }
+                    templateSelection: formatRepoSelection
                 });
-
-$('.js-data-example-ajax').change(function(){
-    console.log('change')
-})
-
-            function icon(elm)
-            {
-                elm.element;
-                return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
-            }
-
-
-
-
-
 
             function formatRepo(repo)
             {
@@ -1879,114 +1792,15 @@ $('.js-data-example-ajax').change(function(){
 
             function formatRepoSelection(repo)
             {
-                console.log(repo.full_name)
                 return repo.full_name || repo.text;
             }
-
-
-
-
-
-
         });
 
+    })
+    $(document).ready(function()
+    {
 
     });
-
-    var autoSave = $('#autoSave');
-    var interval;
-    var timer = function()
-    {
-        interval = setInterval(function()
-        {
-            //start slide...
-            if (autoSave.prop('checked'))
-                saveToLocal();
-
-            clearInterval(interval);
-        }, 3000);
-    };
-
-    //save
-    var saveToLocal = function()
-    {
-        localStorage.setItem('summernoteData', $('#saveToLocal').summernote("code"));
-        console.log("saved");
-    }
-
-    //delete
-    var removeFromLocal = function()
-    {
-        localStorage.removeItem("summernoteData");
-        $('#saveToLocal').summernote('reset');
-    }
-
-    $('.js-summernote').summernote(
-        {
-            height: 200,
-            tabsize: 2,
-            placeholder: "Type here...",
-            dialogsFade: true,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['fontsize', ['fontsize']],
-                ['fontname', ['fontname']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']]
-                    ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-            ],
-            callbacks:
-                {
-                    //restore from localStorage
-                    onInit: function(e)
-                    {
-                        $('.js-summernote').summernote("code", localStorage.getItem("summernoteData"));
-                    },
-                    onChange: function(contents, $editable)
-                    {
-                        clearInterval(interval);
-                        timer();
-                        localStorage.setItem("summernoteData",contents)
-                        console.log(contents);
-                    }
-                }
-        });
-
-$('.personal_badge').click(function(){
-
-var personal_badege_customer_id= $(this).find('.personal_badege_customer_id').val()
-    localStorage.setItem("personalBadegeCustomerId",personal_badege_customer_id)
-
-    $.ajax({
-        method: 'POST',
-        dataType: 'json',
-        async:false,
-        url: '/customer/get_customer_info',
-        data: {customer_id: personal_badege_customer_id
-        },
-        beforeSend: function() {
-        },
-        complete: function() {
-
-        },
-        success: function (data) {
-            console.log('success'.data)
-            $('.sending_badge_title').text('Новая Персональная благодарность сотруднику'+' '+data.name+' '+data.sername)
-            $('.sending_badge_user').val(data.id)
-
-
-        }
-    });
-
-    reloadPage();
-
-})
-
 </script>
 @yield('scripts')
 </body>

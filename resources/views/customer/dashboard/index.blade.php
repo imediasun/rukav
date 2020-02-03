@@ -99,9 +99,11 @@
                     <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
                 </ol>
                 <div class="subheader">
+
                     <h1 class="subheader-title">
                         <i class='subheader-icon fal fa-chart-area'></i> Analytics <span class='fw-300'>Dashboard</span>
                     </h1>
+
                     <div class="subheader-block d-lg-flex align-items-center">
                         <div class="d-inline-flex flex-column justify-content-center mr-3">
                                     <span class="fw-300 fs-xs d-block opacity-50">
@@ -124,7 +126,15 @@
                         </div>
                         <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fe6bb0" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
                     </div>
+
                 </div>
+        <div class="row" style="padding-bottom:50px;padding-left:15px">
+            <div class="filters align-items-center" style="clear:both;display:block">
+                <button type="button" class="btn btn-xs btn-outline-primary waves-effect waves-themed" onclick="localStorage.setItem('lentaFilter',0);reloadData('start');">All</button>
+                <button type="button" class="btn btn-xs btn-outline-warning waves-effect waves-themed" onclick="localStorage.setItem('lentaFilter',1);reloadData('start');">My Team</button>
+                <button type="button" class="btn btn-xs btn-outline-info waves-effect waves-themed" onclick="localStorage.setItem('lentaFilter',2);reloadData('start');">Me</button>
+            </div>
+        </div>
                 <div class="row">
 
                     <div class="col-lg-6">
@@ -301,9 +311,11 @@
                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
             }
         })
-
+        localStorage.setItem('lentaFilter',0);
         reloadData('start');
         function reloadData(action){
+
+            var lentaFilter=localStorage.getItem('lentaFilter');
             var last = '{{ $current }}'
             var module='admin.company.users.data'
             var url='/customer/user_interface/getData';
@@ -322,7 +334,7 @@
                 dataType: 'json',
                 async:true,
                 url: url,
-                data: {module: module,page:page,user_id:user_id,action:action,perpage:perpage},
+                data: {module: module,page:page,user_id:user_id,action:action,perpage:perpage,lenta_filter:lentaFilter},
                 beforeSend: function() {
                     $('#loader').show();
                 },
