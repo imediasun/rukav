@@ -18,7 +18,7 @@ class SiteAdminLoginController extends Controller
     {
         \Auth::guard('admin')->logout();
         \Session::flush();
-        return redirect('/admin');
+        return redirect('/');
     }
     public function showLoginForm(){
         return view('auth.admin-login');

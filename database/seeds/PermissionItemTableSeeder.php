@@ -260,6 +260,27 @@ class PermissionItemTableSeeder extends Seeder
             ],
             [
 
+                'permission_id' =>13 ,
+                'role_id'=>6
+
+
+            ],
+            [
+
+                'permission_id' =>13 ,
+                'role_id'=>2
+
+
+            ],
+            [
+
+                'permission_id' =>13 ,
+                'role_id'=>1
+
+
+            ],
+            [
+
                 'permission_id' => 4 ,
                 'role_id'=>6
             ],

@@ -23,12 +23,12 @@
                 </td>
             <td class="company_name">{{$badge->name}}</td>
             <td>
-                <a href="javascript:void(0)" class="PrependChangeBadge btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-right-lg">
+                <!--a href="javascript:void(0)" class="PrependChangeBadge btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-right-lg">
                     <i class="fal fa-pencil"></i>
                 </a>
                 <a href="javascript:void(0);" class="DeleteBadge btn btn-danger btn-sm btn-icon waves-effect waves-themed">
                     <i class="fal fa-times"></i>
-                </a>
+                </a-->
             </td>
         </tr>
       @endforeach

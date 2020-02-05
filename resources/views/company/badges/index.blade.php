@@ -16,10 +16,6 @@
 
 
         <div class="demo">
-
-            <button type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg">
-                <span class="fal fa-plus  mr-1"></span>
-                Создать новый бэйдж</button>
         </div>
 
 

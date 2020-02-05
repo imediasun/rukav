@@ -26,7 +26,7 @@ class RedirectIfAuthenticated
                 return redirect('/dashboard');
             }
             else{
-                return redirect('/admin');
+                return redirect('/');
             }
 
         }

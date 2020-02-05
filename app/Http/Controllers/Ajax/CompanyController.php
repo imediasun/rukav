@@ -77,9 +77,10 @@ class CompanyController extends Controller
     }
 
     public function postSaveBadge(Request $request){
+        var_dump('ID',$request->input('id'));
 
         $companyBadge['values']=['name'=>$request->input('badge_name'),'photo'=> \Session::get('temp_badge_filename'),'group_id'=>$request->input('badges_group_id')];
-        $companyBadge['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
+        $companyBadge['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id') && $request->input('id')!=0)) ? $request->input('id') : null;
         Company::updateCompanyBadge($companyBadge);
 
     }

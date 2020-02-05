@@ -97,7 +97,7 @@
                 dataType: 'json',
                 async:false,
                 url: '/admin/main_admin/badges_groups/create',
-                data: {badges_group_id: badges_group_id,badges_group_name: badges_group_name
+                data: {id: badges_group_id,badges_group_name: badges_group_name
                 },
                 beforeSend: function() {
                 },

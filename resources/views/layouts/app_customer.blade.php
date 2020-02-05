@@ -115,69 +115,81 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 
 
-                    <?$i=1;
-                    ?>
+
                     @foreach($company_badges_groups as $group)
                         <h3>{{$group->group->name}}</h3>
+                        <?$i=1;
+
+                        $cnt=count($group->badges);
+                        ?>
                         @foreach($group->badges as $badges)
                             @if($i==1 || (($i%4+1)==2) )
                                 <div>
+                                @else
+
                                     @endif
+
+
                                     <div class="badge_border" style="position:relative;padding:30px;width:170px;height:170px;display:inline-block;border: 1px solid #eee">
                                         <input type="hidden" class="badge_num" value="{{$i}}">
                                         <input type="hidden" class="badge_id" value="{{$badges->id}}">
                                         <input type="hidden" class="badge_name" value="{{$badges->name}}">
-                                        <img src="/storage/badges/{{$badges->photo}}" style="position:absolute" class="single_badge"></div>
+                                        <img src="/storage/badges/{{$badges->photo}}" style="position:absolute" class="single_badge"> </div>
                                     @if($i%4==0 )
-                                        <div style="height:750px;width:100%;background:#eee;position:relative;display:none;padding-top:25px" class="sending_group">
-                                            <input type="hidden" class="sending_badges_group" value="{{$group->id}}">
-                                            <input type="hidden" class="sending_badges_customer" value="{{\Auth::user()->id}}">
-
-                                            <form class="badges_form" id="badge_form_{{$badges->id}}">
-
-                                                <h3 class="badge_name"></h3>
-
-                                                <input type="hidden" class="sending_badge_user" value="">
-                                                        <div class="form-group personal_select" >
-                                                            <label class="form-label" >
-                                                                Select remote Ajax search
-                                                            </label>
-                                                            <select data-placeholder="Select a state..." class="js-data-example-ajax form-control " ></select>
-
-                                                        </div>
-                                                <div class="form-group">
-                                                    <label class="form-label" for="example-email-2">Облвсть видимости юэйджа</label>
-                                                    <select class="form-control sending_badge_visibility">
-
-                                                                <option value="1">All</option>
-                                                                 <option value="2">Employe & manager</option>
-                                                                 <option value="3">Employe</option>
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-
-                                                    <input type="hidden" class="form-control sending_badge_title" value="" />
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="form-label" for="example-textarea">Сопроводительный текст</label>
-
-                                                    <div class="js-summernote" id="saveToLocal_{{$badges->id}}"></div>
-                                                    <!--textarea class="form-control sending_badge_textarea"  rows="5"></textarea-->
-                                                </div>
-
-                                                <button type="button" data-toggle="modal" data-target="#getCroppedCanvasModal" data-dismiss="modal" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }" class=" sending_badge_submit btn btn-primary waves-effect waves-themed">Отправить бэйдж</button>
-                                            </form>
-                                        </div>
-                                </div>
-                            @endif
-
-                            <?
 
 
-                            $i++;?>
+                                            <div style="height:750px;width:100%;background:#eee;position:relative;display:none;padding-top:25px" class="sending_group">
+                                                <input type="hidden" class="sending_badges_group" value="{{$group->id}}">
+                                                <input type="hidden" class="sending_badges_customer" value="{{\Auth::user()->id}}">
+
+                                                <form class="badges_form" id="badge_form_{{$badges->id}}">
+
+                                                    <h3 class="badge_name"></h3>
+
+                                                    <input type="hidden" class="sending_badge_user" value="">
+                                                    <div class="form-group personal_select" >
+                                                        <label class="form-label" >
+                                                            Select remote Ajax search
+                                                        </label>
+                                                        <select data-placeholder="Select a state..." class="js-data-example-ajax form-control " ></select>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="example-email-2">Облвсть видимости юэйджа</label>
+                                                        <select class="form-control sending_badge_visibility">
+
+                                                            <option value="1">All</option>
+                                                            <option value="2">Employe & manager</option>
+                                                            <option value="3">Employe</option>
+
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+
+                                                        <input type="hidden" class="form-control sending_badge_title" value="" />
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="example-textarea">Сопроводительный текст</label>
+
+                                                        <div class="js-summernote" id="saveToLocal_{{$badges->id}}"></div>
+                                                        <!--textarea class="form-control sending_badge_textarea"  rows="5"></textarea-->
+                                                    </div>
+
+                                                    <button type="button" data-toggle="modal" data-target="#getCroppedCanvasModal" data-dismiss="modal" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }" class=" sending_badge_submit btn btn-primary waves-effect waves-themed">Отправить бэйдж</button>
+                                                </form>
+                                            </div>
+
+                                    @endif
+
+
+
+                @if($i%4==0 || $cnt==$i )
+                    </div>
+                        @endif
+
+                <?$i++;?>
                         @endforeach
                     @endforeach
 

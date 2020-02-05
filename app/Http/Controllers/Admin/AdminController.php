@@ -52,6 +52,7 @@ class AdminController extends BaseController
 
     public function postData(Request $request){
 
+    $data=$this->mainSettings();
     $data['title']="Company postData";
     $data['user']=\App\User::where('id',\Auth::user()->id)->first();
 
@@ -132,6 +133,7 @@ class AdminController extends BaseController
 
     public function showBadgesGroups(){
 
+        $data=$this->mainSettings();
         $data['menu']=$this->menu();
         $user=\Auth::user();
 
@@ -144,14 +146,14 @@ class AdminController extends BaseController
 
 
     public function postBadgesGroupsData(Request $request){
-
+        $data=$this->mainSettings();
         $data['title']="Company postBadgesGroupsData";
         $data['badges_groups']=BadgesGroupModel::get();
         return view('main_admin.companies.badges_groups.table',$data);
     }
 
     public function getBadgesGroups(Request $request){
-        $data=BadgesGroupModel::where('id',$request->input('badges_group_id'))->first();
+        $data=BadgesGroupModel::where('id',$request->input('company_id'))->first();
 
         return $data;
     }

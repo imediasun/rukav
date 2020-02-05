@@ -32,6 +32,7 @@
 
         $('.PrependChangeBadgesGroup').click(function(){
             var badges_group_id =  $(this).parent().parent().find('.badges_group_id').text()
+            var company_id={{$company_id}}
             $.ajax({
                 method: 'POST',
                 dataType: 'json',

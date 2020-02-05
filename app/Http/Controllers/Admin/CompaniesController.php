@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Domain\Company\Models\CompanyBadge;
 use Illuminate\Http\Request;
 use App\Domain\Company\Facades\Company;
 use App\Domain\Company\Models\Company as CompanyModel;
@@ -57,8 +58,16 @@ dump($data['companies']);
     public function postBadgesData(Request $request){
 
         $data['title']="Company postBadgesData";
-        $data['badges']=BadgeModel::get();
-        return view('main_admin.companies.badges.table',$data);
+        $data['menu']=$this->menu();
+        $user=\Auth::user();
+        $data['company_id']=$user->getCompany[0]->id;
+        $data['company_badges_groups']=CompanyBadge::select('badges_group_id')->where('company_id',$data['company_id'])->get()->toArray();
+        $company_badges_groups=[];
+        foreach($data['company_badges_groups'] as $badges_group){
+            $company_badges_groups[]=$badges_group['badges_group_id'];
+        }
+        $data['badges']=BadgeModel::whereIn('group_id',$company_badges_groups)->get();
+        return view('company.badges.table',$data);
     }
 
     public function getCompany(Request $request){
@@ -161,6 +170,6 @@ dump($data['companies']);
         $data['description']="Ukrainian industry platform";
         \Session::forget('temp_badge_filename');
 
-        return view('main_admin.companies.badges.index',$data);
+        return view('company.badges.index',$data);
     }
 }

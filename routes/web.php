@@ -5,7 +5,8 @@ Route::get('/logout', function () {
 
 });
 
-Route::get('/', 'HomeController@index')->name('dashboard')->middleware('auth:admin')->middleware('role:Simple_user|Company_administrator|Manager');
+Route::get('/', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
+Route::get('/news_feed', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('auth:admin')->middleware('role:Simple_user|Company_administrator|Manager');
 #Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('login');
 #Route::post('/login', 'Auth\CustomerLoginController@login')->name('login.submit');
@@ -35,7 +36,7 @@ Route::group(['prefix' => 'company'],function(){
     Route::post('/save_theme', 'Admin\CompaniesController@saveTheme');
     Route::get('/company_logo', 'Admin\CompaniesController@showLogoPage');
     Route::get('/custom_badges', 'Admin\CompaniesController@showCustomBadges');
-
+    Route::post('/badges_groups/get', 'Admin\AdminController@getBadgesGroups');
 
 
 
