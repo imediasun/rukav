@@ -32,6 +32,11 @@
 
         $('.PrependChangeBadgesGroup').click(function(){
             var badges_group_id =  $(this).parent().parent().find('.badges_group_id').text()
+            var badges_group_name = $(this).parent().parent().find('.badges_group_name').text()
+            $('#badges_group_name').val(badges_group_name)
+            console.log('badges_group_name',badges_group_name)
+
+            $('#badges_group_id').val(badges_group_id)
             var company_id={{$company_id}}
             $.ajax({
                 method: 'POST',
@@ -47,8 +52,8 @@
                 },
                 success: function (data) {
                     console.log(data)
-                    $('#badges_group_id').val(data.id)
-                    $('#badges_group_name').val(data.name)
+                    //$('#badges_group_id').val(data.id)
+                    //$('#badges_group_name').val(data.name)
                     $('#badges_group_email').val(data.email)
                     $('#badges_group_info').val(data.info)
                     $('#badges_group_address').val(data.address)
@@ -65,7 +70,7 @@
                 method: 'POST',
                 dataType: 'json',
                 async:false,
-                url: '/main_admin/badges_groups/delete',
+                url: '/admin/main_admin/badges_groups/delete',
                 data: {badges_group_id: badges_group_id
                 },
                 beforeSend: function() {

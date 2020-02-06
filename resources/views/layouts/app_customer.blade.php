@@ -113,10 +113,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 <div class="modal-body">
                     <input type="hidden" id="company_id" name="company_id" >
 
-
-
-
                     @foreach($company_badges_groups as $group)
+                        @if($group->group)
                         <h3>{{$group->group->name}}</h3>
                         <?$i=1;
 
@@ -191,6 +189,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
                 <?$i++;?>
                         @endforeach
+                        @endif
                     @endforeach
 
 
@@ -1971,15 +1970,16 @@ $('.js-data-example-ajax').change(function(){
 
 $('.personal_badge').click(function(){
 
-var personal_badege_customer_id= $(this).find('.personal_badege_customer_id').val()
-    localStorage.setItem("personalBadegeCustomerId",personal_badege_customer_id)
+var personal_badge_customer_id= $(this).parent().find('.personal_badge_customer_id').val()
+    console.log(personal_badge_customer_id);
+    localStorage.setItem("personalBadegeCustomerId",personal_badge_customer_id)
 
     $.ajax({
         method: 'POST',
         dataType: 'json',
         async:false,
         url: '/customer/get_customer_info',
-        data: {customer_id: personal_badege_customer_id
+        data: {customer_id: personal_badge_customer_id
         },
         beforeSend: function() {
         },

@@ -44,7 +44,6 @@ class CompaniesController extends BaseController
 
         $data['title']="Company postData";
         $data['companies']=CompanyModel::with('logo')->with('admin')->get();
-dump($data['companies']);
         return view('main_admin.companies.table',$data);
     }
 

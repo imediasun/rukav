@@ -28,6 +28,8 @@ class CustomersController extends BaseController
     }
 
     public function getData(Request $request){
+
+
         $user=\Auth::user();
         $data['user_id']=$user->id;
         $data['manager_id']=$user->manager->user_id;
@@ -43,10 +45,23 @@ class CustomersController extends BaseController
         $new_last_message=$request->input('page')+$perpage;
         $show_previous_message=$request->input('id')-$perpage;
 
-        $users_messages=\App\Domain\Customer\Models\Message::with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->get();
+        $query=\App\Domain\Customer\Models\Message::with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'DESC')->orderBy('id', 'DESC');
 
+
+        $query_=\App\Domain\Customer\Models\Message::with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'ASC')->orderBy('id', 'ASC');
+
+
+        if( null!==($request->input('special_customer')))
+        {
+            //var_dump($request->input('special_customer'));
+            //$special_user=\App\User::where('id',$request->input('special_customer'))->first();
+            $query=$query->where("addressant",$request->input('special_customer'));
+            $query_=$query_->where("addressant",$request->input('special_customer'));
+            $data['user_id']=$request->input('special_customer');
+        }
+        $users_messages=$query->get();
+        $users_messages_=$query_->get();
         $last_message=$users_messages->first();
-        $users_messages_=\App\Domain\Customer\Models\Message::with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->get();
         $end_message=$users_messages_->first();
         $i=1;
         $count=count($users_messages);
@@ -71,10 +86,10 @@ class CustomersController extends BaseController
                 break;
         }
         //Отфильтровать только те месаджи которые имеют visibility 1 || 3 && принадлежать этому сотруднику || 2 && текущий сотрудник является менеджером адрессанту
-
         $users_messages=$users_messages->filter(function($message) use($data) {
             //найти менеджера аддрессанта
             $company_id=\App\User::where('id',$message->addressant)->first()->company_id;
+
             $manager=\App\Domain\Manager\Models\Manager::where('user_id',$data['user_id'])->where('company_id',$company_id)->first();
             //dump($message->visibility,$message->addressant);
             return (($message->visibility==1) || ( $message->visibility==3 && $message->addressant==$data['user_id']) || ($message->visibility==2 && null!==$manager) ) == true;
@@ -171,6 +186,15 @@ class CustomersController extends BaseController
          return view('customer.dashboard.table',$data);
     }
 
+    public function postDataSpecial(Request $request){
+        $data['messages']=$request->input('array');
+        $data['last']=\Session::get('last_message');
+        \Session::forget('last_message');
+        $data['page']=\Session::get('page');
+        \Session::forget('page');
+        return view('customer.special.table',$data);
+    }
+
     public function sendBadgeMessage(Request $request){
         $user=\Auth::user();
         $data['user_id']=$user->id;
@@ -252,6 +276,18 @@ foreach($users as $user){
         }
         $badges_in_current_month=\App\Domain\Customer\Models\Message::where('sender',$request->input('customer'))->whereRaw('MONTH(created_at) = ?',[$currentMonth])->whereIn('badge_id',$golden_array)->get();
     return count($badges_in_current_month);
+    }
+
+    public function getSpecial($customer_id){
+        $data=$this->mainSettings();
+        $data['menu']=$this->menu();
+        $data['special_customer']=\App\User::where('id',$customer_id)->with('getCustomersCompany')->first();
+        $data['special_customer_id']=$data['special_customer']->id;
+        $data['title']="Додати товар";
+        $data['keywords']="Ukrainian industry platform";
+        $data['description']="Ukrainian industry platform";
+
+        return view('customer.special.index',$data);
     }
 
 

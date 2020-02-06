@@ -12,6 +12,7 @@
         </thead>
         <tbody>
         @foreach($badges as $badge)
+            @if(isset($badge->group))
         <tr>
             <th  class="badge_id_table" scope="row">{{$badge->id}}
             <input class="badge_id" type="hidden" value="{{$badge->id}}">
@@ -34,6 +35,7 @@
                 </a>
             </td>
         </tr>
+        @endif
       @endforeach
         </tbody>
     </table>

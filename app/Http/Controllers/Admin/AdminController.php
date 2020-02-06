@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Domain\Admin\Models\Avatar as AvatarModel;
 use App\Domain\Admin\Models\BadgesGroup as BadgesGroupModel;
 use App\Domain\Admin\Models\Badge as BadgeModel;
+use App\Domain\Company\Models\CompanyBadge;
 
 class AdminController extends BaseController
 {
@@ -168,7 +169,8 @@ class AdminController extends BaseController
     public function postBadgesData(Request $request){
 
         $data['title']="Company postBadgesData";
-        $data['badges']=BadgeModel::get();
+        $data['badges']=BadgeModel::with('group')->get();
+
         return view('main_admin.companies.badges.table',$data);
     }
 

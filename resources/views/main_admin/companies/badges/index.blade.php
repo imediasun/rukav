@@ -999,7 +999,7 @@ function badgeCreation(){
         reloadData();
         function reloadData(){
             var module='admin.main_admin.badge.data'
-            var url='/company/badge/data';
+            var url='/admin/main_admin/badge/data';
             $.ajax({
                 method: 'POST',
                 dataType: 'html',

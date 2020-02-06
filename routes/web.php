@@ -7,7 +7,7 @@ Route::get('/logout', function () {
 
 Route::get('/', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
 Route::get('/news_feed', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
-Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('auth:admin')->middleware('role:Simple_user|Company_administrator|Manager');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
 #Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('login');
 #Route::post('/login', 'Auth\CustomerLoginController@login')->name('login.submit');
 Route::get('/staff', 'StaffController@index');
@@ -15,8 +15,10 @@ Route::post('/staff/data', 'StaffController@postData');
 Route::post('/staff/role_update', 'StaffController@postSave');
 Route::post('/staff_permissions/data', 'StaffController@postPermissionsData');
 Route::group(['prefix' => 'customer'],function(){
+    Route::get('/get_special/{customer}', 'CustomersController@getSpecial');
     Route::post('/get_theme', 'CustomersController@getTheme');
     Route::post('/user_interface/data', 'CustomersController@postData');
+    Route::post('/user_interface/dataSpecial', 'CustomersController@postDataSpecial');
     Route::post('/user_interface/getData', 'CustomersController@getData');
     Route::post('/badge/send', 'CustomersController@sendBadgeMessage');
     Route::get('/badge/get_addressant', 'CustomersController@getAddressant');

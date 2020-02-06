@@ -29,6 +29,7 @@ class BaseController extends Controller
 
         $companyBadgesGroups=$user->getCompanyBadges;
         $data['company_badges_groups']=$companyBadgesGroups;
+        $data['customers']=\App\User::with('getCustomersCompany')->get();
         $data['collegues']=$user->collegues;
         return $data;
     }

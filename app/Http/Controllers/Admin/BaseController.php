@@ -29,8 +29,15 @@ class BaseController extends Controller
         $data['company_id']=$user->company_id;
 
         $companyBadgesGroups=$user->getCompanyBadges;
+        foreach($companyBadgesGroups as $grp){
+            $grp->group=\App\Domain\Admin\Models\BadgesGroup::where('id',$grp->badges_group_id)->first();
+            $grp->badges=\App\Domain\Admin\Models\Badge::where('group_id',$grp->badges_group_id)->get();
+            $data['company_badges_groups'][]=$grp;
+        }
         $data['company_badges_groups']=$companyBadgesGroups;
+        //dd($data['company_badges_groups']);
         $data['collegues']=$user->collegues;
+        $data['customers']=\App\User::with('getCustomersCompany')->get();
         return $data;
     }
 

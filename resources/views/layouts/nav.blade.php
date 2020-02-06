@@ -181,69 +181,16 @@
                         </h2>
                     </div>
                 </div>
+
+                @foreach($customers as $customer)
                 <div class="col-4">
-                    <span  class="text-center p-3 d-flex flex-column hover-highlight personal_badge" data-toggle="modal" data-target=".default-example-modal-right-lg">
-                        <input type="hidden" class="personal_badege_customer_id" value="1">
-                        <span class="profile-image rounded-circle d-block m-auto" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
-                        <span class="d-block text-truncate text-muted fs-xs mt-1">Oliver Kopyov</span>
-                    </span>
-                </div>
-                <div class="col-4">
-                    <a href="javascript:void(0);" onclick="personalBadge();"class="text-center p-3 d-flex flex-column hover-highlight personal_badge" data-toggle="modal" data-target=".default-example-modal-right-lg">
-                        <input type="hidden" class="personal_badege_customer_id" value="1">
-                        <span class="profile-image rounded-circle d-block m-auto" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
-                        <span class="d-block text-truncate text-muted fs-xs mt-1">Sesha Gray</span>
+                    <a href="/customer/get_special/{{$customer->id}}" class="text-center p-3 d-flex flex-column hover-highlight" >
+                        <input type="hidden" class="personal_badege_customer_id" value="{{$customer->id}}">
+                        <span class="profile-image rounded-circle d-block m-auto" style="@if(isset($customer->getCustomersCompany)) background-image:url('/storage/avatars/{{$customer->getCustomersCompany->photo}}') @else  background-image:url('/storage/avatars/avatar-a.png')@endif; background-size: cover;"></span>
+                        <span class="d-block text-truncate text-muted fs-xs mt-1">{{$customer->name}} {{$customer->sername}}</span>
                     </a>
                 </div>
-                <div class="col-4">
-                    <a href="javascript:void(0);" onclick="personalBadge();" class="text-center p-3 d-flex flex-column hover-highlight personal_badge" data-toggle="modal" data-target=".default-example-modal-right-lg">
-                        <input type="hidden" class="personal_badege_customer_id" value="1">
-                        <span class="profile-image rounded-circle d-block m-auto" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
-                        <span class="d-block text-truncate text-muted fs-xs mt-1">Preny Amdaney</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a href="javascript:void(0);" onclick="personalBadge();" class="text-center p-3 d-flex flex-column hover-highlight personal_badge" data-toggle="modal" data-target=".default-example-modal-right-lg">
-                        <input type="hidden" class="personal_badege_customer_id" value="1">
-                        <span class="profile-image rounded-circle d-block m-auto" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
-                        <span class="d-block text-truncate text-muted fs-xs mt-1">Dr. John Cook PhD</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a href="javascript:void(0);" onclick="personalBadge();" class="text-center p-3 d-flex flex-column hover-highlight personal_badge" data-toggle="modal" data-target=".default-example-modal-right-lg">
-                        <input type="hidden" class="personal_badege_customer_id" value="1">
-                        <span class="profile-image rounded-circle d-block m-auto" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
-                        <span class="d-block text-truncate text-muted fs-xs mt-1">Sarah McBrook</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a href="javascript:void(0);" onclick="personalBadge();" class="text-center p-3 d-flex flex-column hover-highlight personal_badge" data-toggle="modal" data-target=".default-example-modal-right-lg">
-                        <input type="hidden" class="personal_badege_customer_id" value="1">
-                        <span class="profile-image rounded-circle d-block m-auto" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-i.png'); background-size: cover;"></span>
-                        <span class="d-block text-truncate text-muted fs-xs mt-1">Jimmy Fellan</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a href="javascript:void(0);" onclick="personalBadge();" class="text-center p-3 d-flex flex-column hover-highlight personal_badge" data-toggle="modal" data-target=".default-example-modal-right-lg">
-                        <input type="hidden" class="personal_badege_customer_id" value="1">
-                        <span class="profile-image rounded-circle d-block m-auto" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
-                        <span class="d-block text-truncate text-muted fs-xs mt-1">Arica Grace</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a href="javascript:void(0);" onclick="personalBadge();" class="text-center p-3 d-flex flex-column hover-highlight personal_badge" data-toggle="modal" data-target=".default-example-modal-right-lg">
-                        <input type="hidden" class="personal_badege_customer_id" value="1">
-                        <span class="profile-image rounded-circle d-block m-auto" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-k.png'); background-size: cover;"></span>
-                        <span class="d-block text-truncate text-muted fs-xs mt-1">Jim Ketty</span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a href="javascript:void(0);" onclick="personalBadge();" class="text-center p-3 d-flex flex-column hover-highlight personal_badge" data-toggle="modal" data-target=".default-example-modal-right-lg">
-                        <input type="hidden" class="personal_badege_customer_id" value="1">
-                        <span class="profile-image rounded-circle d-block m-auto" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
-                        <span class="d-block text-truncate text-muted fs-xs mt-1">Ali Grey</span>
-                    </a>
-                </div>
+              @endforeach
 
                 <div class="col-12">
                     <div class="p-3 text-center">

@@ -20,7 +20,7 @@ class CustomersTableSeeder extends Seeder
                 'company_id' => 1,
                 'department'=> 'department',
                 'phone'=> '13232',
-                'photo'=> '/avatar-a.png',
+                'photo'=> 'avatar-a.png',
                 'info'=>'info',
                 'position'=>'developer',
                 'active'=>1,
@@ -35,11 +35,28 @@ class CustomersTableSeeder extends Seeder
 
             /*2*/
             [
+                'user_id' => 2,
+                'company_id' => 1,
+                'department'=> 'department',
+                'phone'=> '13232',
+                'photo'=> 'avatar-b.png',
+                'info'=>'info',
+                'position'=>'developer',
+                'active'=>1,
+                'address'=>'address',
+                'location'=>'Kiev',
+                'manager_id'=>1,
+                'birth_date'=>\Carbon\Carbon::now(),
+                'start_date'=>\Carbon\Carbon::now(),
+                'sex'=>1,
+            ],
+            /*2*/
+            [
                 'user_id' => 5,
                 'company_id' => 1,
                 'department'=> 'department',
                 'phone'=> '13232',
-                'photo'=> '/avatar-b.png',
+                'photo'=> 'avatar-c.png',
                 'info'=>'info',
                 'position'=>'developer',
                 'active'=>1,
