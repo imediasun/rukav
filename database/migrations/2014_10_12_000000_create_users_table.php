@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('non_hashed');
             $table->bigInteger('company_id')->unsigned();
             $table->rememberToken();
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
