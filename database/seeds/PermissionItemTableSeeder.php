@@ -268,6 +268,13 @@ class PermissionItemTableSeeder extends Seeder
             [
 
                 'permission_id' =>13 ,
+                'role_id'=>5
+
+
+            ],
+            [
+
+                'permission_id' =>13 ,
                 'role_id'=>2
 
 

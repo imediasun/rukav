@@ -71,24 +71,27 @@ Route::group(['prefix' => 'company'],function(){
 });
 
 
+Route::get('/profile/{token}', 'Admin\AdminController@showProfile')->name('admin.profile.token')->middleware('auth:admin');
+Route::get('/profile', 'Admin\AdminController@showProfile')->name('admin.profile')->middleware('auth:admin');
+Route::post('/profile/update', 'Admin\AdminController@postUpdate')->name('admin.profile.update');
+
+
+Route::post('/profile/data', 'Admin\AdminController@postData');
+
+Route::get('/profile/avatar/index', 'Admin\AdminController@showAvatarPage');
+Route::post('/profile/avatar/data', 'Admin\AdminController@postAvatarsData');
+Route::post('/profile/avatar/get', 'Admin\AdminController@getAvatar');
+Route::post('/profile/avatar/delete', 'Admin\AdminController@postAvatarDelete');
+Route::post('/profile/avatar/saveAvatarToSession', 'Ajax\AdminController@saveAvatarToSession');
+Route::post('/profile/avatar/create', 'Ajax\AdminController@postSaveAvatar');
+Route::post('/profile/avatar/update_status', 'Ajax\AdminController@updateAvatarStatus');
+
 
 
 Route::group(['prefix' => 'admin'],function(){
 
-    Route::get('/profile', 'Admin\AdminController@showProfile')->name('admin.profile')->middleware('auth:admin')->middleware('role:Gods_mode|Main_administrator');
-    Route::post('/profile/update', 'Admin\AdminController@postUpdate')->name('admin.profile.update');
 
-    Route::get('/profile/{token}', 'Admin\AdminController@showProfile')->name('admin.profile.token')->middleware('auth:admin')->middleware('role:Company_administrator');;
 
-    Route::post('/profile/data', 'Admin\AdminController@postData');
-
-    Route::get('/profile/avatar/index', 'Admin\AdminController@showAvatarPage');
-    Route::post('/profile/avatar/data', 'Admin\AdminController@postAvatarsData');
-    Route::post('/profile/avatar/get', 'Admin\AdminController@getAvatar');
-    Route::post('/profile/avatar/delete', 'Admin\AdminController@postAvatarDelete');
-    Route::post('/profile/avatar/saveAvatarToSession', 'Ajax\AdminController@saveAvatarToSession');
-    Route::post('/profile/avatar/create', 'Ajax\AdminController@postSaveAvatar');
-    Route::post('/profile/avatar/update_status', 'Ajax\AdminController@updateAvatarStatus');
 
 
 

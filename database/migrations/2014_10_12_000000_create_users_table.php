@@ -14,14 +14,16 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('sername');
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
+            $table->string('name')->default('UserName');
+            $table->string('sername')->default('UserSername');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('non_hashed');
-            $table->integer('company_id');
+            $table->bigInteger('company_id')->unsigned();
             $table->rememberToken();
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

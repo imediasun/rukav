@@ -39,10 +39,17 @@ class AdminController extends BaseController
         return view('admin.index',$data);
     }
 
-    public function showProfile()
+    public function showProfile($token=null)
     {
-        $data['menu']=$this->menu();
         $user=\Auth::user();
+        $current_token=\App\User::where('id',$user->id)->first()->remember_token;
+        if($token!==$current_token && !null==$token){
+            \Auth::logout();
+            return redirect('/');
+        }
+        $data=$this->mainSettings();
+        $data['menu']=$this->menu();
+
         $data['user']=$user;
         $data['title']="Додати товар";
         $data['keywords']="Ukrainian industry platform";

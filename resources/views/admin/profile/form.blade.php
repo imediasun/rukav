@@ -1,18 +1,18 @@
 
 
 
-<form method="post" action="/admin/profile/update" class="was-validated">
+<form method="post" action="/profile/update" class="was-validated">
     @csrf
     <input type="hidden" id="admin_id" name="id" value="{{$user->id}}" >
 
     <div class="form-group">
-        <label class="form-label" for="company_name">Имя администратора</label>
-        <input type="text" id="admin_name" name="name" value="{{$user->name}}" class="form-control  @error('title') is-invalid @enderror" placeholder="Имя администратора" required>
+        <label class="form-label" for="company_name">Имя пользователя</label>
+        <input type="text" id="admin_name" name="name" value="{{$user->name}}" class="form-control  @error('title') is-invalid @enderror" placeholder="Имя пользователя" required>
     </div>
 
     <div class="form-group">
-        <label class="form-label" for="company_name">Логин администратора</label>
-        <input type="text" id="admin_login" name="login" class="form-control" value="{{$user->login}}" placeholder="Логин администратора" required>
+        <label class="form-label" for="company_name">Логин пользователя</label>
+        <input type="text" id="admin_login" name="login" class="form-control" value="{{$user->login}}" placeholder="Логин пользователя" required>
     </div>
 
     <div class="form-group">

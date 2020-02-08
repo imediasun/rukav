@@ -70,7 +70,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             box-shadow: 0 4px 22px 0 rgba(44,47,60,.16);
             transition: background 1s ease;
             cursor: pointer;
-            z-index:9999;
+            z-index:999;
         }
 
         .single_badge{
@@ -214,7 +214,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <!-- END Left Aside -->
         <div class="page-content-wrapper">
             <!-- BEGIN Page Header -->
-            <header class="page-header" role="banner">
+            <header class="page-header" role="banner" style="z-index:99">
                 <!-- we need this logo when user switches to nav-function-top -->
                 <div class="page-logo">
                     <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">

@@ -50,7 +50,24 @@ class CustomersTableSeeder extends Seeder
                 'start_date'=>\Carbon\Carbon::now(),
                 'sex'=>1,
             ],
-            /*2*/
+            /*3*/
+            [
+                'user_id' => 3,
+                'company_id' => 1,
+                'department'=> 'department',
+                'phone'=> '13232',
+                'photo'=> 'avatar-b.png',
+                'info'=>'info',
+                'position'=>'developer',
+                'active'=>1,
+                'address'=>'address',
+                'location'=>'Kiev',
+                'manager_id'=>1,
+                'birth_date'=>\Carbon\Carbon::now(),
+                'start_date'=>\Carbon\Carbon::now(),
+                'sex'=>1,
+            ],
+            /*3*/
             [
                 'user_id' => 5,
                 'company_id' => 1,

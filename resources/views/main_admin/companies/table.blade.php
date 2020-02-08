@@ -26,7 +26,7 @@
             <td class="company_biling_address">{{$company->biling_address}}</td>
             <td class="company_address">{{$company->address}}</td>
             <td class="company_registration_date">{{$company->registration_date}}</td>
-            <td class="company_logo">{{$company->logo->photo}}</td>
+            <td class="company_logo">@if(null!=$company->logo) {{$company->logo->photo}} @else  @endif</td>
             <td>
                 <a style="height:25px" href="javascript:void(0)" class="PrependChangeCompany btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-right-lg">
                     <i style="position:absolute;top:5px;left:6px" class="fal fa-pencil"></i>

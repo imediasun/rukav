@@ -696,7 +696,7 @@
                                             method: 'POST',
                                             dataType: 'json',
                                             async:false,
-                                            url: '/admin/profile/avatar/saveAvatarToSession',
+                                            url: '/profile/avatar/saveAvatarToSession',
                                             data: {avatar: result.toDataURL(uploadedImageType)
                                             },
                                             beforeSend: function() {
@@ -870,7 +870,7 @@ console.log('Avatar')
         reloadData();
         function reloadData(){
             var module='admin.main_admin.company.avatar.data'
-            var url='/admin/profile/avatar/data';
+            var url='/profile/avatar/data';
             $.ajax({
                 method: 'POST',
                 dataType: 'html',

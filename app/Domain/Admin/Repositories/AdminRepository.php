@@ -24,7 +24,7 @@ class AdminRepository extends BaseCrudRepository implements AdminRepositoryInter
      */
     public function updateOrCreateAdmin($attributes,$values)
     {
-         $this->entityClass= User::class;
+        $this->entityClass= User::class;
         return $this->updateOrCreate($attributes,$values);
     }
 
@@ -40,11 +40,12 @@ class AdminRepository extends BaseCrudRepository implements AdminRepositoryInter
             'login'=>'YouCanChangeLogin',
             'email'=>$company->email,
             'name'=>'customer',
-            'password'=>Hash::make('YouCanChangePassword'),
+            'password'=>Hash::make('PasswordYouCanChangeIT'),
             'department'=>'YouCanChangeDepartment',
             'active'=>false,
             'remember_token'=> Str::random(60),
-            'non_hashed'=>'YouCanChangePassword'
+            'non_hashed'=>'PasswordYouCanChangeIT',
+            'company_id'=>$company->id
 
         ];
         $attributes['id']=null;

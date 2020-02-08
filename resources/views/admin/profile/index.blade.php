@@ -26,7 +26,7 @@
 
         <div id="panel-7" class="">
             <div class="panel-hdr">
-                <h5 class="title h4">Форма изменения профиля администратора</h5>
+                <h5 class="title h4">Форма изменения профиля пользователя</h5>
 
             </div>
 
@@ -46,7 +46,7 @@
             </div>
             @endif
             @if ($errors->any())
-            <form id="stringLengthForm" method="post" action="/admin/profile/update"
+            <form id="stringLengthForm" method="post" action="/profile/update"
                   data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                   data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
                   data-bv-feedbackicons-validating="glyphicon glyphicon-refresh"
@@ -55,12 +55,12 @@
                 <input type="hidden" id="admin_id" name="id" value="{{$user->id}}" >
 
                 <div class="form-group">
-                    <label class="form-label" for="company_name">Имя администратора</label>
+                    <label class="form-label" for="company_name">Имя пользователя</label>
                     <input type="text" id="admin_name" name="name"  value="{{old('name')}}" class="form-control  @error('name') is-invalid @enderror" placeholder="Имя администратора" required data-bv-stringlength="true" data-bv-stringlength-min="5">
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="company_name">Логин администратора</label>
+                    <label class="form-label" for="company_name">Логин пользователя</label>
                     <input type="text" id="admin_login" name="login" class="form-control"  value="{{old('login')}}" placeholder="Логин администратора" required>
                 </div>
 
@@ -164,8 +164,8 @@
 
         function reloadData(){
             $('.result_of_admins_profile').empty()
-            var module='admin.profile.data'
-            var url='/admin/profile/data';
+            var module='profile.data'
+            var url='/profile/data';
             $.ajax({
                 method: 'POST',
                 dataType: 'html',

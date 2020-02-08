@@ -37,7 +37,7 @@ public function __construct(User $customer){
             ->line('Вы можете залогиниться перейдя по ссылке или нажав кнопку')
             ->action('Войти в админку', $url)
             ->line('Логин: '.$this->customer->email)
-        ->line('Временный Пароль: YouCanChangePassword');
+        ->line('Временный Пароль: PasswordYouCanChangeIT');
     }
 
     public function via($notifiable)

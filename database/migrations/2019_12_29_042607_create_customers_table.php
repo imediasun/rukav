@@ -14,9 +14,10 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('company_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('company_id')->unsigned();
             $table->date('birth_date');
             $table->date('start_date');
             $table->string('department');
@@ -29,12 +30,19 @@ class CreateCustomersTable extends Migration
             $table->boolean('active')->default(0);
             $table->string('address');
             $table->string('location');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('company_id')->references('id')->on('companies');
+
+
+
+
             $table->timestamps();
 
 
        });
+
+        Schema::table('customers', function($table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');;
+        });
     }
 
     /**
