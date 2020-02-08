@@ -51,10 +51,12 @@ class CustomersController extends BaseController
 
         $data['title']="Customers postData";
         $company_id=\Auth::user()->getCompany[0]->id;
-        $data['customers']=\App\User::join('customers', function ($join) use ($company_id) {
+        /*$data['customers']=\App\User::join('customers', function ($join) use ($company_id) {
             $join->on('users.id', '=', 'customers.user_id')
                 ->where('customers.company_id', $company_id);
-        })->with('getCustomersCompany')->get();
+        })->with('getCustomersCompany')->get();*/
+
+        $data['customers']=\App\User::where('company_id',$company_id)->with('getCustomersCompany')->get();
 
 
         //rightJoin('customers', 'users.id', '=', 'user_id')->where('customers.company_id',$company_id)
@@ -69,9 +71,6 @@ class CustomersController extends BaseController
 
 
     public function postSave(Request $request){
-var_dump($request->input());
-
-
         $user['values']=['name'=>$request->input('customer_name'),
             'sername'=>$request->input('customer_sername'),
             'email'=>$request->input('customer_email'),
@@ -84,6 +83,12 @@ var_dump($request->input());
 
         $user=UserFacade::updateUser($user);
 
+        $role_data=[
+            'role_id' => 5,
+            'model_type'=>'App\User',
+            'model_id'=>$user->id
+        ];
+        \App\ModelHasRole::insert($role_data);
         $customer['values']=[
             'user_id'=>$user->id,
             'start_date'=>\Carbon\Carbon::now(),
@@ -104,9 +109,9 @@ var_dump($request->input());
             ,
             'company_id'=>$request->input('company_id'),
             'manager_id'=>$request->input('manager_id'),
-            'password'=> Hash::make('YouCanChangePassword'),
+            'password'=> Hash::make('PasswordYouCanChangeIT'),
             'remember_token'=> Str::random(60),
-            'non_hashed'=>'YouCanChangePassword',
+            'non_hashed'=>'PasswordYouCanChangeIT',
 
         ];
         $customer['attributes']['id']=(null!=($request->input('customer_id')) && !empty($request->input('customer_id'))) ? $request->input('customer_id') : null;
@@ -120,7 +125,7 @@ var_dump($request->input());
      * @return mixed
      */
     public function postDelete(Request $request){
-    $customer=CustomerModel::where('id',$request->input('customer_id'))->first();
+    $customer=\App\User::where('id',$request->input('customer_id'))->first();
     $result=Customer::deleteCustomer($customer);
     return \Response::json($result);
     }

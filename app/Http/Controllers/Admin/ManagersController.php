@@ -67,11 +67,11 @@ class ManagersController extends BaseController
             'login'=>$request->input('manager_login'),
             'department'=>$request->input('manager_department'),
             'email'=>$request->input('manager_email'),
-            'password'=> Hash::make('YouCanChangePassword')
+            'password'=> Hash::make('PasswordYouCanChangeIT')
             ,'info'=>$request->input('manager_info'),'phone'=>$request->input('manager_phone')
             ,'address'=>$request->input('manager_address'),
             'remember_token'=> Str::random(60),
-            'non_hashed'=>'YouCanChangePassword',
+            'non_hashed'=>'PasswordYouCanChangeIT',
 
         ];
         $user['attributes']['id']=(null!=($request->input('user_id')) && !empty($request->input('user_id'))) ? $request->input('user_id') : null;

@@ -303,19 +303,29 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'link'=> '/admin/profile',
                 'system_name'=>'admin_profile',
                 'type'=>'not_linked',
-                'permission'=>'view_admin_profile'
+                'permission'=>'view_customer_interface'
             ],
             /*25*/  //Role=>all_admin
             [
                 'parent_id' => 24,
-                'name' => 'Аватарки',
+                'name' => 'Управление профилем',
                 'icon'=> 'fal fa-window',
-                'link'=> '/admin/profile/avatar/index',
+                'link'=> '/profile',
                 'system_name'=>'admin_profile_avatar',
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*26*/  //Role=>system_admin
+            /*26*/  //Role=>all_admin
+            [
+                'parent_id' => 24,
+                'name' => 'Аватарки',
+                'icon'=> 'fal fa-window',
+                'link'=> '/profile/avatar/index',
+                'system_name'=>'admin_profile_avatar',
+                'type'=>'linked',
+                'permission'=>null
+            ],
+            /*27*/  //Role=>system_admin
             [
                 'parent_id' => 0,
                 'name' => 'Бэйджи',
@@ -325,9 +335,9 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'not_linked',
                 'permission'=>'view_main_admin_badges'
             ],
-            /*27*/  //Role=>system_admin
+            /*28*/  //Role=>system_admin
             [
-                'parent_id' => 26,
+                'parent_id' => 27,
                 'name' => 'Группы бэйджей',
                 'icon'=> 'fal fa-window',
                 'link'=> '/admin/main_admin/badges_groups',
@@ -335,9 +345,9 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*28*/  //Role=>system_admin
+            /*29*/  //Role=>system_admin
             [
-                'parent_id' => 26,
+                'parent_id' => 27,
                 'name' => 'Кастомные бэйджи',
                 'icon'=> 'fal fa-window',
                 'link'=> '/admin/main_admin/custom_badges',

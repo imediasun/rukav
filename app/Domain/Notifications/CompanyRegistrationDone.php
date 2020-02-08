@@ -30,14 +30,14 @@ public function __construct(Company $company){
 
         \Log::info($this->company);
         \Log::info($this->user);
-        $url = url('/admin/profile/'.$this->user->remember_token);
+        $url = url('/profile/'.$this->user->remember_token);
 
         return (new MailMessage)
             ->greeting('Hello!')
             ->line('Вы можете залогиниться перейдя по ссылке или нажав кнопку')
             ->action('Войти в админку', $url)
             ->line('Логин: '.$this->user->email)
-        ->line('Временный Пароль: YouCanChangePassword');
+        ->line('Временный Пароль: PasswordYouCanChangeIT');
     }
 
     public function via($notifiable)

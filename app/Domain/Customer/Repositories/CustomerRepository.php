@@ -26,7 +26,7 @@ class CustomerRepository extends BaseCrudRepository implements CustomerRepositor
 
     public function deleteCustomer($customer)
     {
-        $this->entityClass= Customer::class;
+        $this->entityClass= \App\User::class;
         return $this->delete($customer);
     }
 

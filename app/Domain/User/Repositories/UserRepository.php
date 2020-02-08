@@ -37,17 +37,19 @@ class UserRepository extends BaseCrudRepository implements UserRepositoryInterfa
             'login'=>'YouCanChangeLogin',
             'email'=>$company->email,
             'name'=>'customer',
-            'password'=>Hash::make('YouCanChangePassword'),
+            'password'=>Hash::make('PasswordYouCanChangeIT'),
             'department'=>'YouCanChangeDepartment',
             'active'=>false,
             'remember_token'=> Str::random(60),
-            'non_hashed'=>'YouCanChangePassword'
+            'non_hashed'=>'PasswordYouCanChangeIT'
 
         ];
         $attributes['id']=null;
         $admin=$this->updateOrCreateUser($attributes,$values);
         $admin_company=['admin_id'=>$admin->id,'company_id'=>$company->id];
         \App\UserCompany::insert($admin_company);
+
+
         return $admin;
     }
 

@@ -14,15 +14,16 @@ class CreateCompaniesTable extends Migration
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->text('info');
             $table->string('phone');
             $table->string('address');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->string('biling_address');
-            $table->date('registration_date');
+            $table->timestamp('registration_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
         });
     }
