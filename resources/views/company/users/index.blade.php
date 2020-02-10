@@ -152,8 +152,11 @@
                         <span aria-hidden="true"><i class="fal fa-times"></i></span>
                     </button>
                 </div>
+
+                <form class="needs-validation" id="customer_create" novalidate onsubmit="theSubmitFunction(); return false;">
+
                 <div class="modal-body">
-                    <input type="hidden" id="customer_id" name="customer_id" >
+                    <input type="hidden" id="customer_id" name="customer_id" value="0">
                     <input type="hidden" id="company_id" name="company_id" value="{{$company->id}}">
                     <input type="hidden" id="manager_id" name="manager_id" value="1">
 
@@ -162,11 +165,17 @@
 
                     <div class="form-group">
                         <label class="form-label" for="customer_name">Имя пользователя</label>
-                        <input type="text" id="customer_name" name="customer_name" class="form-control" placeholder="Имя пользователя">
+                        <input type="text" id="customer_name" name="customer_name" required class="form-control" placeholder="Имя пользователя">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="customer_sername">Фамилия пользователя</label>
-                        <input type="text" id="customer_sername" name="customer_sername" class="form-control" placeholder="Фамилия пользователя">
+                        <input type="text" id="customer_sername" name="customer_sername" required class="form-control" placeholder="Фамилия пользователя">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -178,7 +187,27 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="customer_location">Логин пользователя</label>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="managerSwitch" >
+                            <label class="custom-control-label" for="managerSwitch">Менеджер/не менеджер</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="select">Назначить этому пользователю менеджера</label>
+                        <select   class="form-control" id="select">
+                              @foreach($managers as $manager)
+                                    <option value="{{$manager->id}}">{{$manager->user->name}} {{$manager->user->sername}}</option>
+                                @endforeach
+                        </select>
+
+
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="customer_location">Местонахождение пользователя</label>
                         <input type="text" id="customer_location" name="customer_location" class="form-control" placeholder="Локация пользователя">
                     </div>
 
@@ -189,7 +218,10 @@
 
                     <div class="form-group">
                         <label class="form-label" for="customer_email">Email</label>
-                        <input type="email" id="customer_email" name="customer_email" class="form-control" placeholder="Email">
+                        <input type="email" id="customer_email" name="customer_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required email class="form-control" placeholder="Email">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="company_department">Департамент</label>
@@ -222,8 +254,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="customer_create_close btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Закрыть</button>
-                    <button type="button" class="customer_create btn btn-primary waves-effect waves-themed" data-dismiss="modal">Сохранить</button>
+                    <button type="submit" class="customer_create btn btn-primary waves-effect waves-themed" >Сохранить</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -231,53 +264,71 @@
 
 @section('scripts')
     <script>
+$('#managerSwitch').change(function(){
+    console.log('Manager1',$(this).is(':checked'))
+})
 
-        $('.customer_create').click(function(){
-            console.log(222,company_id)
-            var customer_name=$('#customer_name').val()
-            var customer_sername=$('#customer_sername').val()
-            var customer_sex=$('#customer_sex').val()
-            var customer_location=$('#customer_location').val()
-            var customer_id=$('#customer_id').val()
-            var customer_login=$('#customer_login').val()
 
-            var manager_id=$('#manager_id').val()
-            var customer_department=$('#customer_department').val()
-            var customer_position=$('#customer_position').val()
-            var customer_email=$('#customer_email').val()
-            var customer_info=$('#customer_info').val()
-            var customer_phone=$('#customer_phone').val()
-            var customer_address=$('#customer_address').val()
-            console.log(customer_name,customer_email,customer_info,customer_phone,customer_address,company_id)
+       /* $('.customer_create').click(function(){*/
+function  theSubmitFunction () {
 
-            $.ajax({
-                method: 'POST',
-                dataType: 'json',
-                async:false,
-                url: '/company/users/create',
-                data: {customer_id: customer_id,customer_name: customer_name,customer_sername: customer_sername,
-                    customer_sex: customer_sex,customer_location: customer_location,
-                    customer_login: customer_login,
-                    customer_department: customer_department,company_id: company_id,manager_id: manager_id,
-                    customer_position: customer_position,
-                    customer_email:customer_email,
-                    customer_info:customer_info,customer_phone:customer_phone,
-                    customer_address:customer_address
-                },
-                beforeSend: function() {
-                },
-                complete: function() {
-                    //$('.customer_create_close').click();
-                    $('#customer_id').val('')
 
-                },
-                success: function (data) {
+    var form=$('#customer_create')
+    if (form[0].checkValidity() === false) {
+console.log(777)
+    }
+    else {
 
-                    console.log('success')
-                    reloadData();
-                }
-            });
-        })
+
+        console.log(222, company_id)
+        var customer_name = $('#customer_name').val()
+        var customer_sername = $('#customer_sername').val()
+        var customer_sex = $('#customer_sex').val()
+        var customer_location = $('#customer_location').val()
+        var customer_id = $('#customer_id').val()
+        var customer_login = $('#customer_login').val()
+        var manager = $('#managerSwitch').is(':checked')
+        var manager_id = $('#select').val()
+        var customer_department = $('#customer_department').val()
+        var customer_position = $('#customer_position').val()
+        var customer_email = $('#customer_email').val()
+        var customer_info = $('#customer_info').val()
+        var customer_phone = $('#customer_phone').val()
+        var customer_address = $('#customer_address').val()
+        console.log(customer_name, customer_email, customer_info, customer_phone, customer_address, company_id)
+
+        $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            async: false,
+            url: '/company/users/create',
+            data: {
+                customer_id: customer_id, customer_name: customer_name, customer_sername: customer_sername,
+                customer_sex: customer_sex, customer_location: customer_location,
+                customer_login: customer_login,
+                customer_department: customer_department, company_id: company_id, manager_id: manager_id,
+                customer_position: customer_position,
+                customer_email: customer_email,
+                customer_info: customer_info, customer_phone: customer_phone,
+                customer_address: customer_address, manager: manager
+            },
+            beforeSend: function () {
+            },
+            complete: function () {
+                $('.customer_create_close').click();
+                $('#customer_id').val('')
+                reloadData();
+
+            },
+            success: function (data) {
+
+                console.log('success')
+                reloadData();
+            }
+        });
+    }
+}
+      /*  })*/
 
 
 
@@ -289,6 +340,7 @@
 
         reloadData();
         function reloadData(){
+
             var module='admin.company.users.data'
             var url='/company/users/data';
             $.ajax({
@@ -307,6 +359,7 @@
 
                     $('.result_of_customers_table').html(data);
 
+
                 }
             });
 
@@ -314,6 +367,23 @@
         }
 
 
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
 
 
 

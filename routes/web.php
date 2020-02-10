@@ -35,6 +35,8 @@ Route::group(['prefix' => 'company'],function(){
     Route::post('/users/get', 'Admin\CustomersController@getCustomer');
     Route::post('/users/delete', 'Admin\CustomersController@postDelete');
     Route::post('/users/create', 'Admin\CustomersController@postSave');
+    Route::post('/users/is_manager_set', 'Admin\CustomersController@setIsManager');
+
     Route::post('/save_theme', 'Admin\CompaniesController@saveTheme');
     Route::get('/company_logo', 'Admin\CompaniesController@showLogoPage');
     Route::get('/custom_badges', 'Admin\CompaniesController@showCustomBadges');

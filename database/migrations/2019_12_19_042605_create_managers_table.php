@@ -14,18 +14,20 @@ class CreateManagersTable extends Migration
     public function up()
     {
         Schema::create('managers', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->integer('company_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->string('photo');
-            $table->text('info');
-            $table->string('address');
-            $table->foreign('company_id')->references('id')->on('companies');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('company_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+
             $table->timestamps();
 
 
        });
+
+        Schema::table('managers', function($table) {
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+        });
     }
 
     /**
