@@ -18,17 +18,13 @@ class ManagersTableSeeder extends Seeder
            [
                'user_id' => 4,
                'company_id' => 1,
-               'photo'=>'123',
-               'address'=>'parusnaya str',
-               'info'=>'parusnaya str',
+
            ],
            /*1*/
            [
                'user_id' => 1,
                'company_id' => 1,
-               'photo'=>'123',
-               'address'=>'parusnaya str',
-               'info'=>'parusnaya str',
+
            ],
        ]);
 

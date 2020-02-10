@@ -27,6 +27,7 @@ class ManagersController extends BaseController
      */
     public function index()
     {
+        $data=$this->mainSettings();
         $data['menu']=$this->menu();
         $role=\Auth::user()->roles;
 
@@ -46,10 +47,10 @@ class ManagersController extends BaseController
 
 
     public function postData(Request $request){
+        $data['company_id']=\Auth::user()->getCompany[0]->id;
 
         $data['title']="Managers postData";
-        $data['managers']=ManagerModel::get();
-
+        $data['managers']=ManagerModel::where('company_id',$data['company_id'])->with('user')->get();
         return view('company.managers.table',$data);
     }
 

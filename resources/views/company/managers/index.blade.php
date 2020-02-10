@@ -252,7 +252,7 @@
         reloadData();
         function reloadData(){
             var module='admin.company.users.data'
-            var url='/company/users/data';
+            var url='/company/managers/data';
             $.ajax({
                 method: 'POST',
                 dataType: 'html',

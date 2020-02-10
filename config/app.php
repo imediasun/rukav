@@ -172,6 +172,7 @@ return [
         App\Domain\Admin\Providers\AdminServiceProvider::class,
         App\Domain\Customer\Providers\CustomerServiceProvider::class,
         App\Domain\User\Providers\UserServiceProvider::class,
+        App\Domain\Manager\Providers\ManagerServiceProvider::class,
 
 
     ],
@@ -231,7 +232,8 @@ return [
         'Company'=>App\Domain\Company\Facades\Company::class,
         'Admin'=>App\Domain\Admin\Facades\Admin::class,
         'Customer'=>App\Domain\Customer\Facades\Customer::class,
-        'User'=>App\Domain\User\Facades\User::class
+        'User'=>App\Domain\User\Facades\User::class,
+        'Manager'=>App\Domain\Manager\Facades\Manager::class
 
 
     ],

@@ -8,6 +8,7 @@ use App\Domain\User\Facades\User as UserFacade;
 use Illuminate\Support\Facades\Hash;
 use App\Domain\Customer\Models\Customer as CustomerModel;
 use Illuminate\Support\Str;
+use App\Domain\Manager\Facades\Manager;
 
 class CustomersController extends BaseController
 {
@@ -37,8 +38,7 @@ class CustomersController extends BaseController
             $data['company']=\Auth::user()->getCompany[0];
             $data['company_id']=\Auth::user()->getCompany[0]->id;
         }
-
-
+        $data['managers']=\App\Domain\Manager\Models\Manager::where('company_id',$data['company_id'])->with('user')->get();
         $data['title']="Додати товар";
         $data['keywords']="Ukrainian industry platform";
         $data['description']="Ukrainian industry platform";
@@ -64,8 +64,7 @@ class CustomersController extends BaseController
     }
 
     public function getCustomer(Request $request){
-        $data=CustomerModel::where('id',$request->input('customer_id'))->first();
-
+        $data=\App\User::where('id',$request->input('customer_id'))->with('getCustomersCompany')->first();
         return $data;
     }
 
@@ -79,16 +78,16 @@ class CustomersController extends BaseController
             'non_hashed'=>'PasswordYouCanChangeIT',
             'active'=>1,
             'remember_token'=>Str::random(60)];
-        $user['attributes']['id']=null;
-
+        $user['attributes']['id']=($request->input('customer_id')!=0) ? $request->input('customer_id') : null;
+        $changeRole=$user['attributes']['id'];
         $user=UserFacade::updateUser($user);
-
-        $role_data=[
-            'role_id' => 5,
-            'model_type'=>'App\User',
-            'model_id'=>$user->id
-        ];
-        \App\ModelHasRole::insert($role_data);
+        if($changeRole==null){
+            $role_data=[
+                'role_id' => 5,
+                'model_type'=>'App\User',
+                'model_id'=>$user->id
+            ];
+            \App\ModelHasRole::insert($role_data);}
         $customer['values']=[
             'user_id'=>$user->id,
             'start_date'=>\Carbon\Carbon::now(),
@@ -105,7 +104,7 @@ class CustomersController extends BaseController
             ,
             'address'=>$request->input('customer_address')
             ,
-            'photo'=>'/tmp.png'
+            'photo'=>'avatar-a.png'
             ,
             'company_id'=>$request->input('company_id'),
             'manager_id'=>$request->input('manager_id'),
@@ -116,6 +115,21 @@ class CustomersController extends BaseController
         ];
         $customer['attributes']['id']=(null!=($request->input('customer_id')) && !empty($request->input('customer_id'))) ? $request->input('customer_id') : null;
         Customer::updateCustomer($customer);
+
+        $manager=$request->input('manager');
+        if($manager=='true'){
+        $manager_data['values']=[
+            'company_id'=>$user->company_id,
+            'user_id'=>$user->id
+        ];
+
+            $manager_data['attributes']['id']= null;
+        if(!\App\Domain\Manager\Models\Manager::where('user_id',$user->id)->first()){
+            Manager::updateManager($manager_data);}
+        }
+        else{
+            \App\Domain\Manager\Models\Manager::where('user_id',$user->id)->delete();
+        }
 
 
     }
@@ -130,4 +144,23 @@ class CustomersController extends BaseController
     return \Response::json($result);
     }
 
+
+    public function setIsManager(Request $request){
+        $company_id=\Auth::user()->getCompany[0]->id;
+        if($request->input('state')=='true'){
+            $manager_data['values']=[
+                'company_id'=>$company_id,
+                'user_id'=>$request->input('customer')
+            ];
+            $manager_data['attributes']['id']= null;
+
+            $result=Manager::updateManager($manager_data);
+        }
+        else{
+            $manager=\App\Domain\Manager\Models\Manager::where('user_id',$request->input('customer'))->first();
+            $result=Manager::deleteManager($manager);
+        }
+        return \Response::json($result);
+
+    }
 }

@@ -28,7 +28,7 @@ class CustomersTableSeeder extends Seeder
                 'location'=>'Kiev',
                 'manager_id'=>2,
                 'birth_date'=>\Carbon\Carbon::now(),
-        'start_date'=>\Carbon\Carbon::now(),
+                'start_date'=>\Carbon\Carbon::now(),
                 'sex'=>1,
 
             ],
@@ -70,6 +70,23 @@ class CustomersTableSeeder extends Seeder
             /*3*/
             [
                 'user_id' => 5,
+                'company_id' => 1,
+                'department'=> 'department',
+                'phone'=> '13232',
+                'photo'=> 'avatar-c.png',
+                'info'=>'info',
+                'position'=>'developer',
+                'active'=>1,
+                'address'=>'address',
+                'location'=>'Kiev',
+                'manager_id'=>1,
+                'birth_date'=>\Carbon\Carbon::now(),
+                'start_date'=>\Carbon\Carbon::now(),
+                'sex'=>1,
+            ],
+            /*4*/
+            [
+                'user_id' => 4,
                 'company_id' => 1,
                 'department'=> 'department',
                 'phone'=> '13232',

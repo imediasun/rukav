@@ -9,6 +9,7 @@
             <th>Gender</th>
             <th>Department</th>
             <th>ManagerId</th>
+            <th>IsManager</th>
             <th>Position</th>
             <th>StartDate</th>
             <th>Location</th>
@@ -17,6 +18,7 @@
         </thead>
         <tbody>
         @foreach($customers as $customer)
+            <form>
         <tr>
             <th class="customer_id" scope="row">{{$customer->id}}</th>
             <td class="customer_name">{{$customer->name}}</td>
@@ -25,6 +27,22 @@
             <td class="customer_phone">@if ($customer->getCustomersCompany['sex']==1) {{'male'}} @else {{'female'}} @endif</td>
             <td class="customer_phone">{{$customer->getCustomersCompany['department']}}</td>
             <td class="customer_phone">{{$customer->getCustomersCompany['manager_id']}}</td>
+            <td class="customer_manager">
+                <?
+                $is_manager=\App\Domain\Manager\Models\Manager::where('user_id',$customer->id)->first();
+                ?>
+                @if($is_manager)
+            <input type="hidden" class="is_manager" value="1">
+                    @else
+                        <input type="hidden" class="is_manager" value="0">
+                    @endif
+                <div class="custom-control custom-switch">
+                    <input type="hidden" class="customSwitch2_id" value="{{$customer->id}}" >
+                    <input type="checkbox" class="custom-control-input customSwitch2" id="customSwitch2_{{$customer->id}}" @if($is_manager) checked="" @else @endif >
+                    <label class="custom-control-label" for="customSwitch2_{{$customer->id}}"></label>
+                </div>
+            </td>
+
             <td class="customer_phone">{{$customer->getCustomersCompany['position']}}</td>
             <td class="customer_phone">{{$customer->getCustomersCompany['start_date']}}</td>
             <td class="customer_phone">{{$customer->getCustomersCompany['location']}}</td>
@@ -37,36 +55,54 @@
                 </a>
             </td>
         </tr>
+            </form>
       @endforeach
         </tbody>
     </table>
 </div>
 
     <script>
-
-
         $('.PrependChangeCustomer').click(function(){
+            console.log('PrependChangeCustomer1')
             var customer_id =  $(this).parent().parent().find('.customer_id').text()
-            $.ajax({
+            var manager =  $(this).parent().parent().find('.customer_manager').find('.is_manager').val()
+            console.log(manager);
+            //$('#manager_selected').val(1); //<---below this one
+           $.ajax({
                 method: 'POST',
                 dataType: 'json',
                 async:false,
                 url: '/company/users/get',
-                data: {company_id: company_id
+                data: {company_id: company_id,customer_id:customer_id
                 },
                 beforeSend: function() {
                 },
                 complete: function() {
-
+                    reloadData();
                 },
                 success: function (data) {
-                    console.log(data)
-                    $('#customer_id').val(data.id)
+                    console.log('PrependChangeCustomer',data)
+                    console.log(data.get_customers_company)
+                    $('#customer_id').val(customer_id)
                     $('#customer_name').val(data.name)
+                    $('#customer_sername').val(data.sername)
+
                     $('#customer_email').val(data.email)
                     $('#customer_info').val(data.info)
-                    $('#customer_phone').val(data.phone)
-                    $('#customer_address').val(data.address)
+                    $('#customer_phone').val(data.get_customers_company.phone)
+                    $('#customer_address').val(data.get_customers_company.address)
+                    $('#select option:selected').removeAttr("selected");
+                    $("#select option[value="+data.get_customers_company.manager_id+"]").attr('selected', 'selected');
+                    if(manager==1){
+                        $('#managerSwitch').prop('checked', true);
+                    }
+                    else{
+                        $('#managerSwitch').prop('checked',false);
+                    }
+
+
+                    console.log(data.get_customers_company.manager_id)
+                    reloadData();
                       console.log('success')
 
                 }
@@ -96,6 +132,30 @@
             });
 
         });
+
+        $('.customSwitch2').change(function(){
+           var customer=$(this).parent().find('.customSwitch2_id').val()
+            var state = $(this).is(":checked")
+            console.log(customer,state)
+
+            $.ajax({
+                method: 'POST',
+                dataType: 'json',
+                async:false,
+                url: '/company/users/is_manager_set',
+                data: {customer: customer,state:state
+                },
+                beforeSend: function() {
+                },
+                complete: function() {
+
+                },
+                success: function (data) {
+
+                    console.log('success')
+                }
+            });
+        })
 
 
 

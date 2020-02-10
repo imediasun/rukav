@@ -17,10 +17,18 @@ class ManagerService implements ManagerServiceInterface
 
     public function sendManagerRegistrationDoneNotification(Manager $manager)
     {
-        return $this->sendNotification($manager);
+        $user=\App\User::where('id',$manager->user_id)->first();
+        return $user->notify(new ManagerRegistrationDone($manager));
     }
 
     public function sendNotification(Model $manager)
+    {
+
+        $manager->notify(new ManagerRegistrationDone($manager));
+
+    }
+
+    public function sendMessageNotification(Model $manager)
     {
 
         $manager->notify(new ManagerRegistrationDone($manager));

@@ -14,8 +14,8 @@
         @foreach($managers as $manager)
         <tr>
             <th class="manager_id" scope="row">{{$manager->id}}</th>
-            <td class="manager_name">{{$manager->name}}</td>
-            <td class="manager_email">{{$manager->email}}</td>
+            <td class="manager_name">{{$manager->user->name}}</td>
+            <td class="manager_email">{{$manager->user->email}}</td>
             <td class="manager_phone"></td>
             <td>
                 <a href="javascript:void(0)" class="PrependChangeManager btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-right-lg">
@@ -68,7 +68,7 @@
                 method: 'POST',
                 dataType: 'json',
                 async:false,
-                url: '/admin/company/manager/delete',
+                url: '/company/managers/delete',
                 data: {manager_id: manager_id
                 },
                 beforeSend: function() {
