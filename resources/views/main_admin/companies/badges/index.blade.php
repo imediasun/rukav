@@ -394,7 +394,7 @@
                                                             </span>
                                                         </button>
                                                         <div class="btn-group btn-group-crop">
-                                                            <button class="formBadge" type="button" class="btn btn-success" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }">
+                                                            <button class="formBadge btn btn-success" style="display:none" type="button"  data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }">
                                                                 <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 4096, maxHeight: 4096 })">
                                                                     Сформировать логотип
                                                                 </span>
