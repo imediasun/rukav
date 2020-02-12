@@ -39,6 +39,7 @@ Route::group(['prefix' => 'company'],function(){
 
     Route::post('/save_theme', 'Admin\CompaniesController@saveTheme');
     Route::get('/company_logo', 'Admin\CompaniesController@showLogoPage');
+    Route::get('/badges_statistics', 'Admin\CompaniesController@showBadgesStatistic');
     Route::get('/custom_badges', 'Admin\CompaniesController@showCustomBadges');
     Route::post('/badges_groups/get', 'Admin\AdminController@getBadgesGroups');
 
@@ -63,7 +64,7 @@ Route::group(['prefix' => 'company'],function(){
     Route::post('/logo/create', 'Ajax\CompanyController@postSaveLogo');
     Route::post('/logo/update_status', 'Ajax\CompanyController@updateLogoStatus');
 
-    Route::post('/badge/data', 'Admin\CompaniesController@postBadgesData');
+    Route::post('/badge/data', 'Admin\CompaniesController@postBadgesStatisticData');
     Route::post('/badge/get', 'Admin\CompaniesController@getBadge');
     Route::post('/badge/delete', 'Admin\CompaniesController@postBadgeDelete');
     Route::post('/badge/saveBadgeToSession', 'Ajax\CompanyController@saveBadgeToSession');

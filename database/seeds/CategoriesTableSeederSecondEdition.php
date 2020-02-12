@@ -215,7 +215,17 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*16*/  //Role=>manager
+            /*16*/  //Role=>company_admin
+            [
+                'parent_id' => 13,
+                'name' => 'Статистика по бейджам ',
+                'icon'=> 'fal fa-window',
+                'link'=> '/company/badges_statistics',
+                'system_name'=>'badges_statistics',
+                'type'=>'linked',
+                'permission'=>null
+            ],
+            /*17*/  //Role=>manager
             [
                 'parent_id' => 0,
                 'name' => 'Статистика менеджера',
@@ -225,7 +235,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>'view_manager_statistics_menu'
             ],
-            /*17*/  //Role=>main_system_administrator
+            /*18*/  //Role=>main_system_administrator
             [
                 'parent_id' => 0,
                 'name' => 'Управление доступом',
@@ -235,7 +245,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>'view_admins_accesses_menu'
             ],
-            /*18*/  //Role=>main_system_administrator
+            /*19*/  //Role=>main_system_administrator
             [
                 'parent_id' => 0,
                 'name' => 'Аналитика по клиенту',
@@ -245,7 +255,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>'view_clients_analytics_menu'
             ],
-            /*19*/  //Role=>main_system_administrator
+            /*20*/  //Role=>main_system_administrator
             [
                 'parent_id' => 0,
                 'name' => 'Компании',
@@ -255,7 +265,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>'view_companies_menu'
             ],
-            /*20*/  //Role=>all
+            /*21*/  //Role=>all
             [
                 'parent_id' => 0,
                 'name' => 'Профиль администратора',
@@ -265,7 +275,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*21*/  //Role=>company_admin
+            /*22*/  //Role=>company_admin
             [
                 'parent_id' => 0,
                 'name' => 'Менеджеры',
@@ -275,9 +285,9 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'not_linked',
                 'permission'=>'view_company_managers_menu'
             ],
-            /*22*/  //Role=>company_admin 1)Impresonate by user
+            /*23*/  //Role=>company_admin 1)Impresonate by user
             [
-                'parent_id' => 21,
+                'parent_id' => 22,
                 'name' => 'Список менеджеров',
                 'icon'=> 'fal fa-window',
                 'link'=> '/company/managers_list',
@@ -285,7 +295,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*23*/ //Role=>company_admin
+            /*24*/ //Role=>company_admin
             [
                 'parent_id' => 7,
                 'name' => 'Цветовые схеммы',
@@ -295,7 +305,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*24*/  //Role=>all_admin
+            /*25*/  //Role=>all_admin
             [
                 'parent_id' => 0,
                 'name' => 'Собственный профиль',
@@ -305,9 +315,9 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'not_linked',
                 'permission'=>'view_customer_interface'
             ],
-            /*25*/  //Role=>all_admin
+            /*26*/  //Role=>all_admin
             [
-                'parent_id' => 24,
+                'parent_id' => 25,
                 'name' => 'Управление профилем',
                 'icon'=> 'fal fa-window',
                 'link'=> '/profile',
@@ -315,9 +325,9 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*26*/  //Role=>all_admin
+            /*27*/  //Role=>all_admin
             [
-                'parent_id' => 24,
+                'parent_id' => 25,
                 'name' => 'Аватарки',
                 'icon'=> 'fal fa-window',
                 'link'=> '/profile/avatar/index',
@@ -325,7 +335,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*27*/  //Role=>system_admin
+            /*28*/  //Role=>system_admin
             [
                 'parent_id' => 0,
                 'name' => 'Бэйджи',
@@ -335,9 +345,9 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'not_linked',
                 'permission'=>'view_main_admin_badges'
             ],
-            /*28*/  //Role=>system_admin
+            /*29*/  //Role=>system_admin
             [
-                'parent_id' => 27,
+                'parent_id' => 28,
                 'name' => 'Группы бэйджей',
                 'icon'=> 'fal fa-window',
                 'link'=> '/admin/main_admin/badges_groups',
@@ -345,9 +355,9 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*29*/  //Role=>system_admin
+            /*30*/  //Role=>system_admin
             [
-                'parent_id' => 27,
+                'parent_id' => 28,
                 'name' => 'Кастомные бэйджи',
                 'icon'=> 'fal fa-window',
                 'link'=> '/admin/main_admin/custom_badges',

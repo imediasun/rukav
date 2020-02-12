@@ -39,6 +39,41 @@ class CompaniesController extends BaseController
         return view('main_admin.companies.index',$data);
     }
 
+    public function showBadgesStatistic(){
+
+        $data=$this->mainSettings();
+        $data['menu']=$this->menu();
+        $data['title']="Додати товар";
+        $data['keywords']="Ukrainian industry platform";
+        $data['description']="Ukrainian industry platform";
+
+        return view('company.statistic.index',$data);
+    }
+
+    public function postBadgesStatisticData(Request $request){
+
+        $data['title']="Company postBadgesData";
+        $data['menu']=$this->menu();
+        $user=\Auth::user();
+        $data['company_id']=$user->getCompany[0]->id;
+        $data['company_badges_groups']=CompanyBadge::select('badges_group_id')->where('company_id',$data['company_id'])->get()->toArray();
+        $company_badges_groups=[];
+        foreach($data['company_badges_groups'] as $badges_group){
+            $company_badges_groups[]=$badges_group['badges_group_id'];
+        }
+        $data['badges']=BadgeModel::whereIn('group_id',$company_badges_groups)->get();
+        $from=\Carbon\Carbon::createFromFormat('m/d/Y', $request->input('start'));
+        $to=\Carbon\Carbon::createFromFormat('m/d/Y', $request->input('finish'));
+        foreach($data['badges'] as $badge){
+
+            $messages_on_period=\App\Domain\Customer\Models\Message::whereBetween('created_at', [$from, $to])->where('badge_id',$badge->id)->get();
+            $messages_on_period_grouped_by_sender=\App\Domain\Customer\Models\Message::whereBetween('created_at', [$from, $to])->where('badge_id',$badge->id)->groupBy('sender')->get();
+            $badge->badges_on_period=count($messages_on_period);
+            $badge->badges_on_period_grouped_by_sender=count($messages_on_period_grouped_by_sender);
+        }
+        return view('company.statistic.table',$data);
+    }
+
 
     public function postData(Request $request){
 
