@@ -31,6 +31,7 @@
 
 
         $('.PrependChangeBadgesGroup').click(function(){
+            console.log('prepend')
             var badges_group_id =  $(this).parent().parent().find('.badges_group_id').text()
             var badges_group_name = $(this).parent().parent().find('.badges_group_name').text()
             $('#badges_group_name').val(badges_group_name)

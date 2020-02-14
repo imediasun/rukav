@@ -18,11 +18,13 @@ class CreateCompaniesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->text('info');
+         /*   $table->text('info');*/
             $table->string('phone');
             $table->string('address');
+            $table->string('web');
             $table->boolean('status')->default(1);
             $table->string('biling_address');
+            $table->string('clients_segment');
             $table->timestamp('registration_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
         });

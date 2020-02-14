@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Domain\Admin\Facades\Admin;
+use App\Domain\Company\Facades\Company;
 use Illuminate\Support\Facades\Hash;
 use App\Domain\Admin\Models\Avatar as AvatarModel;
 use App\Domain\Admin\Models\BadgesGroup as BadgesGroupModel;

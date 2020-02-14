@@ -36,7 +36,7 @@
                         Вы можете редактировать информацию нажав на  <a href="utilities_color_pallet.html" title="Color Pallets">карандаш</a> справа от информации
                     </div>
                     <h5 class="frame-heading">
-                        Логотипы
+                        Бейджи
                     </h5>
                     <div id="loader">
                         <div class="border p-3">

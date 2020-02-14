@@ -20,14 +20,28 @@ class CompaniesTableSeeder extends Seeder
                'name' => 'Awesome ',
                'email'=> 'imediasun@gmail.com',
                'phone'=>'123',
-               'info'=>'123',
+             /*  'info'=>'123',*/
                'address'=>'parusnaya str',
+               'web'=>'http://index.com',
                'biling_address'=>'parusnaya str',
                'status'=>1,
                'registration_date'=>\Carbon\Carbon::now(),
+               'clients_segment'=>'IT'
            ],
 
        ]);
+
+        DB::table('banners')->insert([
+            /*1*/
+            [
+                'name' => 'Awesome ',
+                'photo'=> '1.jpg',
+                'company_id'=>1,
+                'active'=>1,
+
+            ],
+
+        ]);
 
 
     }

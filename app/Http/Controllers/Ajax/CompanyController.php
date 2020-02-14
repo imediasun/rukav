@@ -66,6 +66,17 @@ class CompanyController extends Controller
     }
 
 
+    public function updateCompanyStatus(Request $request){
+
+        $status=($request->input('status')=='true') ? 1 :0;
+        $companyStatus['values']=['status'=>$status ];
+        $companyStatus['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
+
+        Company::updateCompany($companyStatus);
+    }
+
+
+
 
     public function updateBadgeStatus(Request $request){
 
@@ -90,6 +101,21 @@ class CompanyController extends Controller
     $data['company_id']=$request->input('company_id');
     return view('main_admin.companies.badges_groups.modal_table',$data);
 
+    }
+
+
+    public function emailCheck(Request $request){
+
+        if (null!==($request->input('email'))) {
+            $email = $request->input('email');
+            $results = \App\User::where('email',$email)->first();
+            if ($results) {
+                return json_encode("taken");
+            }else{
+                return json_encode( 'not_taken');
+            }
+
+        }
     }
 
 }

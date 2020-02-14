@@ -12,7 +12,7 @@ class Company extends Model
 
     protected $table='companies';
     protected $fillable = [
-        'name', 'email','info','phone','address','biling_address'
+        'name', 'email','info','phone','address','biling_address','status','clients_segment','web'
 
     ];
 
@@ -22,6 +22,11 @@ class Company extends Model
 
     public function logo(){
         return $this->hasOne('App\Domain\Company\Models\Logo');
+
+    }
+
+    public function banner(){
+        return $this->hasOne('App\Domain\Company\Models\Banner');
 
     }
 

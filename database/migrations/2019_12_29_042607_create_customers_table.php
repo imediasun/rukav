@@ -22,13 +22,10 @@ class CreateCustomersTable extends Migration
             $table->date('start_date');
             $table->string('department');
             $table->boolean('sex');
-            $table->string('phone');
             $table->string('photo');
-            $table->text('info');
             $table->string('position');
             $table->integer('manager_id');
             $table->boolean('active')->default(0);
-            $table->string('address');
             $table->string('location');
 
 

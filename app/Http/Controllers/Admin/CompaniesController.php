@@ -128,9 +128,15 @@ class CompaniesController extends BaseController
     }
 
     public function postSave(Request $request){
+        $string = $request->input('registration_date').' 16:34:00';
+        $date = \Carbon\Carbon::createFromFormat('m/d/Y H:i:s', $string, 'Europe/London');
+        $date->setTimezone('UTC');
         $company['values']=['name'=>$request->input('company_name'),'email'=>$request->input('company_email')
-            ,'info'=>$request->input('company_info'),'phone'=>$request->input('company_phone')
-            ,'address'=>$request->input('company_address'),'biling_address'=>$request->input('company_biling_address')
+            ,/*'info'=>$request->input('company_info'),*/'phone'=>$request->input('company_phone')
+            ,'address'=>$request->input('company_address'),'web'=>$request->input('company_web'),'biling_address'=>$request->input('company_biling_address'),
+            'registration_date'=>$date,
+            'clients_segment'=>$request->input('clients_segment')
+
 
         ];
         $company['attributes']['id']=(null!=($request->input('company_id')) && !empty($request->input('company_id'))) ? $request->input('company_id') : null;
@@ -179,7 +185,7 @@ class CompaniesController extends BaseController
     }
 
     public function showLogoPage(){
-
+        $data=$this->mainSettings();
         $data['menu']=$this->menu();
         $user=\Auth::user();
         $data['company_id']=$user->getCompany[0]->id;

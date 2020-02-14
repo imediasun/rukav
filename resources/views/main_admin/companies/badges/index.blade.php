@@ -118,9 +118,6 @@
                     Таблица  <span class="fw-300"><i>всех бейджей компании</i></span>
                 </h2>
                 <div class="panel-toolbar">
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
                 </div>
             </div>
             <div class="panel-container show">
@@ -129,7 +126,7 @@
                         Вы можете редактировать информацию нажав на  <a href="utilities_color_pallet.html" title="Color Pallets">карандаш</a> справа от информации
                     </div>
                     <h5 class="frame-heading">
-                        Логотипы
+                        Бейджи
                     </h5>
                     <div id="loader">
                         <div class="border p-3">

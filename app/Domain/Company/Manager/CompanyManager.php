@@ -41,7 +41,7 @@ class CompanyManager extends CompanyAbstract implements CompanyContract
         $company=$this->companyRepository->updateOrCreateCompany($company['attributes'],$company['values']);
         if($company){
             //create user for company if Company has no Admin yet
-            if(!$company->getAdmin){
+            if(!$company->admin){
            $user=$this->setAdmin($company);
            $user->assignRole('Company_administrator');
             $this->companyService->sendCompanyRegistrationDoneNotification($company);

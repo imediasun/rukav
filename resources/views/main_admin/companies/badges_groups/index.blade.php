@@ -11,7 +11,7 @@
 
         <div class="demo">
 
-            <button type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg">
+            <button type="button" id="badge_group_create_btn" class="btn btn-lg btn-primary waves-effect waves-themed "  data-toggle="modal" data-target=".default-example-modal-right-lg">
                 <span class="fal fa-plus  mr-1"></span>
                 Создать группу бэйджей</button>
         </div>
@@ -69,7 +69,7 @@
 
                     <div class="form-group">
                         <label class="form-label" for="badges_group_name">Название группы бэйджей</label>
-                        <input type="text" id="badges_group_name" name="badges_group_name" class="form-control" placeholder="Имя пользователя">
+                        <input type="text" id="badges_group_name" name="badges_group_name" class="form-control" placeholder="Название группы бейджей">
                     </div>
 
                 </div>
@@ -84,6 +84,18 @@
 
 @section('scripts')
     <script>
+
+        document.getElementById("badge_group_create_btn").onclick = function(e) {
+            // Если необходимо предотвратить/отменить событие по умолчанию,
+            // то необходимо вызвать метод preventDefault у события
+            // https://developer.mozilla.org/ru/docs/Web/API/Event/preventDefault
+            // e.preventDefault();
+            // если необходимо также предотвратить дальнейшее "всплытие" события,
+            // то необходимо вызвать метод stopPropagation у события
+            // https://developer.mozilla.org/ru/docs/Web/API/Event/stopPropagation
+            // e.stopPropagation();
+            document.getElementById("badges_group_name").value = "";
+        }
 
         $('.badges_group_create').click(function(){
             console.log(222)

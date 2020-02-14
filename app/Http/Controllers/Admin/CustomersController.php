@@ -88,21 +88,22 @@ class CustomersController extends BaseController
                 'model_id'=>$user->id
             ];
             \App\ModelHasRole::insert($role_data);}
+        $string = $request->input('birth_date').' 16:34:00';
+        $birth_date = \Carbon\Carbon::createFromFormat('m/d/Y H:i:s', $string, 'Europe/London');
+        $birth_date->setTimezone('UTC');
+        $start_string = $request->input('start_date').' 16:34:00';
+        $start_date = \Carbon\Carbon::createFromFormat('m/d/Y H:i:s', $start_string, 'Europe/London');
+        $start_date->setTimezone('UTC');
         $customer['values']=[
             'user_id'=>$user->id,
-            'start_date'=>\Carbon\Carbon::now(),
-            'birth_date'=>\Carbon\Carbon::now(),
+            'start_date'=>$start_date,
+            'birth_date'=>$birth_date,
             'sex'=>$request->input('customer_sex'),
             'location'=>$request->input('customer_location'),
-            'login'=>$request->input('customer_login'),
             'department'=>$request->input('customer_department'),
             'position'=>$request->input('customer_position'),
 
             'phone'=>$request->input('customer_phone')
-            ,
-            'info'=>$request->input('customer_info')
-            ,
-            'address'=>$request->input('customer_address')
             ,
             'photo'=>'avatar-a.png'
             ,

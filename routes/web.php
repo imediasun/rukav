@@ -30,6 +30,8 @@ Route::group(['prefix' => 'customer'],function(){
 
 
 Route::group(['prefix' => 'company'],function(){
+
+    Route::post('/update_status', 'Ajax\CompanyController@updateCompanyStatus');
     Route::get('/users_list', 'Admin\CustomersController@index')->name('company.users_list.dashboard');
     Route::post('/users/data', 'Admin\CustomersController@postData');
     Route::post('/users/get', 'Admin\CustomersController@getCustomer');
@@ -122,8 +124,7 @@ Route::group(['prefix' => 'admin'],function(){
         Route::post('/company_badges/get', 'Admin\CompaniesController@getCompanyBadges');
         Route::post('/company_badges/getHtml', 'Ajax\CompanyController@getAllBadgesGroups');
 
-
-
+        Route::post('/company/email_check', 'Ajax\CompanyController@emailCheck');
 
         Route::post('/company/data', 'Admin\CompaniesController@postData');
 
