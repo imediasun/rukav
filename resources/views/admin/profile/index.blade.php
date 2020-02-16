@@ -1,6 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.app_customer')
 
 @section('content')
+
+    @if (\Session::has('success'))
+
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! \Session::get('success')[0] !!}</li>
+            </ul>
+        </div>
+    @endif
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -60,11 +69,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="company_name">Логин пользователя</label>
-                    <input type="text" id="admin_login" name="login" class="form-control"  value="{{old('login')}}" placeholder="Логин администратора" required>
-                </div>
-
-                <div class="form-group">
                     <label class="form-label" for="company_email">Email</label>
                     <input type="email" id="admin_email" name="email" value="{{old('email')}}" class="form-control" placeholder="Email" required>
                 </div>
@@ -87,7 +91,6 @@
 
 
                 <div class="modal-footer">
-                    <button type="button" class="company_create_close btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Закрыть</button>
                     <button type="submit" class="company_create btn btn-primary waves-effect waves-themed">Обновить информацию</button>
                 </div>
             </form>

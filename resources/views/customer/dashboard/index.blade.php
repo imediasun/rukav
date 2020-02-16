@@ -104,8 +104,7 @@
                         <i class='subheader-icon fal fa-chart-area'></i> Analytics <span class='fw-300'>Dashboard</span>
                     </h1>
 
-
-                </div>
+                 </div>
         <div class="row" style="padding-bottom:50px;padding-left:15px">
             <div class="filters align-items-center" style="clear:both;display:block">
                 <button type="button" class="btn btn-xs btn-outline-primary waves-effect waves-themed" onclick="localStorage.setItem('lentaFilter',0);reloadData('start');">All</button>

@@ -11,11 +11,6 @@
     </div>
 
     <div class="form-group">
-        <label class="form-label" for="company_name">Логин пользователя</label>
-        <input type="text" id="admin_login" name="login" class="form-control" value="{{$user->login}}" placeholder="Логин пользователя" required>
-    </div>
-
-    <div class="form-group">
         <label class="form-label" for="company_email">Email</label>
         <input type="email" id="admin_email" name="email" value="{{$user->email}}" class="form-control" placeholder="Email" required>
     </div>
@@ -32,12 +27,11 @@
 
     <div class="form-group">
         <label class="form-label" for="company_phone">Департамент</label>
-        <input type="text" id="admin_department" name="department" class="form-control" value="{{$user->department}}" placeholder="Контактный телефон">
+        <input type="text" id="admin_department" name="department" class="form-control" value="{{$user->department}}" placeholder="Департамент">
     </div>
 
 
     <div class="modal-footer">
-        <button type="button" class="company_create_close btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Закрыть</button>
         <button type="submit" class="company_create btn btn-primary waves-effect waves-themed">Обновить информацию</button>
     </div>
 </form>
