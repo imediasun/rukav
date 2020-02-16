@@ -209,7 +209,7 @@
 
                     <div class="form-group">
                         <label class="form-label" for="customer_location">Местонахождение пользователя</label>
-                        <input type="text" id="customer_location" name="customer_location" class="form-control" placeholder="Локация пользователя">
+                        <input type="text" id="customer_location" name="customer_location" class="form-control" required placeholder="Локация пользователя">
                     </div>
 
                     <div class="form-group">
@@ -219,16 +219,16 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="company_department">Департамент</label>
-                        <input type="text" id="customer_department" name="customer_department" class="form-control" placeholder="Департамент">
+                        <input type="text" id="customer_department" name="customer_department" required class="form-control" placeholder="Департамент">
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="company_position">Должность</label>
-                        <input type="text" id="customer_position" name="customer_position" class="form-control" placeholder="Должность">
+                        <input type="text" id="customer_position" name="customer_position" required class="form-control" placeholder="Должность">
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="customer_phone">Контактный телефон</label>
-                        <input type="text" id="customer_phone" name="customer_phone" class="form-control" placeholder="Контактный телефон">
+                        <input type="text" id="customer_phone" name="customer_phone" required class="form-control" placeholder="Контактный телефон">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label col-12 col-lg-3 form-label text-lg-right">Birth date</label>

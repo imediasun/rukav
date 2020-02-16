@@ -34,7 +34,92 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <!--<link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/your_styles.css">-->
 </head>
 <body class="mod-bg-1 ">
-@yield('theme_scripts')
+
+<script>
+    /**
+     *	This script should be placed right after the body tag for fast execution
+     *	Note: the script is written in pure javascript and does not depend on thirdparty library
+     **/
+
+    var company_id='{{$company_id}}';
+
+
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/customer/get_theme", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        company_id: company_id
+    }));
+    xhr.onload = function() {
+        console.log("HELLO")
+        console.log(this.responseText);
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+        localStorage.setItem("themeSettings",data.theme_options);
+    }
+
+
+    console.log(company_id)
+
+
+
+    'use strict';
+
+    var classHolder = document.getElementsByTagName("BODY")[0],
+        /**
+         * Load from localstorage
+         **/
+        themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+            {},
+        themeURL = themeSettings.themeURL || '',
+        themeOptions = themeSettings.themeOptions || '';
+    /**
+     * Load theme options
+     **/
+    if (themeSettings.themeOptions)
+    {
+        classHolder.className = themeSettings.themeOptions;
+        console.log("%c✔ Theme settings loaded", "color: #148f32");
+    }
+    else
+    {
+        console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
+    }
+    if (themeSettings.themeURL && !document.getElementById('mytheme'))
+    {
+        var cssfile = document.createElement('link');
+        cssfile.id = 'mytheme';
+        cssfile.rel = 'stylesheet';
+        cssfile.href = themeURL;
+        document.getElementsByTagName('head')[0].appendChild(cssfile);
+    }
+    /**
+     * Save to localstorage
+     **/
+    var saveSettings = function()
+    {
+        themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
+        {
+            return /^(nav|header|mod|display)-/i.test(item);
+        }).join(' ');
+        if (document.getElementById('mytheme'))
+        {
+            themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+        };
+        localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+        console.log('Saved Theme setting')
+
+    }
+    /**
+     * Reset settings
+     **/
+    var resetSettings = function()
+    {
+        localStorage.setItem("themeSettings", "");
+    }
+
+</script>
 <!-- DOC: script to save and load page settings -->
 
 
@@ -140,7 +225,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                                 <input type="hidden" class="sending_badges_group" value="{{$group->id}}">
                                                 <input type="hidden" class="sending_badges_customer" value="{{\Auth::user()->id}}">
 
-                                                <form class="badges_form" id="badge_form_{{$badges->id}}">
+                                                <form class="badges_form" >
 
                                                     <h3 class="badge_name"></h3>
 
@@ -168,10 +253,10 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                                         <input type="hidden" class="form-control sending_badge_title" value="" />
                                                     </div>
 
-                                                    <div class="form-group">
+                                                    <div class="form-group summerBlock">
                                                         <label class="form-label" for="example-textarea">Сопроводительный текст</label>
 
-                                                        <div class="js-summernote" id="saveToLocal_{{$badges->id}}"></div>
+
                                                         <!--textarea class="form-control sending_badge_textarea"  rows="5"></textarea-->
                                                     </div>
 
@@ -1000,28 +1085,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 <!-- END Page Wrapper -->
 <!-- BEGIN Quick Menu -->
 <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-<nav class="shortcut-menu d-none d-sm-block">
-    <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
-    <label for="menu_open" class="menu-open-button ">
-        <span class="app-shortcut-icon d-block"></span>
-    </label>
-    <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top">
-        <i class="fal fa-arrow-up"></i>
-    </a>
-    <a href="page_login_alt.html" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Logout">
-        <i class="fal fa-sign-out"></i>
-    </a>
-    <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left" title="Full Screen">
-        <i class="fal fa-expand"></i>
-    </a>
-    <a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left" title="Print page">
-        <i class="fal fa-print"></i>
-    </a>
-    <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left" title="Voice command">
-        <i class="fal fa-microphone"></i>
-    </a>
-</nav>
-<!-- END Quick Menu -->
+
 <!-- BEGIN Messenger -->
 <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-right">
@@ -1640,7 +1704,82 @@ $(document).ready(function(){
     localStorage.setItem("personalBadegeCustomerId",0)
 
     reloadPage();
+
+
+
+
+
 })
+
+
+function summernoteInit(){
+
+    var autoSave = $('#autoSave');
+    var interval;
+    var timer = function()
+    {
+        interval = setInterval(function()
+        {
+            //start slide...
+            if (autoSave.prop('checked'))
+                saveToLocal();
+
+            clearInterval(interval);
+        }, 3000);
+    };
+
+    //save
+    var saveToLocal = function()
+    {
+        localStorage.setItem('summernoteData', $('#saveToLocal').summernote("code"));
+        console.log("saved");
+    }
+
+    //delete
+    var removeFromLocal = function()
+    {
+        localStorage.removeItem("summernoteData");
+        $('#saveToLocal').summernote('reset');
+    }
+
+
+
+    $('.js-summernote').summernote({
+        height: 200,
+        tabsize: 2,
+        placeholder: "Type here...",
+        dialogsFade: true,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']]
+                ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ],
+        callbacks:
+            {
+                //restore from localStorage
+                onInit: function(e)
+                {
+                    $('.js-summernote').summernote("code", localStorage.getItem("summernoteData"));
+                },
+                onChange: function(contents, $editable)
+                {
+                    console.log('change summernote')
+                    //clearInterval(interval);
+                    //timer();
+                    localStorage.setItem("summernoteData",contents)
+                    console.log(contents);
+                }
+            }
+    });
+}
 
 function reloadPage(){
 
@@ -1658,6 +1797,11 @@ function reloadPage(){
 
     $('.single_badge').click(function(){
 
+
+        $(this).parent().parent().find('.sending_group').find('.badges_form').find('.summerBlock').empty();
+        $(this).parent().parent().find('.sending_group').find('.badges_form').find('.summerBlock').append('<div class="js-summernote" ></div>')
+        summernoteInit();
+        window.slide_allow=0
 
         localStorage.setItem("summernoteData","")
         var badge_name_h=$(this).parent().parent().find('.sending_group').find('.badge_name')
@@ -1698,32 +1842,40 @@ function reloadPage(){
                 if(data>=3 && sending_badges_group==3 ){
                     console.log('trying to send Golden badge')
                 alert('Вы уже отправили 3 золотых бэйджа в этом месяце')
+
                 }else {
-                    sending_group.slideDown({
-                        duration: 'slow',
-                        easing: 'linear'
-                    })
+                    window.slide_allow=1
+
                 }
 
 
-                console.log('success')
+                console.log('success  golden badge')
 
             }
         });
 
 
+            sending_group.slideDown({
+                duration: 'slow',
+                easing: 'linear'
+            })
 
 
 
+
+
+console.log('first step')
         badge_submit.click(function(){
-
+            console.log('second step')
 
             var customer=$(this).parent('.badges_form').find('.sending_badge_user').val()
 
 
             var visibility=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_visibility').val()
             var message=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_textarea').val()
+            console.log('Therd step',message)
             message=localStorage.getItem("summernoteData")
+            console.log('Therd step',message)
             var title=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_title').val()
             console.log('visibility=>',visibility)
             console.log('customer=>',customer)
@@ -1904,69 +2056,7 @@ $('.js-data-example-ajax').change(function(){
 
     });
 
-    var autoSave = $('#autoSave');
-    var interval;
-    var timer = function()
-    {
-        interval = setInterval(function()
-        {
-            //start slide...
-            if (autoSave.prop('checked'))
-                saveToLocal();
 
-            clearInterval(interval);
-        }, 3000);
-    };
-
-    //save
-    var saveToLocal = function()
-    {
-        localStorage.setItem('summernoteData', $('#saveToLocal').summernote("code"));
-        console.log("saved");
-    }
-
-    //delete
-    var removeFromLocal = function()
-    {
-        localStorage.removeItem("summernoteData");
-        $('#saveToLocal').summernote('reset');
-    }
-
-    $('.js-summernote').summernote(
-        {
-            height: 200,
-            tabsize: 2,
-            placeholder: "Type here...",
-            dialogsFade: true,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['fontsize', ['fontsize']],
-                ['fontname', ['fontname']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']]
-                    ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-            ],
-            callbacks:
-                {
-                    //restore from localStorage
-                    onInit: function(e)
-                    {
-                        $('.js-summernote').summernote("code", localStorage.getItem("summernoteData"));
-                    },
-                    onChange: function(contents, $editable)
-                    {
-                        clearInterval(interval);
-                        timer();
-                        localStorage.setItem("summernoteData",contents)
-                        console.log(contents);
-                    }
-                }
-        });
 
 $('.personal_badge').click(function(){
 

@@ -76,7 +76,6 @@ class AdminController extends BaseController
        $request->validate([
             'name' => 'required|min:5',
             'email' => 'required|email',
-           'login' => 'required',
            'department' => 'required',
            'password' => 'required|min:6',
            'password_confirmation' => 'required_with:password|same:password|min:6'
@@ -88,7 +87,7 @@ class AdminController extends BaseController
         $user['attributes']['id']=(null!=($request->input('id'))) ? $request->input('id') : null;
         Admin::updateAdmin($user);
 
-        return redirect()->route('admin.profile');
+        return redirect()->route('admin.profile')->with('success', ['Profile Data was updated successfuly']);   ;
     }
 
     public function showAvatarPage(){

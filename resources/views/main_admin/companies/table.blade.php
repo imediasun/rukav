@@ -1,6 +1,6 @@
 
 <div class="frame-wrap">
-    <table class="table table-sm m-0">
+    <table class="table table-responsive">
         <thead class="bg-primary-500">
         <tr>
             <th>#</th>
