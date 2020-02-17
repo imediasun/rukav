@@ -18,6 +18,9 @@ Route::group(['prefix' => 'customer'],function(){
     Route::get('/get_special/{customer}', 'CustomersController@getSpecial');
     Route::post('/get_theme', 'CustomersController@getTheme');
     Route::post('/user_interface/data', 'CustomersController@postData');
+    Route::post('/user_interface/leadersSentData', 'CustomersController@postLeadersBoardSent');
+    Route::post('/user_interface/leadersReceivedData', 'CustomersController@postLeadersBoardReceived');
+
     Route::post('/user_interface/dataSpecial', 'CustomersController@postDataSpecial');
     Route::post('/user_interface/getData', 'CustomersController@getData');
     Route::post('/badge/send', 'CustomersController@sendBadgeMessage');
