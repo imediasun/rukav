@@ -35,95 +35,6 @@
     </style>
 @endsection
 
-@section('theme_scripts')
-
-
-    <script>
-        /**
-         *	This script should be placed right after the body tag for fast execution
-         *	Note: the script is written in pure javascript and does not depend on thirdparty library
-         **/
-
-        var company_id='{{$company_id}}';
-
-
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/customer/get_theme", true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify({
-            company_id: company_id
-        }));
-        xhr.onload = function() {
-            console.log("HELLO")
-            console.log(this.responseText);
-            var data = JSON.parse(this.responseText);
-            console.log(data);
-            localStorage.setItem("themeSettings",data.theme_options);
-        }
-
-
-        console.log(company_id)
-
-
-
-        'use strict';
-
-        var classHolder = document.getElementsByTagName("BODY")[0],
-            /**
-             * Load from localstorage
-             **/
-            themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
-                {},
-            themeURL = themeSettings.themeURL || '',
-            themeOptions = themeSettings.themeOptions || '';
-        /**
-         * Load theme options
-         **/
-        if (themeSettings.themeOptions)
-        {
-            classHolder.className = themeSettings.themeOptions;
-            console.log("%c✔ Theme settings loaded", "color: #148f32");
-        }
-        else
-        {
-            console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
-        }
-        if (themeSettings.themeURL && !document.getElementById('mytheme'))
-        {
-            var cssfile = document.createElement('link');
-            cssfile.id = 'mytheme';
-            cssfile.rel = 'stylesheet';
-            cssfile.href = themeURL;
-            document.getElementsByTagName('head')[0].appendChild(cssfile);
-        }
-        /**
-         * Save to localstorage
-         **/
-        var saveSettings = function()
-        {
-            themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
-            {
-                return /^(nav|header|mod|display)-/i.test(item);
-            }).join(' ');
-            if (document.getElementById('mytheme'))
-            {
-                themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
-            };
-            localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
-            console.log('Saved Theme setting')
-
-        }
-        /**
-         * Reset settings
-         **/
-        var resetSettings = function()
-        {
-            localStorage.setItem("themeSettings", "");
-        }
-
-    </script>
-@endsection
 @section('content')
 
 <?
@@ -194,12 +105,12 @@ $today=$createdAt->format('m/d/Y');
 
                     <div class="form-group">
                         <label class="form-label" for="company_name">Название компании</label>
-                        <input type="text" id="company_name" name="company_name" class="form-control" placeholder="Название компании">
+                        <input type="text" id="company_name" name="company_name" class="form-control" required placeholder="Название компании">
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="company_email">Email администратора</label>
-                        <input type="email" id="company_email" name="company_email" class="form-control " placeholder="Email">
+                        <input type="email" id="company_email" name="company_email" class="form-control " pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required placeholder="Email">
 
                         <span></span>
                     </div>
@@ -211,21 +122,21 @@ $today=$createdAt->format('m/d/Y');
 
                     <div class="form-group">
                         <label class="form-label" for="company_phone">Контактный телефон</label>
-                        <input type="text" id="company_phone" name="company_phone" class="form-control" placeholder="Контактный телефон">
+                        <input type="text" id="company_phone" name="company_phone" class="form-control" required placeholder="Контактный телефон">
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="company_address">Адрес</label>
-                        <input type="text" id="company_address" name="company_address" class="form-control" placeholder="Адрес">
+                        <input type="text" id="company_address" name="company_address" class="form-control" required placeholder="Адрес">
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="company_biling_address">Финансовый адрес</label>
-                        <input type="text" id="company_biling_address" name="company_biling_address" class="form-control" placeholder="Финансовый адрес">
+                        <input type="text" id="company_biling_address" name="company_biling_address" class="form-control" required placeholder="Финансовый адрес">
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="company_address">Web</label>
-                        <input type="text" id="company_web" name="company_web" class="form-control" placeholder="Web">
+                        <input type="text" id="company_web" name="company_web" class="form-control" required placeholder="Web">
                     </div>
 
                     <div class="form-group">
@@ -237,7 +148,7 @@ $today=$createdAt->format('m/d/Y');
 
                     <div class="form-group">
                         <label class="form-label" for="company_clients_segment">Clients Segment</label>
-                        <input type="text" id="company_clients_segment" name="company_clients_segment" class="form-control" placeholder="Clients Segment">
+                        <input type="text" id="company_clients_segment" name="company_clients_segment" required class="form-control" placeholder="Clients Segment">
                     </div>
 
 
@@ -533,6 +444,8 @@ function clearCompanyAdding(){
     $('#company_address').val("")
     $('#company_biling_address').val("")
     $('#company_clients_segment').val("")
+            $('#company_create').removeClass('was-validated');
+
 }
 
 
