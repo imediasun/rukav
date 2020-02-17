@@ -44,6 +44,8 @@ class StaffManager extends StaffAbstract implements StaffContract
        }
        elseif(!\App\Domain\Staff\Models\RoleHasPermission::where('role_id',$role)->where('permission_id',$permission)->first() && $value=="true"){
         \App\Domain\Staff\Models\RoleHasPermission::insert(['role_id'=>$role,'permission_id'=>$permission]);}
+        app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+
     }
 
 }

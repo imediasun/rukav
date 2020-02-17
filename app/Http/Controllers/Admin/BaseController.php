@@ -37,6 +37,7 @@ class BaseController extends Controller
         $data['company_badges_groups']=$companyBadgesGroups;
         //dd($data['company_badges_groups']);
         $data['collegues']=$user->collegues;
+        $data['companies']=\App\Domain\Company\Models\Company::get();
         $data['customers']=\App\User::with('getCustomersCompany')->get();
         return $data;
     }

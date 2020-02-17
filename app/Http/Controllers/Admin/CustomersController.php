@@ -33,11 +33,11 @@ class CustomersController extends BaseController
         $data['menu']=$this->menu();
         $role=\Auth::user()->roles;
 
-        if($role[0]->id==4){
+       /* if($role[0]->id==4){*/
             $data['customer']=null;
             $data['company']=\Auth::user()->getCompany[0];
             $data['company_id']=\Auth::user()->getCompany[0]->id;
-        }
+        /*}*/
         $data['managers']=\App\Domain\Manager\Models\Manager::where('company_id',$data['company_id'])->with('user')->get();
         $data['title']="Додати товар";
         $data['keywords']="Ukrainian industry platform";
@@ -55,9 +55,12 @@ class CustomersController extends BaseController
             $join->on('users.id', '=', 'customers.user_id')
                 ->where('customers.company_id', $company_id);
         })->with('getCustomersCompany')->get();*/
-
+        if(\Auth::user()->hasRole('Gods_mode')){
+            $data['customers']=\App\User::with('getCustomersCompany')->get();
+        }
+        else{
         $data['customers']=\App\User::where('company_id',$company_id)->with('getCustomersCompany')->get();
-
+    }
 
         //rightJoin('customers', 'users.id', '=', 'user_id')->where('customers.company_id',$company_id)
         return view('company.users.table',$data);

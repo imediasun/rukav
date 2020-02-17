@@ -85,10 +85,10 @@
                         for ($i = 0; $i < count($arr[$parent_id]); $i++) {
                         //Если пермишен присутствуют у текущего юзера выводить нулевой уровень
 
-
                         //dump($arr[$parent_id][$i]->permission,\Auth::user(),\Auth::user()->can($arr[$parent_id][$i]->permission));
                         if(($arr[$parent_id][$i]->permission!=null && \Auth::user()->can($arr[$parent_id][$i]->permission)) ||
                          ($arr[$parent_id][$i]->permission==null && in_array($arr[$parent_id][$i]->parent_id,$parents_approved))){
+
                          if($arr[$parent_id][$i]->permission!=null && \Auth::user()->can($arr[$parent_id][$i]->permission)){
                           $parents_approved[]=$arr[$parent_id][$i]->id;
                          }
