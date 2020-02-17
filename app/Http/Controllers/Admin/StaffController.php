@@ -24,6 +24,7 @@ class StaffController extends BaseController
      */
     public function index()
     {
+        $data=$this->mainSettings();
         $data['menu']=$this->menu();
         $data['title']="Staff index";
         $data['keywords']="Ukrainian industry platform";

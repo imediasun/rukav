@@ -23,7 +23,8 @@
 
                 <?
                 $manager=\App\Domain\Manager\Models\Manager::where('id',$customer->getCustomersCompany['manager_id'])->first();
-                $manager_user=\App\User::where('id',$manager->user_id)->first();
+                if($manager){
+                $manager_user=\App\User::where('id',$manager->user_id)->first();}
                 ?>
         <tr>
             <th class="customer_id" scope="row">{{$customer->id}}</th>
@@ -33,7 +34,7 @@
             <td class="customer_phone">@if ($customer->getCustomersCompany['sex']==1) {{'male'}} @else {{'female'}} @endif</td>
             <td class="customer_phone">{{$customer->getCustomersCompany['department']}}</td>
             <td class="customer_phone">{{$customer->getCustomersCompany['manager_id']}}</td>
-            <td class="customer_phone">{{$manager_user->name}} {{$manager_user->sername}}</td>
+            <td class="customer_phone">@if($manager) {{$manager_user->name}} {{$manager_user->sername}} @endif</td>
             <td class="customer_manager">
                 <?
                 $is_manager=\App\Domain\Manager\Models\Manager::where('user_id',$customer->id)->first();

@@ -100,7 +100,15 @@
 @section('content')
 
 
-
+    <?
+    $user=\Auth::user();
+    if($user->hasRole('Gods_mode')){
+        $company_temp=true;
+    }
+    else{
+        $company_temp=false;
+    }
+    ?>
 
         <div class="demo">
 
@@ -116,10 +124,7 @@
                     Таблица  <span class="fw-300"><i>всех пользователей компании</i></span>
                 </h2>
                 <div class="panel-toolbar">
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-                </div>
+               </div>
             </div>
             <div class="panel-container show">
                 <div class="panel-content">
@@ -187,6 +192,20 @@
                         </select>
                     </div>
 
+                    @if($company_temp)
+                        <div class="form-group">
+                            <label class="form-label" for="select">Выбрать этому пользователю компанию</label>
+                            <select   class="form-control" id="selectCompany">
+                                @foreach($companies as $company)
+                                    <option value="{{$company->id}}">{{$company->name}} </option>
+                                @endforeach
+                            </select>
+
+
+
+
+                        </div>
+                    @endif
                     <div class="form-group">
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" id="managerSwitch" >
@@ -420,6 +439,9 @@ console.log(777)
 
 
         console.log(222, company_id)
+        @if($company_temp)
+           company_id=$('#selectCompany').val()
+        @endif
         var customer_name = $('#customer_name').val()
         var customer_sername = $('#customer_sername').val()
         var customer_sex = $('#customer_sex').val()
