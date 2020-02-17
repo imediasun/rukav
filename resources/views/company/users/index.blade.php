@@ -370,12 +370,50 @@ $('#managerSwitch').change(function(){
 })
 
 
+
+        $('#customer_email').change(function(){
+            var company_email = $('#customer_email').val()
+
+            $.ajax({
+                url: '/admin/main_admin/company/email_check',
+                method: 'POST',
+                dataType: 'json',
+                async: false,
+                data: {
+                    'email_check': 1,
+                    'email': company_email,
+                },
+                success: function (response) {
+                    console.log(response )
+                    if (response == 'taken') {
+                        localStorage.setItem('email_state',1);
+                        console.log(response )
+                        $('#customer_email').addClass("is-invalid");
+                        $('#customer_email').removeClass("is-valid");
+                        /*           $('#company_email').parent().removeClass();
+                         $('#company_email').parent().addClass("form_error");
+                         $('#company_email').siblings("span").text('Sorry... Email already taken');*/
+                    } else if (response == 'not_taken') {
+                        console.log(response )
+                        localStorage.setItem('email_state',0);
+                        $('#customer_email').removeClass("is-invalid");
+                        $('#customer_email').addClass("is-valid");
+                        /*       $('#company_email').parent().removeClass();
+                         $('#company_email').parent().addClass("form_success");
+                         $('#company_email').siblings("span").text('Email available');*/
+                    }
+                }
+            });
+        })
+
+
+
        /* $('.customer_create').click(function(){*/
 function  theSubmitFunction () {
 
 
     var form=$('#customer_create')
-    if (form[0].checkValidity() === false) {
+    if (form[0].checkValidity() === false || localStorage.getItem('email_state') == 1) {
 console.log(777)
     }
     else {

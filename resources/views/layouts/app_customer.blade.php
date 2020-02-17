@@ -34,15 +34,14 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <!--<link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/your_styles.css">-->
 </head>
 <body class="mod-bg-1 ">
-
+<!-- DOC: script to save and load page settings -->
 <script>
     /**
      *	This script should be placed right after the body tag for fast execution
      *	Note: the script is written in pure javascript and does not depend on thirdparty library
      **/
-
     var company_id='{{$company_id}}';
-
+window.company_id='{{$company_id}}';
 
 
     var xhr = new XMLHttpRequest();
@@ -59,21 +58,18 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         localStorage.setItem("themeSettings",data.theme_options);
     }
 
-
-    console.log(company_id)
-
-
-
     'use strict';
 
     var classHolder = document.getElementsByTagName("BODY")[0],
         /**
          * Load from localstorage
          **/
-        themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
-            {},
+        themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) : {},
+
+
         themeURL = themeSettings.themeURL || '',
         themeOptions = themeSettings.themeOptions || '';
+    console.log(themeSettings)
     /**
      * Load theme options
      **/
@@ -88,6 +84,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     }
     if (themeSettings.themeURL && !document.getElementById('mytheme'))
     {
+        console.log('here')
         var cssfile = document.createElement('link');
         cssfile.id = 'mytheme';
         cssfile.rel = 'stylesheet';
@@ -109,7 +106,25 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         };
         localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
         console.log('Saved Theme setting')
+        var company_id='<? echo $company_id;?> ';
+        console.log(company_id);
+        $.ajax({
+            method: 'POST',
+            dataType: 'html',
+            async:true,
+            url: '/company/save_theme',
+            data: {theme_options: JSON.stringify(themeSettings),company_id:company_id},
+            beforeSend: function() {
+                $('#loader').show();
+            },
+            complete: function() {
+                $('#loader').hide();
+            },
+            success: function (data) {
 
+
+            }
+        });
     }
     /**
      * Reset settings

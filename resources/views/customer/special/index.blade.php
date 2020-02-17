@@ -137,146 +137,14 @@
                     </div>
 
 
-
                     <div class="col-lg-3">
-                        <div id="panel-2" class="panel" data-panel-fullscreen="false">
-                            <div class="panel-hdr">
-                                <h2>
-                                    Leadersboard sent
-                                </h2>
-                            </div>
-                            <div class="frame-wrap">
-                                <table class="table m-0">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>User</th>
-                                        <th>Gives</th>
-                                        <th>Received</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>
-                                            <span class="status status-danger">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-j.png')"></span>
-                                                            </span>
-
-
-                                        </td>
-                                        <td>22</td>
-                                        <td>33</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>
-                                            <span class="status status-danger">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-admin.png')"></span>
-                                                            </span>
-
-                                        </td>
-                                        <td>21</td>
-                                        <td>23</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>
-                                           <span class="status status-danger">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-j.png')"></span>
-                                                            </span>
-
-                                        </td>
-                                        <td>12</td>
-                                        <td>20</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>
-                                            <span class="status status-danger">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-admin.png')"></span>
-                                                            </span>
-
-                                        </td>
-                                        <td >11</td>
-                                        <td>10</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
+                        <div id="leadersSentData">
 
                         </div>
 
 
 
-
-                        <div id="panel-2" class="panel" data-panel-fullscreen="false">
-                            <div class="panel-hdr">
-                                <h2>
-                                    Leadersboard received
-                                </h2>
-                            </div>
-                            <div class="frame-wrap">
-                                <table class="table m-0">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>User</th>
-                                        <th>Gives</th>
-                                        <th>Received</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>
-                                            <span class="status status-danger">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-j.png')"></span>
-                                                            </span>
-
-
-                                        </td>
-                                        <td>22</td>
-                                        <td>33</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>
-                                            <span class="status status-danger">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-admin.png')"></span>
-                                                            </span>
-
-                                        </td>
-                                        <td>21</td>
-                                        <td>23</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>
-                                           <span class="status status-danger">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-j.png')"></span>
-                                                            </span>
-
-                                        </td>
-                                        <td>12</td>
-                                        <td>20</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>
-                                            <span class="status status-danger">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-admin.png')"></span>
-                                                            </span>
-
-                                        </td>
-                                        <td >11</td>
-                                        <td>10</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
+                        <div id="leadersReceivedData">
 
                         </div>
                     </div>
@@ -291,6 +159,26 @@
 @section('scripts')
 
     <script>
+        reloadFilterButtons()
+        function reloadFilterButtons(){
+            if(localStorage.getItem('lentaFilter')==1){
+                $('#filterMyTeam').addClass('active')
+                $('#filterMe').removeClass('active')
+                $('#filterAll').removeClass('active')
+            }
+            if(localStorage.getItem('lentaFilter')==0){
+                $('#filterAll').addClass('active')
+                $('#filterMe').removeClass('active')
+                $('#filterMyTeam').removeClass('active')
+            }
+            if(localStorage.getItem('lentaFilter')==2){
+                $('#filterMe').addClass('active')
+                $('#filterAll').removeClass('active')
+                $('#filterMyTeam').removeClass('active')
+            }
+
+        }
+
         window.current=null;
         $.ajaxSetup({
             headers:{
@@ -306,6 +194,8 @@
             var module='admin.company.users.data'
             var url='/customer/user_interface/getData';
             var view_url='/customer/user_interface/dataSpecial';
+            var leaders_sent_url='/customer/user_interface/leadersSentData';
+            var leaders_received_url='/customer/user_interface/leadersReceivedData';
             var perpage=4
 
             if(!window.page){
@@ -360,6 +250,44 @@
                         },
                         success: function (sata) {
                             $('.timeline').html(sata);
+
+                        }
+                    });
+
+                    $.ajax({
+                        method: 'POST',
+                        dataType: 'html',
+                        async:true,
+                        url: leaders_sent_url,
+                        data: {array: data.result},
+                        beforeSend: function() {
+                            $('#loader').show();
+                        },
+                        complete: function() {
+                            $('#loader').hide();
+                        },
+                        success: function (wata) {
+                            $('#leadersSentData').html(wata);
+                            console.log('leadersBoard',wata)
+
+                        }
+                    });
+
+                    $.ajax({
+                        method: 'POST',
+                        dataType: 'html',
+                        async:true,
+                        url: leaders_received_url,
+                        data: {array: data.result},
+                        beforeSend: function() {
+                            $('#loader').show();
+                        },
+                        complete: function() {
+                            $('#loader').hide();
+                        },
+                        success: function (wata) {
+                            $('#leadersReceivedData').html(wata);
+                            console.log('leadersBoard',wata)
 
                         }
                     });

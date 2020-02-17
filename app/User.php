@@ -60,6 +60,15 @@ class User extends Authenticatable
 
     }
 
+    public function messagesSent(){
+        return $this->hasMany('App\Domain\Customer\Models\Message', 'sender','id');
+    }
+
+
+    public function messagesReceived(){
+        return $this->hasMany('App\Domain\Customer\Models\Message', 'addressant','id');
+    }
+
 
 
 }

@@ -65,6 +65,7 @@ class CustomersController extends BaseController
         $end_message=$users_messages_->first();
         $i=1;
         $count=count($users_messages);
+
         $result=[];
         //var_dump($users_messages->first()->manager->user_id);
         switch($request->input('lenta_filter')){
@@ -95,10 +96,14 @@ class CustomersController extends BaseController
             return (($message->visibility==1) || ( $message->visibility==3 && $message->addressant==$data['user_id']) || ($message->visibility==2 && null!==$manager) ) == true;
 
         });
-
+        \Log::info('USERS_MESSAGES_COUNT'.count($users_messages));
         if($action=='next'){
             $start=($perpage*$page);
              $finish=$start+$perpage;
+            //Высчитать остаток непоказанных бейджей
+            \Log::info('START'.$start);
+            \Log::info('$finish'.$finish);
+
             $data['page']=$page+1;
         }
         elseif($action=='previous'){
@@ -113,7 +118,8 @@ class CustomersController extends BaseController
             //var_dump($page,$perpage,$tmp,$left,$finish,$start);
         }
         else{
-            $data['page']=$page;
+            $finish=4;
+            $data['page']=1;//$page;
         }
 
 
@@ -136,6 +142,7 @@ class CustomersController extends BaseController
                 }
             }
             elseif($action=='next' ){
+
                // var_dump($i,$current,$limit);
                 if($i>$start && $i<=$finish){
                     $result[]=$message;
@@ -149,9 +156,11 @@ class CustomersController extends BaseController
     if($action=='previous' ){
         //var_dump($result);die();
         }
+\Log::info('RESULT_COUNT'.count($result));
+
 
        foreach($result as $res){
-        if($res->id==$end_message->id){
+        if($res->id==$end_message->id || ($finish>=count($users_messages)) ){
             $data['next_button']=false;
         }
 
@@ -186,6 +195,40 @@ class CustomersController extends BaseController
         $data['page']=\Session::get('page');
         \Session::forget('page');
          return view('customer.dashboard.table',$data);
+    }
+
+    public function postLeadersBoardSent(Request $request){
+        $data['leadersBoardSentS']=\App\User::with('messagesSent')->with('getCustomersCompany')
+            ->with('messagesReceived')
+            ->get();
+        foreach($data['leadersBoardSentS'] as $sent){
+            $sent->sentCount=count($sent->messagesSent);
+            $sent->receivedCount=count($sent->messagesReceived);
+        }
+        $data['leadersBoardSentS']->sortByDesc('sentCount')->take(4);
+        $i=1;
+        foreach($data['leadersBoardSentS'] as $sent){
+           if($i<=4){$data['leadersBoardSent'][]=$sent;}
+            $i++;
+        }
+        return view('customer.dashboard.leaders_sent',$data);
+    }
+
+    public function postLeadersBoardReceived(Request $request){
+        $data['leadersBoardReceivedS']=\App\User::with('messagesSent')->with('getCustomersCompany')
+            ->with('messagesReceived')
+            ->get();
+        foreach($data['leadersBoardReceivedS'] as $sent){
+            $sent->sentCount=count($sent->messagesSent);
+            $sent->receivedCount=count($sent->messagesReceived);
+        }
+        $data['leadersBoardReceivedS']->sortByDesc('receivedCount')->take(4);
+        $i=1;
+        foreach($data['leadersBoardReceivedS'] as $sent){
+            if($i<=4){$data['leadersBoardReceived'][]=$sent;}
+            $i++;
+        }
+        return view('customer.dashboard.leaders_received',$data);
     }
 
     public function postDataSpecial(Request $request){

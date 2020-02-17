@@ -162,9 +162,6 @@
                     <div class="form-group">
                         <label class="form-label" for="badge_name">Название бейджа</label>
                         <input type="text" id="badge_name" name="badge_name" class="form-control" required placeholder="Название бэйджа">
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
                     </div>
 
                     <div class="form-group">
@@ -509,8 +506,6 @@
 
                     <!-- this overlay is activated only when mobile menu is triggered -->
 
-
-                        badge_create
                         <div class="modal-footer">
                             <button type="button" class="badge_create_close btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Закрыть</button>
                             <button type="submit" class=" btn btn-primary waves-effect waves-themed">Сохранить</button>
