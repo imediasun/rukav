@@ -3,7 +3,7 @@
 @if($messages)
     @foreach($messages as $message)
     <div class="vertical-timeline-block">
-        <div class="vertical-timeline-icon navy-bg" style="width:100px;height:100px;background-image: url('storage/badges/{{$message['badge']['photo']}}') !important;background-position: center;background: 100% 100% no-repeat;background-size: cover;">
+        <div class="vertical-timeline-icon navy-bg" style="width:100px;height:100px;background-image: url('/storage/badges/{{$message['badge']['photo']}}') !important;background-position: center;background: 100% 100% no-repeat;background-size: cover;">
             <i class="fa fa-briefcase"></i>
         </div>
 

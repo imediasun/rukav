@@ -192,6 +192,7 @@ class CustomersController extends BaseController
     }
 
     public function postData(Request $request){
+		
         $data['messages']=$request->input('array');
 
         $data['last']=\Session::get('last_message');
