@@ -32,8 +32,8 @@
                 <td class="company_badges_groups_switch">
 
                     <div class="custom-control custom-switch">
-                        <input type="checkbox" class="active_badges_group_switch custom-control-input" id="customSwitch_{{$badges_group->id}}" @if(!isset($badgeCompany) || !$badgeCompany->active)  @else checked="true" @endif>
-                        <label class="custom-control-label" for="customSwitch_{{$badges_group->id}}">@if(!isset($badgeCompany) || !$badgeCompany->active) Not Active @else Active @endif</label>
+                        <input type="checkbox" class="active_badges_group_switch custom-control-input" id="customBadgeGroupSwitch_{{$badges_group->id}}" @if(!isset($badgeCompany) || !$badgeCompany->active)  @else checked="true" @endif>
+                        <label class="custom-control-label" for="customBadgeGroupSwitch_{{$badges_group->id}}">@if(!isset($badgeCompany) || !$badgeCompany->active) Not Active @else Active @endif</label>
                     </div>
                 </td>
             </tr>

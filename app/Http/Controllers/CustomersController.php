@@ -32,7 +32,8 @@ class CustomersController extends BaseController
 
         $user=\Auth::user();
         $data['user_id']=$user->id;
-        $data['manager_id']=$user->manager->user_id;
+        $data['manager_id']=($user->manager) ? $user->manager->user_id : null;
+        $data['company_id']=$user->company_id;
         //var_dump($data['manager_id']);
         $data['next_button']=true;
         $data['previous_button']=true;
@@ -45,10 +46,10 @@ class CustomersController extends BaseController
         $new_last_message=$request->input('page')+$perpage;
         $show_previous_message=$request->input('id')-$perpage;
 
-        $query=\App\Domain\Customer\Models\Message::with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'DESC')->orderBy('id', 'DESC');
+        $query=\App\Domain\Customer\Models\Message::where('company_id',$data['company_id'])->with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'DESC')->orderBy('id', 'DESC');
 
 
-        $query_=\App\Domain\Customer\Models\Message::with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'ASC')->orderBy('id', 'ASC');
+        $query_=\App\Domain\Customer\Models\Message::where('company_id',$data['company_id'])->with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'ASC')->orderBy('id', 'ASC');
 
 
         if( null!==($request->input('special_customer')))
@@ -156,11 +157,15 @@ class CustomersController extends BaseController
     if($action=='previous' ){
         //var_dump($result);die();
         }
-\Log::info('RESULT_COUNT'.count($result));
+\Log::info('RESULT_COUNT'.count($users_messages));
 
+    if(empty($result)){
+        $data['next_button']=false;
+        $data['previous_button']=false;
+    }
 
        foreach($result as $res){
-        if($res->id==$end_message->id || ($finish>=count($users_messages)) ){
+        if($res->id==$end_message->id || ($finish>=count($users_messages)) || count($users_messages)==0 ){
             $data['next_button']=false;
         }
 
@@ -168,7 +173,7 @@ class CustomersController extends BaseController
        }
 
         foreach($result as $res){
-            if($res->id==$last_message->id){
+            if($res->id==$last_message->id || count($users_messages)==0 ){
                 $data['previous_button']=false;
             }
 

@@ -75,7 +75,8 @@ class AdminController extends Controller
     public function updateBadgesGroupsStatus(Request $request){
         $status=($request->input('status')=='true') ? 1 :0;
         $companyBadge['values']=['active'=>$status,'badges_group_id'=>$request->input('badges_group_id'),'company_id'=> $request->input('company_id')];
-        $companyBadge['attributes']['id']=(null!=($request->input('company_badges_id')) && !empty($request->input('company_badges_id'))) ? $request->input('company_badges_id') : null;
+        $current_row=\App\Domain\Company\Models\CompanyBadge::where('company_id',$request->input('company_id'))->where('badges_group_id',$request->input('badges_group_id'))->first();
+        $companyBadge['attributes']['id']=($current_row) ?  $current_row->id : ((null!=($request->input('company_badges_id')) && !empty($request->input('company_badges_id'))) ? $request->input('company_badges_id') : null);
 
         Admin::updateCompanyBadge($companyBadge);
     }
