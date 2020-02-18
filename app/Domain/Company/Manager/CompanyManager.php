@@ -35,14 +35,14 @@ class CompanyManager extends CompanyAbstract implements CompanyContract
      * @param $company
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function updateCompany($company)
+    public function updateCompany($company,$request)
     {
 
         $company=$this->companyRepository->updateOrCreateCompany($company['attributes'],$company['values']);
         if($company){
             //create user for company if Company has no Admin yet
             if(!$company->admin){
-           $user=$this->setAdmin($company);
+           $user=$this->setAdmin($company,$request);
            $user->assignRole('Company_administrator');
             $this->companyService->sendCompanyRegistrationDoneNotification($company);
         }
@@ -113,10 +113,10 @@ class CompanyManager extends CompanyAbstract implements CompanyContract
         return $this->companyRepository->deleteCompanyBadge($badge);
     }
 
-    public function setAdmin($company)
+    public function setAdmin($company,$request)
     {
 
-        return $this->adminRepository->setAdminByEmail($company);
+        return $this->adminRepository->setAdminByEmail($company,$request);
     }
 
 

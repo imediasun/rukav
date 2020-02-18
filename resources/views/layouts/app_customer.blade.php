@@ -55,7 +55,8 @@ window.company_id='{{$company_id}}';
         console.log(this.responseText);
         var data = JSON.parse(this.responseText);
         console.log(data);
-        localStorage.setItem("themeSettings",data.theme_options);
+        if(data){
+        localStorage.setItem("themeSettings",data.theme_options);}
     }
 
     'use strict';

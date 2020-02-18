@@ -12,7 +12,7 @@ interface AdminRepositoryInterface extends BaseCrudRepositoryInterface
 
     public function deleteAdmin($user);
 
-    public function setAdminByEmail($email);
+    public function setAdminByEmail($email,$request);
 
     public function updateOrCreateAdminAvatar($attributes,$values);
 

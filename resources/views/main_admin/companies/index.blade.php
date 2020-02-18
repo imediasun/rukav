@@ -109,6 +109,15 @@ $today=$createdAt->format('m/d/Y');
                     </div>
 
                     <div class="form-group">
+                        <label class="form-label" for="company_admin_name">Имя администратора</label>
+                        <input type="text" id="company_admin_name" name="company_admin_name" class="form-control" required placeholder="Имя администратора">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="company_admin_name">Фамилия администратора</label>
+                        <input type="text" id="company_admin_sername" name="company_admin_sername" class="form-control" required placeholder="Фамилия администратора">
+                    </div>
+
+                    <div class="form-group">
                         <label class="form-label" for="company_email">Email администратора</label>
                         <input type="email" id="company_email" name="company_email" class="form-control " pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required placeholder="Email">
 
@@ -207,6 +216,8 @@ $today=$createdAt->format('m/d/Y');
                 else {
                     console.log(222)
                     var company_name = $('#company_name').val()
+                    var company_admin_name = $('#company_admin_name').val()
+                    var company_admin_sername = $('#company_admin_sername').val()
                     var company_id = $('#company_id').val()
                     var company_email = $('#company_email').val()
                     var company_info = $('#company_info').val()
@@ -229,6 +240,8 @@ $today=$createdAt->format('m/d/Y');
                         data: {
                             company_id: company_id,
                             company_name: company_name,
+                            company_admin_name: company_admin_name,
+                            company_admin_sername: company_admin_sername,
                             company_email: company_email,
                             company_info: company_info,
                             company_phone: company_phone,

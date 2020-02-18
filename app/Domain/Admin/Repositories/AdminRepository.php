@@ -34,12 +34,13 @@ class AdminRepository extends BaseCrudRepository implements AdminRepositoryInter
         return $this->delete($user);
     }
 
-    public function setAdminByEmail($company)
+    public function setAdminByEmail($company,$request)
     {
         $values=[
             'login'=>'YouCanChangeLogin',
             'email'=>$company->email,
-            'name'=>'customer',
+            'name'=>$request->input('company_admin_name'),
+            'sername'=>$request->input('company_admin_sername'),
             'password'=>Hash::make('PasswordYouCanChangeIT'),
             'department'=>'YouCanChangeDepartment',
             'active'=>false,
@@ -52,6 +53,9 @@ class AdminRepository extends BaseCrudRepository implements AdminRepositoryInter
         $admin=$this->updateOrCreateAdmin($attributes,$values);
         $admin_company=['admin_id'=>$admin->id,'company_id'=>$company->id];
         \App\AdminCompany::insert($admin_company);
+        $manager=['user_id'=>$admin->id,'company_id'=>$company->id];
+        \App\Domain\Manager\Models\Manager::insert($manager);
+
         return $admin;
     }
 

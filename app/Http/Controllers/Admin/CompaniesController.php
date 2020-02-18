@@ -140,7 +140,7 @@ class CompaniesController extends BaseController
 
         ];
         $company['attributes']['id']=(null!=($request->input('company_id')) && !empty($request->input('company_id'))) ? $request->input('company_id') : null;
-        Company::updateCompany($company);
+        Company::updateCompany($company,$request);
     }
 
     public function postDelete(Request $request){
