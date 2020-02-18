@@ -241,7 +241,7 @@ window.company_id='{{$company_id}}';
                                                 <input type="hidden" class="sending_badges_group" value="{{$group->id}}">
                                                 <input type="hidden" class="sending_badges_customer" value="{{\Auth::user()->id}}">
 
-                                                <form class="badges_form" >
+                                                <form class="badges_form" id="badge_form_{{$badges->id}}">
 
                                                     <h3 class="badge_name"></h3>
 
