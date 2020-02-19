@@ -248,7 +248,7 @@ class CustomersController extends BaseController
     public function sendBadgeMessage(Request $request){
         $user=\Auth::user();
         $data['user_id']=$user->id;
-        $data['company_id']=$user->getCustomersCompany->company_id;
+        $data['company_id']=$user->company_id;
         $message['values']=[
         'addressant'=>$request->input('customer'),
         'sender'=>$data['user_id'],
@@ -267,29 +267,30 @@ class CustomersController extends BaseController
 
     public function getAddressant(Request $request){
         //var_dump(\Auth::user()->id);
-$users=\App\User::whereNotIn('id', [\Auth::user()->id])
-    ->where(function($query) use($request)
-{
-    $query->where('name','like','%'.$request->input('q').'%')
-        ->orWhere('sername','like','%'.$request->input('q').'%');
-})->with('getCustomersCompany')->get();//
-//var_dump($users);
-$data=[];
-foreach($users as $user){
+    $users=\App\User::where('company_id',\Auth::user()->company_id)->whereNotIn('id', [\Auth::user()->id])
+        ->where(function($query) use($request)
+    {
+        $query->where('name','like','%'.$request->input('q').'%')
+            ->orWhere('sername','like','%'.$request->input('q').'%');
+    })->with('getCustomersCompany')->get();//
+    //var_dump(count($users));
+    $data=[];
+    foreach($users as $user){
 
-   if(isset($user->getCustomersCompany) && $user->getCustomersCompany!==null){
-        //var_dump($user->getCustomersCompany->photo);
-    $data['items'][]=[
-        'id'=>$user->id,
-        'full_name'=>$user->name.' '.$user->sername,
-        'forks_count'=>35,
-        'owner'=>[
-           'avatar_url'=>'/storage/avatars/'.$user->getCustomersCompany->photo
+            if(isset($user->getCustomersCompany) && $user->getCustomersCompany!==null){
+                //var_dump($user->getCustomersCompany->photo);
+                $data['items'][]=[
+                    'id'=>$user->id,
+                    'full_name'=>$user->name.' '.$user->sername,
+                    'forks_count'=>35,
+                    'owner'=>[
+                        'avatar_url'=>'/storage/avatars/'.$user->getCustomersCompany->photo
 
-        ]
-    ];
-}
-}
+                    ]
+                ];
+            }
+        }
+
         $sata=[
             'items'=>[
                 0=>[
