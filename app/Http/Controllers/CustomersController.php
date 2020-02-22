@@ -93,8 +93,9 @@ class CustomersController extends BaseController
             $company_id=\App\User::where('id',$message->addressant)->first()->company_id;
 
             $manager=\App\Domain\Manager\Models\Manager::where('user_id',$data['user_id'])->where('company_id',$company_id)->first();
+
             //dump($message->visibility,$message->addressant);
-            return (($message->visibility==1) || ( $message->visibility==3 && $message->addressant==$data['user_id']) || ($message->visibility==2 && null!==$manager) ) == true;
+            return (($message->visibility==1) || ( $message->visibility==3 && $message->sender==$data['user_id']) || ($message->visibility==2 && null!==$manager) ) == true;
 
         });
         \Log::info('USERS_MESSAGES_COUNT'.count($users_messages));
