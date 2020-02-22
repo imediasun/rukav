@@ -42,13 +42,13 @@ class AdminController extends BaseController
 
     public function showProfile($token=null)
     {
+        $data=$this->mainSettings();
         $user=\Auth::user();
         $current_token=\App\User::where('id',$user->id)->first()->remember_token;
         if($token!==$current_token && !null==$token){
             \Auth::logout();
             return redirect('/');
         }
-        $data=$this->mainSettings();
         $data['menu']=$this->menu();
 
         $data['user']=$user;
@@ -92,6 +92,7 @@ class AdminController extends BaseController
 
     public function showAvatarPage(){
 
+        $data=$this->mainSettings();
         $data['menu']=$this->menu();
         $user=\Auth::user();
         $data['user_id']=$user->id;

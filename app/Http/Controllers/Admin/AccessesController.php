@@ -25,6 +25,7 @@ class AccessesController extends BaseController
      */
     public function index()
     {
+        $data=$this->mainSettings();
         $data['menu']=$this->menu();
         $user=\Auth::user()->roles;
         $data['title']="Додати товар";
@@ -38,7 +39,7 @@ class AccessesController extends BaseController
     public function postData(Request $request){
 
         $data['title']="Company postData";
-        $data['users']=AdminModel::get();
+        $data['users']=\App\User::get();
 
         return view('main_admin.accesses.table',$data);
     }

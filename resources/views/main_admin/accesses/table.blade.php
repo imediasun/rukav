@@ -7,6 +7,7 @@
             <th>Имя администратора</th>
             <th>Email администратора</th>
             <th>Роль</th>
+            <th>Активность</th>
             <th>Действия</th>
         </tr>
         </thead>
@@ -16,9 +17,16 @@
 
         <tr>
             <th class="company_id" scope="row">{{$user->id}}</th>
+            <input class="user_id" type="hidden" value="{{$user->id}}">
             <td class="company_name">{{$user->name}}</td>
             <td class="company_email">{{$user->email}}</td>
             <td class="company_phone">{{$user->roles[0]->name}}</td>
+            <td class="company_name">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="active_logo_switch custom-control-input" id="customSwitch_{{$user->id}}" @if($user->active==0)  @else checked="true" @endif>
+                    <label class="custom-control-label" for="customSwitch_{{$user->id}}">@if($user->active==0) Not Active @else Active @endif</label>
+                </div>
+            </td>
             <td>
                 <a href="javascript:void(0)" class="PrependChangeAdmin btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-right-lg">
                     <i class="fal fa-pencil"></i>
@@ -36,7 +44,38 @@
 
     <script>
 
+        $('.active_logo_switch').change(function(e){
+            e.preventDefault();
+            var id=$(this).parent().parent().parent().find('.user_id').val()
+            var this_=$(this)
+            console.log(this_)
+            var status = $(this).is(":checked")
+            var checked = $(this).is(':checked');
 
+            console.log(status)
+            $.ajax({
+                method: 'POST',
+                dataType: 'json',
+                async:false,
+                url: '/company/user/update_status',
+                data: {id: id,status:status
+                },
+                beforeSend: function() {
+                },
+                complete: function() {
+
+                },
+                success: function (data) {
+
+
+
+
+
+                    console.log('success')
+
+                }
+            });
+        });
 
 
 

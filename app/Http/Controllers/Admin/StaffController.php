@@ -60,11 +60,17 @@ class StaffController extends BaseController
     $role['values']=['name'=>$request->input('name'),'description'=>$request->input('description')];
     $role['attributes']['id']=(null!=($request->input('role_id'))) ? $request->input('role_id') : null;
     Staff::updateStaffRole($role);
-    var_dump($request->input('name'));
+    //var_dump($request->input('name'));
     }
 
     public function postPermissionsChange(Request $request){
 
         Staff::updatePermissionForRole($request->input('role'),$request->input('permission'),$request->input('value'));
+    }
+
+
+    public function getRoles(){
+        $roles=\App\Domain\Staff\Models\Role::get();
+        return $roles;
     }
 }

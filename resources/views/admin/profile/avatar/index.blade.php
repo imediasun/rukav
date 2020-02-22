@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_customer')
 @section('styles')
     <!-- FYI: it has a demo CSS file concatinated, about 1kb, you can remove it from build.js if needed -->
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/formplugins/cropperjs/cropper.css">
@@ -17,7 +17,7 @@
 
         <div class="demo">
 
-            <button type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg">
+            <button type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg-avatar">
                 <span class="fal fa-plus  mr-1"></span>
                 Создать новый avatar</button>
         </div>
@@ -29,9 +29,7 @@
                     Таблица  <span class="fw-300"><i>всех avatarов компании</i></span>
                 </h2>
                 <div class="panel-toolbar">
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+
                 </div>
             </div>
             <div class="panel-container show">
@@ -61,7 +59,7 @@
         </div>
     </div>
 
-    <div id="modalOneModal" class="modal fade default-example-modal-right-lg" tabindex="-1" role="dialog" aria-labelledby="modalOneLabel" aria-hidden="true" style="display: none;">
+    <div id="modalOneModal" class="modal fade default-example-modal-right-lg-avatar" tabindex="-1" role="dialog" aria-labelledby="modalOneLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-right modal-lg">
             <div class="modal-content">
                 <div class="modal-header">

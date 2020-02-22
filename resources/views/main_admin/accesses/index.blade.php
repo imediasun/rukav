@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_customer')
 
 @section('content')
 
@@ -8,30 +8,22 @@
 
     <div class="container">
         <div class="demo">
-            <button type="button" class="PrependCreateAdmin btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg">
-                <span class="fal fa-plus  mr-1"></span>
-                Создать администратора</button>
         </div>
 
 
         <div id="panel-7" class="panel">
             <div class="panel-hdr">
                 <h2>
-                    Таблица  <span class="fw-300"><i>всех администраторов</i></span>
+                    Таблица  <span class="fw-300"><i>всех пользователей кроме Режима Бога и кроме Главного администратора</i></span>
                 </h2>
                 <div class="panel-toolbar">
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+
                 </div>
             </div>
             <div class="panel-container show">
                 <div class="panel-content">
-                    <div class="panel-tag">
-                        Вы можете редактировать информацию нажав на  <a href="utilities_color_pallet.html" title="Color Pallets">карандаш</a> справа от информации
-                    </div>
                     <h5 class="frame-heading">
-                        Администраторы
+                        Пользователи
                     </h5>
                     <div id="loader">
                         <div class="border p-3">

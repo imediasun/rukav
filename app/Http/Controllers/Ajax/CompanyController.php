@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Ajax;
 
 use Illuminate\Http\Request;
 use App\Domain\Company\Facades\Company;
+use App\Domain\User\Facades\User;
 use App\Http\Controllers\Controller;
 use App\Domain\Admin\Models\BadgesGroup as BadgesGroupModel;
 
@@ -54,6 +55,16 @@ class CompanyController extends Controller
         $companyLogo['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
 
         Company::updateCompanyLogo($companyLogo);
+    }
+
+
+    public function updateUserStatus(Request $request){
+
+        $status=($request->input('status')=='true') ? 1 :0;
+        $companyLogo['values']=['active'=>$status ];
+        $companyLogo['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
+
+        User::updateUser($companyLogo);
     }
 
 

@@ -68,7 +68,7 @@ Route::group(['prefix' => 'company'],function(){
     Route::post('/logo/saveLogoToSession', 'Ajax\CompanyController@saveLogoToSession');
     Route::post('/logo/create', 'Ajax\CompanyController@postSaveLogo');
     Route::post('/logo/update_status', 'Ajax\CompanyController@updateLogoStatus');
-
+    Route::post('/user/update_status', 'Ajax\CompanyController@updateUserStatus');
     Route::post('/badge/data', 'Admin\CompaniesController@postBadgesStatisticData');
     Route::post('/badge/get', 'Admin\CompaniesController@getBadge');
     Route::post('/badge/delete', 'Admin\CompaniesController@postBadgeDelete');
@@ -115,6 +115,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::post('/staff_permissions/change', 'Admin\StaffController@postPermissionsChange');
     Route::post('/staff/data', 'Admin\StaffController@postData');
     Route::post('/staff/role_update', 'Admin\StaffController@postSave');
+    Route::post('/staff/get_roles', 'Admin\StaffController@getRoles');
 
     Route::group(['prefix' => 'main_admin'],function(){
         Route::get('/accesses', 'Admin\AccessesController@index')->name('main_admin.accesses.dashboard');

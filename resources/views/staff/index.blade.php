@@ -67,7 +67,7 @@
                 <div class="border px-3 pt-3 pb-0 rounded">
                     <ul class="nav nav-pills" role="tablist">
                         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_pill_border_icon-2"><i class="fal fa-user mr-1"></i>Роли</a></li>
-                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_pill_border_icon-3"><i class="fal fa-clock mr-1"></i>Права ролей</a></li>
+                        <li class="nav-item"><a id="ruls_rights" class="nav-link" data-toggle="tab" href="#js_pill_border_icon-3"><i class="fal fa-clock mr-1"></i>Права ролей</a></li>
                     </ul>
                     <div class="tab-content py-3">
                         <div class="tab-pane fade active show" id="js_pill_border_icon-1" role="tabpanel">
@@ -259,6 +259,30 @@
             }
         });
     })
+
+
+        $('#ruls_rights').click(function(){
+            $.ajax({
+                method: 'POST',
+                dataType: 'json',
+                async:false,
+                url: '/admin/staff/get_roles',
+                data: {},
+                beforeSend: function() {
+                },
+                complete: function() {
+                },
+                success: function (data) {
+                console.log(data)
+                    $('#RolesSelectedId')[0].options.length = 0;
+                    $.each(data, function (index, value) {
+                        $('#RolesSelectedId').append('<option value="'+value.id+'">'+value.description+'</option>')
+                    });
+                    console.log('success')
+
+                }
+            });
+        })
 
     </script>
 @endsection
