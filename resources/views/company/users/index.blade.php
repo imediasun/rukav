@@ -234,7 +234,7 @@
                     <div class="form-group">
                         <label class="form-label" for="customer_email">Email</label>
                         <input type="email" id="customer_email" name="customer_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required email class="form-control" placeholder="Email">
-
+                        <span class="has_been_taken_message" style="display:none;color:red"> Email has been taken</span>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="company_department">Департамент</label>
@@ -430,14 +430,20 @@ $('#managerSwitch').change(function(){
        /* $('.customer_create').click(function(){*/
 function  theSubmitFunction () {
 
-
+$('.has_been_taken_message').hide();
     var form=$('#customer_create')
     if (form[0].checkValidity() === false || localStorage.getItem('email_state') == 1) {
+    if(localStorage.getItem('email_state') == 1){
+        console.log(555)
+        $('#customer_email').closest('.form-control').removeClass('is-valid').addClass('is-invalid')
+        $('#customer_create').removeClass('was-validated')
+        $('.has_been_taken_message').show();
+    }
 console.log(777)
     }
     else {
 
-
+        $('#customer_create').addClass('was-validated')
         console.log(222, company_id)
         @if($company_temp)
            company_id=$('#selectCompany').val()
@@ -537,7 +543,10 @@ console.log(777)
                     event.preventDefault();
                     event.stopPropagation();
                 }
-                form.classList.add('was-validated');
+                console.log(666)
+                if(localStorage.getItem('email_state') != 1){
+                    console.log(888)
+                form.classList.add('was-validated');}
             }, false);
         });
     }, false);
