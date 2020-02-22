@@ -234,7 +234,9 @@ window.company_id='{{$company_id}}';
                                         <input type="hidden" class="badge_id" value="{{$badges->id}}">
                                         <input type="hidden" class="badge_name" value="{{$badges->name}}">
                                         <img src="/storage/badges/{{$badges->photo}}" style="position:absolute" class="single_badge"> </div>
-                                    @if($i%4==0 )
+
+                                    <!--Или  если бейдж принадлежит остатку бейджей в группе-->
+                                    @if($i%4==0 || $cnt==$i)
 
 
                                             <div style="height:750px;width:100%;background:#eee;position:relative;display:none;padding-top:25px" class="sending_group">
@@ -1928,9 +1930,10 @@ console.log('first step')
 
         })
 
-
+console.log('here',$(this).parent().parent())
 
         $(this).parent().parent().find('.sending_group').find('.badges_form').each(function (index, value){
+            console.log('here')
              var form_id=$(this).attr('id')
             var dropdown=$(this).find('.form-group').find('.js-data-example-ajax')
             console.log('dropdown',dropdown);
