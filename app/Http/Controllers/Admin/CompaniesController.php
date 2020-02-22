@@ -145,9 +145,14 @@ class CompaniesController extends BaseController
 
     public function postDelete(Request $request){
         $company=CompanyModel::where('id',$request->input('company_id'))->first();
+        if(!in_array($request->input('company_id'),[1])){
         $result=Company::deleteCompany($company);
+            return \Response::json($result);
+        }
+        else{
+            return  \Response::json('Default company');
+        }
 
-        return \Response::json($result);
     }
 
     public function postLogoDelete(Request $request){

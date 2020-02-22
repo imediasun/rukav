@@ -144,8 +144,13 @@ class CustomersController extends BaseController
      */
     public function postDelete(Request $request){
     $customer=\App\User::where('id',$request->input('customer_id'))->first();
-    $result=Customer::deleteCustomer($customer);
-    return \Response::json($result);
+        if(!in_array($request->input('customer_id'),[1,2,4,5])) {
+            $result = Customer::deleteCustomer($customer);
+            return \Response::json($result);
+        }
+        else{
+            return  \Response::json('Default user');
+        }
     }
 
 
