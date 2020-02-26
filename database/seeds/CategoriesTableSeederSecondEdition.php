@@ -163,7 +163,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'permission'=>'view_company_statistics_menu'
             ],
             /*11*/  //Role=>company_admin
-            [
+     /*       [
                 'parent_id' => 10,
                 'name' => 'Статистика по людям',
                 'icon'=> 'fal fa-window',
@@ -171,9 +171,9 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'system_name'=>'users_statistics',
                 'type'=>'linked',
                 'permission'=>null
-            ],
+            ],*/
             /*12*/  //Role=>company_admin
-            [
+         /*   [
                 'parent_id' => 10,
                 'name' => 'Статистика по менеджерам ',
                 'icon'=> 'fal fa-window',
@@ -181,7 +181,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'system_name'=>'users_statistics',
                 'type'=>'linked',
                 'permission'=>null
-            ],
+            ],*/
             /*13*/  //Role=>company_admin
             [
                 'parent_id' => 10,

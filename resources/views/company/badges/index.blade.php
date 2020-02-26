@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_customer')
 @section('styles')
     <!-- FYI: it has a demo CSS file concatinated, about 1kb, you can remove it from build.js if needed -->
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/formplugins/cropperjs/cropper.css">

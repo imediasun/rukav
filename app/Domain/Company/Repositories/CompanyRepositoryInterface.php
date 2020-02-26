@@ -13,6 +13,7 @@ interface CompanyRepositoryInterface extends BaseCrudRepositoryInterface
     public function updateOrCreateCompanySetting($attributes,$values);
 
     public function updateOrCreateCompanyLogo($attributes,$values);
+    public function updateOrCreateCompanyBanner($attributes,$values);
     public function updateOrCreateCompanyBadge($attributes,$values);
 
     public function deleteCompany($company);

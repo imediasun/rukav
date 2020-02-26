@@ -40,11 +40,26 @@ class CompanyController extends Controller
 
 }
 
-    public function postSaveLogo(Request $request){
+    public function saveBannerToSession(Request $request){
+        \Session::forget('temp_banner_filename');
+        $fileName=$this->base64ToImage($request->input('banner'));
+        \Session::put('temp_banner_filename',$fileName);
 
-        $companyLogo['values']=['name'=>$request->input('logo_name'),'photo'=> \Session::get('temp_logo_filename'),'active'=> 0,'company_id'=>$request->input('company_id')];
+    }
+
+    public function postSaveLogo(Request $request){
+    var_dump('ID',$request->input('id'));
+    $companyLogo['values']=['name'=>$request->input('logo_name'),'photo'=> \Session::get('temp_logo_filename'),'active'=> 0,'company_id'=>$request->input('company_id')];
+    $companyLogo['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
+    Company::updateCompanyLogo($companyLogo);
+
+}
+
+    public function postSaveBanner(Request $request){
+        var_dump('ID',$request->input('id'));
+        $companyLogo['values']=['name'=>$request->input('banner_name'),'photo'=> \Session::get('temp_banner_filename'),'active'=> 0,'company_id'=>$request->input('company_id')];
         $companyLogo['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
-        Company::updateCompanyLogo($companyLogo);
+        Company::updateCompanyBanner($companyLogo);
 
     }
 
@@ -57,6 +72,15 @@ class CompanyController extends Controller
         Company::updateCompanyLogo($companyLogo);
     }
 
+
+    public function updateBannerStatus(Request $request){
+
+        $status=($request->input('status')=='true') ? 1 :0;
+        $companyBanner['values']=['active'=>$status ];
+        $companyBanner['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
+
+        Company::updateCompanyBanner($companyBanner);
+    }
 
     public function updateUserStatus(Request $request){
 

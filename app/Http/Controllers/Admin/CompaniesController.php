@@ -10,6 +10,7 @@ use App\Domain\Company\Models\Badge as BadgeModel;
 use App\Domain\Company\Models\CompanyBadge as CompanyBadgesModel;
 use App\Domain\Company\Models\Logo as CompanyLogoModel;
 use App\Domain\Admin\Models\BadgesGroup as BadgesGroupModel;
+use App\Domain\Company\Models\Banner as BannersModel;
 
 class CompaniesController extends BaseController
 {
@@ -216,5 +217,24 @@ class CompaniesController extends BaseController
         \Session::forget('temp_badge_filename');
 
         return view('company.badges.index',$data);
+    }
+
+    public function showCustomLayouts(){
+        $data=$this->mainSettings();
+        $data['menu']=$this->menu();
+        $user=\Auth::user();
+        //$data['banners']=BannersModel::get();
+        $data['company_id']=$user->getCompany[0]->id;
+        $data['title']="Додати товар";
+        $data['keywords']="Ukrainian industry platform";
+        $data['description']="Ukrainian industry platform";
+
+        return view('main_admin.companies.banners.index',$data);
+    }
+
+    public function postBannersData(){
+        $data['title']="Company postBannersData";
+        $data['banners']=$data['banners']=BannersModel::get();
+        return view('main_admin.companies.banners.table',$data);
     }
 }

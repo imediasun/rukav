@@ -17,16 +17,16 @@
 
         <div class="demo">
 
-            <button onclick="clearLogoAdding()" type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg-logo">
+            <button onclick="clearLogoAdding()" type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg-banner">
                 <span class="fal fa-plus  mr-1"></span>
-                Создать новый логотип 2</button>
+                Создать новый banner</button>
         </div>
 
 
         <div id="panel-7" class="panel">
             <div class="panel-hdr">
                 <h2>
-                    Таблица  <span class="fw-300"><i>всех логотипов компании</i></span>
+                    Таблица  <span class="fw-300"><i>всех баннеров компании</i></span>
                 </h2>
                 <div class="panel-toolbar">
                 </div>
@@ -37,7 +37,7 @@
                         Вы можете редактировать информацию нажав на  <a href="utilities_color_pallet.html" title="Color Pallets">карандаш</a> справа от информации
                     </div>
                     <h5 class="frame-heading">
-                        Логотипы
+                        Баннеры
                     </h5>
                     <div id="loader">
                         <div class="border p-3">
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-tag result_of_logos_table">
+                    <div class="panel-tag result_of_banners_table">
 
 
                     </div>
@@ -58,21 +58,21 @@
         </div>
     </div>
 
-    <div id="modalOneModal" class="modal fade default-example-modal-right-lg-logo" tabindex="-1" role="dialog" aria-labelledby="modalOneLabel" aria-hidden="true" style="display: none;">
+    <div id="modalOneModal" class="modal fade default-example-modal-right-lg-banner" tabindex="-1" role="dialog" aria-labelledby="modalOneLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-right modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title h4">Форма добавления логотипа</h5>
-                    <input class="sending_logo_id" type="hidden" value="0">
+                    <h5 class="modal-title h4">Форма добавления баннера</h5>
+                    <input class="sending_banner_id" type="hidden" value="0">
                     <button type="button" class="close" onclick="refreshImg()" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fal fa-times"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" id="logo_create" novalidate onsubmit="theSubmitFunction(); return false;">
+                    <form class="needs-validation" id="banner_create" novalidate onsubmit="theSubmitFunction(); return false;">
                     <div class="form-group">
-                        <label class="form-label" for="logo_name">Название логотипа</label>
-                        <input type="text" id="logo_name" name="logo_name" class="form-control" required placeholder="Название логотипа компании">
+                        <label class="form-label" for="banner_name">Название логотипа</label>
+                        <input type="text" id="banner_name" name="banner_name" class="form-control" required placeholder="Название баннера компании">
                     </div>
 
 
@@ -478,21 +478,21 @@
 
         function theSubmitFunction (){
             console.log(222)
-            var form=$('#logo_create')
+            var form=$('#banner_create')
             if (form[0].checkValidity() === false) {
 
             }
             else{
 
-                var logo_name=$('#logo_name').val()
-                var logo_id=$('.sending_logo_id').val()
+                var banner_name=$('#banner_name').val()
+                var banner_id=$('.sending_banner_id').val()
                 var company_id=$('#company_id').val()
 
-                console.log(logo_name)
+                console.log(banner_name)
 
-                window.logo_name=logo_name
-                window.logo_id=logo_id
-                $('.formLogo').trigger('click')
+                window.banner_name=banner_name
+                window.banner_id=banner_id
+                $('.formBanner').trigger('click')
 
             }
         }
@@ -858,27 +858,27 @@
 
     <script>
 
-        function logoCreation(){
+        function bannerCreation(){
 
-            var logo_name=$('#logo_name').val()
-            var id=$('#logo_id').val()
+            var banner_name=$('#banner_name').val()
+            var id=$('#banner_id').val()
             //var company_id=$('#company_id').val()
             console.log(222,window.company_id)
-            console.log(223,window.logo_id)
-            console.log(logo_name)
+            console.log(223,window.banner_id)
+            console.log(banner_name)
 
             $.ajax({
                 method: 'POST',
                 dataType: 'json',
                 async: false,
-                url: '/company/logo/create',
+                url: '/company/banner/create',
                 data: {
-                    company_id: company_id, logo_name: logo_name,id:window.logo_id
+                    company_id: company_id, banner_name: banner_name,id:window.banner_id
                 },
                 beforeSend: function () {
                 },
                 complete: function () {
-                    $('.logo_create_close').click();
+                    $('.banner_create_close').click();
                     reloadData();
                 },
                 success: function (data) {
@@ -900,7 +900,7 @@
         reloadData();
         function reloadData(){
             var module='admin.main_admin.company.logo.data'
-            var url='/company/logo/data';
+            var url='/company/banners/data';
             $.ajax({
                 method: 'POST',
                 dataType: 'html',
@@ -915,7 +915,7 @@
                 },
                 success: function (data) {
 
-                    $('.result_of_logos_table').html(data);
+                    $('.result_of_banners_table').html(data);
 
                 }
             });
@@ -1270,9 +1270,9 @@
 
 
 
-            $('#logo_name').val('')
+            $('#banner_name').val('')
 
-            $('.sending_logo_id').val(0)
+            $('.sending_banner_id').val(0)
 
             $('#image').attr('src','/storage/badge7.png')
 

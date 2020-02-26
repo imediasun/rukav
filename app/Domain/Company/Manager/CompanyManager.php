@@ -9,6 +9,7 @@ use App\Domain\Company\Repositories\CompanyRepositoryInterface;
 use App\Domain\Admin\Repositories\AdminRepositoryInterface;
 use App\Domain\Company\Services\CompanyServiceInterface;
 use App\Domain\Company\Models\Logo;
+use App\Domain\Company\Models\Banner;
 
 class CompanyManager extends CompanyAbstract implements CompanyContract
 
@@ -38,6 +39,10 @@ class CompanyManager extends CompanyAbstract implements CompanyContract
     public function updateCompany($company,$request)
     {
 
+
+        if($company['attributes']['id']){
+        $current_user=\App\Domain\Company\Models\Company::where('id',$company['attributes']['id'])->first();
+        }
         $company=$this->companyRepository->updateOrCreateCompany($company['attributes'],$company['values']);
         if($company){
             //create user for company if Company has no Admin yet
@@ -45,6 +50,14 @@ class CompanyManager extends CompanyAbstract implements CompanyContract
            $user=$this->setAdmin($company,$request);
            $user->assignRole('Company_administrator');
             $this->companyService->sendCompanyRegistrationDoneNotification($company);
+        }
+        else{
+                $data=[
+                    'name'=>$request->input('company_admin_name'),
+                    'sername'=>$request->input('company_admin_sername'),
+                    'email'=>$request->input('company_email')
+                ];
+           $user_update=\App\User::where('email',$current_user->email)->update($data);
         }
         }
         return $company;
@@ -81,6 +94,34 @@ class CompanyManager extends CompanyAbstract implements CompanyContract
             $i++;
         }
         return $logo;
+
+    }
+
+
+    public function updateCompanyBanner($companyBanner)
+    {
+        $banner=$this->companyRepository->updateOrCreateCompanyBanner($companyBanner['attributes'],$companyBanner['values']);
+
+        $result=Banner::where('id','!=',$banner->id)->get();
+        $i=0;
+        foreach($result as $logotype){
+            $companyBanner['values']=[];
+            $companyBanner['attributes']=[];
+
+            if($banner->active==true){
+                $status=false;
+            }
+            else{
+
+                if($i>0){$status=false;}else{$status=true;}
+
+            }
+            $companyBanner['values']=['active'=>$status];
+            $companyBanner['attributes']['id']=$logotype->id;
+            $this->companyRepository->updateOrCreateCompanyLogo($companyBanner['attributes'],$companyBanner['values']);
+            $i++;
+        }
+        return $banner;
 
     }
 

@@ -11,30 +11,30 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($logos as $logo)
+        @foreach($banners as $banner)
         <tr>
-            <th  class="logo_id_table" scope="row">{{$logo->id}}
-            <input class="logo_id" type="hidden" value="{{$logo->id}}">
+            <th  class="banner_id_table" scope="row">{{$banner->id}}
+            <input class="banner_id" type="hidden" value="{{$banner->id}}">
             </th>
-            <td class="company_photo" style="background-color:#696969">
-                <span class="profile-image rounded-circle d-inline-block" style="
-                        width:50px;height:50px;background-image:url('/storage/logos/{{$logo->photo}}') !important;
+            <td class="company_photo" style="">
+                <span class="profile-image  d-inline-block" style="
+                        width:150px;height:50px;background-image:url('/storage/banners/{{$banner->photo}}') !important;
                         background-position: center;background: 100% 100% no-repeat;background-size: cover;
                    "></span>
                 </td>
-            <td class="company_name">{{$logo->name}}</td>
+            <td class="company_name">{{$banner->name}}</td>
             <td class="company_name">
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" class="active_logo_switch custom-control-input" id="customSwitch_{{$logo->id}}" @if($logo->active==0)  @else checked="true" @endif>
-                    <label class="custom-control-label" for="customSwitch_{{$logo->id}}">@if($logo->active==0) Not Active @else Active @endif</label>
+                    <input type="checkbox" class="active_banner_switch custom-control-input" id="customSwitch_{{$banner->id}}" @if($banner->active==0)  @else checked="true" @endif>
+                    <label class="custom-control-label" for="customSwitch_{{$banner->id}}">@if($banner->active==0) Not Active @else Active @endif</label>
                 </div>
                 </td>
 
             <td>
-                <a href="javascript:void(0)" class="PrependChangeLogo btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-right-lg-logo">
+                <a href="javascript:void(0)" class="PrependChangeBanner btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-right-lg-banner">
                     <i class="fal fa-pencil"></i>
                 </a>
-                <a href="javascript:void(0);" class="DeleteLogo btn btn-danger btn-sm btn-icon waves-effect waves-themed">
+                <a href="javascript:void(0);" class="DeleteBanner btn btn-danger btn-sm btn-icon waves-effect waves-themed">
                     <i class="fal fa-times"></i>
                 </a>
             </td>
@@ -46,21 +46,21 @@
 
     <script>
 
-        $('.active_logo_switch').change(function(e){
+        $('.active_banner_switch').change(function(e){
             e.preventDefault();
-            var id=$(this).parent().parent().parent().find('.logo_id').val()
+            var id=$(this).parent().parent().parent().find('.banner_id').val()
             var this_=$(this)
             console.log(this_)
             var status = $(this).is(":checked")
             var checked = $(this).is(':checked');
             if(checked){
-                $(".active_logo_switch").each(function(){
+                $(".active_banner_switch").each(function(){
                     $(this).prop("checked",false);
                     this_.prop("checked",true);
                 });
             }
             else{
-               var $checkboxes = $(".active_logo_switch").not(this_)
+               var $checkboxes = $(".active_banner_switch").not(this_)
                 var first=$checkboxes[0]
                 console.log($checkboxes[0])
 
@@ -68,7 +68,7 @@
                     console.log($(this))
                     $(this).prop("checked",true);
                 });
-                 $(".active_logo_switch").not(this_).slice(1).prop("checked",false);
+                 $(".active_banner_switch").not(this_).slice(1).prop("checked",false);
 
             }
 
@@ -77,7 +77,7 @@
                 method: 'POST',
                 dataType: 'json',
                 async:false,
-                url: '/admin/main_admin/company/logo/update_status',
+                url: '/company/banner/update_status',
                 data: {id: id,status:status
                 },
                 beforeSend: function() {
@@ -97,15 +97,15 @@
             });
         });
 
-        $('.PrependChangeLogo').click(function(){
-            var logo_id =  $(this).parent().parent().find('.logo_id').val()
+        $('.PrependChangeBanner').click(function(){
+            var banner_id =  $(this).parent().parent().find('.banner_id').val()
             console.log('LofoId',logo_id );
             $.ajax({
                 method: 'POST',
                 dataType: 'json',
                 async:false,
                 url: '/company/logo/get',
-                data: {logo_id: logo_id
+                data: {banner_id: banner_id
                 },
                 beforeSend: function() {
                 },
@@ -114,24 +114,24 @@
                 },
                 success: function (data) {
                     console.log('Data',data)
-                    $('.sending_logo_id').val(data.id)
-                    window.logo_id=data.id
-                    $('#logo_name').val(data.name)
+                    $('.sending_banner_id').val(data.id)
+                    window.banner_id=data.id
+                    $('#banner_name').val(data.name)
                     console.log('success')
 
                 }
             });
         });
 
-        $('.DeleteLogo').click(function(){
-            var logo_id =  $(this).parent().parent().find('.logo_id_table').find('.logo_id').val()
-console.log(logo_id)
+        $('.DeleteBanner').click(function(){
+            var logo_id =  $(this).parent().parent().find('.banner_id_table').find('.banner_id').val()
+console.log(banner_id)
             $.ajax({
                 method: 'POST',
                 dataType: 'json',
                 async:false,
-                url: '/company/logo/delete',
-                data: {logo_id: logo_id
+                url: '/company/banner/delete',
+                data: {banner_id: banner_id
                 },
                 beforeSend: function() {
                 },

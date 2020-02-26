@@ -22,6 +22,10 @@ class Message extends Model
         return $this->hasOne('App\User','id','sender');
 
     }
+    public function getAddressant(){
+        return $this->hasOne('App\User','id','addressant');
+
+    }
     public function manager(){
 
      return $this->hasOneThrough('App\Domain\Manager\Models\Manager', 'App\Domain\Customer\Models\Customer','user_id','id','addressant','manager_id');

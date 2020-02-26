@@ -142,7 +142,7 @@ window.company_id='{{$company_id}}';
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
 
-        <div style="position:absolute;top:0px;left:0px;width:100%;height:250px;background-image: url('/storage/1.jpg') !important;background-position: center;background-size: cover;">
+        <div style="position:absolute;top:0px;left:0px;width:100%;height:250px;background-image: url('/storage/banners/1.jpg') !important;background-position: center;background-size: cover;">
 
 
         </div>
@@ -903,7 +903,7 @@ window.company_id='{{$company_id}}';
                     </div>
                     <!-- app user menu -->
                     <div>
-                        <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com" class="header-icon d-flex align-items-center justify-content-center ml-2">
+                        <a href="#" data-toggle="dropdown" title="drlantern@bootstrap.com" class="header-icon d-flex align-items-center justify-content-center ml-2">
                             <img src="/NewSmartAdmin/img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
                             <!-- you can also add username next to the avatar with the codes below:
                             <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
@@ -916,8 +916,8 @@ window.company_id='{{$company_id}}';
                                                 <img src="/NewSmartAdmin/img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
                                             </span>
                                     <div class="info-card-text">
-                                        <div class="fs-lg text-truncate text-truncate-lg">Dr. Codex Lantern</div>
-                                        <span class="text-truncate text-truncate-md opacity-80">drlantern@gotbootstrap.com</span>
+                                        <div class="fs-lg text-truncate text-truncate-lg">{{\Auth::user()->name}}</div>
+                                        <span class="text-truncate text-truncate-md opacity-80">{{\Auth::user()->email}}</span>
                                     </div>
                                 </div>
                             </div>

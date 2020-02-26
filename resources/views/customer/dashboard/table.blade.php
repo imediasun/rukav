@@ -14,11 +14,17 @@
 
             <p>От {{$message['get_sender']['name']}}
             </p>
-
+                <p>Для {{$message['get_addressant']['name']}}
+                </p>
                 <p> {{$message['title']}}
                 </p>
+                <p> {{$message['message']}}
+                </p>
+
             <span class="vertical-date">
              <br>
+
+
              <small>{{$message['created_at']}}</small>
              </span>
         </div>

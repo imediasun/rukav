@@ -46,10 +46,10 @@ class CustomersController extends BaseController
         $new_last_message=$request->input('page')+$perpage;
         $show_previous_message=$request->input('id')-$perpage;
 
-        $query=\App\Domain\Customer\Models\Message::where('company_id',$data['company_id'])->with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'DESC')->orderBy('id', 'DESC');
+        $query=\App\Domain\Customer\Models\Message::where('company_id',$data['company_id'])->with('manager')->with('getAddressant')->with('getSender')->with('badge')->orderBy('created_at', 'DESC')->orderBy('id', 'DESC');
 
 
-        $query_=\App\Domain\Customer\Models\Message::where('company_id',$data['company_id'])->with('manager')->with('getSender')->with('badge')->orderBy('created_at', 'ASC')->orderBy('id', 'ASC');
+        $query_=\App\Domain\Customer\Models\Message::where('company_id',$data['company_id'])->with('manager')->with('getAddressant')->with('getSender')->with('badge')->orderBy('created_at', 'ASC')->orderBy('id', 'ASC');
 
 
         if( null!==($request->input('special_customer')))
@@ -204,8 +204,10 @@ class CustomersController extends BaseController
     }
 
     public function postLeadersBoardSent(Request $request){
+        $user=\Auth::user();
+        $data['company_id']=$user->company_id;
         $data['leadersBoardSentS']=\App\User::with('messagesSent')->with('getCustomersCompany')
-            ->with('messagesReceived')
+            ->where('company_id',$data['company_id'])->with('messagesReceived')
             ->get();
         foreach($data['leadersBoardSentS'] as $sent){
             $sent->sentCount=count($sent->messagesSent);
@@ -221,8 +223,10 @@ class CustomersController extends BaseController
     }
 
     public function postLeadersBoardReceived(Request $request){
+        $user=\Auth::user();
+        $data['company_id']=$user->company_id;
         $data['leadersBoardReceivedS']=\App\User::with('messagesSent')->with('getCustomersCompany')
-            ->with('messagesReceived')
+            ->where('company_id',$data['company_id'])->with('messagesReceived')
             ->get();
         foreach($data['leadersBoardReceivedS'] as $sent){
             $sent->sentCount=count($sent->messagesSent);

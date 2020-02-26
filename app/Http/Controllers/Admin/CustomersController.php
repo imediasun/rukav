@@ -97,6 +97,7 @@ class CustomersController extends BaseController
         $start_string = $request->input('start_date').' 16:34:00';
         $start_date = \Carbon\Carbon::createFromFormat('m/d/Y H:i:s', $start_string, 'Europe/London');
         $start_date->setTimezone('UTC');
+        $customer_tmp=\App\Domain\Customer\Models\Customer::where('user_id',$request->input('customer_id'))->first();
         $customer['values']=[
             'user_id'=>$user->id,
             'start_date'=>$start_date,
@@ -117,7 +118,7 @@ class CustomersController extends BaseController
             'non_hashed'=>'PasswordYouCanChangeIT',
 
         ];
-        $customer['attributes']['id']=(null!=($request->input('customer_id')) && !empty($request->input('customer_id'))) ? $request->input('customer_id') : null;
+        $customer['attributes']['id']=(null!=($customer_tmp) && !empty($customer_tmp->id)) ? $customer_tmp->id : null;
         Customer::updateCustomer($customer);
 
         $manager=$request->input('manager');

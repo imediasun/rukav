@@ -34,6 +34,11 @@ Route::group(['prefix' => 'customer'],function(){
 
 Route::group(['prefix' => 'company'],function(){
 
+    Route::post('/banner/update_status', 'Ajax\CompanyController@updateBannerStatus');
+
+    Route::get('/custom_layouts', 'Admin\CompaniesController@showCustomLayouts');
+    Route::post('/banners/data', 'Admin\CompaniesController@postBannersData');
+    Route::post('/banner/create', 'Ajax\CompanyController@postSaveBanner');
     Route::post('/update_status', 'Ajax\CompanyController@updateCompanyStatus');
     Route::get('/users_list', 'Admin\CustomersController@index')->name('company.users_list.dashboard');
     Route::post('/users/data', 'Admin\CustomersController@postData');
@@ -147,6 +152,8 @@ Route::group(['prefix' => 'admin'],function(){
 
 
         Route::get('/custom_badges', 'Admin\AdminController@showCustomBadges');
+
+
 
 
         Route::post('/badge/data', 'Admin\AdminController@postBadgesData');

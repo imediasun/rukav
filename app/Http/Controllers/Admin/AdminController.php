@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Domain\Admin\Models\Avatar as AvatarModel;
 use App\Domain\Admin\Models\BadgesGroup as BadgesGroupModel;
 use App\Domain\Admin\Models\Badge as BadgeModel;
+use App\Domain\Company\Models\Banner as BannerModel;
 use App\Domain\Company\Models\CompanyBadge;
 
 class AdminController extends BaseController
@@ -138,6 +139,20 @@ class AdminController extends BaseController
         \Session::forget('temp_badge_filename');
 
         return view('main_admin.companies.badges.index',$data);
+    }
+
+
+    public function showCustomLayouts(){
+
+        $data=$this->mainSettings();
+        $data['menu']=$this->menu();
+        $user=\Auth::user();
+        //$data['company_id']=$user->getCompany[0]->id;
+        $data['banners']=BannerModel::get();
+        $data['title']="Додати товар";
+        $data['keywords']="Ukrainian industry platform";
+        $data['description']="Ukrainian industry platform";
+        return view('main_admin.companies.layouts.index',$data);
     }
 
     public function showBadgesGroups(){

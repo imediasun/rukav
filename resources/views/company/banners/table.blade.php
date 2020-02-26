@@ -3,40 +3,32 @@
     <table class="table table-sm m-0">
         <thead class="bg-primary-500">
         <tr>
-            <th>#</th><th>Logo</th>
-            <th>Название компании</th>
-            <th>Активный</th>
+            <th>#</th><th>Фото подложки</th>
+            <th>Название подложки</th>
 
             <th>Действия</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($logos as $logo)
+        @foreach($banners as $banner)
         <tr>
-            <th  class="logo_id_table" scope="row">{{$logo->id}}
-            <input class="logo_id" type="hidden" value="{{$logo->id}}">
+            <th  class="banner_id_table" scope="row">{{$banner->id}}
+            <input class="banner_id" type="hidden" value="{{$banner->id}}">
             </th>
-            <td class="company_photo" style="background-color:#696969">
-                <span class="profile-image rounded-circle d-inline-block" style="
-                        width:50px;height:50px;background-image:url('/storage/logos/{{$logo->photo}}') !important;
+            <td class="company_photo">
+                <span class="profile-image d-inline-block" style="
+                        width:150px;height:50px;background-image:url('/storage/banners/{{$banner->photo}}') !important;
                         background-position: center;background: 100% 100% no-repeat;background-size: cover;
                    "></span>
                 </td>
-            <td class="company_name">{{$logo->name}}</td>
-            <td class="company_name">
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="active_logo_switch custom-control-input" id="customSwitch_{{$logo->id}}" @if($logo->active==0)  @else checked="true" @endif>
-                    <label class="custom-control-label" for="customSwitch_{{$logo->id}}">@if($logo->active==0) Not Active @else Active @endif</label>
-                </div>
-                </td>
-
+            <td class="company_name">{{$banner->name}}</td>
             <td>
-                <a href="javascript:void(0)" class="PrependChangeLogo btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-right-lg-logo">
+                <!--a href="javascript:void(0)" class="PrependChangeBadge btn btn-primary btn-sm btn-icon waves-effect waves-themed"  data-toggle="modal" data-target=".default-example-modal-right-lg">
                     <i class="fal fa-pencil"></i>
                 </a>
-                <a href="javascript:void(0);" class="DeleteLogo btn btn-danger btn-sm btn-icon waves-effect waves-themed">
+                <a href="javascript:void(0);" class="DeleteBadge btn btn-danger btn-sm btn-icon waves-effect waves-themed">
                     <i class="fal fa-times"></i>
-                </a>
+                </a-->
             </td>
         </tr>
       @endforeach
@@ -46,21 +38,21 @@
 
     <script>
 
-        $('.active_logo_switch').change(function(e){
+        $('.active_badge_switch').change(function(e){
             e.preventDefault();
-            var id=$(this).parent().parent().parent().find('.logo_id').val()
+            var id=$(this).parent().parent().parent().find('.badge_id').val()
             var this_=$(this)
             console.log(this_)
             var status = $(this).is(":checked")
             var checked = $(this).is(':checked');
             if(checked){
-                $(".active_logo_switch").each(function(){
+                $(".active_badge_switch").each(function(){
                     $(this).prop("checked",false);
                     this_.prop("checked",true);
                 });
             }
             else{
-               var $checkboxes = $(".active_logo_switch").not(this_)
+               var $checkboxes = $(".active_badge_switch").not(this_)
                 var first=$checkboxes[0]
                 console.log($checkboxes[0])
 
@@ -68,7 +60,7 @@
                     console.log($(this))
                     $(this).prop("checked",true);
                 });
-                 $(".active_logo_switch").not(this_).slice(1).prop("checked",false);
+                 $(".active_badge_switch").not(this_).slice(1).prop("checked",false);
 
             }
 
@@ -77,7 +69,7 @@
                 method: 'POST',
                 dataType: 'json',
                 async:false,
-                url: '/admin/main_admin/company/logo/update_status',
+                url: '/admin/main_admin/company/badge/update_status',
                 data: {id: id,status:status
                 },
                 beforeSend: function() {
@@ -97,15 +89,14 @@
             });
         });
 
-        $('.PrependChangeLogo').click(function(){
-            var logo_id =  $(this).parent().parent().find('.logo_id').val()
-            console.log('LofoId',logo_id );
+        $('.PrependChangeBadge').click(function(){
+            var badge_id =  $(this).parent().parent().find('.badge_id').text()
             $.ajax({
                 method: 'POST',
                 dataType: 'json',
                 async:false,
-                url: '/company/logo/get',
-                data: {logo_id: logo_id
+                url: '/admin/main_admin/company/badge/get',
+                data: {badge_id: badge_id
                 },
                 beforeSend: function() {
                 },
@@ -113,25 +104,24 @@
 
                 },
                 success: function (data) {
-                    console.log('Data',data)
-                    $('.sending_logo_id').val(data.id)
-                    window.logo_id=data.id
-                    $('#logo_name').val(data.name)
+                    console.log(data)
+                    $('#badge_id').val(data.id)
+                    $('#badge_name').val(data.name)
                     console.log('success')
 
                 }
             });
         });
 
-        $('.DeleteLogo').click(function(){
-            var logo_id =  $(this).parent().parent().find('.logo_id_table').find('.logo_id').val()
-console.log(logo_id)
+        $('.DeleteBadge').click(function(){
+            var badge_id =  $(this).parent().parent().find('.badge_id_table').find('.badge_id').val()
+console.log(badge_id)
             $.ajax({
                 method: 'POST',
                 dataType: 'json',
                 async:false,
-                url: '/company/logo/delete',
-                data: {logo_id: logo_id
+                url: '/admin/main_admin/company/badge/delete',
+                data: {badge_id: badge_id
                 },
                 beforeSend: function() {
                 },

@@ -120,7 +120,7 @@ $today=$createdAt->format('m/d/Y');
                     <div class="form-group">
                         <label class="form-label" for="company_email">Email администратора</label>
                         <input type="email" id="company_email" name="company_email" class="form-control " pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required placeholder="Email">
-
+                        <span class="has_been_taken_message" style="display:none;color:red"> Email has been taken</span>
                         <span></span>
                     </div>
 
@@ -207,13 +207,18 @@ $today=$createdAt->format('m/d/Y');
         $(document).ready(function () {
             $("#company_create").submit(function (event) {
                 event.preventDefault();
-
+                $('.has_been_taken_message').hide();
                 //console.log(form[0].checkValidity())
 
                 if (localStorage.getItem('email_state') == 1) {
                     console.log(777)
+                    console.log(555)
+                    $('#company_email').closest('.form-control').removeClass('is-valid').addClass('is-invalid')
+                    $('#company_create').removeClass('was-validated')
+                    $('.has_been_taken_message').show();
                 }
                 else {
+                    $('#customer_create').addClass('was-validated')
                     console.log(222)
                     var company_name = $('#company_name').val()
                     var company_admin_name = $('#company_admin_name').val()
@@ -451,6 +456,8 @@ console.log(response )
 function clearCompanyAdding(){
     $('#company_id').val("")
     $('#company_name').val("")
+    $('#company_admin_name').val("")
+    $('#company_admin_sername').val("")
     $('#company_email').val("")
     $('#company_info').val("")
     $('#company_phone').val("")
@@ -474,7 +481,9 @@ function clearCompanyAdding(){
                             event.preventDefault();
                             event.stopPropagation();
                         }
-                        form.classList.add('was-validated');
+                        if(localStorage.getItem('email_state') != 1){
+                            console.log(888)
+                            form.classList.add('was-validated');}
                     }, false);
                 });
             }, false);
