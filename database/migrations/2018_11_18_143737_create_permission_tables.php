@@ -82,7 +82,6 @@ class CreatePermissionTables extends Migration
                 ->onDelete('cascade');
 
             $table->primary(['permission_id', 'role_id']);
-
             app('cache')->forget('spatie.permission.cache');
         });
     }
