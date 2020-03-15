@@ -1,8 +1,93 @@
-@extends('layouts.app')
+@extends('layouts.app_customer')
+@section('theme_scripts')
 
-<link rel="stylesheet" href="/css/demo.css">
-<link rel="stylesheet" href="/css/font-awesome.css">
-<link rel="stylesheet" href="/css/sky-mega-menu.css">
+
+    <script>
+        /**
+         *	This script should be placed right after the body tag for fast execution
+         *	Note: the script is written in pure javascript and does not depend on thirdparty library
+         **/
+
+        var company_id='{{$company_id}}';
+
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/customer/get_theme", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            company_id: company_id
+        }));
+        xhr.onload = function() {
+            console.log("HELLO")
+            console.log(this.responseText);
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+            localStorage.setItem("themeSettings",data.theme_options);
+        }
+
+
+        console.log(company_id)
+
+
+
+        'use strict';
+
+        var classHolder = document.getElementsByTagName("BODY")[0],
+            /**
+             * Load from localstorage
+             **/
+            themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+                {},
+            themeURL = themeSettings.themeURL || '',
+            themeOptions = themeSettings.themeOptions || '';
+        /**
+         * Load theme options
+         **/
+        if (themeSettings.themeOptions)
+        {
+            classHolder.className = themeSettings.themeOptions;
+            console.log("%c✔ Theme settings loaded", "color: #148f32");
+        }
+        else
+        {
+            console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
+        }
+        if (themeSettings.themeURL && !document.getElementById('mytheme'))
+        {
+            var cssfile = document.createElement('link');
+            cssfile.id = 'mytheme';
+            cssfile.rel = 'stylesheet';
+            cssfile.href = themeURL;
+            document.getElementsByTagName('head')[0].appendChild(cssfile);
+        }
+        /**
+         * Save to localstorage
+         **/
+        var saveSettings = function()
+        {
+            themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
+            {
+                return /^(nav|header|mod|display)-/i.test(item);
+            }).join(' ');
+            if (document.getElementById('mytheme'))
+            {
+                themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+            };
+            localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+            console.log('Saved Theme setting')
+
+        }
+        /**
+         * Reset settings
+         **/
+        var resetSettings = function()
+        {
+            localStorage.setItem("themeSettings", "");
+        }
+
+    </script>
+@endsection
 @section('content')
     <div class="container">
 
@@ -20,11 +105,46 @@
                     </h1>
 
                  </div>
+        <div class="row" style="padding-bottom:50px;padding-left:15px">
+            <div class="filters align-items-center" style="clear:both;display:block">
+                <button id="filterAll" type="button" class="btn btn-xs btn-outline-primary waves-effect waves-themed" onclick="localStorage.setItem('lentaFilter',0);reloadData('start');reloadFilterButtons()">All</button>
+                <button id="filterMyTeam" type="button" class="btn btn-xs btn-outline-warning waves-effect waves-themed " onclick="localStorage.setItem('lentaFilter',1);reloadData('start');reloadFilterButtons()">My Team</button>
+                <button id="filterMe" type="button" class="btn btn-xs btn-outline-info waves-effect waves-themed" onclick="localStorage.setItem('lentaFilter',2);reloadData('start');reloadFilterButtons()">Me</button>
+            </div>
+        </div>
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="timeline">
+
+                        </div>
+
+                        <div style="margin-top:50px">
+                            <button class="btn btn-sm btn-primary previous" onclick="reloadFilterButtons()"> Предыдущая страница</button>
+                            <button class="btn btn-sm btn-primary next" onclick="reloadFilterButtons()"> Следующая страница</button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-lg-3">
+                        <div id="leadersSentData">
+
+                    </div>
+
+
+
+                        <div id="leadersReceivedData">
+
+                        </div>
+                    </div>
 
 
 
 
-
+                </div>
     </div>
 @endsection
 <? $current=(!isset($current)) ? 'undefined' : $current;?>

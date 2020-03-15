@@ -5,7 +5,7 @@ Route::get('/logout', function () {
 
 });
 
-Route::get('/', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
+Route::get('/', 'HomeController@index')->name('dashboard');
 Route::get('/news_feed', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
 #Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('login');

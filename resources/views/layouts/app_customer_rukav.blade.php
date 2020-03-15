@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<!--
+<!-- 
 Template Name:  SmartAdmin Responsive WebApp - Template build with Twitter Bootstrap 4
 Version: 4.0.2
 Author: Sunnyat Ahmmed
@@ -11,9 +12,9 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 <head>
     <meta charset="utf-8">
     <title>
-        Page Titile - category_1 - SmartAdmin v4.0.2
+        Input Groups - Form Stuff - SmartAdmin v4.0.2
     </title>
-    <meta name="description" content="Page Titile">
+    <meta name="description" content="Input Groups">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
     <!-- Call App Mode on ios devices -->
@@ -24,33 +25,86 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/vendors.bundle.css">
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/app.bundle.css">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/NewSmartAdmin/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/NewSmartAdmin/img/favicon/favicon-32x32.png">
-    <link rel="mask-icon" href="/NewSmartAdmin/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
-@yield('styles')
-    <!--<link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/your_styles.css">-->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
 </head>
 <body class="mod-bg-1 ">
-@yield('theme_scripts')
+<!-- DOC: script to save and load page settings -->
+<script>
+    /**
+     *	This script should be placed right after the body tag for fast execution
+     *	Note: the script is written in pure javascript and does not depend on thirdparty library
+     **/
+    'use strict';
 
+    var classHolder = document.getElementsByTagName("BODY")[0],
+        /**
+         * Load from localstorage
+         **/
+        themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+            {},
+        themeURL = themeSettings.themeURL || '',
+        themeOptions = themeSettings.themeOptions || '';
+    /**
+     * Load theme options
+     **/
+    if (themeSettings.themeOptions)
+    {
+        classHolder.className = themeSettings.themeOptions;
+        console.log("%c✔ Theme settings loaded", "color: #148f32");
+    }
+    else
+    {
+        console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
+    }
+    if (themeSettings.themeURL && !document.getElementById('mytheme'))
+    {
+        var cssfile = document.createElement('link');
+        cssfile.id = 'mytheme';
+        cssfile.rel = 'stylesheet';
+        cssfile.href = themeURL;
+        document.getElementsByTagName('head')[0].appendChild(cssfile);
+    }
+    /**
+     * Save to localstorage
+     **/
+    var saveSettings = function()
+    {
+        themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
+        {
+            return /^(nav|header|mod|display)-/i.test(item);
+        }).join(' ');
+        if (document.getElementById('mytheme'))
+        {
+            themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+        };
+        localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+    }
+    /**
+     * Reset settings
+     **/
+    var resetSettings = function()
+    {
+        localStorage.setItem("themeSettings", "");
+    }
 
+</script>
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
     <div class="page-inner">
         <!-- BEGIN Left Aside -->
-
-            <!-- BEGIN PRIMARY NAVIGATION -->
-    @include('layouts.nav_rukav')
-            <!-- END PRIMARY NAVIGATION -->
-
+        <!-- BEGIN PRIMARY NAVIGATION -->
+    @include('layouts.nav')
+    <!-- END PRIMARY NAVIGATION -->
         <!-- END Left Aside -->
-        <div class="page-content-wrapper" style="position:relative">
+        <div class="page-content-wrapper">
             <!-- BEGIN Page Header -->
-            <header class="page-header" role="banner" style="position:relative;order:0">
+            <header class="page-header" role="banner">
                 <!-- we need this logo when user switches to nav-function-top -->
                 <div class="page-logo">
                     <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
-                        <img src="/NewSmartAdmin/img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
+                        <img src="img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
                         <span class="page-logo-text mr-1">SmartAdmin WebApp</span>
                         <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
                         <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
@@ -315,7 +369,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             <li class="unread">
                                                 <a href="#" class="d-flex align-items-center">
                                                             <span class="status mr-2">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-c.png')"></span>
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-c.png')"></span>
                                                             </span>
                                                     <span class="d-flex flex-column flex-1 ml-1">
                                                                 <span class="name">Melissa Ayre <span class="badge badge-primary fw-n position-absolute pos-top pos-right mt-1">INBOX</span></span>
@@ -328,7 +382,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             <li class="unread">
                                                 <a href="#" class="d-flex align-items-center">
                                                             <span class="status mr-2">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-a.png')"></span>
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-a.png')"></span>
                                                             </span>
                                                     <span class="d-flex flex-column flex-1 ml-1">
                                                                 <span class="name">Adison Lee</span>
@@ -340,7 +394,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             <li>
                                                 <a href="#" class="d-flex align-items-center">
                                                             <span class="status status-success mr-2">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-b.png')"></span>
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-b.png')"></span>
                                                             </span>
                                                     <span class="d-flex flex-column flex-1 ml-1">
                                                                 <span class="name">Oliver Kopyuv</span>
@@ -352,7 +406,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             <li>
                                                 <a href="#" class="d-flex align-items-center">
                                                             <span class="status status-warning mr-2">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-e.png')"></span>
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-e.png')"></span>
                                                             </span>
                                                     <span class="d-flex flex-column flex-1 ml-1">
                                                                 <span class="name">Dr. John Cook PhD</span>
@@ -364,8 +418,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             <li>
                                                 <a href="#" class="d-flex align-items-center">
                                                             <span class="status status-success mr-2">
-                                                                <!-- <img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-h.png" class="profile-image rounded-circle" alt="Sarah McBrook" /> -->
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-h.png')"></span>
+                                                                <!-- <img src="img/demo/avatars/avatar-m.png" data-src="img/demo/avatars/avatar-h.png" class="profile-image rounded-circle" alt="Sarah McBrook" /> -->
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-h.png')"></span>
                                                             </span>
                                                     <span class="d-flex flex-column flex-1 ml-1">
                                                                 <span class="name">Sarah McBrook</span>
@@ -377,7 +431,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             <li>
                                                 <a href="#" class="d-flex align-items-center">
                                                             <span class="status status-success mr-2">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-m.png')"></span>
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-m.png')"></span>
                                                             </span>
                                                     <span class="d-flex flex-column flex-1 ml-1">
                                                                 <span class="name">Anothony Bezyeth</span>
@@ -389,7 +443,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             <li>
                                                 <a href="#" class="d-flex align-items-center">
                                                             <span class="status status-danger mr-2">
-                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-j.png')"></span>
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-j.png')"></span>
                                                             </span>
                                                     <span class="d-flex flex-column flex-1 ml-1">
                                                                 <span class="name">Lisa Hatchensen</span>
@@ -434,18 +488,18 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             </li>
                                             <li>
                                                 <div class="d-flex align-items-center show-child-on-hover">
-                                                    <!--<img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-k.png" class="profile-image rounded-circle" alt="k" />-->
+                                                    <!--<img src="img/demo/avatars/avatar-m.png" data-src="img/demo/avatars/avatar-k.png" class="profile-image rounded-circle" alt="k" />-->
                                                     <div class="d-flex flex-column flex-1">
                                                                 <span class="name">
                                                                     Troy Norman'<span class="fw-300">s new connections</span>
                                                                 </span>
                                                         <div class="fs-sm d-flex align-items-center mt-2">
-                                                            <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
-                                                            <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
-                                                            <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
-                                                            <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+                                                            <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+                                                            <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+                                                            <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+                                                            <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
                                                             <div data-hasmore="+3" class="rounded-circle profile-image-md mr-1">
-                                                                <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+                                                                <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
                                                             </div>
                                                         </div>
                                                         <span class="fs-nano text-muted mt-1">55 minutes ago</span>
@@ -457,7 +511,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             </li>
                                             <li>
                                                 <div class="d-flex align-items-center show-child-on-hover">
-                                                    <!--<img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-e.png" class="profile-image-sm rounded-circle align-self-start mt-1" alt="k" />-->
+                                                    <!--<img src="img/demo/avatars/avatar-m.png" data-src="img/demo/avatars/avatar-e.png" class="profile-image-sm rounded-circle align-self-start mt-1" alt="k" />-->
                                                     <div class="d-flex flex-column flex-1">
                                                         <span class="name">Dr John Cook <span class="fw-300">sent a <span class="text-danger">new signal</span></span></span>
                                                         <span class="msg-a fs-sm mt-2">Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</span>
@@ -474,16 +528,16 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                                         <span class="name">Lab Images <span class="fw-300">were updated!</span></span>
                                                         <div class="fs-sm d-flex align-items-center mt-1">
                                                             <a href="#" class="mr-1 mt-1" title="Cell A-0012">
-                                                                <span class="d-block img-share" style="background-image:url('/NewSmartAdmin/img/thumbs/pic-7.png'); background-size: cover;"></span>
+                                                                <span class="d-block img-share" style="background-image:url('img/thumbs/pic-7.png'); background-size: cover;"></span>
                                                             </a>
                                                             <a href="#" class="mr-1 mt-1" title="Patient A-473 saliva">
-                                                                <span class="d-block img-share" style="background-image:url('/NewSmartAdmin/img/thumbs/pic-8.png'); background-size: cover;"></span>
+                                                                <span class="d-block img-share" style="background-image:url('img/thumbs/pic-8.png'); background-size: cover;"></span>
                                                             </a>
                                                             <a href="#" class="mr-1 mt-1" title="Patient A-473 blood cells">
-                                                                <span class="d-block img-share" style="background-image:url('/NewSmartAdmin/img/thumbs/pic-11.png'); background-size: cover;"></span>
+                                                                <span class="d-block img-share" style="background-image:url('img/thumbs/pic-11.png'); background-size: cover;"></span>
                                                             </a>
                                                             <a href="#" class="mr-1 mt-1" title="Patient A-473 Membrane O.C">
-                                                                <span class="d-block img-share" style="background-image:url('/NewSmartAdmin/img/thumbs/pic-12.png'); background-size: cover;"></span>
+                                                                <span class="d-block img-share" style="background-image:url('img/thumbs/pic-12.png'); background-size: cover;"></span>
                                                             </a>
                                                         </div>
                                                         <span class="fs-nano text-muted mt-1">55 minutes ago</span>
@@ -495,7 +549,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             </li>
                                             <li>
                                                 <div class="d-flex align-items-center show-child-on-hover">
-                                                    <!--<img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-h.png" class="profile-image rounded-circle align-self-start mt-1" alt="k" />-->
+                                                    <!--<img src="img/demo/avatars/avatar-m.png" data-src="img/demo/avatars/avatar-h.png" class="profile-image rounded-circle align-self-start mt-1" alt="k" />-->
                                                     <div class="d-flex flex-column flex-1">
                                                         <div class="name mb-2">
                                                             Lisa Lamar<span class="fw-300"> updated project</span>
@@ -633,16 +687,16 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                     <!-- app user menu -->
                     <div>
                         <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com" class="header-icon d-flex align-items-center justify-content-center ml-2">
-                            <img src="/NewSmartAdmin/img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                            <img src="img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
                             <!-- you can also add username next to the avatar with the codes below:
-                            <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
-                            <i class="ni ni-chevron-down hidden-xs-down"></i> -->
+									<span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
+									<i class="ni ni-chevron-down hidden-xs-down"></i> -->
                         </a>
                         <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
                             <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
                                 <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
                                             <span class="mr-2">
-                                                <img src="/NewSmartAdmin/img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
+                                                <img src="img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
                                             </span>
                                     <div class="info-card-text">
                                         <div class="fs-lg text-truncate text-truncate-lg">Dr. Codex Lantern</div>
@@ -680,7 +734,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                 </div>
                             </div>
                             <div class="dropdown-divider m-0"></div>
-                            <a class="dropdown-item fw-500 pt-3 pb-3" href="/admin/logout">
+                            <a class="dropdown-item fw-500 pt-3 pb-3" href="page_login_alt.html">
                                 <span data-i18n="drpdwn.page-logout">Logout</span>
                                 <span class="float-right fw-n">&commat;codexlantern</span>
                             </a>
@@ -688,24 +742,853 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                     </div>
                 </div>
             </header>
-
-
-            <div id="main_menu">
-
-                <!-- BEGIN PRIMARY NAVIGATION -->
-            @include('layouts.rubrics')
-            <!-- END PRIMARY NAVIGATION -->
-
-
-            </div>
-
             <!-- END Page Header -->
             <!-- BEGIN Page Content -->
             <!-- the #js-page-content id is needed for some plugins to initialize -->
             <main id="js-page-content" role="main" class="page-content">
-                @yield('content')
-
-
+                <ol class="breadcrumb page-breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                    <li class="breadcrumb-item">Form Stuff</li>
+                    <li class="breadcrumb-item active">Input Groups</li>
+                    <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                </ol>
+                <div class="subheader">
+                    <h1 class="subheader-title">
+                        <i class='subheader-icon fal fa-edit'></i> Input Groups
+                        <small>
+                            Default input elements for forms
+                        </small>
+                    </h1>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Basic <span class="fw-300"><i>example</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-tag">
+                                        <p>Place one add-on or button on either side of an input. You may also place one on both sides of an input. Remember to place <code>&lt;label&gt;</code>s outside the input group.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="basic-addon1">Prepend</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">@</span>
+                                            </div>
+                                            <input type="text" id="basic-addon1" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                        </div>
+                                        <span class="help-block">Some help content goes here</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="basic-addon2">Append</label>
+                                        <div class="input-group">
+                                            <input id="basic-addon2" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">@example.com</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="basic-url">Your vanity URL</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+                                            </div>
+                                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="basic-url">Prepend and append</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="basic-url">Text area example</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Comment</span>
+                                            </div>
+                                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel-2" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Wrapping <span class="fw-300"><i>inputs</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-tag">
+                                        Input groups wrap by default via <code>flex-wrap: wrap</code> in order to accommodate custom form field validation within an input group. You may disable this with <code>.flex-nowrap</code>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="addon-wrapping-left">Prepend with flex-nowrap</label>
+                                        <div class="input-group flex-nowrap">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fal fa-user fs-xl"></i></span>
+                                            </div>
+                                            <input id="addon-wrapping-left" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping-left">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="addon-wrapping-right">Append with flex-nowrap</label>
+                                        <div class="input-group flex-nowrap">
+                                            <input id="addon-wrapping-right" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping-right">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fal fa-user fs-xl"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel-3" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Various <span class="fw-300"><i>sizing</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-tag">
+                                        Add the relative form sizing classes to the <code>.input-group</code> itself and contents within will automatically resize—no need for repeating the form control size classes on each element. <strong>Sizing on the individual input group elements isn’t supported</strong>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="input-group-lg-size">Large Input Group</label>
+                                        <div class="input-group input-group-lg">
+                                            <div class="input-group-prepend">
+                                                        <span class="input-group-text py-1 px-3">
+                                                            <span class="icon-stack" style="font-size: 2rem">
+                                                                <i class="base-2 icon-stack-3x color-success-500"></i>
+                                                                <i class="base-10 text-white icon-stack-1x"></i>
+                                                                <i class="ni md-profile color-success-700 icon-stack-2x"></i>
+                                                            </span>
+                                                        </span>
+                                            </div>
+                                            <input id="input-group-lg-size" type="text" class="form-control" placeholder="Large size" aria-describedby="input-group-lg-size">
+                                        </div>
+                                        <span class="help-block">Some help content goes here</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="input-group-lg-size-2">Large Input Group</label>
+                                        <div class="input-group input-group-lg">
+                                            <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            0.00
+                                                        </span>
+                                                <span class="input-group-text">
+                                                            <i class="fal fa-percent"></i>
+                                                        </span>
+                                            </div>
+                                            <input id="input-group-lg-size-2" type="text" class="form-control" placeholder="Large size" aria-describedby="input-group-lg-size-2">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="input-group-sm-size">Small Input Group</label>
+                                        <div class="input-group input-group-sm">
+                                            <input id="input-group-sm-size" type="text" class="form-control" placeholder="Small size" aria-describedby="input-group-sm-size">
+                                            <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fal fa-undo"></i>
+                                                        </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="input-group-sm-size-2">Small Input Group</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fal fa-undo"></i>
+                                                        </span>
+                                            </div>
+                                            <input id="input-group-sm-size-2" type="text" class="form-control" placeholder="Small size" aria-describedby="input-group-sm-size-2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel-4" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Checkboxes <span class="fw-300"><i>and radios</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-tag">
+                                        Place any checkbox or radio option within an input group’s addon instead of text
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="checkbox-group-2">Checkbox</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="checkmeout1">
+                                                        <label class="custom-control-label" for="checkmeout1">I agree</label>
+                                                    </div>
+                                                </div>
+                                                <div class="input-group-text text-success">
+                                                    <i class="fal fa-dollar-sign"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Text input with checkbox" id="checkbox-group-2">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="checkbox-group-3">Checkbox split</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text text-success">
+                                                    <i class="fal fa-dollar-sign"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Text input with checkbox" id="checkbox-group-3">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="checkmeout2">
+                                                        <label class="custom-control-label" for="checkmeout2">I agree</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="checkbox-group-4">Checkbox switch</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" aria-label="Text input with checkbox" id="checkbox-group-4" placeholder="Record title">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <div class="custom-control d-flex custom-switch">
+                                                        <input id="eventlog-switch-1" type="checkbox" class="custom-control-input">
+                                                        <label class="custom-control-label fw-500" for="eventlog-switch-1">Debugger Active</label>
+                                                    </div>
+                                                </div>
+                                                <div class="input-group-text">
+                                                    <div class="custom-control d-flex custom-switch">
+                                                        <input id="eventlog-switch-2" type="checkbox" class="custom-control-input">
+                                                        <label class="custom-control-label fw-500" for="eventlog-switch-2">Record Logs</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="radio-group-1">Radio generic</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                                        <label class="custom-control-label" for="customRadio1">Yes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="input-group-text">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                                        <label class="custom-control-label" for="customRadio2">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Text input with radio button" id="radio-group-1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="radio-group-2">Radio generic</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="customRadio3" name="customRadio2" class="custom-control-input">
+                                                        <label class="custom-control-label" for="customRadio3">Yes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="input-group-text text-danger">
+                                                    <i class="fal fa-dollar-sign"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Text input with radio button" id="radio-group-2">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="customRadio4" name="customRadio2" class="custom-control-input">
+                                                        <label class="custom-control-label" for="customRadio4">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel-5" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Multiple <span class="fw-300"><i>inputs</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-tag">
+                                        Add the relative form sizing classes to the <code>.input-group</code> itself and contents within will automatically resize—no need for repeating the form control size classes on each element. You can add <code>.input-group-multi-transition</code> to <code>.input-group</code> to animate focused inputs
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="name-f">Two input fields</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                        <span class="input-group-text text-success">
+                                                            <i class="ni ni-user fs-xl"></i>
+                                                        </span>
+                                            </div>
+                                            <input type="text" aria-label="First name" class="form-control" placeholder="First name" id="name-f">
+                                            <input type="text" aria-label="Last name" class="form-control" placeholder="Last name" id="name-l">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="dollar-1">Three input fields (animated)</label>
+                                        <div class="input-group input-group-multi-transition">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">@</span>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" id="dollar-1" placeholder="Recipient">
+                                            <input type="text" class="form-control" aria-label="Person name" placeholder="Email">
+                                            <input type="text" class="form-control" aria-label="Person name" placeholder="Amount">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">0.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Between two inputs</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control">
+                                            <div class="input-group-append input-group-prepend">
+                                                <span class="input-group-text"><i class="fal fa-exchange fs-xl"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel-9" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Segmented <span class="fw-300"><i>buttons</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-tag">
+                                        Dropdown with action buttons
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="drop-w-action-left">Button from left</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button type="button" class="btn btn-outline-default">Action</button>
+                                                <button type="button" class="btn btn-outline-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Separated link</a>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" id="drop-w-action-left">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="drop-w-action-left">Button from right</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" id="drop-w-action-right">
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-outline-default">Action</button>
+                                                <button type="button" class="btn btn-outline-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Separated link</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div id="panel-6" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Seamless <span class="fw-300"><i>icon</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-tag">
+                                        Add seamless icons using various utility classes
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Icon on left</label>
+                                        <div class="input-group bg-white shadow-inset-2">
+                                            <div class="input-group-prepend">
+                                                        <span class="input-group-text bg-transparent border-right-0">
+                                                            <i class="fal fa-search"></i>
+                                                        </span>
+                                            </div>
+                                            <input type="text" class="form-control border-left-0 bg-transparent pl-0" placeholder="Search...">
+                                        </div>
+                                        <span class="help-block">Some help content goes here</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Icon on Right</label>
+                                        <div class="input-group bg-white shadow-inset-2">
+                                            <input type="text" class="form-control border-right-0 bg-transparent pr-0" placeholder="Search...">
+                                            <div class="input-group-append">
+                                                        <span class="input-group-text bg-transparent border-left-0">
+                                                            <i class="fal fa-search"></i>
+                                                        </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Large icon</label>
+                                        <div class="input-group input-group-lg bg-white shadow-inset-2">
+                                            <div class="input-group-prepend">
+                                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3">
+                                                            <span class="icon-stack fs-xxl">
+                                                                <i class="base-7 icon-stack-3x color-primary-500"></i>
+                                                                <i class="fal fa-database icon-stack-1x text-white"></i>
+                                                            </span>
+                                                        </span>
+                                            </div>
+                                            <input type="text" class="form-control border-left-0 bg-transparent pl-0" placeholder="Search...">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Small icon with button</label>
+                                        <div class="input-group input-group-sm bg-white shadow-inset-2">
+                                            <div class="input-group-prepend">
+                                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                                            <i class="fal fa-search"></i>
+                                                        </span>
+                                            </div>
+                                            <input type="text" class="form-control border-left-0 bg-transparent pl-0" placeholder="Type here...">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-default" type="button">Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel-7" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Button <span class="fw-300"><i>addon</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="form-group">
+                                        <label class="form-label" for="button-addon1">Button on left</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-default" type="button" id="button-addon1">Go</button>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Search anything..." aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="button-addon2">Button on right</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-default" type="button" id="button-addon2">Look up!</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="button-addon3">Button on both sides</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-default" type="button">Go</button>
+                                            </div>
+                                            <input id="button-addon3" type="text" class="form-control" placeholder="Search for anything..." aria-label="Example text with two button addons" aria-describedby="button-addon3">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-default" type="button">Go</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="button-addon4">Button on left with icon</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-info" type="button"><i class="fal fa-search"></i></button>
+                                            </div>
+                                            <input id="button-addon4" type="text" class="form-control" placeholder="Search anything..." aria-label="Example text with button addon" aria-describedby="button-addon4">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="button-addon5">Button on right</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon5">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button" id="button-addon5"><i class="fal fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel-8" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Buttons <span class="fw-300"><i>with dropdown</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-tag">
+                                        Dropdowns are easily integrated just like buttons, you can have more than one dropdowns
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="dropdown-on-left">Dropdown on left</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Separated link</a>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="dropdown-on-left">
+                                        </div>
+                                        <span class="help-block">Some help content goes here</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="dropdown-on-right">Dropdown on right</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="dropdown-on-right">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Separated link</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="help-block">Some help content goes here</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="dropdown-on-both">Dropdown on both</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Separated link</a>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Text input with dropdown button" id="dropdown-on-both">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Separated link</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="help-block">Some help content goes here</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel-10" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Custom <span class="fw-300"><i>forms</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-tag">
+                                        Input groups include support for custom selects and custom file inputs. Browser default versions of these are not supported
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="inputGroupSelect01">Label & select on left</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                                            </div>
+                                            <select class="custom-select" id="inputGroupSelect01">
+                                                <option selected>Choose...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="inputGroupSelect02">Label & select on right</label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <select class="custom-select" id="inputGroupSelect02">
+                                                    <option selected>Choose...</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                                <div class="input-group-append">
+                                                    <label class="input-group-text" for="inputGroupSelect02">Options</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="inputGroupSelect03">Button & select on left</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-default" type="button">Button</button>
+                                            </div>
+                                            <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+                                                <option selected>Choose...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="inputGroupSelect04">Button & select on right</label>
+                                        <div class="input-group">
+                                            <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                                <option selected>Choose...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-default" type="button">Button</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel-11" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    File <span class="fw-300"><i>upload</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-tag">
+                                        Combine file upload with addon elements
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="inputGroupFile01">Button & select on right</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                            </div>
+                                        </div>
+                                        <span class="help-block">Some help content goes here</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="inputGroupFile01">Button & select on right</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile02">
+                                                <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="inputGroupFileAddon02">Upload</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="inputGroupFile01">Button & select on right</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-default" type="button" id="inputGroupFileAddon03">Button</button>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
+                                                <label class="custom-file-label" for="inputGroupFile03">Choose file</label>
+                                            </div>
+                                        </div>
+                                        <span class="help-block">Some help content goes here</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="inputGroupFile01">Button & select on right</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                                                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-default" type="button" id="inputGroupFileAddon04">Button</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="panel-12" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Kitchen <span class="fw-300"><i>sink</i></span>
+                                </h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-tag">
+                                        A combination of elements working in harmony
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="name-f">Label Text</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                        <span class="input-group-text text-success">
+                                                            <i class="ni ni-user fs-xl"></i>
+                                                        </span>
+                                            </div>
+                                            <input type="text" aria-label="First name" class="form-control" placeholder="User" id="user">
+                                            <div class="input-group-append input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fal fa-exchange fs-xl"></i>
+                                                        </span>
+                                            </div>
+                                            <select class="custom-select" id="usertype" aria-label="usertype">
+                                                <option selected="">User type</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-success shadow-0">Save</button>
+                                                <button type="button" class="btn btn-success shadow-0 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Separated link</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="help-block">Some help content goes here</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
             <!-- this overlay is activated only when mobile menu is triggered -->
             <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
@@ -872,7 +1755,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             <div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
                 <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
                             <span class="mr-2">
-                                <span class="rounded-circle profile-image d-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+                                <span class="rounded-circle profile-image d-block" style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
                             </span>
                     <div class="info-card-text">
                         <a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white" data-toggle="dropdown" aria-expanded="false">
@@ -906,7 +1789,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                 <li>
                                     <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="tracey chang online">
                                         <div class="d-table-cell align-middle status status-success status-sm ">
-                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
                                         </div>
                                         <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                             <div class="text-truncate text-truncate-md">
@@ -921,7 +1804,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                 <li>
                                     <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="oliver kopyuv online">
                                         <div class="d-table-cell align-middle status status-success status-sm ">
-                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
                                         </div>
                                         <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                             <div class="text-truncate text-truncate-md">
@@ -936,7 +1819,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                 <li>
                                     <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="dr john cook phd away">
                                         <div class="d-table-cell align-middle status status-warning status-sm ">
-                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
                                         </div>
                                         <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                             <div class="text-truncate text-truncate-md">
@@ -951,7 +1834,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                 <li>
                                     <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney online">
                                         <div class="d-table-cell align-middle status status-success status-sm ">
-                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
                                         </div>
                                         <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                             <div class="text-truncate text-truncate-md">
@@ -966,7 +1849,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                 <li>
                                     <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="sarah mcbrook online">
                                         <div class="d-table-cell align-middle status status-success status-sm">
-                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
                                         </div>
                                         <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                             <div class="text-truncate text-truncate-md">
@@ -981,7 +1864,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                 <li>
                                     <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
                                         <div class="d-table-cell align-middle status status-sm">
-                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
                                         </div>
                                         <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                             <div class="text-truncate text-truncate-md">
@@ -996,7 +1879,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                 <li>
                                     <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney busy">
                                         <div class="d-table-cell align-middle status status-danger status-sm">
-                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
                                         </div>
                                         <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                             <div class="text-truncate text-truncate-md">
@@ -1011,7 +1894,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                 <li>
                                     <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
                                         <div class="d-table-cell align-middle status status-sm">
-                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
                                         </div>
                                         <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                             <div class="text-truncate text-truncate-md">
@@ -1026,7 +1909,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                 <li>
                                     <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney inactive">
                                         <div class="d-table-cell align-middle">
-                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+                                            <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
                                         </div>
                                         <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                             <div class="text-truncate text-truncate-md">
@@ -1435,29 +2318,20 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     </div>
 </div>
 <!-- END Page Settings -->
-<!-- base vendor bundle:
-     DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations
-                + pace.js (recommended)
-                + jquery.js (core)
-                + jquery-ui-cust.js (core)
-                + popper.js (core)
-                + bootstrap.js (core)
-                + slimscroll.js (extension)
-                + app.navigation.js (core)
-                + ba-throttle-debounce.js (core)
-                + waves.js (extension)
-                + smartpanels.js (extension)
-                + src/../jquery-snippets.js (core) -->
+<!-- base vendor bundle: 
+			 DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations 
+						+ pace.js (recommended)
+						+ jquery.js (core)
+						+ jquery-ui-cust.js (core)
+						+ popper.js (core)
+						+ bootstrap.js (core)
+						+ slimscroll.js (extension)
+						+ app.navigation.js (core)
+						+ ba-throttle-debounce.js (core)
+						+ waves.js (extension)
+						+ smartpanels.js (extension)
+						+ src/../jquery-snippets.js (core) -->
 <script src="/NewSmartAdmin/js/vendors.bundle.js"></script>
 <script src="/NewSmartAdmin/js/app.bundle.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
-<!--<script src="/NewSmartAdmin//NewSmartAdmin//NewSmartAdmin//NewSmartAdmin//NewSmartAdmin/js/../script.js"></script>
-<script>
-$(document).ready(function () {
-
-});
-</script>-->
-
-@yield('scripts')
 </body>
 </html>

@@ -25,6 +25,7 @@ class HomeController extends BaseController
     {
         $data=$this->mainSettings();
         $data['menu']=$this->menu();
+        $data['rubrics']=$this->rubrics();
         $data['spacial_customer_id']=null;
         $data['title']="Додати товар";
         $data['keywords']="Ukrainian industry platform";

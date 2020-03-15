@@ -12,44 +12,122 @@ class CategoriesTableSeederSecondEdition extends Seeder
     public function run()
     {
 
-       DB::table('categories')->insert([
+        DB::table('product_categories')->insert([
             /*1*/
-           [
-               'parent_id' => 0,
-               'name' => 'News Feed',
-               'icon'=> 'fal fa-info-circle',
-               'link'=> '/news_feed',
-               'system_name'=>'news_feed',
-               'type'=>'linked'
-           ],
-           /*2*/
-           [
-               'parent_id' => 0,
-               'name' => 'My Badges',
-               'icon'=> 'fal fa-info-circle',
-               'link'=> '/my_badges',
-               'system_name'=>'my_badges',
-               'type'=>'linked'
-           ],
-           /*3*/
-           [
-               'parent_id' => 0,
-               'name' => 'Give Feedback',
-               'icon'=> 'fal fa-info-circle',
-               'link'=> '/give_feedback',
-               'system_name'=>'give_feedback',
-               'type'=>'linked'
-           ],
-           /*4*/
-           [
-               'parent_id' => 0,
-               'name' => 'Request Feedback',
-               'icon'=> 'fal fa-info-circle',
-               'link'=> '/request_feedback',
-               'system_name'=>'request_feedback',
-               'type'=>'linked'
-           ],
+            [
+                'parent_id' => 0,
+                'name' => 'Детский мир',
+                'link'=> '/child_world',
+                'icon'=>'fa fa-globe',
 
+            ],
+            /*2*/
+            [
+                'parent_id' => 1,
+                'name' => 'Детская одежда',
+                'link'=> '/advertising',
+                'icon'=>'fa fa-globe',
+            ],
+            /*3*/
+            [
+                'parent_id' => 1,
+                'name' => 'Детская обувь',
+                'link'=> '/contact_with_admin',
+                'icon'=>'fa fa-globe',
+
+            ],
+            /*4*/
+            [
+                'parent_id' => 0,
+                'name' => 'Недвижимость',
+                'link'=> '/portal_information',
+                'icon'=>'fa fa-globe',
+
+            ],
+            /*5*/
+            [
+                'parent_id' => 4,
+                'name' => 'Квартиры',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa fa-globe',
+
+            ],
+            /*6*/
+            [
+                'parent_id' => 4,
+                'name' => 'Комнаты',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa fa-globe',
+
+            ],
+            /*7*/
+            [
+                'parent_id' => 4,
+                'name' => 'Дома',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa fa-globe',
+
+            ],
+            /*8*/
+            [
+                'parent_id' => 4,
+                'name' => 'Земля',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa fa-globe',
+
+            ],
+
+
+        ]);
+
+
+
+        DB::table('categories')->insert([
+            /*1*/
+            [
+                'parent_id' => 0,
+                'name' => 'Информация по сотрудничеству',
+                'link'=> '/cooperation_information',
+                'icon'=>'/img/dashboard_icon.png',
+                'system_name'=>'cooperation_information',
+                'type'=>'not_linked',
+            ],
+            /*2*/
+            [
+                'parent_id' => 1,
+                'name' => 'Размещение рекламы',
+                'link'=> '/advertising',
+                'icon'=>'/img/dashboard_icon.png',
+                'system_name'=>'advertising',
+                'type'=>'linked',
+            ],
+            /*3*/
+            [
+                'parent_id' => 1,
+                'name' => 'Связаться с администрацией',
+                'link'=> '/contact_with_admin',
+                'icon'=>'/img/dashboard_icon.png',
+                'system_name'=>'contact_with_admin',
+                'type'=>'linked',
+            ],
+            /*4*/
+            [
+                'parent_id' => 0,
+                'name' => 'Информация о портале',
+                'link'=> '/portal_information',
+                'icon'=>'/img/dashboard_icon.png',
+                'system_name'=>'portal_information',
+                'type'=>'linked',
+            ],
+            /*5*/
+            [
+                'parent_id' => 0,
+                'name' => 'Личный кабинет пользователя',
+                'link'=> '/private_cabinet',
+                'icon'=>'/img/dashboard_icon.png',
+                'system_name'=>'private_cabinet',
+                'type'=>'linked',
+            ],
 
 
         ]);

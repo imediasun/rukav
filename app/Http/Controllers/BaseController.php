@@ -18,7 +18,12 @@ class BaseController extends Controller
 
 
     protected function menu(){
-        return MenuController::index('admin_categories');
+    return MenuController::index('categories');
+
+}
+
+    protected function rubrics(){
+        return MenuController::index('product_categories');
 
     }
 
