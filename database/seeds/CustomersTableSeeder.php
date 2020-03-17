@@ -77,7 +77,7 @@ class CustomersTableSeeder extends Seeder
                 'user_id' => 4,
                 'company_id' => 1,
                 'department'=> 'department',
-                'photo'=> 'avatar-c.png',
+                'photo'=> 'avatar-d.png',
                 'position'=>'developer',
                 'active'=>1,
                 'location'=>'Kiev',

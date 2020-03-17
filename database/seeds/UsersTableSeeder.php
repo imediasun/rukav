@@ -16,8 +16,8 @@ class UsersTableSeeder extends Seeder
        DB::table('users')->insert([
             /*1*/
            [
-               'name' => 'Andrey ',
-               'sername'=>'Lopushansky',
+               'name' => ' .',
+               'sername'=>'Игрушки',
                'login' => 'imediasun',
                'email'=> 'imediasun@gmail.com',
                'password'=> Hash::make('sunimedia'),
@@ -40,8 +40,8 @@ class UsersTableSeeder extends Seeder
            ],
            /*3*/
            [
-               'name' => 'Test',
-               'sername'=>'Miroshnichenko',
+               'name' => 'Дома',
+               'sername'=>' .',
                'login' => 'editor user',
                'email'=> 'test_email@gmail.com',
                'password'=> Hash::make('sunimedia'),
@@ -52,8 +52,8 @@ class UsersTableSeeder extends Seeder
            ],
            /*4*/
            [
-               'name' => 'Manager',
-               'sername'=>'Miroshnichenko',
+               'name' => 'Детские',
+               'sername'=>'Коляски',
                'login' => 'editor user',
                'email'=> 'senior.dev.php@gmail.com',
                'password'=> Hash::make('sunimedia'),
@@ -64,8 +64,8 @@ class UsersTableSeeder extends Seeder
            ],
            /*5*/
            [
-               'name' => 'Company_admin',
-               'sername'=>'Miroshnichenko',
+               'name' => 'Детская',
+               'sername'=>'Одежда',
                'login' => 'editor user',
                'email'=> 'dev.magellan@gmail.com',
                'password'=> Hash::make('sunimedia'),

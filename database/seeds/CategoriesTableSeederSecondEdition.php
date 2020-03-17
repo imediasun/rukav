@@ -19,7 +19,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'name' => 'Детский мир',
                 'link'=> '/child_world',
                 'icon'=>'fa-globe',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/181552823_w230_h230_detskie-elektromobili-benzomobili.jpg'
 
             ],
             /*2*/
@@ -28,7 +28,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'name' => 'Недвижимость',
                 'link'=> '/advertising',
                 'icon'=>'fa-globe',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/197731655_w230_h230_operatsii-s-nedvizhimostyu.jpg'
             ],
             /*3*/
             [
@@ -36,7 +36,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'name' => 'Транспорт',
                 'link'=> '/contact_with_admin',
                 'icon'=>'fa-globe',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/306573079_w230_h230_logisticheskie-i-skladskie.jpg'
 
             ],
             /*4*/
@@ -45,7 +45,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'name' => 'Запчасти для транспорта',
                 'link'=> '/portal_information',
                 'icon'=>'fa-home',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/178467292_w230_h230_dvigateli-i-detali.jpg'
 
             ],
             /*5*/
@@ -54,7 +54,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'name' => 'Работа',
                 'link'=> '/private_cabinet',
                 'icon'=>'fa-home',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/319555510_w230_h230_informatsionno-kommunikatsionnye-uslugi.jpg'
 
             ],
             /*6*/
@@ -63,7 +63,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'name' => 'Животные',
                 'link'=> '/private_cabinet',
                 'icon'=>'fa-home',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/185429417_w230_h230_domashnie-zhivotnye-i.jpg'
 
             ],
             /*7*/
@@ -72,7 +72,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'name' => 'Дом и Сад',
                 'link'=> '/private_cabinet',
                 'icon'=>'fa-home',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/167677418_w230_h230_sad.jpg'
 
             ],
             /*8*/
@@ -81,52 +81,52 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'name' => 'Электроника',
                 'link'=> '/private_cabinet',
                 'icon'=>'fa-homee',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/184039079_w230_h230_tv-i-videotehnika.jpg'
 
             ],
             /*9*/
             [
-                'parent_id' => 9,
+                'parent_id' => 0,
                 'name' => 'Бизнес и услуги',
                 'link'=> '/private_cabinet',
                 'icon'=>'fa-homee',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/323740502_w230_h230_konsaltingovye-uslugi.jpg'
 
             ],
             /*10*/
             [
-                'parent_id' => 10,
+                'parent_id' => 0,
                 'name' => 'Мода и стиль',
                 'link'=> '/private_cabinet',
                 'icon'=>'fa-homee',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/1080513521_w230_h230_vesennyaya-odezhda-i.jpg'
 
             ],
             /*11*/
             [
-                'parent_id' => 11,
+                'parent_id' => 0,
                 'name' => 'Хобби отдых и спорт',
                 'link'=> '/private_cabinet',
                 'icon'=>'fa-homee',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/191919532_w230_h230_tovary-dlya-turizma.jpg'
 
             ],
             /*12*/
             [
-                'parent_id' => 12,
+                'parent_id' => 0,
                 'name' => 'Отдам бесплатно',
                 'link'=> '/private_cabinet',
                 'icon'=>'fa-homee',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/191919525_w230_h230_tovary-dlya-sporta.jpg'
 
             ],
             /*13*/
             [
-                'parent_id' => 13,
+                'parent_id' => 0,
                 'name' => 'Обмен',
                 'link'=> '/private_cabinet',
                 'icon'=>'fa-homee',
-                'photo'=>'first_category.png'
+                'photo'=>'https://images.ua.prom.st/171462971_w230_h230_numizmatika-bonistika.jpg'
 
             ],
             /*14*/

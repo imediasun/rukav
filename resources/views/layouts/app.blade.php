@@ -69,11 +69,21 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                             @endif
 
 
-                                            <div class="badge_border" style="position:relative;padding:30px;width:170px;height:170px;display:inline-block;border: 1px solid #eee">
+                                            <div class="badge_border" style="position:relative;padding:10px;width:170px;height:200px;display:inline-block;border: 1px solid #eee">
                                                 <input type="hidden" class="badge_num" value="{{$i}}">
                                                 <input type="hidden" class="badge_id" value="{{$badges->id}}">
                                                 <input type="hidden" class="badge_name" value="{{$badges->name}}">
-                                                <img src="/storage/badges/{{$badges->photo}}" style="position:absolute" class="single_badge"> </div>
+                                                <img src="{{$badges->photo}}" style="position:absolute;width:150px" class="single_badge"> <h3 style="color:black;
+                                                font: 20px Arial, sans-serif;
+                                                text-shadow: #cad5e2 1px 1px 0, #cad5e2 2px 2px 0,
+                 #cad5e2 3px 3px 0, #cad5e2 4px 4px 0,
+                 #cad5e2 5px 5px 0;
+                                                font-weight:bold;position:absolute;z-index:999;
+bottom: 1px;
+left:2px;
+   text-align: center;
+   width: 100%;
+">{{$badges->name}}</h3></div>
 
                                             <!--Или  если бейдж принадлежит остатку бейджей в группе-->
                                             @if($i%4==0 || $cnt==$i)
@@ -95,16 +105,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                                             <select data-placeholder="Select a state..." class="js-data-example-ajax form-control " ></select>
 
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label class="form-label" for="example-email-2">Облвсть видимости юэйджа</label>
-                                                            <select class="form-control sending_badge_visibility">
 
-                                                                <option value="1">All</option>
-                                                                <option value="2">Employe & manager</option>
-                                                                <option value="3">Employe</option>
-
-                                                            </select>
-                                                        </div>
 
                                                         <div class="form-group">
 
@@ -118,7 +119,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                                             <!--textarea class="form-control sending_badge_textarea"  rows="5"></textarea-->
                                                         </div>
 
-                                                        <button type="button" data-toggle="modal" data-target="#getCroppedCanvasModal" data-dismiss="modal" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }" class=" sending_badge_submit btn btn-primary waves-effect waves-themed">Отправить бэйдж</button>
+                                                        <button type="button" data-toggle="modal" data-target="#getCroppedCanvasModal" data-dismiss="modal" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }" class=" sending_badge_submit btn btn-primary waves-effect waves-themed">Отправить объявление</button>
                                                     </form>
                                                 </div>
 
