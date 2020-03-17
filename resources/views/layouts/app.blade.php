@@ -23,10 +23,13 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <!-- base css -->
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/vendors.bundle.css">
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/app.bundle.css">
+    <link rel="stylesheet" media="screen, print" href="/style.css">
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" sizes="180x180" href="/NewSmartAdmin/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/NewSmartAdmin/img/favicon/favicon-32x32.png">
     <link rel="mask-icon" href="/NewSmartAdmin/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/formplugins/select2/select2.bundle.css">
+    <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/formplugins/summernote/summernote.css">
 @yield('styles')
     <!--<link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/your_styles.css">-->
 </head>
@@ -37,7 +40,123 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
     <div class="page-inner">
+
+
+
+        <div class="modal fade default-example-modal-right-lg" id="badges_modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-right modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title h4 sending_badge_title">Подать Новое объявление</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="company_id" name="company_id" >
+
+
+
+                                <?$i=1;
+
+                                $cnt=count($company_badges_groups);
+                                ?>
+                                @foreach($company_badges_groups as $badges)
+                                    @if($i==1 || (($i%4+1)==2) )
+                                        <div>
+                                            @else
+
+                                            @endif
+
+
+                                            <div class="badge_border" style="position:relative;padding:30px;width:170px;height:170px;display:inline-block;border: 1px solid #eee">
+                                                <input type="hidden" class="badge_num" value="{{$i}}">
+                                                <input type="hidden" class="badge_id" value="{{$badges->id}}">
+                                                <input type="hidden" class="badge_name" value="{{$badges->name}}">
+                                                <img src="/storage/badges/{{$badges->photo}}" style="position:absolute" class="single_badge"> </div>
+
+                                            <!--Или  если бейдж принадлежит остатку бейджей в группе-->
+                                            @if($i%4==0 || $cnt==$i)
+
+
+                                                <div style="height:750px;width:100%;background:#eee;position:relative;display:none;padding-top:25px" class="sending_group">
+                                                    <!--input type="hidden" class="sending_badges_group" value=""-->
+                                                    <!--input type="hidden" class="sending_badges_customer" value=""-->
+
+                                                    <form class="badges_form" id="badge_form_{{$badges->id}}">
+
+                                                        <h3 class="badge_name"></h3>
+
+                                                        <input type="hidden" class="sending_badge_user" value="">
+                                                        <div class="form-group personal_select" >
+                                                            <label class="form-label" >
+                                                                Select remote Ajax search
+                                                            </label>
+                                                            <select data-placeholder="Select a state..." class="js-data-example-ajax form-control " ></select>
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="example-email-2">Облвсть видимости юэйджа</label>
+                                                            <select class="form-control sending_badge_visibility">
+
+                                                                <option value="1">All</option>
+                                                                <option value="2">Employe & manager</option>
+                                                                <option value="3">Employe</option>
+
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
+
+                                                            <input type="hidden" class="form-control sending_badge_title" value="" />
+                                                        </div>
+
+                                                        <div class="form-group summerBlock">
+                                                            <label class="form-label" for="example-textarea">Сопроводительный текст</label>
+
+
+                                                            <!--textarea class="form-control sending_badge_textarea"  rows="5"></textarea-->
+                                                        </div>
+
+                                                        <button type="button" data-toggle="modal" data-target="#getCroppedCanvasModal" data-dismiss="modal" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }" class=" sending_badge_submit btn btn-primary waves-effect waves-themed">Отправить бэйдж</button>
+                                                    </form>
+                                                </div>
+
+                                            @endif
+
+
+
+                                            @if($i%4==0 || $cnt==$i )
+                                        </div>
+                                    @endif
+
+                                    <?$i++;?>
+                                @endforeach
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="company_create_close btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
         <!-- BEGIN Left Aside -->
+
+
+
+
+
+
 
             <!-- BEGIN PRIMARY NAVIGATION -->
     @include('layouts.nav_rukav')
@@ -1450,14 +1569,408 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 + src/../jquery-snippets.js (core) -->
 <script src="/NewSmartAdmin/js/vendors.bundle.js"></script>
 <script src="/NewSmartAdmin/js/app.bundle.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
-<!--<script src="/NewSmartAdmin//NewSmartAdmin//NewSmartAdmin//NewSmartAdmin//NewSmartAdmin/js/../script.js"></script>
+<script src="/NewSmartAdmin/js/formplugins/select2/select2.bundle.js"></script>
+<script src="/NewSmartAdmin/js/formplugins/summernote/summernote.js"></script>
+<script type="text/javascript">
+    /* Activate smart panels */
+    $('#js-page-content').smartPanel();
+
+</script>
 <script>
-$(document).ready(function () {
 
-});
-</script>-->
+</script>
+<script>
+    $(document).ready(function(){
+        localStorage.setItem("personalBadegeCustomerId",0)
 
+        reloadPage();
+
+
+
+
+
+    })
+
+
+    function summernoteInit(){
+
+        var autoSave = $('#autoSave');
+        var interval;
+        var timer = function()
+        {
+            interval = setInterval(function()
+            {
+                //start slide...
+                if (autoSave.prop('checked'))
+                    saveToLocal();
+
+                clearInterval(interval);
+            }, 3000);
+        };
+
+        //save
+        var saveToLocal = function()
+        {
+            localStorage.setItem('summernoteData', $('#saveToLocal').summernote("code"));
+            console.log("saved");
+        }
+
+        //delete
+        var removeFromLocal = function()
+        {
+            localStorage.removeItem("summernoteData");
+            $('#saveToLocal').summernote('reset');
+        }
+
+
+
+        $('.js-summernote').summernote({
+            height: 200,
+            tabsize: 2,
+            placeholder: "Type here...",
+            dialogsFade: true,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+                    ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ],
+            callbacks:
+                {
+                    //restore from localStorage
+                    onInit: function(e)
+                    {
+                        $('.js-summernote').summernote("code", localStorage.getItem("summernoteData"));
+                    },
+                    onChange: function(contents, $editable)
+                    {
+                        console.log('change summernote')
+                        //clearInterval(interval);
+                        //timer();
+                        localStorage.setItem("summernoteData",contents)
+                        console.log(contents);
+                    }
+                }
+        });
+    }
+
+    function reloadPage(){
+
+        var personalBadegeCustomerId= localStorage.getItem("personalBadegeCustomerId")
+        console.log('personalBadegeCustomerId',personalBadegeCustomerId);
+        if(personalBadegeCustomerId>0){
+            $('.personal_select').hide()
+
+        }
+        else{
+            $('.personal_select').show()
+            $('.sending_badge_title').text('Подать Новое объявление')
+        }
+    }
+
+    $('.single_badge').click(function(){
+
+
+        $(this).parent().parent().find('.sending_group').find('.badges_form').find('.summerBlock').empty();
+        $(this).parent().parent().find('.sending_group').find('.badges_form').find('.summerBlock').append('<div class="js-summernote" ></div>')
+        summernoteInit();
+        window.slide_allow=0
+
+        localStorage.setItem("summernoteData","")
+        var badge_name_h=$(this).parent().parent().find('.sending_group').find('.badge_name')
+        var badge_title=$(this).parent().parent().find('.sending_group').find('.sending_badge_title')
+
+        var badge_submit=$(this).parent().parent().find('.sending_group').find('.sending_badge_submit')
+
+        var sending_badges_group=$(this).parent().parent().find('.sending_group').find('.sending_badges_group').val()
+        var sending_badges_customer=$(this).parent().parent().find('.sending_group').find('.sending_badges_customer').val()
+        console.log('group_id',sending_badges_group)
+        var current_badge_name=$(this).parent().find('.badge_name').val()
+        var badge=$(this).parent().find('.badge_id').val()
+
+        var sending_group=$(this).parent().parent().find('.sending_group')
+        badge_name_h.text(current_badge_name)
+        badge_title.val(current_badge_name)
+
+        $('.sending_group').slideUp({
+            duration: 'slow',
+            easing: 'linear'
+        })
+        //Проверить сколько золотых бэйджей отправлено в текущем месяце
+
+        $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            async:false,
+            url: '/customer/golden_badge/check',
+            data: {customer: sending_badges_customer
+            },
+            beforeSend: function() {
+            },
+            complete: function() {
+
+            },
+            success: function (data) {
+                console.log(data)
+                if(data>=3 && sending_badges_group==3 ){
+                    console.log('trying to send Golden badge')
+                    alert('Вы уже отправили 3 золотых бэйджа в этом месяце')
+
+                }else {
+                    window.slide_allow=1
+
+                }
+
+
+                console.log('success  golden badge')
+
+            }
+        });
+
+
+        sending_group.slideDown({
+            duration: 'slow',
+            easing: 'linear'
+        })
+
+
+
+
+
+        console.log('first step')
+        badge_submit.click(function(){
+            console.log('second step')
+
+            var customer=$(this).parent('.badges_form').find('.sending_badge_user').val()
+
+
+            var visibility=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_visibility').val()
+            var message=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_textarea').val()
+            console.log('Therd step',message)
+            message=localStorage.getItem("summernoteData")
+            console.log('Therd step',message)
+            var title=$(this).parent('.badges_form').find('.form-group').find('.sending_badge_title').val()
+            console.log('visibility=>',visibility)
+            console.log('customer=>',customer)
+            console.log(message)
+            console.log(badge)
+            $.ajax({
+                method: 'POST',
+                dataType: 'json',
+                async:false,
+                url: '/customer/badge/send',
+                data: {customer: customer,message:message,badge:badge,title:title,visibility:visibility
+                },
+                beforeSend: function() {
+                },
+                complete: function() {
+
+                },
+                success: function (data) {
+
+                    $('.default-example-modal-right-lg').modal("hide");
+
+
+
+                    console.log('success')
+
+                }
+            });
+
+
+
+
+
+
+
+        })
+
+        console.log('here',$(this).parent().parent())
+
+        $(this).parent().parent().find('.sending_group').find('.badges_form').each(function (index, value){
+            console.log('here')
+            var form_id=$(this).attr('id')
+            var dropdown=$(this).find('.form-group').find('.js-data-example-ajax')
+            console.log('dropdown',dropdown);
+
+
+
+            dropdown.select2(
+                {
+
+                    dropdownParent: $("#"+form_id),
+                    ajax:
+                        {
+                            url: "/customer/badge/get_addressant",//"https://api.github.com/search/repositories"
+                            dataType: 'json',
+                            delay: 250,
+                            type: "GET",
+                            data: function(params)
+                            {
+                                return {
+                                    q: params.term, // search term
+                                    page: params.page
+                                };
+                            },
+                            results: function(resp){
+                                console.log('success',resp);
+                            },
+                            processResults: function(data, params)
+                            {
+
+                                console.log('results,',data)
+                                console.log(params)
+                                // parse the results into the format expected by Select2
+                                // since we are using custom formatting functions we do not need to
+                                // alter the remote JSON data, except to indicate that infinite
+                                // scrolling can be used
+                                params.page = params.page || 1;
+
+                                return {
+                                    results: data.items,
+                                    pagination:
+                                        {
+                                            more: (params.page * 30) < data.total_count
+                                        }
+                                };
+                            },
+                            success: function(resp){
+                                console.log('success',resp);
+                            },
+                            cache: true
+                        },
+                    placeholder: 'Search for a repository',
+                    formatResult: function(element){
+                        console.log(element.id)
+                        return element.text + ' (' + element.id + ')';
+                    },
+                    success: function(resp){
+                        console.log('success',resp);
+                    },
+                    formatSelection: function(element){
+                        console.log('selection',element.id)
+                        return element.text + ' (' + element.id + ')';
+                    },
+
+                    escapeMarkup: function(markup)
+                    {
+                        //console.log(markup)
+                        return markup;
+                    }, // let our custom formatter work
+                    minimumInputLength: 1,
+                    templateResult: formatRepo,
+                    templateSelection: function (data, container) {
+
+                        var personalBadegeCustomerId= localStorage.getItem("personalBadegeCustomerId")
+                        if(personalBadegeCustomerId==0){
+                            $('#'+form_id).find('.sending_badge_user').val(data.id)
+                        }
+
+                        console.log($('#'+form_id).find('.sending_badge_user').val());
+                        $(data.element).attr('data-custom-attribute', data.id);
+                        return data.full_name;
+                    }
+                });
+
+            $('.js-data-example-ajax').change(function(){
+                console.log('change')
+            })
+
+            function icon(elm)
+            {
+                elm.element;
+                return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+            }
+
+
+
+
+
+
+            function formatRepo(repo)
+            {
+                if (repo.loading)
+                {
+                    return repo.text;
+                }
+
+                var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+                    "<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+                    "<div class='select2-result-repository__meta'>" +
+                    "<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+                if (repo.description)
+                {
+                    markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+                }
+
+                markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+                    "<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+                    "<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+                    "<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+                    "</div>" +
+                    "</div></div>";
+
+                return markup;
+            }
+
+            function formatRepoSelection(repo)
+            {
+                console.log(repo.full_name)
+                return repo.full_name || repo.text;
+            }
+
+
+
+
+
+
+        });
+
+
+    });
+
+
+
+    $('.personal_badge').click(function(){
+
+        var personal_badge_customer_id= $(this).parent().find('.personal_badge_customer_id').val()
+        console.log(personal_badge_customer_id);
+        localStorage.setItem("personalBadegeCustomerId",personal_badge_customer_id)
+
+        $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            async:false,
+            url: '/customer/get_customer_info',
+            data: {customer_id: personal_badge_customer_id
+            },
+            beforeSend: function() {
+            },
+            complete: function() {
+
+            },
+            success: function (data) {
+                console.log('success'.data)
+                $('.sending_badge_title').text('Новая Персональная благодарность сотруднику'+' '+data.name+' '+data.sername)
+                $('.sending_badge_user').val(data.id)
+
+
+            }
+        });
+
+        reloadPage();
+
+    })
+
+</script>
 @yield('scripts')
 </body>
 </html>

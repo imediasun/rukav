@@ -29,7 +29,7 @@
 
     <!-- about -->
     <li aria-haspopup="true">
-        <a href="#"><i class="fa fa-star"></i>About us</a>
+        <a href="#"><i class="fal fa-globe"></i>Выберите рубрику</a>
         <div class="grid-container3">
 
 
@@ -99,7 +99,7 @@
 
 
                                 if($parent_id == 0){
-                                    echo '<i class="fa '.$arr[$parent_id][$i]->icon.'"></i>';
+                                    echo '<i class="fal '.$arr[$parent_id][$i]->icon.'"></i>';
                                 }
 
                                 echo '
@@ -138,12 +138,12 @@
 
     <!-- news -->
     <li aria-haspopup="true">
-        <a href="#"><i class="fa fa-bullhorn"></i>News</a>
+        <a href="#"><i class="fal fa-bullhorn"></i>Новости</a>
         <div class="grid-container3">
             <ul>
-                <li><a href="#"><i class="fa fa-check"></i>Company</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Products</a></li>
-                <li><a href="#"><i class="fa fa-check"></i>Specials</a></li>
+                <li><a href="#"><i class="fal fal-check"></i>Company</a></li>
+                <li><a href="#"><i class="fal fal-check"></i>Products</a></li>
+                <li><a href="#"><i class="fa fal-check"></i>Specials</a></li>
             </ul>
         </div>
     </li>
@@ -151,13 +151,13 @@
 
     <!-- portfolio -->
     <li aria-haspopup="true">
-        <a href="#"><i class="fa fa-briefcase"></i>Portfolio</a>
+        <a href="#"><i class="fal fa-briefcase"></i>Блог</a>
         <div class="grid-container3">
             <ul>
-                <li><a href="#"><i class="fa fa-lemon-o"></i>Logos</a></li>
-                <li><a href="#"><i class="fa fa-globe"></i>Websites</a></li>
-                <li><a href="#"><i class="fa fa-th-large"></i>Branding</a></li>
-                <li><a href="#"><i class="fa fa-picture-o"></i>Illustrations</a></li>
+                <li><a href="#"><i class="fal fa-lemon-o"></i>Logos</a></li>
+                <li><a href="#"><i class="fal fa-globe"></i>Websites</a></li>
+                <li><a href="#"><i class="fal fa-th-large"></i>Branding</a></li>
+                <li><a href="#"><i class="fal fa-picture-o"></i>Illustrations</a></li>
             </ul>
         </div>
     </li class="right">
@@ -165,13 +165,14 @@
 
     <!-- blog -->
     <li>
-        <a href="#"><i class="fa fa-edit"></i>Blog</a>
+
+        <a class="Menu_giveBadgeWrap__28NpB" data-toggle="modal" data-target=".default-example-modal-right-lg" onclick="localStorage.setItem('personalBadegeCustomerId',0);reloadPage()"><i class="fal fa-edit"></i>Подать объявление</a>
     </li>
     <!--/ blog -->
 
     <!-- contacts -->
     <li class="right">
-        <a href="#"><i class="fa fa-phone"></i>Contacts</a>
+        <a href="#"><i class="fal fa-phone"></i>Contacts</a>
     </li>
     <!--/ contacts -->
 </ul>

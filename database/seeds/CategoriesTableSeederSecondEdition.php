@@ -18,62 +18,277 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Детский мир',
                 'link'=> '/child_world',
-                'icon'=>'fa fa-globe',
+                'icon'=>'fa-globe',
+                'photo'=>'first_category.png'
 
             ],
             /*2*/
             [
-                'parent_id' => 1,
-                'name' => 'Детская одежда',
+                'parent_id' => 0,
+                'name' => 'Недвижимость',
                 'link'=> '/advertising',
-                'icon'=>'fa fa-globe',
+                'icon'=>'fa-globe',
+                'photo'=>'first_category.png'
             ],
             /*3*/
             [
-                'parent_id' => 1,
-                'name' => 'Детская обувь',
+                'parent_id' => 0,
+                'name' => 'Транспорт',
                 'link'=> '/contact_with_admin',
-                'icon'=>'fa fa-globe',
+                'icon'=>'fa-globe',
+                'photo'=>'first_category.png'
 
             ],
             /*4*/
             [
                 'parent_id' => 0,
-                'name' => 'Недвижимость',
+                'name' => 'Запчасти для транспорта',
                 'link'=> '/portal_information',
-                'icon'=>'fa fa-globe',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
 
             ],
             /*5*/
             [
-                'parent_id' => 4,
-                'name' => 'Квартиры',
+                'parent_id' => 0,
+                'name' => 'Работа',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa fa-globe',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
 
             ],
             /*6*/
             [
-                'parent_id' => 4,
-                'name' => 'Комнаты',
+                'parent_id' => 0,
+                'name' => 'Животные',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa fa-globe',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
 
             ],
             /*7*/
             [
-                'parent_id' => 4,
-                'name' => 'Дома',
+                'parent_id' => 0,
+                'name' => 'Дом и Сад',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa fa-globe',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
 
             ],
             /*8*/
             [
-                'parent_id' => 4,
+                'parent_id' => 0,
+                'name' => 'Электроника',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*9*/
+            [
+                'parent_id' => 9,
+                'name' => 'Бизнес и услуги',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*10*/
+            [
+                'parent_id' => 10,
+                'name' => 'Мода и стиль',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*11*/
+            [
+                'parent_id' => 11,
+                'name' => 'Хобби отдых и спорт',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*12*/
+            [
+                'parent_id' => 12,
+                'name' => 'Отдам бесплатно',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*13*/
+            [
+                'parent_id' => 13,
+                'name' => 'Обмен',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*14*/
+            [
+                'parent_id' => 1,
+                'name' => 'Детская обежда',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*15*/
+            [
+                'parent_id' => 1,
+                'name' => 'Детская обувь',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*16*/
+            [
+                'parent_id' => 1,
+                'name' => 'Детские коляски',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*17*/
+            [
+                'parent_id' => 1,
+                'name' => 'Детские автокресла',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*18*/
+            [
+                'parent_id' => 1,
+                'name' => 'Детская мебель',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*19*/
+            [
+                'parent_id' => 1,
+                'name' => 'Игрушки',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*20*/
+            [
+                'parent_id' => 1,
+                'name' => 'Детский транспорт',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*21*/
+            [
+                'parent_id' => 1,
+                'name' => 'Питание',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*22*/
+            [
+                'parent_id' => 1,
+                'name' => 'Товары для школьников',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*23*/
+            [
+                'parent_id' => 1,
+                'name' => 'Другие детские товары',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-homee',
+                'photo'=>'first_category.png'
+
+            ],
+            /*24*/
+            [
+                'parent_id' => 2,
+                'name' => 'Квартиры и комнаты',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
+
+            ],
+            /*25*/
+            [
+                'parent_id' => 2,
+                'name' => 'Дома',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
+
+            ],
+            /*26*/
+            [
+                'parent_id' => 2,
                 'name' => 'Земля',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa fa-globe',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
+
+            ],
+            /*27*/
+            [
+                'parent_id' => 2,
+                'name' => 'Коммерческая недвижимость',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
+
+            ],
+            /*28*/
+            [
+                'parent_id' => 2,
+                'name' => 'Гаражи парковки',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
+
+            ],
+            /*29*/
+            [
+                'parent_id' => 2,
+                'name' => 'Посуточная аренда жилья',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
+
+            ],
+            /*30*/
+            [
+                'parent_id' => 2,
+                'name' => 'Предложения от застройщиков',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
+
+            ],
+            /*31*/
+            [
+                'parent_id' => 2,
+                'name' => 'Недвижимость за границей',
+                'link'=> '/private_cabinet',
+                'icon'=>'fa-home',
+                'photo'=>'first_category.png'
 
             ],
 
@@ -88,7 +303,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Информация по сотрудничеству',
                 'link'=> '/cooperation_information',
-                'icon'=>'/img/dashboard_icon.png',
+                'icon'=>'fal fa-info-circle',
                 'system_name'=>'cooperation_information',
                 'type'=>'not_linked',
             ],
@@ -97,7 +312,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Размещение рекламы',
                 'link'=> '/advertising',
-                'icon'=>'/img/dashboard_icon.png',
+                'icon'=>'fal fa-info-circle',
                 'system_name'=>'advertising',
                 'type'=>'linked',
             ],
@@ -106,7 +321,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Связаться с администрацией',
                 'link'=> '/contact_with_admin',
-                'icon'=>'/img/dashboard_icon.png',
+                'icon'=>'fal fa-info-circle',
                 'system_name'=>'contact_with_admin',
                 'type'=>'linked',
             ],
@@ -115,7 +330,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Информация о портале',
                 'link'=> '/portal_information',
-                'icon'=>'/img/dashboard_icon.png',
+                'icon'=>'fal fa-info-circle',
                 'system_name'=>'portal_information',
                 'type'=>'linked',
             ],
@@ -124,7 +339,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Личный кабинет пользователя',
                 'link'=> '/private_cabinet',
-                'icon'=>'/img/dashboard_icon.png',
+                'icon'=>'fal fa-info-circle',
                 'system_name'=>'private_cabinet',
                 'type'=>'linked',
             ],

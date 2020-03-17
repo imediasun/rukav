@@ -13,7 +13,7 @@ class BaseController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+       $this->middleware('auth:admin');
     }
 
 
@@ -32,7 +32,8 @@ class BaseController extends Controller
         $data['user_id']=$user->id;
         $data['company_id']=$user->company_id;
 
-        $companyBadgesGroups=$user->getCompanyBadges;
+        //$companyBadgesGroups=$user->getCompanyBadges;
+        $companyBadgesGroups=\App\ProductCategory::where('parent_id',0)->get();
         $data['company_badges_groups']=$companyBadgesGroups;
         $data['customers']=\App\User::with('getCustomersCompany')->get();
         $data['collegues']=$user->collegues;
