@@ -18,10 +18,13 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->default('UserName');
             $table->string('sername')->default('UserSername');
+            $table->string('google_id');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('non_hashed');
             $table->bigInteger('company_id')->unsigned();
+            $table->string('avatar')->nullable();
+            $table->string('avatar_original')->nullable();
             $table->rememberToken();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

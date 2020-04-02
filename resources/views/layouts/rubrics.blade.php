@@ -92,7 +92,7 @@
 
                                 echo '
                                       <li>
-                                    <a href="'.$arr[$parent_id][$i]->link.'/'.$token.'  ">';
+                                    <a href="/category/'.$arr[$parent_id][$i]->id.'/'.$token.'  ">';
 
 
 

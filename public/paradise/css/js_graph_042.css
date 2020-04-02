@@ -1,0 +1,464 @@
+/*------------------------------------------------------*/
+/* JAVASCRIPT GRAPH 042
+/*------------------------------------------------------*/
+#js_graph_042{
+  overflow: hidden;
+  max-height: 658px;
+  position: relative;
+  background: #000000;
+}
+#js_graph_042:hover{
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+#js_graph_042:active{
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+#js_graph_042 > .carousel-inner > .carousel-item > img,
+#js_graph_042 > .carousel-inner > .carousel-item > a > img{
+  width: 100%;
+  margin: auto;
+  opacity: 0.4;
+}
+/*---------- INDICATORS CONTROL ----------*/
+.ps_indicators_length_x > .carousel-indicators{
+  left: 1%;
+  bottom: 5%;
+  width: 50%;
+  margin: auto;
+  right: auto;
+  display: block;
+  text-align: left;
+  padding-left: 1%;
+  cursor: e-resize;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.ps_indicators_length_x > .carousel-indicators li{
+  width: 15px;
+  height: 5px;
+  border: none;
+  margin: 1px;
+  display: inline-block;
+  background: rgba(255,255,255,0.4);
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+}
+.ps_indicators_length_x > .carousel-indicators .active{
+  width: 15px;
+  height: 5px;
+  border: none;
+  margin: 1px;
+  background: #fa373d;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+}
+.ps_indicators_length_x > .carousel-indicators::-webkit-scrollbar{
+  height: 5px;
+}
+.ps_indicators_length_x > .carousel-indicators::-webkit-scrollbar-thumb{
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+/*---------- LEFT/RIGHT CONTROL ----------*/
+.ps_control_bottom_lx .carousel-control-prev,
+.ps_control_bottom_lx .carousel-control-next{
+  top: 91%;
+  opacity: 1;
+  width: 20px;
+  height: 20px;
+  z-index: 100;
+  border: none;
+  display: block;
+  font-size: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  line-height: 20px;
+  text-shadow: none;
+  position: absolute;
+  font-weight: normal;
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  -webkit-transition: all 1s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  transition: all 1s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.ps_control_bottom_lx:hover .carousel-control-prev,
+.ps_control_bottom_lx:hover .carousel-control-next{
+  opacity: 1;
+  -webkit-transition: all 1s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  transition: all 1s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.ps_control_bottom_lx .carousel-control-prev{
+  right: 5%;
+  left: auto;
+}
+.ps_control_bottom_lx .carousel-control-next{
+  right: 3%;
+  left: auto;
+}
+.ps_control_bottom_lx .carousel-control-prev:hover,
+.ps_control_bottom_lx .carousel-control-next:hover{
+  color: #fa373d;
+  background: transparent;
+}
+/*---------- SLIDE CAPTION ----------*/
+.js_graph_small{
+  top: 3%;
+  left: 10%;
+  width: 35%;
+  right: auto;
+  overflow: hidden;
+  text-align: left;
+  position: absolute;
+}
+.js_graph_small_right{
+  right: 10%;
+  left: auto;
+  text-align: right;
+}
+.js_graph_small_center{
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+.js_graph_small > h2{
+  font-size: 45px;
+  font-weight: 400;
+  position: relative;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  color: rgba(255,255,255,0.9);
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Montserrat', sans-serif;
+}
+.js_graph_small > h2:after {
+  left: 1%;
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 2px;
+  content: "";
+  position: absolute;
+  background: rgba(255,255,255,0.9);
+}
+.js_graph_small_right > h2:after {
+  left: auto;
+  right: 1%;
+}
+.js_graph_small_center > h2:after {
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.js_graph_small > div{
+  text-align: left;
+}
+.js_graph_small > div > span{
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  color: rgba(255,255,255,0.9);
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Montserrat', sans-serif;
+}
+.js_graph_small > div > span:nth-child(2){
+  float: right;
+}
+.js_graph_small > div > .progress{
+  height: 5px;
+  margin-bottom: 40px;
+  background: rgba(255,255,255,0.8);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.js_graph_small > div > .progress > .progress-bar{
+  background: #fa373d;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.js_graph_small > div:nth-child(2) > .progress > .progress-bar{
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.js_graph_small > div:nth-child(3) > .progress > .progress-bar{
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.js_graph_small > div:nth-child(4) > .progress > .progress-bar{
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.js_graph_small > div:nth-child(5) > .progress > .progress-bar{
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  -webkit-animation-duration: 2.5s;
+  animation-duration: 2.5s;
+  -webkit-animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.js_graph_small > div:nth-child(6) > .progress > .progress-bar{
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.js_graph_small > div:nth-child(7) > .progress > .progress-bar{
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  -webkit-animation-duration: 3.5s;
+  animation-duration: 3.5s;
+  -webkit-animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.js_graph_small > a,
+.js_graph_small > a:visited{
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 7px 15px;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: capitalize;
+  background: #fa373d;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-transition: all cubic-bezier(0.230, 1.000, 0.320, 1.000) 0.5s;
+  transition: all cubic-bezier(0.230, 1.000, 0.320, 1.000) 0.5s;
+}
+.js_graph_small > a:hover,
+.js_graph_small > a:active{
+  color: #fa373d;
+  background: rgba(255,255,255,0.9);
+}
+/*------------------------------------------------------*/
+/* RESPONSIVE
+/*------------------------------------------------------*/
+
+/*---------- MEDIA 480px ----------*/
+@media only screen and (max-width: 480px){
+  /*---------- INDICATORS CONTROL ----------*/
+  .ps_indicators_length_x > .carousel-indicators{
+    display: none;
+  }
+  .ps_control_bottom_lx .carousel-control-prev,
+  .ps_control_bottom_lx .carousel-control-next{
+    display: none;
+  }
+  /*---------- SLIDE CAPTION ----------*/
+  .js_graph_small{
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 3px;
+  }
+  .js_graph_small_right{
+    left: 0;
+    right: 0;
+  }
+  .js_graph_small > h2{
+    margin: 0;
+	font-size: 15px;
+  }
+  .js_graph_small > h2:after {
+    left: 0;
+    width: 25%;
+  }
+  .js_graph_small_right > h2:after {
+    left: auto;
+    right: 0;
+  }
+  .js_graph_small > div > .progress{
+    margin-bottom: 0;
+  }
+  .js_graph_small > a,
+  .js_graph_small > a:visited{
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 2px;
+    padding: 3px 5px;
+  }
+}
+
+/*---------- MEDIA 481px - 600px ----------*/
+@media (min-width: 481px) and (max-width: 600px) {
+  .ps_control_bottom_lx .carousel-control-prev {
+    right: 8%;
+  }
+  /*---------- SLIDE CAPTION ----------*/
+  .js_graph_small{
+    width: 50%;
+  }
+  .js_graph_small > h2{
+    font-size: 25px;
+    margin: 0;
+  }
+  .js_graph_small > div > .progress{
+    height: 13px;
+    margin-bottom: 3px;
+  }
+  .js_graph_small > div > .progress > .progress-bar{
+    line-height: 13px;
+  }
+  .js_graph_small > a,
+  .js_graph_small > a:visited{
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 2px;
+    padding: 3px 5px;
+  }
+}
+
+/*---------- MEDIA 601px - 767px ----------*/
+@media (min-width: 601px) and (max-width: 767px){
+  .ps_control_bottom_lx .carousel-control-prev {
+    right: 7%;
+  }
+  /*---------- SLIDE CAPTION ----------*/
+  .js_graph_small > div > .progress{
+    margin-bottom: 10px;
+  }
+  .js_graph_small > h2{
+    font-size: 25px;
+    margin: 0;
+  }
+}
+
+/*---------- MEDIA 768px - 875px ----------*/
+@media (min-width: 768px) and (max-width: 1000px){
+  .ps_control_bottom_lx .carousel-control-prev {
+    right: 7%;
+  }
+  /*---------- SLIDE CAPTION ----------*/
+  .js_graph_small{
+	top: 0;
+  }
+  .js_graph_small > div > .progress{
+    margin-bottom: 25px;
+  }
+}
+
+/*--------------------------------------------*/
+/* SLIDING TIMING FUNCTIONS
+/*--------------------------------------------*/
+/*----- ps_ease -----*/
+.ps_ease .carousel-item{
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
+/*----- ps_easeInOut -----*/
+.ps_easeInOut .carousel-item{
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+/*----- ps_speedy -----*/
+.ps_speedy .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0,1,0,1);
+  transition-timing-function: cubic-bezier(0,1,0,1);
+}
+/*----- ps_slowSpeedy -----*/
+.ps_slowSpeedy .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0.3,1,0,1);
+  transition-timing-function: cubic-bezier(0.3,1,0,1);
+}
+/*----- ps_easeOutInCubic -----*/
+.ps_easeOutInCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+  transition-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+}
+/*----- ps_swing -----*/
+.ps_swing .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.02,.01,.47,1);
+  transition-timing-function: cubic-bezier(.02,.01,.47,1);
+}
+/*----- ps_easeOutCubic -----*/
+.ps_easeOutCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.215,.61,.355,1);
+  transition-timing-function: cubic-bezier(.215,.61,.355,1);
+}
+/*----- ps_easeInOutCubic -----*/
+.ps_easeInOutCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.645,.045,.355,1);
+  transition-timing-function: cubic-bezier(.645,.045,.355,1);
+}
+/*----- ps_easeOutCirc -----*/
+.ps_easeOutCirc .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.075,.82,.165,1);
+  transition-timing-function: cubic-bezier(.075,.82,.165,1);
+}
+/*----- ps_easeOutExpo -----*/
+.ps_easeOutExpo .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.19,1,.22,1);
+  transition-timing-function: cubic-bezier(.19,1,.22,1);
+}
+/*----- ps_easeInQuad -----*/
+.ps_easeInQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.55,.085,.68,.53);
+  transition-timing-function: cubic-bezier(.55,.085,.68,.53);
+}
+/*----- ps_easeOutQuad -----*/
+.ps_easeOutQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.25,.46,.45,.94);
+  transition-timing-function: cubic-bezier(.25,.46,.45,.94);
+}
+/*----- ps_easeInOutQuad -----*/
+.ps_easeInOutQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.455,.03,.515,.955);
+  transition-timing-function: cubic-bezier(.455,.03,.515,.955);
+}
+/*----- ps_easeOutQuart -----*/
+.ps_easeOutQuart .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.165,.84,.44,1);
+  transition-timing-function: cubic-bezier(.165,.84,.44,1);
+}
+/*----- ps_easeInOutQuart -----*/
+.ps_easeInOutQuart .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.77,0,.175,1);
+  transition-timing-function: cubic-bezier(.77,0,.175,1);
+}
+/*----- ps_easeOutQuint -----*/
+.ps_easeOutQuint .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.23,1,.32,1);
+  transition-timing-function: cubic-bezier(.23,1,.32,1);
+}
+/*----- ps_easeInSine -----*/
+.ps_easeInSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.47,0,.745,.715);
+  transition-timing-function: cubic-bezier(.47,0,.745,.715);
+}
+/*----- ps_easeOutSine -----*/
+.ps_easeOutSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.39,.575,.565,1);
+  transition-timing-function: cubic-bezier(.39,.575,.565,1);
+}
+/*----- ps_easeInOutSine -----*/
+.ps_easeInOutSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.445,.05,.55,.95);
+  transition-timing-function: cubic-bezier(.445,.05,.55,.95);
+}

@@ -20,6 +20,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <!-- Remove Tap Highlight on Windows Phone IE -->
     <meta name="msapplication-tap-highlight" content="no">
+
+    <meta name="google-site-verification" content="tnx5cRcgnJ4l6s5W8TSKTBnh-NLr8SRa6z7skRnAWPs" />
     <!-- base css -->
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/vendors.bundle.css">
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/app.bundle.css">
@@ -47,12 +49,122 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             <div class="modal-dialog modal-dialog-right modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
+                        @if(!\Auth::user())
+                            <h5 class="modal-title h4 sending_badge_title">Войдите в учетную запись чтобы подать объявление</h5>
+                        @else
                         <h5 class="modal-title h4 sending_badge_title">Подать Новое объявление</h5>
+                        @endif
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"><i class="fal fa-times"></i></span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    @if(!\Auth::user())
+
+                        <div class="blankpage-form-field">
+                            <div class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4">
+                                <a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
+                                    <!--img src="/NewSmartAdmin/img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo"-->
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="270px" height="75px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                         viewBox="0 0 2706 755.26"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+     <style type="text/css">
+         <![CDATA[
+    .fil0 {fill:none}
+         .fil2 {fill:#A269F7}
+         .fil1 {fill:black;fill-rule:nonzero}
+         .fil3 {fill:white;fill-rule:nonzero}
+         ]]>
+     </style>
+ </defs>
+                                        <g id="Слой_x0020_1">
+                                            <metadata id="CorelCorpID_0Corel-Layer"/>
+                                            <rect class="fil0" width="2706" height="755.26"/>
+                                            <g id="_1090375648">
+                                                <g>
+                                                    <path class="fil1" d="M920.35 571.72l0 -386.5 137.79 0c37.74,0 68.32,12.1 91.77,36.3 23.44,24.21 35.16,53.27 35.16,87.19 0,23.64 -6,44.98 -18.01,64.04 -12.01,19.06 -28.87,33.35 -50.6,42.88l73.18 156.09 -93.76 0 -62.9 -144.08 -28.58 0 0 144.08 -84.05 0zm84.05 -210.98l49.74 0c13.72,0 24.87,-4.76 33.45,-14.29 8.57,-9.53 12.86,-22.11 12.86,-37.74 0,-15.24 -4.38,-27.73 -13.15,-37.44 -8.77,-9.72 -19.82,-14.58 -33.16,-14.58l-49.74 0 0 104.05z"/>
+                                                    <path class="fil1" d="M1276.94 442.5l0 -257.28 84.05 0 0 250.42c0,22.49 5.62,40.12 16.87,52.89 11.24,12.77 26.2,19.15 44.88,19.15 18.68,0 33.64,-6.48 44.88,-19.44 11.25,-12.96 16.87,-30.49 16.87,-52.6l0 -250.42 84.04 0 0 257.28c0,39.64 -14.19,72.33 -42.59,98.06 -28.4,25.73 -62.8,38.59 -103.2,38.59 -40.79,0 -75.28,-12.77 -103.49,-38.31 -28.2,-25.54 -42.31,-58.31 -42.31,-98.34z"/>
+                                                    <polygon class="fil1" points="1659.72,571.72 1659.72,185.22 1743.77,185.22 1743.77,328.15 1843.82,185.22 1942.16,185.22 1818.09,353.88 1959.89,571.72 1860.4,571.72 1767.21,423.06 1743.77,455.08 1743.77,571.72 "/>
+                                                    <path class="fil1" d="M1999.93 571.72l116.06 -386.5 97.2 0 116.06 386.5 -85.19 0 -25.72 -93.2 -107.49 0 -25.73 93.2 -85.19 0zm129.79 -161.23l69.75 0 -20.01 -73.19c-4.58,-15.63 -9.53,-37.54 -14.87,-65.75 -3.81,20.58 -8.76,42.5 -14.86,65.75l-20.01 73.19z"/>
+                                                    <path class="fil1" d="M2444.95 571.72l-116.07 -386.5 85.19 0 64.61 234.41c4.19,14.87 9.15,37.74 14.87,68.61 5.71,-30.87 10.67,-53.74 14.86,-68.61l64.61 -234.41 85.19 0 -116.07 386.5 -97.19 0z"/>
+                                                </g>
+                                                <g>
+                                                    <path class="fil2" d="M386.58 38.84c187.11,0 338.79,151.68 338.79,338.79 0,187.11 -151.68,338.79 -338.79,338.79 -187.11,0 -338.79,-151.68 -338.79,-338.79 0,-187.11 151.68,-338.79 338.79,-338.79z"/>
+                                                    <path class="fil3" d="M448.3 710.8l-156.76 -158.15c-13.96,-10.6 -22.97,-27.37 -22.97,-46.25 0,-30.23 23.11,-55.06 52.63,-57.79 4.82,-0.45 11.6,-1 16.16,-1l70.66 0c22.11,0 40.76,-7.53 55.97,-22.89 15.36,-15.21 23.05,-33.87 23.05,-55.97 0,-21.95 -7.69,-40.61 -23.05,-55.97 -15.21,-15.21 -33.86,-22.89 -55.97,-22.89 -44.58,0 -88.36,-0.33 -132.81,-0.33 -1.93,0 -3.84,-0.08 -5.72,-0.23 -31.64,-0.47 -57.16,-26.27 -57.16,-58.03 0,-0.17 0.01,-0.35 0.01,-0.53 -0.08,-6.17 0.9,-12.02 2.88,-17.57 7.38,-22.49 28.13,-38.92 52.85,-39.89 0.92,-0.04 1.84,-0.06 2.77,-0.06l137.18 0c54.4,0 100.65,18.97 138.59,57.07 38.1,38.09 57.07,84.34 57.07,138.74 0,44.06 -13.33,83.72 -39.98,118.68 -26.65,34.96 -61.46,58.32 -104.26,70.08l107.13 106.86c-35.53,22.32 -75.49,38.24 -118.27,46.12z"/>
+                                                </g>
+                                            </g>
+                                        </g>
+</svg>
+
+
+
+                                    <span class="page-logo-text mr-1">Русские объявления со всей Британии</span>
+                                    <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
+                                </a>
+                            </div>
+                            <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
+                                <form method="POST" action="{{ route('admin.login.submit') }}">
+                                    <div class="form-group">
+                                        <label class="form-label" for="username">Username</label>
+                                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+                                        @if ($errors->has('email'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                        @endif
+                                        <span class="help-block">
+                            Your unique username to app
+                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="password">Password</label>
+                                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                        @if ($errors->has('password'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                        @endif
+                                        <span class="help-block">
+                            Your password
+                        </span>
+                                    </div>
+
+
+                                    <br />
+                                    <p style="margin-left:265px">OR</p>
+                                    <br />
+                                    <div class="form-group">
+                                        <div class="col-md-8 col-md-offset-4">
+                                            <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Google</a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-left">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="rememberme">
+                                            <label class="custom-control-label" for="rememberme"> Remember me for the next 30 days</label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-default float-right">Secure login</button>
+                                </form>
+                            </div>
+                            <div class="blankpage-footer text-center">
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <strong>Recover Password</strong>
+                                </a>
+                                | <a href="#"><strong>Register Account</strong></a>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    @endif
+                    <div class="modal-body" @if(!\Auth::user()) style="display:none" @endif>
                         <input type="hidden" id="company_id" name="company_id" >
 
 
@@ -800,7 +912,7 @@ left:2px;
                                 </div>
                             </div>
                             <div class="dropdown-divider m-0"></div>
-                            <a class="dropdown-item fw-500 pt-3 pb-3" href="/admin/logout">
+                            <a class="dropdown-item fw-500 pt-3 pb-3" href="/logout">
                                 <span data-i18n="drpdwn.page-logout">Logout</span>
                                 <span class="float-right fw-n">&commat;codexlantern</span>
                             </a>

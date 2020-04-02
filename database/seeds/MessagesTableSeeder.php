@@ -17,10 +17,10 @@ class MessagesTableSeeder extends Seeder
        DB::table('messages')->insert([
             /*1*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 1',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
@@ -28,43 +28,43 @@ class MessagesTableSeeder extends Seeder
            ],
            /*2*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 2',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=>2,
+               'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
                'visibility'=>3
            ],
            /*3*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 3',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=>3,
+               'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>2
+               'visibility'=>3
            ],
            /*4*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 4',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=>4,
+               'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
                'visibility'=>3
            ],
            /*5*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 5',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
@@ -72,44 +72,44 @@ class MessagesTableSeeder extends Seeder
            ],
            /*6*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 6',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=>2,
+               'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>2
+               'visibility'=>3
            ],
            /*7*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 7',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=>3,
+               'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
                'visibility'=>3
            ],
            /*8*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 8',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=>4,
+               'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
                'visibility'=>3
            ],
 
            /*9*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 9',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
@@ -117,67 +117,67 @@ class MessagesTableSeeder extends Seeder
            ],
            /*10*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 10',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=>2,
+               'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>2
+               'visibility'=>3
            ],
            /*11*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 11',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=>3,
+               'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
                'visibility'=>3
            ],
            /*12*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 12',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=>4,
+               'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
                'visibility'=>3
            ],
            /*13*/
            [
-               'addressant' => 5,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 13',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>2
+               'visibility'=>3
            ],
            /*14*/
            [
-               'addressant' => 1,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 14',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=>2,
+               'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>1
+               'visibility'=>3
            ],
            /*15*/
            [
-               'addressant' => 1,
+               'category_id' => 14,
                'sender' => 1,
                'company_id' => 1,
-               'title' => 'Testing messages 15',
+               'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=>3,
+               'badge_id'=> 1,
                'created_at'=>\Carbon\Carbon::now(),
                'visibility'=>3
            ],

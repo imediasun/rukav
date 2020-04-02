@@ -17,18 +17,22 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->bigInteger('addressant')->unsigned();
-            $table->bigInteger('sender')->unsigned();
+            $table->unsignedBigInteger('category_id')->unsigned();
+            $table->unsignedBigInteger('sender')->unsigned();
             $table->integer('company_id');
             $table->string('title');
             $table->string('message');
             $table->integer('badge_id');
             $table->integer('visibility');
-            $table->foreign('sender')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('addressant')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
 
+        Schema::table('messages', function(Blueprint $table) {
+
+            $table->foreign('sender')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
+        });
     }
 
     /**

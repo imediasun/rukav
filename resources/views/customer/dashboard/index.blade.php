@@ -227,7 +227,7 @@
 
 
 @section('content')
-    <div class="container">
+
 
 
                 <ol class="breadcrumb page-breadcrumb">
@@ -236,116 +236,9 @@
                     <li class="breadcrumb-item active">Analytics Dashboard</li>
                     <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
                 </ol>
-                <div class="subheader">
-
-                    <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> Analytics <span class='fw-300'>Dashboard</span>
-                    </h1>
-
-                 </div>
-
-<div id="slider" style="max-height:400px">
-        <section class="spacer" style="max-height:300px">
-
-            <div class="testimonial-section">
-                <div class="testi-user-img">
-                    <div class="swiper-container gallery-thumbs">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img class="u3" src="https://md-aqil.github.io/images/2091127763_1_1_1.jpg" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img class="u1" src="https://md-aqil.github.io/images/beautiful-beauty-face-2657838.jpg" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img class="u2" src="https://md-aqil.github.io/images/attractive-beautiful-beauty-1986684.jpg" alt="">
-                            </div>
-
-                            <div class="swiper-slide">
-                                <img class="u4" src="https://md-aqil.github.io/images/beautiful-beauty-face-2657838.jpg" alt="">
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="user-saying">
-                    <div class="swiper-container testimonial">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper ">
-                            <!-- Slides -->
-                            <div class="swiper-slide">
-                                <div class="quote">
-                                    <img class="quote-icon" src="https://md-aqil.github.io/images/quote.png" alt="">
-                                    <p>
-                                        “This is best and biggest unified platform
-                                        for instant online admission. We can easily
-                                        take admission for any course in any institute..“
-                                    </p>
-                                    <div class="name">-Ramkishor Verma-</div>
-                                    <div class="designation">University Student</div>
-
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="quote">
-                                    <img class="quote-icon" src="https://md-aqil.github.io/images/quote.png" alt="">
-
-                                    <p>
-                                        “This is best and biggest unified platform
-                                        for instant online admission. We can easily
-                                        take admission for any course in any institute..“
-                                    </p>
-                                    <div class="name">-Ramkishor Verma-</div>
-                                    <div class="designation">University Student</div>
-
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="quote">
-                                    <img class="quote-icon" src="https://md-aqil.github.io/images/quote.png" alt="">
-
-                                    <p>
-                                        “This is best and biggest unified platform
-                                        for instant online admission. We can easily
-                                        take admission for any course in any institute..“
-                                    </p>
-                                    <div class="name">-Ramkishor Verma-</div>
-                                    <div class="designation">University Student</div>
-
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="quote">
-                                    <img class="quote-icon" src="https://md-aqil.github.io/images/quote.png" alt="">
-
-                                    <p>
-                                        “This is best and biggest unified platform
-                                        for instant online admission. We can easily
-                                        take admission for any course in any institute..“
-                                    </p>
-                                    <div class="name">-Ramkishor Verma-</div>
-                                    <div class="designation">University Student</div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- If we need pagination -->
-                        <div class="swiper-pagination swiper-pagination-white"></div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-</div>
-        <script src="https://md-aqil.github.io/images/swiper.min.js"></script>
+@include('layouts.slider_portfolio')
 
 
-
-
-
-    </div>
 @endsection
 <? $current=(!isset($current)) ? 'undefined' : $current;?>
 @section('scripts')

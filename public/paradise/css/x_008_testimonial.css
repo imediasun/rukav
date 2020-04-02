@@ -1,0 +1,343 @@
+/*------------------------------------------------------*/
+/* X 008 TESTIMONIAL
+/*------------------------------------------------------*/
+#x_008_testimonial{
+  padding: 50px;
+  overflow: hidden;
+}
+#x_008_testimonial{
+  position: relative;
+  background: #f5f5f5;
+}
+#x_008_testimonial:hover{
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+#x_008_testimonial:active{
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+#x_008_testimonial > .carousel-inner > .carousel-item > div{
+  padding: 0;
+}
+/*---------- HEADER ----------*/
+.x_008_testimonial_header{
+  width: 55%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 75px;
+}
+.x_008_testimonial_header > h1,
+.x_008_testimonial_header > p,
+.x_008_testimonial_image > a,
+.x_008_testimonial_content > p{
+  text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Raleway', sans-serif;
+}
+.x_008_testimonial_header > h1{
+  color: #202e31;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.x_008_testimonial_header > h1 > span{
+  color: #fdc236;
+  margin: 0 10px;
+}
+.x_008_testimonial_header > p{
+  color: #9b9b9b;
+}
+/*---------- LEFT/RIGHT CONTROL ----------*/
+.x_008_testimonial_control_button .carousel-control-prev,
+.x_008_testimonial_control_button .carousel-control-next{
+  top: auto;
+  opacity: 0;
+  width: 20px;
+  bottom: 30%;
+  height: 40px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  overflow: hidden;
+  line-height: 40px;
+  text-shadow: none;
+  text-align: center;
+  position: absolute;
+  background: #202e31;
+  text-transform: uppercase;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: all 0.6s cubic-bezier(0.22,0.81,0.01,0.99);
+  transition: all 0.6s cubic-bezier(0.22,0.81,0.01,0.99);
+}
+.x_008_testimonial_control_button .carousel-control-prev{
+  left: 0;
+  right: auto;
+}
+.x_008_testimonial_control_button .carousel-control-next{
+  left: auto;
+  right: 0;
+}
+.x_008_testimonial_control_button .carousel-control-prev:hover,
+.x_008_testimonial_control_button .carousel-control-next:hover{
+  opacity: 1;
+  color: #ffffff;
+  background: #fdc236;
+}
+.x_008_testimonial_control_button:hover .carousel-control-prev,
+.x_008_testimonial_control_button:hover .carousel-control-next{
+  opacity: 1;
+}
+/*---------- WRAPPER ----------*/
+.x_008_testimonial_wrapper{
+  margin: 0;
+}
+.x_008_testimonial_wrapper.row > div{
+  padding: 0;
+}
+.x_008_testimonial_wrappers{
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  text-align: center;
+}
+/*---------- IMAGE ----------*/
+.x_008_testimonial_image{
+  width: 25%;
+  font-size: 0;
+  position: relative;
+  display: inline-block;
+}
+.x_008_testimonial_image > img{
+  width: 100%;
+  display: block;
+}
+.x_008_testimonial_image > a{
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 90%;
+  height: 40px;
+  margin: auto;
+  color: #ffffff;
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  position: absolute;
+  letter-spacing: 1px;
+  background: #202e31;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-transition: all cubic-bezier(.23,1,.32,1) 0.7s;
+  transition: all cubic-bezier(.23,1,.32,1) 0.7s;
+}
+.x_008_testimonial_image > a > span{
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+}
+.x_008_testimonial_image > a:hover{
+  color: #fdc236;
+}
+/*---------- CONTENT ----------*/
+.x_008_testimonial_content{
+  width: 75%;
+  font-size: 0;
+  padding: 22px;
+  text-align: left;
+  position: relative;
+  vertical-align: top;
+  display: inline-block;
+}
+.x_008_testimonial_content > p{
+  margin:0;
+  color: #9b9b9b;
+  display: block;
+  font-size: 14px;
+  
+}
+
+/*------------------------------------------------------*/
+/* RESPONSIVE
+/*------------------------------------------------------*/
+/*---------- MEDIA 480px ----------*/
+@media only screen and (max-width: 480px){
+  /*---------- GENERAL ----------*/
+  #x_008_testimonial{
+    padding: 10px;
+  }
+  /*---------- HEADER ----------*/
+  .x_008_testimonial_header{
+    width: 90%;
+    margin-bottom: 25px;
+  }
+  /*---------- IMAGE ----------*/
+  .x_008_testimonial_image{
+    width: 60%;
+    margin: auto;
+  }
+  /*---------- CONTENT ----------*/
+  .x_008_testimonial_content{
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+  }
+}
+/*---------- MEDIA 481px - 768px ----------*/
+@media (min-width: 481px) and (max-width: 768px){
+  /*---------- GENERAL ----------*/
+  #x_008_testimonial{
+    padding: 25px;
+  }
+  /*---------- HEADER ----------*/
+  .x_008_testimonial_header{
+    width: 80%;
+	margin-bottom: 40px;
+  }
+  /*---------- IMAGE ----------*/
+  .x_008_testimonial_image{
+    width: 50%;
+    margin: auto;
+  }
+  /*---------- CONTENT ----------*/
+  .x_008_testimonial_content{
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+  }
+}
+/*---------- MEDIA 769px - 991px ----------*/
+@media (min-width: 769px) and (max-width: 991px){
+  /*---------- GENERAL ----------*/
+  #x_008_testimonial{
+    padding: 25px;
+  }
+  /*---------- IMAGE ----------*/
+  .x_008_testimonial_image{
+    width: 50%;
+    margin: auto;
+  }
+  /*---------- CONTENT ----------*/
+  .x_008_testimonial_content{
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+  }
+}
+/*---------- MEDIA 992px - 1225px ----------*/
+@media (min-width: 992px) and (max-width: 1225px){
+  /*---------- IMAGE ----------*/
+  .x_008_testimonial_image{
+    width: 35%;
+  }
+  /*---------- CONTENT ----------*/
+  .x_008_testimonial_content{
+    width: 65%;
+    padding: 5px 20px;
+  }
+}
+
+/*--------------------------------------------*/
+/* SLIDING TIMING FUNCTIONS
+/*--------------------------------------------*/
+/*----- ps_ease -----*/
+.ps_ease .carousel-item{
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
+/*----- ps_easeInOut -----*/
+.ps_easeInOut .carousel-item{
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+/*----- ps_speedy -----*/
+.ps_speedy .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0,1,0,1);
+  transition-timing-function: cubic-bezier(0,1,0,1);
+}
+/*----- ps_slowSpeedy -----*/
+.ps_slowSpeedy .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0.3,1,0,1);
+  transition-timing-function: cubic-bezier(0.3,1,0,1);
+}
+/*----- ps_easeOutInCubic -----*/
+.ps_easeOutInCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+  transition-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+}
+/*----- ps_swing -----*/
+.ps_swing .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.02,.01,.47,1);
+  transition-timing-function: cubic-bezier(.02,.01,.47,1);
+}
+/*----- ps_easeOutCubic -----*/
+.ps_easeOutCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.215,.61,.355,1);
+  transition-timing-function: cubic-bezier(.215,.61,.355,1);
+}
+/*----- ps_easeInOutCubic -----*/
+.ps_easeInOutCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.645,.045,.355,1);
+  transition-timing-function: cubic-bezier(.645,.045,.355,1);
+}
+/*----- ps_easeOutCirc -----*/
+.ps_easeOutCirc .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.075,.82,.165,1);
+  transition-timing-function: cubic-bezier(.075,.82,.165,1);
+}
+/*----- ps_easeOutExpo -----*/
+.ps_easeOutExpo .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.19,1,.22,1);
+  transition-timing-function: cubic-bezier(.19,1,.22,1);
+}
+/*----- ps_easeInQuad -----*/
+.ps_easeInQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.55,.085,.68,.53);
+  transition-timing-function: cubic-bezier(.55,.085,.68,.53);
+}
+/*----- ps_easeOutQuad -----*/
+.ps_easeOutQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.25,.46,.45,.94);
+  transition-timing-function: cubic-bezier(.25,.46,.45,.94);
+}
+/*----- ps_easeInOutQuad -----*/
+.ps_easeInOutQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.455,.03,.515,.955);
+  transition-timing-function: cubic-bezier(.455,.03,.515,.955);
+}
+/*----- ps_easeOutQuart -----*/
+.ps_easeOutQuart .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.165,.84,.44,1);
+  transition-timing-function: cubic-bezier(.165,.84,.44,1);
+}
+/*----- ps_easeInOutQuart -----*/
+.ps_easeInOutQuart .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.77,0,.175,1);
+  transition-timing-function: cubic-bezier(.77,0,.175,1);
+}
+/*----- ps_easeOutQuint -----*/
+.ps_easeOutQuint .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.23,1,.32,1);
+  transition-timing-function: cubic-bezier(.23,1,.32,1);
+}
+/*----- ps_easeInSine -----*/
+.ps_easeInSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.47,0,.745,.715);
+  transition-timing-function: cubic-bezier(.47,0,.745,.715);
+}
+/*----- ps_easeOutSine -----*/
+.ps_easeOutSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.39,.575,.565,1);
+  transition-timing-function: cubic-bezier(.39,.575,.565,1);
+}
+/*----- ps_easeInOutSine -----*/
+.ps_easeInOutSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.445,.05,.55,.95);
+  transition-timing-function: cubic-bezier(.445,.05,.55,.95);
+}

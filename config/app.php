@@ -173,6 +173,7 @@ return [
         App\Domain\Customer\Providers\CustomerServiceProvider::class,
         App\Domain\User\Providers\UserServiceProvider::class,
         App\Domain\Manager\Providers\ManagerServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
 
     ],
@@ -233,7 +234,8 @@ return [
         'Admin'=>App\Domain\Admin\Facades\Admin::class,
         'Customer'=>App\Domain\Customer\Facades\Customer::class,
         'User'=>App\Domain\User\Facades\User::class,
-        'Manager'=>App\Domain\Manager\Facades\Manager::class
+        'Manager'=>App\Domain\Manager\Facades\Manager::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
 
     ],

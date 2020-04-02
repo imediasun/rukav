@@ -1,0 +1,511 @@
+/*------------------------------------------------------*/
+/* JAVASCRIPT GRAPH 044
+/*------------------------------------------------------*/
+#js_graph_044{
+  overflow: hidden;
+  max-height: 658px;
+  position: relative;
+  background: #000000;
+}
+#js_graph_044:hover{
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+#js_graph_044:active{
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+#js_graph_044 > .carousel-inner > .carousel-item > img,
+#js_graph_044 > .carousel-inner > .carousel-item > a > img{
+  width: 100%;
+  opacity: 0.9;
+  margin: auto;
+}
+/*---------- VERTICLE EFFECT ----------*/
+.ps_slide_y .carousel-inner{
+  height: 100%;
+}
+.ps_slide_y .carousel-item{
+  height: 100%;
+}
+.ps_slide_y .carousel-item-next.carousel-item-left,
+.ps_slide_y .carousel-item-prev.carousel-item-right {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+.ps_slide_y .carousel-item-next,
+.ps_slide_y .active.carousel-item-right {
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+@supports ((-webkit-transform-style: preserve-3d) or (transform-style: preserve-3d)) {
+  .ps_slide_y .carousel-item-next,
+  .ps_slide_y .active.carousel-item-right {
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+}
+.ps_slide_y .carousel-item-prev,
+.ps_slide_y .active.carousel-item-left {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+@supports ((-webkit-transform-style: preserve-3d) or (transform-style: preserve-3d)) {
+  .ps_slide_y .carousel-item-prev,
+  .ps_slide_y .active.carousel-item-left {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+/*---------- INDICATORS CONTROL ----------*/
+.ps_indicators_numbers_y > .carousel-indicators{
+  top: 1%;
+  left: auto;
+  right: 1%;
+  width: 55px;
+  height: 100%;
+  padding:0;
+  display:block;
+  cursor: s-resize;
+  overflow-y: auto;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+.ps_indicators_numbers_y > .carousel-indicators li{
+  width: auto;
+  height: auto;
+  border: none;
+  padding: 5px;
+  color: #ffffff;
+  text-indent: 0;
+  font-size: 18px;
+  line-height: 14px;
+  display: block;
+  margin: 1px;
+  margin-top: 10px;
+  text-align: center;
+  background: transparent;
+  font-family: 'Playfair Display', serif;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transition: all 0.5s cubic-bezier(0.22,0.81,0.01,0.99);
+  transition: all 0.5s cubic-bezier(0.22,0.81,0.01,0.99);
+}
+.ps_indicators_numbers_y > .carousel-indicators .active{
+  margin: 1px;
+  width: auto;
+  height: auto;
+  border: none;
+  font-size: 35px;
+  font-weight: 600;
+  background: transparent;
+  text-indent: 0;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+}
+.ps_indicators_numbers_y > .carousel-indicators::-webkit-scrollbar{
+  width: 5px;
+}
+.ps_indicators_numbers_y > .carousel-indicators::-webkit-scrollbar-thumb{
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+/*---------- LEFT/RIGHT CONTROL ----------*/
+.ps_control_l_t_y .carousel-control-prev,
+.ps_control_l_t_y .carousel-control-next{
+  top: 10%;
+  opacity: 1;
+  width: 30px;
+  height: 30px;
+  z-index: 100;
+  border: none;
+  color: #ffffff;
+  display: block;
+  font-size: 22px;
+  cursor: pointer;
+  overflow: hidden;
+  line-height: 28px;
+  text-shadow: none;
+  position: absolute;
+  font-weight: normal;
+  background: transparent;
+  -webkit-transition: all 1s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  transition: all 1s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.ps_control_l_t_y:hover .carousel-control-prev,
+.ps_control_l_t_y:hover .carousel-control-next{
+  opacity: 1;
+  -webkit-transition: all 1s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  transition: all 1s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.ps_control_l_t_y .carousel-control-prev {
+  left: 2%;
+}
+.ps_control_l_t_y .carousel-control-next {
+  top: 5%;
+  left: 2%;
+}
+.ps_control_l_t_y .carousel-control-prev:hover,
+.ps_control_l_t_y .carousel-control-next:hover{
+  color: #e5ad4a;
+  background: transparent;
+}
+/*---------- SLIDE CAPTION ----------*/
+.js_graph_striped{
+  top: 6%;
+  left: 10%;
+  width: 38%;
+  right: auto;
+  overflow: hidden;
+  text-align: left;
+  position: absolute;
+  padding: 0 20px 20px 20px;
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  -webkit-transform: rotate(-90deg); /* Safari */
+  transform: rotate(-90deg); /* Standard syntax */
+}
+.js_graph_striped_right{
+  right: 10%;
+  left: auto;
+  text-align: right;
+}
+.js_graph_striped_center{
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+.js_graph_striped > h2{
+  color: #212121;
+  font-size: 30px;
+  font-weight: 600;
+  position: relative;
+  font-style: italic;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+  text-transform: capitalize;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Playfair Display', serif;
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+  animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+}
+.js_graph_striped > div{
+  text-align: left;
+}
+.js_graph_striped > div > span{
+  color: #212121;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Playfair Display', serif;
+}
+.js_graph_striped > div > span:nth-child(2){
+  float: right;
+}
+.js_graph_striped > div > .progress{
+  height: 15px;
+  margin-bottom: 30px;
+  background: #ffffff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.js_graph_striped > div > .progress > .progress-bar{
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  background: #e5ad4a;
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  -webkit-background-size: 30px 40px;
+  background-size: 40px 40px;
+}
+.js_graph_striped > div:nth-child(2) > .progress > .progress-bar{
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+  animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+}
+.js_graph_striped > div:nth-child(3) > .progress > .progress-bar{
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+  animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+}
+.js_graph_striped > div:nth-child(4) > .progress > .progress-bar{
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+  animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+}
+.js_graph_striped > div:nth-child(5) > .progress > .progress-bar{
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+  animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+}
+.js_graph_striped > div:nth-child(6) > .progress > .progress-bar{
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+  animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+}
+.js_graph_striped > div:nth-child(7) > .progress > .progress-bar{
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+  animation-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+}
+.js_graph_striped > a,
+.js_graph_striped > a:visited{
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 10px 30px;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Playfair Display', serif;
+  background: #e5ad4a;
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  -webkit-background-size: 40px 40px;
+  background-size: 40px 40px;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -webkit-transition: all cubic-bezier(0.22,0.81,0.01,0.99) 0.5s;
+  transition: all cubic-bezier(0.22,0.81,0.01,0.99) 0.5s;
+}
+.js_graph_striped > a:hover,
+.js_graph_striped > a:active{
+  color: #212121;
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(45deg, rgba(230, 172, 73, .15) 25%, transparent 25%, transparent 50%, rgba(230, 172, 73, .15) 50%, rgba(230, 172, 73, .15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(45deg, rgba(230, 172, 73, .15) 25%, transparent 25%, transparent 50%, rgba(230, 172, 73, .15) 50%, rgba(230, 172, 73, .15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(230, 172, 73, .15) 25%, transparent 25%, transparent 50%, rgba(230, 172, 73, .15) 50%, rgba(230, 172, 73, .15) 75%, transparent 75%, transparent);
+  -webkit-background-size: 40px 40px;
+  background-size: 40px 40px;
+}
+/*------------------------------------------------------*/
+/* RESPONSIVE
+/*------------------------------------------------------*/
+
+/*---------- MEDIA 480px ----------*/
+@media only screen and (max-width: 480px){
+  /*---------- INDICATORS CONTROL ----------*/
+  .ps_indicators_numbers_y > .carousel-indicators{
+    display: none;
+  }
+  .ps_control_l_t_y .carousel-control-prev,
+  .ps_control_l_t_y .carousel-control-next{
+    display: none;
+  }
+  /*---------- SLIDE CAPTION ----------*/
+  .js_graph_striped{
+    top: 0;
+    left: 6%;
+    width: 200px;
+	background: rgba(255,255,255,0.7);
+  }
+  .js_graph_striped_right{
+    right: 6%;
+	left: auto;
+  }
+  .js_graph_striped > h2{
+    margin: 0;
+	font-size: 14px;
+  }
+  .js_graph_striped > div > .progress{
+	height: 5px;
+    margin-bottom: 0;
+  }
+  .js_graph_striped > a,
+  .js_graph_striped > a:visited{
+    font-size: 10px;
+    margin-top: 2px;
+    padding: 2px 15px;
+  }
+}
+
+/*---------- MEDIA 481px - 600px ----------*/
+@media (min-width: 481px) and (max-width: 600px) {
+  /*---------- INDICATORS CONTROL ----------*/
+  .ps_indicators_numbers_y > .carousel-indicators{
+    display: none;
+  }
+  .ps_control_l_t_y .carousel-control-prev,
+  .ps_control_l_t_y .carousel-control-next{
+    display: none;
+  }
+  /*---------- SLIDE CAPTION ----------*/
+  .js_graph_striped{
+	top: 1%;
+    width: 300px;
+	background: rgba(255,255,255,0.7);
+  }
+  .js_graph_striped > h2{
+    font-size: 25px;
+    margin: 0;
+  }
+  .js_graph_striped > div > .progress{
+    height: 13px;
+    margin-bottom: 7px;
+  }
+  .js_graph_striped > a,
+  .js_graph_striped > a:visited{
+    padding: 5px 20px;
+  }
+}
+
+/*---------- MEDIA 601px - 767px ----------*/
+@media (min-width: 601px) and (max-width: 767px){
+  /*---------- SLIDE CAPTION ----------*/
+  .js_graph_striped{
+	top: 4%;
+	width: 300px;
+  }
+  .js_graph_striped > div > .progress{
+    margin-bottom: 5px;
+  }
+  .js_graph_striped > a,
+  .js_graph_striped > a:visited{
+    padding: 5px 20px;
+  }
+}
+
+/*---------- MEDIA 768px - 875px ----------*/
+@media (min-width: 768px) and (max-width: 1000px){
+  /*---------- SLIDE CAPTION ----------*/
+  .js_graph_striped{
+	width: 50%;
+  }
+}
+
+/*--------------------------------------------*/
+/* SLIDING TIMING FUNCTIONS
+/*--------------------------------------------*/
+/*----- ps_ease -----*/
+.ps_ease .carousel-item{
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
+/*----- ps_easeInOut -----*/
+.ps_easeInOut .carousel-item{
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+/*----- ps_speedy -----*/
+.ps_speedy .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0,1,0,1);
+  transition-timing-function: cubic-bezier(0,1,0,1);
+}
+/*----- ps_slowSpeedy -----*/
+.ps_slowSpeedy .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0.3,1,0,1);
+  transition-timing-function: cubic-bezier(0.3,1,0,1);
+}
+/*----- ps_easeOutInCubic -----*/
+.ps_easeOutInCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+  transition-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+}
+/*----- ps_swing -----*/
+.ps_swing .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.02,.01,.47,1);
+  transition-timing-function: cubic-bezier(.02,.01,.47,1);
+}
+/*----- ps_easeOutCubic -----*/
+.ps_easeOutCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.215,.61,.355,1);
+  transition-timing-function: cubic-bezier(.215,.61,.355,1);
+}
+/*----- ps_easeInOutCubic -----*/
+.ps_easeInOutCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.645,.045,.355,1);
+  transition-timing-function: cubic-bezier(.645,.045,.355,1);
+}
+/*----- ps_easeOutCirc -----*/
+.ps_easeOutCirc .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.075,.82,.165,1);
+  transition-timing-function: cubic-bezier(.075,.82,.165,1);
+}
+/*----- ps_easeOutExpo -----*/
+.ps_easeOutExpo .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.19,1,.22,1);
+  transition-timing-function: cubic-bezier(.19,1,.22,1);
+}
+/*----- ps_easeInQuad -----*/
+.ps_easeInQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.55,.085,.68,.53);
+  transition-timing-function: cubic-bezier(.55,.085,.68,.53);
+}
+/*----- ps_easeOutQuad -----*/
+.ps_easeOutQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.25,.46,.45,.94);
+  transition-timing-function: cubic-bezier(.25,.46,.45,.94);
+}
+/*----- ps_easeInOutQuad -----*/
+.ps_easeInOutQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.455,.03,.515,.955);
+  transition-timing-function: cubic-bezier(.455,.03,.515,.955);
+}
+/*----- ps_easeOutQuart -----*/
+.ps_easeOutQuart .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.165,.84,.44,1);
+  transition-timing-function: cubic-bezier(.165,.84,.44,1);
+}
+/*----- ps_easeInOutQuart -----*/
+.ps_easeInOutQuart .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.77,0,.175,1);
+  transition-timing-function: cubic-bezier(.77,0,.175,1);
+}
+/*----- ps_easeOutQuint -----*/
+.ps_easeOutQuint .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.23,1,.32,1);
+  transition-timing-function: cubic-bezier(.23,1,.32,1);
+}
+/*----- ps_easeInSine -----*/
+.ps_easeInSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.47,0,.745,.715);
+  transition-timing-function: cubic-bezier(.47,0,.745,.715);
+}
+/*----- ps_easeOutSine -----*/
+.ps_easeOutSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.39,.575,.565,1);
+  transition-timing-function: cubic-bezier(.39,.575,.565,1);
+}
+/*----- ps_easeInOutSine -----*/
+.ps_easeInOutSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.445,.05,.55,.95);
+  transition-timing-function: cubic-bezier(.445,.05,.55,.95);
+}

@@ -5,7 +5,11 @@ Route::get('/logout', function () {
 
 });
 
+Route::get('/redirect', 'Auth\SiteAdminLoginController@redirectToProvider');
+Route::get('/callback', 'Auth\SiteAdminLoginController@handleProviderCallback');
+
 Route::get('/', 'HomeController@index')->name('dashboard');
+Route::get('/category/{id}/{type?}', 'CategoryController@index')->name('category');
 Route::get('/news_feed', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
 #Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('login');
@@ -35,7 +39,7 @@ Route::group(['prefix' => 'customer'],function(){
 Route::group(['prefix' => 'company'],function(){
 
     Route::post('/banner/update_status', 'Ajax\CompanyController@updateBannerStatus');
-
+    Route::get('/edit_categories', 'Admin\CompaniesController@showEditCategories');
     Route::get('/custom_layouts', 'Admin\CompaniesController@showCustomLayouts');
     Route::post('/banners/data', 'Admin\CompaniesController@postBannersData');
     Route::post('/banner/create', 'Ajax\CompanyController@postSaveBanner');

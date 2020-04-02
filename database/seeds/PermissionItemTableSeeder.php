@@ -162,6 +162,18 @@ class PermissionItemTableSeeder extends Seeder
                 'guard_name'=>'admin'
 
             ],
+            /*14*/
+            [
+
+                'name' => 'edit_viewable_interfaces',
+                'process_name'=>'Редактирование пользовательского интерфейса',
+                'process_slug'=>'edit_viewable_interfaces',
+                'type_category'=>'Меню',
+                'type_name'=>'Меню',
+                'guard_name'=>'admin'
+
+            ],
+
 
 
 
@@ -261,6 +273,13 @@ class PermissionItemTableSeeder extends Seeder
             [
 
                 'permission_id' =>13 ,
+                'role_id'=>4
+
+
+            ],
+            [
+
+                'permission_id' =>14 ,
                 'role_id'=>4
 
 

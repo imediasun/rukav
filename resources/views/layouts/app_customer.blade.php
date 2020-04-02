@@ -31,7 +31,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/formplugins/select2/select2.bundle.css">
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/formplugins/summernote/summernote.css">
 @yield('styles')
-    <!--<link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/your_styles.css">-->
+<!--<link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/your_styles.css">-->
 </head>
 <body class="mod-bg-1 ">
 <!-- DOC: script to save and load page settings -->
@@ -41,7 +41,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
      *	Note: the script is written in pure javascript and does not depend on thirdparty library
      **/
     var company_id='{{$company_id}}';
-window.company_id='{{$company_id}}';
+    window.company_id='{{$company_id}}';
 
 
     var xhr = new XMLHttpRequest();
@@ -56,7 +56,7 @@ window.company_id='{{$company_id}}';
         var data = JSON.parse(this.responseText);
         console.log(data);
         if(data){
-        localStorage.setItem("themeSettings",data.theme_options);}
+            localStorage.setItem("themeSettings",data.theme_options);}
     }
 
     'use strict';
@@ -142,10 +142,10 @@ window.company_id='{{$company_id}}';
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
 
-        <div style="position:absolute;top:0px;left:0px;width:100%;height:250px;background-image: url('/storage/banners/1.jpg') !important;background-position: center;background-size: cover;">
+    <div style="position:absolute;top:0px;left:0px;width:100%;height:250px;background-image: url('/storage/banners/1.jpg') !important;background-position: center;background-size: cover;">
 
 
-        </div>
+    </div>
     <div class="Menu_giveBadgeWrap__28NpB" style="margin-top:200px" data-toggle="modal" data-target=".default-example-modal-right-lg" onclick="localStorage.setItem('personalBadegeCustomerId',0);reloadPage()">Создать</div>
 
 
@@ -182,7 +182,7 @@ window.company_id='{{$company_id}}';
         .single_badge:hover{
             cursor:pointer;
             transform: scale(1.4);
-         }
+        }
         .single_badge:hover >.badge_border{
             width:170px;
             height:170px;
@@ -190,7 +190,7 @@ window.company_id='{{$company_id}}';
         }
 
         span.select2-container {
-            //z-index:10050;
+        //z-index:10050;
         }
     </style>
 
@@ -216,27 +216,27 @@ window.company_id='{{$company_id}}';
 
                     @foreach($company_badges_groups as $group)
                         @if($group->group)
-                        <h3>{{$group->group->name}}</h3>
-                        <?$i=1;
+                            <h3>{{$group->group->name}}</h3>
+                            <?$i=1;
 
-                        $cnt=count($group->badges);
-                        ?>
-                        @foreach($group->badges as $badges)
-                            @if($i==1 || (($i%4+1)==2) )
-                                <div>
-                                @else
+                            $cnt=count($group->badges);
+                            ?>
+                            @foreach($group->badges as $badges)
+                                @if($i==1 || (($i%4+1)==2) )
+                                    <div>
+                                        @else
 
-                                    @endif
+                                        @endif
 
 
-                                    <div class="badge_border" style="position:relative;padding:30px;width:170px;height:170px;display:inline-block;border: 1px solid #eee">
-                                        <input type="hidden" class="badge_num" value="{{$i}}">
-                                        <input type="hidden" class="badge_id" value="{{$badges->id}}">
-                                        <input type="hidden" class="badge_name" value="{{$badges->name}}">
-                                        <img src="/storage/badges/{{$badges->photo}}" style="position:absolute" class="single_badge"> </div>
+                                        <div class="badge_border" style="position:relative;padding:30px;width:170px;height:170px;display:inline-block;border: 1px solid #eee">
+                                            <input type="hidden" class="badge_num" value="{{$i}}">
+                                            <input type="hidden" class="badge_id" value="{{$badges->id}}">
+                                            <input type="hidden" class="badge_name" value="{{$badges->name}}">
+                                            <img src="/storage/badges/{{$badges->photo}}" style="position:absolute" class="single_badge"> </div>
 
-                                    <!--Или  если бейдж принадлежит остатку бейджей в группе-->
-                                    @if($i%4==0 || $cnt==$i)
+                                        <!--Или  если бейдж принадлежит остатку бейджей в группе-->
+                                        @if($i%4==0 || $cnt==$i)
 
 
                                             <div style="height:750px;width:100%;background:#eee;position:relative;display:none;padding-top:25px" class="sending_group">
@@ -282,16 +282,16 @@ window.company_id='{{$company_id}}';
                                                 </form>
                                             </div>
 
-                                    @endif
+                                        @endif
 
 
 
-                @if($i%4==0 || $cnt==$i )
-                    </div>
-                        @endif
+                                        @if($i%4==0 || $cnt==$i )
+                                    </div>
+                                @endif
 
-                <?$i++;?>
-                        @endforeach
+                                <?$i++;?>
+                            @endforeach
                         @endif
                     @endforeach
 
@@ -310,9 +310,9 @@ window.company_id='{{$company_id}}';
     <div class="page-inner" style="left:0px;position:relative;margin-top:250px">
         <!-- BEGIN Left Aside -->
 
-            <!-- BEGIN PRIMARY NAVIGATION -->
+        <!-- BEGIN PRIMARY NAVIGATION -->
     @include('layouts.nav')
-            <!-- END PRIMARY NAVIGATION -->
+    <!-- END PRIMARY NAVIGATION -->
 
         <!-- END Left Aside -->
         <div class="page-content-wrapper">
@@ -1718,100 +1718,100 @@ window.company_id='{{$company_id}}';
 
 </script>
 <script>
-$(document).ready(function(){
-    localStorage.setItem("personalBadegeCustomerId",0)
+    $(document).ready(function(){
+        localStorage.setItem("personalBadegeCustomerId",0)
 
-    reloadPage();
-
-
+        reloadPage();
 
 
 
-})
 
 
-function summernoteInit(){
+    })
 
-    var autoSave = $('#autoSave');
-    var interval;
-    var timer = function()
-    {
-        interval = setInterval(function()
+
+    function summernoteInit(){
+
+        var autoSave = $('#autoSave');
+        var interval;
+        var timer = function()
         {
-            //start slide...
-            if (autoSave.prop('checked'))
-                saveToLocal();
-
-            clearInterval(interval);
-        }, 3000);
-    };
-
-    //save
-    var saveToLocal = function()
-    {
-        localStorage.setItem('summernoteData', $('#saveToLocal').summernote("code"));
-        console.log("saved");
-    }
-
-    //delete
-    var removeFromLocal = function()
-    {
-        localStorage.removeItem("summernoteData");
-        $('#saveToLocal').summernote('reset');
-    }
-
-
-
-    $('.js-summernote').summernote({
-        height: 200,
-        tabsize: 2,
-        placeholder: "Type here...",
-        dialogsFade: true,
-        toolbar: [
-            ['style', ['style']],
-            ['font', ['strikethrough', 'superscript', 'subscript']],
-            ['font', ['bold', 'italic', 'underline', 'clear']],
-            ['fontsize', ['fontsize']],
-            ['fontname', ['fontname']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['height', ['height']]
-                ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['fullscreen', 'codeview', 'help']]
-        ],
-        callbacks:
+            interval = setInterval(function()
             {
-                //restore from localStorage
-                onInit: function(e)
+                //start slide...
+                if (autoSave.prop('checked'))
+                    saveToLocal();
+
+                clearInterval(interval);
+            }, 3000);
+        };
+
+        //save
+        var saveToLocal = function()
+        {
+            localStorage.setItem('summernoteData', $('#saveToLocal').summernote("code"));
+            console.log("saved");
+        }
+
+        //delete
+        var removeFromLocal = function()
+        {
+            localStorage.removeItem("summernoteData");
+            $('#saveToLocal').summernote('reset');
+        }
+
+
+
+        $('.js-summernote').summernote({
+            height: 200,
+            tabsize: 2,
+            placeholder: "Type here...",
+            dialogsFade: true,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+                    ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ],
+            callbacks:
                 {
-                    $('.js-summernote').summernote("code", localStorage.getItem("summernoteData"));
-                },
-                onChange: function(contents, $editable)
-                {
-                    console.log('change summernote')
-                    //clearInterval(interval);
-                    //timer();
-                    localStorage.setItem("summernoteData",contents)
-                    console.log(contents);
+                    //restore from localStorage
+                    onInit: function(e)
+                    {
+                        $('.js-summernote').summernote("code", localStorage.getItem("summernoteData"));
+                    },
+                    onChange: function(contents, $editable)
+                    {
+                        console.log('change summernote')
+                        //clearInterval(interval);
+                        //timer();
+                        localStorage.setItem("summernoteData",contents)
+                        console.log(contents);
+                    }
                 }
-            }
-    });
-}
-
-function reloadPage(){
-
-   var personalBadegeCustomerId= localStorage.getItem("personalBadegeCustomerId")
-    console.log('personalBadegeCustomerId',personalBadegeCustomerId);
-    if(personalBadegeCustomerId>0){
-       $('.personal_select').hide()
-
+        });
     }
-    else{
-        $('.personal_select').show()
-        $('.sending_badge_title').text('Новая благодарность сотруднику')
+
+    function reloadPage(){
+
+        var personalBadegeCustomerId= localStorage.getItem("personalBadegeCustomerId")
+        console.log('personalBadegeCustomerId',personalBadegeCustomerId);
+        if(personalBadegeCustomerId>0){
+            $('.personal_select').hide()
+
+        }
+        else{
+            $('.personal_select').show()
+            $('.sending_badge_title').text('Новая благодарность сотруднику')
+        }
     }
-}
 
     $('.single_badge').click(function(){
 
@@ -1856,10 +1856,10 @@ function reloadPage(){
 
             },
             success: function (data) {
-            console.log(data)
+                console.log(data)
                 if(data>=3 && sending_badges_group==3 ){
                     console.log('trying to send Golden badge')
-                alert('Вы уже отправили 3 золотых бэйджа в этом месяце')
+                    alert('Вы уже отправили 3 золотых бэйджа в этом месяце')
 
                 }else {
                     window.slide_allow=1
@@ -1873,16 +1873,16 @@ function reloadPage(){
         });
 
 
-            sending_group.slideDown({
-                duration: 'slow',
-                easing: 'linear'
-            })
+        sending_group.slideDown({
+            duration: 'slow',
+            easing: 'linear'
+        })
 
 
 
 
 
-console.log('first step')
+        console.log('first step')
         badge_submit.click(function(){
             console.log('second step')
 
@@ -1930,11 +1930,11 @@ console.log('first step')
 
         })
 
-console.log('here',$(this).parent().parent())
+        console.log('here',$(this).parent().parent())
 
         $(this).parent().parent().find('.sending_group').find('.badges_form').each(function (index, value){
             console.log('here')
-             var form_id=$(this).attr('id')
+            var form_id=$(this).attr('id')
             var dropdown=$(this).find('.form-group').find('.js-data-example-ajax')
             console.log('dropdown',dropdown);
 
@@ -2008,7 +2008,7 @@ console.log('here',$(this).parent().parent())
 
                         var personalBadegeCustomerId= localStorage.getItem("personalBadegeCustomerId")
                         if(personalBadegeCustomerId==0){
-                        $('#'+form_id).find('.sending_badge_user').val(data.id)
+                            $('#'+form_id).find('.sending_badge_user').val(data.id)
                         }
 
                         console.log($('#'+form_id).find('.sending_badge_user').val());
@@ -2017,9 +2017,9 @@ console.log('here',$(this).parent().parent())
                     }
                 });
 
-$('.js-data-example-ajax').change(function(){
-    console.log('change')
-})
+            $('.js-data-example-ajax').change(function(){
+                console.log('change')
+            })
 
             function icon(elm)
             {
@@ -2077,36 +2077,36 @@ $('.js-data-example-ajax').change(function(){
 
 
 
-$('.personal_badge').click(function(){
+    $('.personal_badge').click(function(){
 
-var personal_badge_customer_id= $(this).parent().find('.personal_badge_customer_id').val()
-    console.log(personal_badge_customer_id);
-    localStorage.setItem("personalBadegeCustomerId",personal_badge_customer_id)
+        var personal_badge_customer_id= $(this).parent().find('.personal_badge_customer_id').val()
+        console.log(personal_badge_customer_id);
+        localStorage.setItem("personalBadegeCustomerId",personal_badge_customer_id)
 
-    $.ajax({
-        method: 'POST',
-        dataType: 'json',
-        async:false,
-        url: '/customer/get_customer_info',
-        data: {customer_id: personal_badge_customer_id
-        },
-        beforeSend: function() {
-        },
-        complete: function() {
+        $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            async:false,
+            url: '/customer/get_customer_info',
+            data: {customer_id: personal_badge_customer_id
+            },
+            beforeSend: function() {
+            },
+            complete: function() {
 
-        },
-        success: function (data) {
-            console.log('success'.data)
-            $('.sending_badge_title').text('Новая Персональная благодарность сотруднику'+' '+data.name+' '+data.sername)
-            $('.sending_badge_user').val(data.id)
+            },
+            success: function (data) {
+                console.log('success'.data)
+                $('.sending_badge_title').text('Новая Персональная благодарность сотруднику'+' '+data.name+' '+data.sername)
+                $('.sending_badge_user').val(data.id)
 
 
-        }
-    });
+            }
+        });
 
-    reloadPage();
+        reloadPage();
 
-})
+    })
 
 </script>
 @yield('scripts')

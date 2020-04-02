@@ -1,0 +1,303 @@
+/*------------------------------------------------------*/
+/* FULL WIDTH IMAGES LAYERS 018
+/*------------------------------------------------------*/
+#fw_il_018 {
+  overflow: hidden;
+  max-height: 645px;
+  position: relative;
+  background: #000000;
+}
+#fw_il_018:hover {
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+#fw_il_018:active {
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+#fw_il_018 > .carousel-inner > .carousel-item{
+  width: 100%;
+}
+/*---------- LEFT/RIGHT CONTROL ----------*/
+.ps_control_rectanlefil .carousel-control-prev,
+.ps_control_rectanlefil .carousel-control-next{
+  top: 42%;
+  opacity: 0;
+  width: 35px;
+  height: 90px;
+  z-index: 100;
+  color: #754fc9;
+  display: block;
+  font-size: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  line-height: 90px;
+  text-shadow: none;
+  position: absolute;
+  font-weight: normal;
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -webkit-transition: all 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  transition: all 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.ps_control_rectanlefil:hover .carousel-control-prev,
+.ps_control_rectanlefil:hover .carousel-control-next{
+  opacity: 1;
+}
+.ps_control_rectanlefil .carousel-control-prev{
+  left: 1%;
+}
+.ps_control_rectanlefil .carousel-control-next{
+  right: 1%;
+}
+.ps_control_rectanlefil .carousel-control-prev:hover,
+.ps_control_rectanlefil .carousel-control-next:hover{
+  color: #ffffff;
+  background: #754fc9;
+}
+.ps_control_rectanlefil .carousel-control-prev > span:nth-child(1){
+ margin-right: 0;
+}
+.ps_control_rectanlefil .carousel-control-next > span:nth-child(1){
+  margin-left: 0;
+}
+/*---------- SLIDE CAPTION ----------*/
+/*---------- BACKGROUND IMAGES ----------*/
+#fw_il_018 > .carousel-inner > .carousel-item img {
+  height: 100%;
+}
+#fw_il_018 > .carousel-inner > .carousel-item > .row {
+  margin: 0;
+}
+#fw_il_018 > .carousel-inner > .carousel-item > .row > div {
+  padding: 0;
+  overflow: hidden;
+}
+#fw_il_018 > .carousel-inner > .carousel-item > .row > div > img {
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  animation-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+
+/*---------- TEXT ----------*/
+.fw_il_018_slide{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 100% 10px 10px 10px;
+  text-align: center;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+}
+.fw_il_018_slide > h5{
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 400;
+  text-shadow: none;
+  line-height: 30px;
+  margin: 0 0 20px 0;
+  font-style: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.fw_il_018_slide > a{
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 300;
+  text-shadow: none;
+  position: relative;
+  text-align: center;
+  font-style: normal;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid #ffffff;
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: all cubic-bezier(0.230, 1.000, 0.320, 1.000) 0.7s;
+  transition: all cubic-bezier(0.230, 1.000, 0.320, 1.000) 0.7s;
+}
+.fw_il_018_slide > a:hover{
+  color: #754fc9;
+  border-bottom: 1px solid #754fc9;
+}
+
+/*------------------------------------------------------*/
+/* RESPONSIVE
+/*------------------------------------------------------*/
+
+/*---------- MEDIA 480px ----------*/
+@media only screen and (max-width: 480px) {
+  /*---------- SLIDE CAPTION ----------*/
+  /*---------- BACKGROUND IMAGES ----------*/
+  #fw_il_018 > .carousel-inner > .carousel-item img {
+	height: 230px;
+  }
+  .fw_il_018_slide{
+    padding: 100% 0 0 0;
+  }
+  .fw_il_018_slide > h5{
+    font-size: 7px;
+	letter-spacing: 1px;
+  }
+  .fw_il_018_slide > a{
+    font-size: 11px;
+  }
+  /*---------- LEFT/RIGHT CONTROL ----------*/
+  .ps_control_rectanlefil .carousel-control-prev,
+  .ps_control_rectanlefil .carousel-control-next{
+    display: none;
+  }
+}
+
+/*---------- MEDIA 481px - 600px ----------*/
+@media (min-width: 481px) and (max-width: 600px) {
+  /*---------- SLIDE CAPTION ----------*/
+  /*---------- BACKGROUND IMAGES ----------*/
+  #fw_il_018 > .carousel-inner > .carousel-item img {
+	height: 350px;
+  }
+  .fw_il_018_slide{
+    padding: 100% 0 0 0;
+  }
+  .fw_il_018_slide > h5{
+    font-size: 12px;
+	letter-spacing: 1px;
+  }
+  .fw_il_018_slide > a{
+    font-size: 11px;
+  }
+}
+
+/*---------- MEDIA 601px - 767px ----------*/
+@media (min-width: 601px) and (max-width: 767px) {
+  /*---------- SLIDE CAPTION ----------*/
+  /*---------- BACKGROUND IMAGES ----------*/
+  #fw_il_018 > .carousel-inner > .carousel-item img {
+	height: 400px;
+  }
+  .fw_il_018_slide > h5{
+    font-size: 14px;
+  }
+}
+
+/*---------- MEDIA 768px - 900px ----------*/
+@media (min-width: 768px) and (max-width: 930px) {
+  /*---------- SLIDE CAPTION ----------*/
+  /*---------- BACKGROUND IMAGES ----------*/
+  #fw_il_018 > .carousel-inner > .carousel-item img {
+	height: 450px;
+  }
+  .fw_il_018_slide > h5{
+    font-size: 14px;
+  }
+}
+
+/*--------------------------------------------*/
+/* SLIDING TIMING FUNCTIONS
+/*--------------------------------------------*/
+/*----- ps_ease -----*/
+.ps_ease .carousel-item{
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
+/*----- ps_easeInOut -----*/
+.ps_easeInOut .carousel-item{
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+/*----- ps_speedy -----*/
+.ps_speedy .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0,1,0,1);
+  transition-timing-function: cubic-bezier(0,1,0,1);
+}
+/*----- ps_slowSpeedy -----*/
+.ps_slowSpeedy .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0.3,1,0,1);
+  transition-timing-function: cubic-bezier(0.3,1,0,1);
+}
+/*----- ps_easeOutInCubic -----*/
+.ps_easeOutInCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+  transition-timing-function: cubic-bezier(0.22,0.81,0.01,0.99);
+}
+/*----- ps_swing -----*/
+.ps_swing .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.02,.01,.47,1);
+  transition-timing-function: cubic-bezier(.02,.01,.47,1);
+}
+/*----- ps_easeOutCubic -----*/
+.ps_easeOutCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.215,.61,.355,1);
+  transition-timing-function: cubic-bezier(.215,.61,.355,1);
+}
+/*----- ps_easeInOutCubic -----*/
+.ps_easeInOutCubic .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.645,.045,.355,1);
+  transition-timing-function: cubic-bezier(.645,.045,.355,1);
+}
+/*----- ps_easeOutCirc -----*/
+.ps_easeOutCirc .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.075,.82,.165,1);
+  transition-timing-function: cubic-bezier(.075,.82,.165,1);
+}
+/*----- ps_easeOutExpo -----*/
+.ps_easeOutExpo .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.19,1,.22,1);
+  transition-timing-function: cubic-bezier(.19,1,.22,1);
+}
+/*----- ps_easeInQuad -----*/
+.ps_easeInQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.55,.085,.68,.53);
+  transition-timing-function: cubic-bezier(.55,.085,.68,.53);
+}
+/*----- ps_easeOutQuad -----*/
+.ps_easeOutQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.25,.46,.45,.94);
+  transition-timing-function: cubic-bezier(.25,.46,.45,.94);
+}
+/*----- ps_easeInOutQuad -----*/
+.ps_easeInOutQuad .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.455,.03,.515,.955);
+  transition-timing-function: cubic-bezier(.455,.03,.515,.955);
+}
+/*----- ps_easeOutQuart -----*/
+.ps_easeOutQuart .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.165,.84,.44,1);
+  transition-timing-function: cubic-bezier(.165,.84,.44,1);
+}
+/*----- ps_easeInOutQuart -----*/
+.ps_easeInOutQuart .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.77,0,.175,1);
+  transition-timing-function: cubic-bezier(.77,0,.175,1);
+}
+/*----- ps_easeOutQuint -----*/
+.ps_easeOutQuint .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.23,1,.32,1);
+  transition-timing-function: cubic-bezier(.23,1,.32,1);
+}
+/*----- ps_easeInSine -----*/
+.ps_easeInSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.47,0,.745,.715);
+  transition-timing-function: cubic-bezier(.47,0,.745,.715);
+}
+/*----- ps_easeOutSine -----*/
+.ps_easeOutSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.39,.575,.565,1);
+  transition-timing-function: cubic-bezier(.39,.575,.565,1);
+}
+/*----- ps_easeInOutSine -----*/
+.ps_easeInOutSine .carousel-item{
+  -webkit-transition-timing-function: cubic-bezier(.445,.05,.55,.95);
+  transition-timing-function: cubic-bezier(.445,.05,.55,.95);
+}

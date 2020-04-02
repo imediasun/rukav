@@ -455,27 +455,8 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'not_linked',
                 'permission'=>'view_company_statistics_menu'
             ],
+
             /*11*/  //Role=>company_admin
-     /*       [
-                'parent_id' => 10,
-                'name' => 'Статистика по людям',
-                'icon'=> 'fal fa-window',
-                'link'=> '/company/users_statistics',
-                'system_name'=>'users_statistics',
-                'type'=>'linked',
-                'permission'=>null
-            ],*/
-            /*12*/  //Role=>company_admin
-         /*   [
-                'parent_id' => 10,
-                'name' => 'Статистика по менеджерам ',
-                'icon'=> 'fal fa-window',
-                'link'=> '/company/users_statistics',
-                'system_name'=>'users_statistics',
-                'type'=>'linked',
-                'permission'=>null
-            ],*/
-            /*13*/  //Role=>company_admin
             [
                 'parent_id' => 10,
                 'name' => 'Статистика по бейджам ',
@@ -485,7 +466,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*14*/  //Role=>manager
+            /*12*/  //Role=>manager
             [
                 'parent_id' => 0,
                 'name' => 'Статистика менеджера',
@@ -495,7 +476,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>'view_manager_statistics_menu'
             ],
-            /*15*/  //Role=>main_system_administrator
+            /*13*/  //Role=>main_system_administrator
             [
                 'parent_id' => 0,
                 'name' => 'Управление доступом',
@@ -505,7 +486,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>'view_admins_accesses_menu'
             ],
-            /*16*/  //Role=>main_system_administrator
+            /*14*/  //Role=>main_system_administrator
             [
                 'parent_id' => 0,
                 'name' => 'Аналитика по клиенту',
@@ -515,7 +496,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>'view_clients_analytics_menu'
             ],
-            /*17*/  //Role=>main_system_administrator
+            /*15*/  //Role=>main_system_administrator
             [
                 'parent_id' => 0,
                 'name' => 'Компании',
@@ -525,7 +506,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>'view_companies_menu'
             ],
-            /*18*/  //Role=>all
+            /*16*/  //Role=>all
             [
                 'parent_id' => 0,
                 'name' => 'Профиль администратора',
@@ -535,7 +516,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*19*/  //Role=>company_admin
+            /*17*/  //Role=>company_admin
             [
                 'parent_id' => 0,
                 'name' => 'Менеджеры',
@@ -545,7 +526,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'not_linked',
                 'permission'=>'view_company_managers_menu'
             ],
-            /*20*/  //Role=>company_admin 1)Impresonate by user
+            /*18*/  //Role=>company_admin 1)Impresonate by user
             [
                 'parent_id' => 19,
                 'name' => 'Список менеджеров',
@@ -555,7 +536,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*21*/ //Role=>company_admin
+            /*19*/ //Role=>company_admin
             [
                 'parent_id' => 4,
                 'name' => 'Цветовые схеммы',
@@ -565,7 +546,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*22*/  //Role=>all_admin
+            /*20*/  //Role=>all_admin
             [
                 'parent_id' => 0,
                 'name' => 'Собственный профиль',
@@ -575,7 +556,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'not_linked',
                 'permission'=>'view_customer_interface'
             ],
-            /*23*/  //Role=>all_admin
+            /*21*/  //Role=>all_admin
             [
                 'parent_id' => 22,
                 'name' => 'Управление профилем',
@@ -585,7 +566,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*24*/  //Role=>all_admin
+            /*22*/  //Role=>all_admin
             [
                 'parent_id' => 22,
                 'name' => 'Аватарки',
@@ -595,7 +576,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*25*/  //Role=>system_admin
+            /*23*/  //Role=>system_admin
             [
                 'parent_id' => 0,
                 'name' => 'Бэйджи',
@@ -605,9 +586,9 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'not_linked',
                 'permission'=>'view_main_admin_badges'
             ],
-            /*26*/  //Role=>system_admin
+            /*24*/  //Role=>system_admin
             [
-                'parent_id' => 25,
+                'parent_id' => 23,
                 'name' => 'Группы бэйджей',
                 'icon'=> 'fal fa-window',
                 'link'=> '/admin/main_admin/badges_groups',
@@ -615,9 +596,9 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
-            /*27*/  //Role=>system_admin
+            /*25*/  //Role=>system_admin
             [
-                'parent_id' => 25,
+                'parent_id' => 23,
                 'name' => 'Кастомные бэйджи',
                 'icon'=> 'fal fa-window',
                 'link'=> '/admin/main_admin/custom_badges',
@@ -625,6 +606,47 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'type'=>'linked',
                 'permission'=>null
             ],
+            /*26*/  //Role=>company_admin
+            [
+                'parent_id' => 0,
+                'name' => 'Оформление',
+                'icon'=> 'fal fa-window',
+                'link'=> '/company/categories',
+                'system_name'=>'categories',
+                'type'=>'not_linked',
+                'permission'=>'edit_viewable_interfaces'
+            ],
+            /*27*/  //Role=>company_admin 1)Impresonate by user
+            [
+                'parent_id' => 26,
+                'name' => 'Редактирование категорий',
+                'icon'=> 'fal fa-window',
+                'link'=> '/company/edit_categories',
+                'system_name'=>'edit_categories',
+                'type'=>'linked',
+                'permission'=>null
+            ],
+
+            /*11*/  //Role=>company_admin
+            /*       [
+                       'parent_id' => 10,
+                       'name' => 'Статистика по людям',
+                       'icon'=> 'fal fa-window',
+                       'link'=> '/company/users_statistics',
+                       'system_name'=>'users_statistics',
+                       'type'=>'linked',
+                       'permission'=>null
+                   ],*/
+            /*12*/  //Role=>company_admin
+            /*   [
+                   'parent_id' => 10,
+                   'name' => 'Статистика по менеджерам ',
+                   'icon'=> 'fal fa-window',
+                   'link'=> '/company/users_statistics',
+                   'system_name'=>'users_statistics',
+                   'type'=>'linked',
+                   'permission'=>null
+               ],*/
 
 
 

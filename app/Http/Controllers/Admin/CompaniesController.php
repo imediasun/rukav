@@ -237,4 +237,19 @@ class CompaniesController extends BaseController
         $data['banners']=$data['banners']=BannersModel::get();
         return view('main_admin.companies.banners.table',$data);
     }
+
+    public function showEditCategories(){
+        $data=$this->mainSettings();
+        $data['menu']=$this->menu();
+        $user=\Auth::user();
+        //$data['banners']=BannersModel::get();
+        $data['company_id']=$user->getCompany[0]->id;
+        $data['title']="Додати товар";
+        $data['keywords']="Ukrainian industry platform";
+        $data['description']="Ukrainian industry platform";
+        $data['categories']=\App\ProductCategory::orderBy('parent_id', 'asc')
+            ->get();
+        return view('main_admin.companies.categories.index',$data);
+
+    }
 }
