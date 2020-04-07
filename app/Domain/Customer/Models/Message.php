@@ -9,7 +9,7 @@ class Message extends Model
     //
 
     protected $fillable = [
-        'id', 'addressant','sender','company_id','title','message','badge_id','visibility'
+        'id', 'category_id','sender','company_id','title','message','active','badge_id','visibility'
 
     ];
 
@@ -29,6 +29,11 @@ class Message extends Model
     public function manager(){
 
      return $this->hasOneThrough('App\Domain\Manager\Models\Manager', 'App\Domain\Customer\Models\Customer','user_id','id','addressant','manager_id');
+
+    }
+
+    public function pictures(){
+        return $this->hasOne('App\Domain\Company\Models\Picture','message_id','id');
 
     }
 }

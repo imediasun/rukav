@@ -251,21 +251,25 @@ class CustomersController extends BaseController
     }
 
     public function sendBadgeMessage(Request $request){
-        $user=\Auth::user();
+        var_dump($request->input('category'));
+      $user=\Auth::user();
         $data['user_id']=$user->id;
         $data['company_id']=$user->company_id;
         $message['values']=[
-        'addressant'=>$request->input('customer'),
+        'category_id'=>$request->input('category'),//$request->input('customer')
         'sender'=>$data['user_id'],
         'company_id'=>$data['company_id'],
         'title'=>$request->input('title'),
         'message'=>$request->input('message'),
-        'badge_id'=>$request->input('badge'),
-         'visibility'=>$request->input('visibility'),
+        'badge_id'=>1,
+         'visibility'=>1,//$request->input('visibility')
     ];
 
         $message['attributes']['id']=(null!=($request->input('customer_id')) && !empty($request->input('customer_id'))) ? $request->input('customer_id') : null;
-        Customer::updateMessage($message);
+        $id=Customer::updateMessage($message);
+        $companyLogo['values']=['message_id'=>$id->id,'photo'=> \Session::get('temp_picture_filename')];
+        $companyLogo['attributes']['id']= null;
+        Company::updateCompanyPicture($companyLogo);
 
     }
 
@@ -344,6 +348,11 @@ class CustomersController extends BaseController
         $data['description']="Ukrainian industry platform";
 
         return view('customer.special.index',$data);
+    }
+
+    public function messages(){
+
+
     }
 
 

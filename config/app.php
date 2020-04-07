@@ -174,6 +174,7 @@ return [
         App\Domain\User\Providers\UserServiceProvider::class,
         App\Domain\Manager\Providers\ManagerServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        App\Domain\Customer\Providers\MessageServiceProvider::class,
 
 
     ],
@@ -236,6 +237,7 @@ return [
         'User'=>App\Domain\User\Facades\User::class,
         'Manager'=>App\Domain\Manager\Facades\Manager::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Message'=>App\Domain\Customer\Facades\Message::class,
 
 
     ],

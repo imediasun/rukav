@@ -165,14 +165,20 @@
                                     </p> <input class="parent_category required" name="parent_id" type="text" value="">
                                     <div class="categories">
                                         <div class="block_main_categories cat_block_1" style="">
-                                            <div>
-                                                <button><i class="fa fa-plus"></i>Добавить категорию в уровень</button>
 
-                                            </div>
-
+                                            <? $i=0;?>
                                             @foreach ($categories as $key=>$category)
                                                 @if($category->parent_id==0)
+                                                    @if($i==0)
+                                                        <div>
 
+
+
+                                                            <input type="hidden" class="category_level" value="{{$category->parent_id}}">
+                                                            <button class="add_category_into_level" type="button"  ><i class="fa fa-plus" ></i>Добавить категорию в уровень</button>
+
+                                                        </div>
+                                                    @endif
                                                     <a >
 
                                                         <div  class="cat_block" >
@@ -190,7 +196,7 @@
 
                                                             <span class="fa arrow" style="float:right"></span>
                                                         </div></a>
-
+                                                        <?$i++;?>
                                                 @endif
                                             @endforeach
 
@@ -254,7 +260,49 @@
 
     </div>
 
-    <div id="addtab" title="Изменение названия категории">
+    <!-- Modal center Large -->
+    <div class="modal fade default-example-modal-lg-center"  role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="change_or_add_category">
+
+                        <fieldset>
+                            <input name="authenticity_token" type="hidden">
+                            <div class="form-group">
+                                <label>Ссылка</label>
+                                <input class="form-control" id="tab_title" value="" placeholder="Text field" type="text">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Название категории</label>
+                                <input class="form-control" id="cat_name" value="" placeholder="Text field" type="text">
+                            </div>
+                        </fieldset>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!--div id="addtab" title="Изменение названия категории">
 
         <form>
 
@@ -273,7 +321,7 @@
 
         </form>
 
-    </div>
+    </div-->
 
 
 
@@ -306,6 +354,53 @@
 
 
     <script>
+
+        var form = $(".default-example-modal-lg-center").submit(function (event) {
+
+            console.log(event.target.elements[2].value)
+            console.log(event.target.elements[2].value)
+            console.log(window.cat_id)
+            var level = window.level
+            if (window.cat_id == null && window.parent_cat_id != null) {
+                console.log('add')
+                var action = 'add'
+                var parent_id=window.parent_cat_id
+            }
+            else {
+                console.log('edit')
+                var action = 'edit'
+                var parent_id=window.cat_id
+            }
+
+            $.ajax({
+                url: '/admin/change_category_name', // point to server-side PHP script
+                dataType: 'json',  // what to expect back from the PHP script, if anything
+                cache: false,
+                data: {
+                    name: event.target.elements[3].value,
+                    link: event.target.elements[2].value,
+                    id: window.cat_id,
+                    parent_id:parent_id,
+                    action: action
+                },
+                type: 'post',
+                success: function (data) {
+                    if(window.cat_id == null && window.parent_cat_id != null){
+                        var id_cat=window.parent_cat_id
+                    }
+                    window.parent_cat_id = null;
+
+                    show_subcut(id_cat)
+                    console.log('here')
+                }
+            });
+
+
+            $(".default-example-modal-lg-center").modal('hide')
+            event.preventDefault();
+        });
+
+
         function checkValue(value,arr){
             var status = 'Not exist';
 
@@ -516,6 +611,323 @@
     </script>
 
 
+    <script>
+
+        function addTab() {
+            // clear fields
+            $("#tab_title").val("");
+            $("#tab_content").val("");
+        }
+
+        function show_subcut(id_cat){
+
+            $.ajax({
+                method: 'POST',
+                dataType: 'json',
+                async:false,
+                url: "/show_subcat",
+                data: {id_cat: id_cat}, // serializes the form's elements.
+                success: function (data) {
+
+                    if(data.message=='null'){
+                        console.log(333)
+                        //проверить чтобы соседние последующие блоки были пусты
+
+                        //если (data.value.info.parent_num) ==2
+                        //удалить 3,4
+                        // если (data.value.info.parent_num) ==3
+                        //4
+                        if(data.value.info.parent_num==1){
+                            $('.cat_block_2').empty();
+                            $('.cat_block_3').empty();
+                            $('.cat_block_4').empty();
+                        }
+                        if(data.value.info.parent_num==2){
+                            $('.cat_block_3').empty();
+                            $('.cat_block_4').empty();
+                        }
+                        else if(data.value.info.parent_num==3){
+                            $('.cat_block_4').empty();
+                        }
+
+                    }
+                    else{
+
+                        $('.'+new_block_cl+'').empty();
+                        switch(new_block_cl){
+                            case 'cat_block_2':
+                                $('.cat_block_3').empty();
+                                $('.cat_block_4').empty();
+                                break;
+                            case 'cat_block_3':
+                                $('.cat_block_4').empty();
+                                break;
+
+                        }
+
+                        if(new_block_cl=='cat_block_4'){
+                            console.log(123)
+                            $.each( data.value, function( key, value ) {
+
+                                if(checkValue(value.id,checked_categories)=='Not exist') {
+
+                                    $('.' + new_block_cl + '').append(' <a ><div class="cat_block" >' +
+                                        '<input class="fahover_cubes_input" type="hidden" value="' + value.id + '">' +
+
+                                        '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" type="checkbox" value=""> </label></div>\n' +
+                                        value.name +
+                                        '</div></a>')
+                                }
+                                else{
+                                    $('.' + new_block_cl + '').append(' <a ><div class="cat_block" >' +
+                                        '<input class="fahover_cubes_input" type="hidden" value="' + value.id + '">' +
+
+                                        '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" checked type="checkbox" value=""> </label></div>\n' +
+                                        value.name +
+                                        '</div></a>')
+                                }
+
+                            });
+
+                        }
+                        else{
+
+                            $.each( data.value, function( key, value ) {
+
+                                if(key==0){
+                                    console.log(key)
+                                    $('.'+new_block_cl+'').append('<div>'+
+
+                                        '<input type="hidden" class="category_level" value="'+value.parent_id+'">'+
+                                        '<button class="add_category_into_level"><i class="fa fa-plus"></i>Добавить категорию в уровень</button>'+
+
+                                        '</div>')
+                                }
+
+                                if(checkValue(value.id,checked_categories)=='Not exist'){
+
+                                    $('.'+new_block_cl+'').append(' <a ><div class="cat_block" >' +
+                                        '<input class="fahover_cubes_input" type="hidden" value="'+value.id+'">' +
+                                        '<button class="edit_cat"><i class="fa fa-pencil"></i></button>'+
+                                        '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" type="checkbox" value=""> </label></div>\n' +
+                                        value.name+
+                                        '<span class="fa arrow" style="float:right"></span>' +
+                                        '</div></a>')
+
+                                }
+                                else{
+
+                                    //alert(checked_categories)
+
+                                    $('.'+new_block_cl+'').append(' <a ><div class="cat_block" >' +
+                                        '<input class="fahover_cubes_input" type="hidden" value="'+value.id+'">' +
+
+                                        '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" checked type="checkbox" value=""> </label></div>\n' +
+                                        value.name+
+                                        '<span class="fa arrow" style="float:right"></span>' +
+                                        '</div></a>')
+                                }
+
+
+
+                            });
+                        }
+
+
+                    }}
+
+            });
+        }
+
+
+        // modal dialog init: custom buttons and a "close" callback reseting the form inside
+        $( document ).ready(function( ) {
+            /*        $(function () {
+             var dialog = $("#addtab").dialog({
+             autoOpen: false,
+             width: 600,
+             resizable: false,
+             modal: true,
+             buttons: [{
+             html: "<i class='fa fa-times'></i>&nbsp; Отмена",
+             "class": "btn btn-default",
+             click: function () {
+             $(this).dialog("close");
+
+             }
+             }, {
+
+             html: "<i class='fa fa-plus '></i>&nbsp; <span class='add_edit_category_btn'>Изменить</span>",
+             "class": "btn btn-danger",
+             click: function (e) {
+             console.log('click_action')
+             console.log('cat_id', window.cat_id)
+             dialog.find("form").submit()
+             $(this).dialog("close");
+             }
+             }]
+             });
+
+             var form = dialog.find("form").submit(function (event) {
+
+             console.log(event.target.elements[2].value)
+             console.log(event.target.elements[2].value)
+             console.log(window.cat_id)
+             var level = window.level
+             if (window.cat_id == null && window.parent_id != null) {
+             var action = 'add'
+             }
+             else {
+             var action = 'edit'
+             }
+
+             $.ajax({
+             url: '/admin/change_category_name', // point to server-side PHP script
+             dataType: 'json',  // what to expect back from the PHP script, if anything
+             cache: false,
+             data: {
+             name: event.target.elements[3].value,
+             link: event.target.elements[2].value,
+             id: window.cat_id,
+             action: action
+             },
+             type: 'post',
+             success: function () {
+             window.parent_id = null;
+             conlole.log('here')
+             }
+             });
+
+
+             dialog.dialog("close");
+             event.preventDefault();
+             });
+
+             })*/
+
+
+            // Dialog click
+           /* $('.edit_cat').click(function () {
+                console.log(333)
+                window.cat_id=$(this).parent().find('.fahover_cubes_input').val()
+                $( "#addtab" ).dialog( "option", "title", "Изменение названия категории" );
+                dialog.dialog("open");
+                return false;
+
+            });*/
+
+
+            $('.categories').delegate('.edit_cat','click',function(event) {
+                console.log(334)
+                window.cat_id=$(this).parent().find('.fahover_cubes_input').val()
+                $('.add_edit_category_btn').text('Изменить')
+                //$( "#addtab" ).dialog( "option", "title", "Изменение названия категории" );
+                console.log('window.cat_id',window.cat_id)
+                //dialog.dialog("open");
+
+                $('.default-example-modal-lg-center').modal({show:true})
+                return false;
+            })
+
+
+            $('.categories').delegate('.add_category_into_level','click',function(event) {
+                console.log(334)
+                $('.default-example-modal-lg-center').modal({show:true})
+                window.parent_cat_id=$(this).parent().find('.category_level').val()
+                console.log('window.parent_cat_id',window.parent_cat_id)
+                //dialog.dialog("open");
+                return false;
+            })
+
+
+
+        })
+    </script>
+
+
+    <script>
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        })
+
+
+
+
+
+        $('.categories').delegate('.cat_block','click',function(){
+
+            var id_cat = $(this).parent('a').find('input').val()
+            var cl=$(this).parent('a').parent().attr('class');
+            cl=cl.split(' ')[1]
+            var simbol=parseInt(cl.slice(10))+1
+            new_block_cl=cl.slice(0, 10)+simbol
+
+            show_subcut(id_cat);
+
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        });
+
+
+        $('.categories').delegate('.fahover_cubes','click',function() {
+            var id_cat = $(this).parent('a').find('.fahover_cubes_input').val();
+            $('.parent_category').val(id_cat);
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: '/show_parent_categories_tree',
+                data: {id_cat:id_cat}, // serializes the form's elements.
+                success: function (data) {
+
+                    $('.cat_name').html(data.name)
+                }
+            });
+        });
+
+        $("#form").validate({
+            errorPlacement: function (error, element)
+            {
+                element.before(error);
+            },
+            rules: {
+                confirm: {
+                    equalTo: "#password"
+                },
+            }
+        });
+
+        $("#form").submit(function(event){
+            var link = $('#link').val()
+
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: '/if_link_exist',
+                async:false,
+                data: {link:link}, // serializes the form's elements.
+                success: function (data) {
+                    if(data==1){
+                        $('#link_validation').css('display','block');
+                        event.preventDefault();
+                        return false;
+                    }
+                    else{
+                        $('#link_validation').css('display','none');
+                    }
+                }
+
+            });
+
+
+        })
+
+    </script>
 
 
 

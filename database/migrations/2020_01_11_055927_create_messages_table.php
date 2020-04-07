@@ -24,6 +24,7 @@ class CreateMessagesTable extends Migration
             $table->string('message');
             $table->integer('badge_id');
             $table->integer('visibility');
+            $table->boolean('active')->default(false);
 
             $table->timestamps();
         });

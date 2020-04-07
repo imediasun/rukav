@@ -40,6 +40,13 @@ class CompanyController extends Controller
 
 }
 
+    public function savePictureToSession(Request $request){
+        \Session::forget('temp_picture_filename');
+        $fileName=$this->base64ToImage($request->input('picture'),'pictures');
+        \Session::put('temp_picture_filename',$fileName);
+
+    }
+
     public function saveBannerToSession(Request $request){
         \Session::forget('temp_banner_filename');
         $fileName=$this->base64ToImage($request->input('banner'));

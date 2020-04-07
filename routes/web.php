@@ -9,6 +9,13 @@ Route::get('/redirect', 'Auth\SiteAdminLoginController@redirectToProvider');
 Route::get('/callback', 'Auth\SiteAdminLoginController@handleProviderCallback');
 
 Route::get('/', 'HomeController@index')->name('dashboard');
+
+Route::post('/show_subcat', 'FuncController@show_subcat');
+Route::post('/show_subcat_all_levels', 'FuncController@show_subcat_all_levels');
+Route::post('/show_subcat_all_levels_back', 'FuncController@show_subcat_all_levels_back');
+Route::post('/show_parent_cats', 'FuncController@show_parent_cats');
+
+Route::get('/message/{id}', 'MessageController@index')->name('message');
 Route::get('/category/{id}/{type?}', 'CategoryController@index')->name('category');
 Route::get('/news_feed', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
@@ -31,6 +38,7 @@ Route::group(['prefix' => 'customer'],function(){
     Route::get('/badge/get_addressant', 'CustomersController@getAddressant');
     Route::post('/get_customer_info', 'CustomersController@getCustomerInfo');
     Route::post('/golden_badge/check', 'CustomersController@checkGoldenBadgesCount');
+
 
 
 });
@@ -75,6 +83,7 @@ Route::group(['prefix' => 'company'],function(){
     Route::post('/logo/get', 'Admin\CompaniesController@getLogo');
     Route::post('/logo/delete', 'Admin\CompaniesController@postLogoDelete');
     Route::post('/logo/saveLogoToSession', 'Ajax\CompanyController@saveLogoToSession');
+    Route::post('/picture/savePictureToSession', 'Ajax\CompanyController@savePictureToSession');
     Route::post('/logo/create', 'Ajax\CompanyController@postSaveLogo');
     Route::post('/logo/update_status', 'Ajax\CompanyController@updateLogoStatus');
     Route::post('/user/update_status', 'Ajax\CompanyController@updateUserStatus');
@@ -107,10 +116,14 @@ Route::post('/profile/avatar/update_status', 'Ajax\AdminController@updateAvatarS
 
 Route::group(['prefix' => 'admin'],function(){
 
+    Route::post('/change_category_name','CategoryController@changeCatName');
+    Route::get('/categories/add','CategoryController@add_show');
+    //Route::get('/categories','CategoryController@index');
 
-
-
-
+    Route::get('/view_messages', 'Admin\MessageController@index');
+    Route::post('/messages/data', 'Admin\MessageController@postData');
+    Route::post('/messages/delete', 'Admin\MessageController@postDelete');
+    Route::post('/messages/message_activity_set', 'Admin\MessageController@setIsActive');
 
     Route::get('/login', 'Auth\SiteAdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\SiteAdminLoginController@login')->name('admin.login.submit');

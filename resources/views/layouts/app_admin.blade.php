@@ -1552,9 +1552,6 @@ left:2px;
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-
-<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
 
@@ -1583,12 +1580,6 @@ left:2px;
 
 
 
-
-
-
-
-
-
 <!-- iCheck -->
 <script src="{!! asset('inspinia/js/plugins/iCheck/icheck.min.js') !!}"></script>
 <!--[if IE 8]>
@@ -1597,14 +1588,6 @@ left:2px;
 
 <![endif]-->
 
-
-
-
-
-
-
-
-<script src="{!! asset('/inspinia/js/bootstrap.min.js') !!}"></script>
 <script src="{!! asset('/inspinia/js/plugins/metisMenu/jquery.metisMenu.js') !!}"></script>
 <script src="{!! asset('/inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js') !!}"></script>
 
@@ -1640,80 +1623,6 @@ left:2px;
 <script>
     $(document).ready(function(){
         localStorage.setItem("personalBadegeCustomerId",0)
-/*
-
-        $(function() {
-            $("#addtab").dialog({
-                autoOpen: false
-            });
-        })
-
-        //reloadPage();
-
-        alert();
-
-        function addTab() {
-            // clear fields
-            $("#tab_title").val("");
-            $("#tab_content").val("");
-        }
-
-
-
-        // modal dialog init: custom buttons and a "close" callback reseting the form inside
-        var dialog = $("#addtab").dialog({
-            autoOpen : false,
-            width : 600,
-            resizable : false,
-            modal : true,
-            buttons : [{
-                html : "<i class='fa fa-times'></i>&nbsp; Отмена",
-                "class" : "btn btn-default",
-                click : function() {
-                    $(this).dialog("close");
-
-                }
-            }, {
-
-                html : "<i class='fa fa-plus'></i>&nbsp; Изменить",
-                "class" : "btn btn-danger",
-                click : function(e) {
-                    console.log(window.cat_id)
-                    dialog.find("form").submit()
-                    $(this).dialog("close");
-                }
-            }]
-        });
-        var form = dialog.find("form").submit(function(event) {
-            console.log(event.target.elements[2].value)
-            console.log(event.target.elements[2].value)
-            console.log(window.cat_id)
-            var level=window.level
-
-            $.ajax({
-                url: '/admin/change_category_name', // point to server-side PHP script
-                dataType: 'json',  // what to expect back from the PHP script, if anything
-                cache: false,
-                data: {name:event.target.elements[3].value,link:event.target.elements[2].value,id:window.cat_id},
-                type: 'post',
-                success: function(){
-
-                }
-            });
-
-
-
-
-            dialog.dialog("close");
-            event.preventDefault();
-        });
-
-
-*/
-
-
-
-
 
     })
 
@@ -2100,220 +2009,6 @@ left:2px;
 
 
 
-
-</script>
-
-
-<script>
-
-
-    $(document).ready(function() {
-
-
-        // Dialog click
-        $('.edit_cat').click(function () {
-            console.log(333)
-            window.cat_id=$(this).parent().find('.fahover_cubes_input').val()
-
-            dialog.dialog("open");
-            return false;
-
-        });
-
-
-        $('.categories').delegate('.edit_cat','click',function(event) {
-            console.log(334)
-            window.cat_id=$(this).parent().find('.fahover_cubes_input').val()
-
-            dialog.dialog("open");
-            return false;
-        })
-    })
-</script>
-
-
-<script>
-    $.ajaxSetup({
-        headers:{
-            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-        }
-    })
-
-
-
-
-
-    $('.categories').delegate('.cat_block','click',function(){
-
-        var id_cat = $(this).parent('a').find('input').val()
-        var cl=$(this).parent('a').parent().attr('class');
-        cl=cl.split(' ')[1]
-        var simbol=parseInt(cl.slice(10))+1
-        new_block_cl=cl.slice(0, 10)+simbol
-
-        $.ajax({
-            method: 'POST',
-            dataType: 'json',
-            async:false,
-            url: "/show_subcat",
-            data: {id_cat: id_cat}, // serializes the form's elements.
-            success: function (data) {
-                if(data.message=='null'){
-
-                    //проверить чтобы соседние последующие блоки были пусты
-
-                    //если (data.value.info.parent_num) ==2
-                    //удалить 3,4
-                    // если (data.value.info.parent_num) ==3
-                    //4
-                    if(data.value.info.parent_num==1){
-                        $('.cat_block_2').empty();
-                        $('.cat_block_3').empty();
-                        $('.cat_block_4').empty();
-                    }
-                    if(data.value.info.parent_num==2){
-                        $('.cat_block_3').empty();
-                        $('.cat_block_4').empty();
-                    }
-                    else if(data.value.info.parent_num==3){
-                        $('.cat_block_4').empty();
-                    }
-
-                }
-                else{
-                    $('.'+new_block_cl+'').empty();
-                    switch(new_block_cl){
-                        case 'cat_block_2':
-                            $('.cat_block_3').empty();
-                            $('.cat_block_4').empty();
-                            break;
-                        case 'cat_block_3':
-                            $('.cat_block_4').empty();
-                            break;
-
-                    }
-
-                    if(new_block_cl=='cat_block_4'){
-                        $.each( data.value, function( key, value ) {
-
-                            if(checkValue(value.id,checked_categories)=='Not exist') {
-                                $('.' + new_block_cl + '').append(' <a ><div class="cat_block" >' +
-                                    '<input class="fahover_cubes_input" type="hidden" value="' + value.id + '">' +
-
-                                    '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" type="checkbox" value=""> </label></div>\n' +
-                                    value.name +
-                                    '</div></a>')
-                            }
-                            else{
-                                $('.' + new_block_cl + '').append(' <a ><div class="cat_block" >' +
-                                    '<input class="fahover_cubes_input" type="hidden" value="' + value.id + '">' +
-
-                                    '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" checked type="checkbox" value=""> </label></div>\n' +
-                                    value.name +
-                                    '</div></a>')
-                            }
-
-                        });
-
-                    }
-                    else{
-                        $.each( data.value, function( key, value ) {
-
-                            if(checkValue(value.id,checked_categories)=='Not exist'){
-
-                                $('.'+new_block_cl+'').append(' <a ><div class="cat_block" >' +
-                                    '<input class="fahover_cubes_input" type="hidden" value="'+value.id+'">' +
-                                    '<button class="edit_cat"><i class="fa fa-pencil"></i></button>'+
-                                    '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" type="checkbox" value=""> </label></div>\n' +
-                                    value.name+
-                                    '<span class="fa arrow" style="float:right"></span>' +
-                                    '</div></a>')
-
-                            }
-                            else{
-
-                                //alert(checked_categories)
-
-                                $('.'+new_block_cl+'').append(' <a ><div class="cat_block" >' +
-                                    '<input class="fahover_cubes_input" type="hidden" value="'+value.id+'">' +
-
-                                    '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" checked type="checkbox" value=""> </label></div>\n' +
-                                    value.name+
-                                    '<span class="fa arrow" style="float:right"></span>' +
-                                    '</div></a>')
-                            }
-
-
-
-                        });
-                    }
-
-
-                }}
-
-        });
-
-
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });
-
-    });
-
-
-
-    $('.categories').delegate('.fahover_cubes','click',function() {
-        var id_cat = $(this).parent('a').find('.fahover_cubes_input').val();
-        $('.parent_category').val(id_cat);
-        $.ajax({
-            type: "POST",
-            dataType: 'json',
-            url: '/show_parent_categories_tree',
-            data: {id_cat:id_cat}, // serializes the form's elements.
-            success: function (data) {
-
-                $('.cat_name').html(data.name)
-            }
-        });
-    });
-
-    $("#form").validate({
-        errorPlacement: function (error, element)
-        {
-            element.before(error);
-        },
-        rules: {
-            confirm: {
-                equalTo: "#password"
-            },
-        }
-    });
-
-    $("#form").submit(function(event){
-        var link = $('#link').val()
-
-        $.ajax({
-            type: "POST",
-            dataType: 'json',
-            url: '/if_link_exist',
-            async:false,
-            data: {link:link}, // serializes the form's elements.
-            success: function (data) {
-                if(data==1){
-                    $('#link_validation').css('display','block');
-                    event.preventDefault();
-                    return false;
-                }
-                else{
-                    $('#link_validation').css('display','none');
-                }
-            }
-
-        });
-
-
-    })
 
 </script>
 

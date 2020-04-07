@@ -146,7 +146,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 
     </div>
-    <div class="Menu_giveBadgeWrap__28NpB" style="margin-top:200px" data-toggle="modal" data-target=".default-example-modal-right-lg" onclick="localStorage.setItem('personalBadegeCustomerId',0);reloadPage()">Создать</div>
+    <div class="Menu_giveBadgeWrap__28NpB" style="margin-top:200px" data-toggle="modal" data-target=".default-example-modal-right-lg" onclick="localStorage.setItem('personalBadegeCustomerId',0);localStorage.setItem('openAddMessageModal',1);/*reloadPage()*/">Создать</div>
 
 
     <style>

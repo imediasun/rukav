@@ -53,7 +53,7 @@ class CustomerManager extends CustomerAbstract implements CustomerContract
 
         $message=$this->customerRepository->updateOrCreateMessage($message['attributes'],$message['values']);
         if($message){
-        $customer=\App\User::where('id',$message->addressant)->first();
+        $customer=\App\User::where('id',$message->sender)->first();
             $this->customerService->sendCustomerReceiveMessageNotification($customer);
 
         }

@@ -80,7 +80,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Электроника',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'https://images.ua.prom.st/184039079_w230_h230_tv-i-videotehnika.jpg'
 
             ],
@@ -89,7 +89,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Бизнес и услуги',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'https://images.ua.prom.st/323740502_w230_h230_konsaltingovye-uslugi.jpg'
 
             ],
@@ -98,7 +98,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Мода и стиль',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'https://images.ua.prom.st/1080513521_w230_h230_vesennyaya-odezhda-i.jpg'
 
             ],
@@ -107,7 +107,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Хобби отдых и спорт',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'https://images.ua.prom.st/191919532_w230_h230_tovary-dlya-turizma.jpg'
 
             ],
@@ -116,7 +116,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Отдам бесплатно',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'https://images.ua.prom.st/191919525_w230_h230_tovary-dlya-sporta.jpg'
 
             ],
@@ -125,7 +125,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 0,
                 'name' => 'Обмен',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'https://images.ua.prom.st/171462971_w230_h230_numizmatika-bonistika.jpg'
 
             ],
@@ -134,7 +134,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Детская обежда',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'first_category.png'
 
             ],
@@ -143,7 +143,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Детская обувь',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'first_category.png'
 
             ],
@@ -152,7 +152,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Детские коляски',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'first_category.png'
 
             ],
@@ -161,7 +161,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Детские автокресла',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'first_category.png'
 
             ],
@@ -170,7 +170,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Детская мебель',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'first_category.png'
 
             ],
@@ -179,7 +179,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Игрушки',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'first_category.png'
 
             ],
@@ -188,7 +188,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Детский транспорт',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'first_category.png'
 
             ],
@@ -197,7 +197,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Питание',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'first_category.png'
 
             ],
@@ -206,7 +206,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Товары для школьников',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'first_category.png'
 
             ],
@@ -215,7 +215,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'parent_id' => 1,
                 'name' => 'Другие детские товары',
                 'link'=> '/private_cabinet',
-                'icon'=>'fa-homee',
+                'icon'=>'fa-home',
                 'photo'=>'first_category.png'
 
             ],
@@ -647,6 +647,28 @@ class CategoriesTableSeederSecondEdition extends Seeder
                    'type'=>'linked',
                    'permission'=>null
                ],*/
+
+
+            /*28*/  //Role=>company_admin
+            [
+                'parent_id' => 0,
+                'name' => 'Объявления',
+                'icon'=> 'fal fa-window',
+                'link'=> '/customer/messages',
+                'system_name'=>'messages',
+                'type'=>'not_linked',
+                'permission'=>'view_messages'
+            ],
+            /*29*/  //Role=>company_admin 1)Impresonate by user
+            [
+                'parent_id' => 28,
+                'name' => 'Просмотр объявлений',
+                'icon'=> 'fal fa-window',
+                'link'=> '/admin/view_messages',
+                'system_name'=>'view_messages',
+                'type'=>'linked',
+                'permission'=>null
+            ],
 
 
 

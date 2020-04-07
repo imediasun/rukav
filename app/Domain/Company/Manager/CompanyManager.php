@@ -97,6 +97,14 @@ class CompanyManager extends CompanyAbstract implements CompanyContract
 
     }
 
+    public function updateCompanyPicture($companyPicture)
+    {
+        $picture=$this->companyRepository->updateOrCreateCompanyPicture($companyPicture['attributes'],$companyPicture['values']);
+        return $picture;
+
+    }
+
+
 
     public function updateCompanyBanner($companyBanner)
     {

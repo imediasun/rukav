@@ -6,6 +6,7 @@ namespace App\Domain\Company\Repositories;
 use  App\Domain\Base\Repositories\BaseCrudRepository;
 use App\Domain\Company\Models\Company;
 use App\Domain\Company\Models\Logo;
+use App\Domain\Company\Models\Picture;
 use App\Domain\Company\Models\Banner;
 use App\Domain\Company\Models\Badge;
 use App\Domain\Company\Models\CompanySetting;
@@ -36,6 +37,12 @@ class CompanyRepository extends BaseCrudRepository implements CompanyRepositoryI
     public function updateOrCreateCompanyLogo($attributes,$values)
     {
         $this->entityClass= Logo::class;
+        return $this->updateOrCreate($attributes,$values);
+    }
+
+    public function updateOrCreateCompanyPicture($attributes,$values)
+    {
+        $this->entityClass= Picture::class;
         return $this->updateOrCreate($attributes,$values);
     }
 

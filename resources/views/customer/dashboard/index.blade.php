@@ -239,8 +239,66 @@
 @include('layouts.slider_portfolio')
 
 
+                <div class="row" id="js-contacts">
+
+                    @foreach($rubrics as $rubric)
+                    <? $childs=\App\Domain\Customer\Models\ProductCategory::where('parent_id',$rubric->id)->get();
+                    $childs_count=count($childs);
+                    ?>
+                    @if($rubric->parent_id==0)
+                    <div class="col-xl-4">
+                        <div id="c_1" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="oliver kopyov">
+                            <div class="card-body border-faded border-top-0 border-left-0 border-right-0 rounded-top">
+                                <div class="d-flex flex-row align-items-center">
+                                            <span class="status status-success mr-3">
+                                                <span class="rounded-circle profile-image d-block " style="background-image:url('{{$rubric->photo}}'); background-size: cover;"></span>
+                                            </span>
+                                    <div class="info-card-text flex-1">
+                                        <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
+                                            {{$rubric->name}}
+                                            <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
+                                        </a>
+                                        <span class="text-truncate text-truncate-xl">10 объявлений размещены</span>
+                                    </div>
+                                    <button class="js-expand-btn btn btn-sm btn-default d-none" data-toggle="collapse" data-target="#c_1 > .card-body + .card-body" aria-expanded="false">
+                                        <span class="collapsed-hidden">+</span>
+                                        <span class="collapsed-reveal">-</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <?$i=0;?>
+                            <div class="row">
+                            @foreach($childs as $child)
+                              @if($i==0 || $i==($childs_count/2)+1)
+                                <div class="col-xl-5">
+                                    @endif
+                            <div class="card-body p-0 collapse show">
+                                <div class="p-3">
+                                    <a href="/category/{{$child->id}}" class="mt-1 d-block fs-sm fw-400 text-dark">
+                                        <i class="fas {{$child->icon}} text-muted mr-2"></i> {{$child->name}}</a>
+
+                                </div>
+                            </div>
+                             @if($i==($childs_count/2) || $i==$childs_count-1)
+                                </div>
+                             @endif
+                            <?$i++;?>
+                            @endforeach
+                            </div>
+
+                        </div>
+                    </div>
+                    @endif
+                    @endforeach
+                </div>
+
+
 @endsection
 <? $current=(!isset($current)) ? 'undefined' : $current;?>
+
+
+
+
 @section('scripts')
 
     <script>

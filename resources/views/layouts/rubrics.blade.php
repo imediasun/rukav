@@ -166,7 +166,7 @@
     <!-- blog -->
     <li>
 
-        <a class="Menu_giveBadgeWrap__28NpB" data-toggle="modal" data-target=".default-example-modal-right-lg" onclick="localStorage.setItem('personalBadegeCustomerId',0);reloadPage()"><i class="fal fa-edit"></i>Подать объявление</a>
+        <a class="Menu_giveBadgeWrap__28NpB" data-toggle="modal" data-target=".default-example-modal-right-lg" onclick="localStorage.setItem('personalBadegeCustomerId',0);/*reloadPage()*/localStorage.setItem('openAddMessageModal',1);"><i class="fal fa-edit"></i>Подать объявление</a>
     </li>
     <!--/ blog -->
 
