@@ -23,8 +23,10 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=> 1,
+               'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,
+               'active'=>1
            ],
            /*2*/
            [
@@ -33,9 +35,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*3*/
            [
@@ -45,8 +47,9 @@ class MessagesTableSeeder extends Seeder
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                'badge_id'=> 1,
+               'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*4*/
            [
@@ -55,9 +58,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*5*/
            [
@@ -66,9 +69,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*6*/
            [
@@ -77,9 +80,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*7*/
            [
@@ -88,9 +91,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*8*/
            [
@@ -99,9 +102,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
 
            /*9*/
@@ -111,9 +114,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*10*/
            [
@@ -122,9 +125,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*11*/
            [
@@ -133,9 +136,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*12*/
            [
@@ -144,9 +147,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*13*/
            [
@@ -155,9 +158,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*14*/
            [
@@ -166,9 +169,9 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
            /*15*/
            [
@@ -177,15 +180,76 @@ class MessagesTableSeeder extends Seeder
                'company_id' => 1,
                'title' => 'Детские футболочки',
                'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-               'badge_id'=> 1,
+               'badge_id'=> 1,'place_id'=>'ChIJdd4hrwug2EcRmSrV3Vo6llI',
                'created_at'=>\Carbon\Carbon::now(),
-               'visibility'=>3
+               'visibility'=>3,'active'=>1
            ],
 
 
        ]);
 
-
-
+        DB::table('pictures')->insert([
+            /*1*/
+            [
+                'message_id' => 1,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 2,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 3,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 4,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 5,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 6,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 7,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 8,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 9,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 10,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 11,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 12,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 13,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 14,
+                'photo'=>'tshort.jpg'
+            ],
+            [
+                'message_id' => 15,
+                'photo'=>'tshort.jpg'
+            ]
+            ]);
     }
 }

@@ -77,12 +77,18 @@ class SiteAdminLoginController extends Controller
             auth()->login($existingUser, true);
         } else {
             // create a new user
+
             $newUser                  = new User;
-            $newUser->name            = $user->name;
-            $newUser->email           = $user->email;
+            $newUser->name            = $user->user['given_name'];
+            $newUser->sername            = $user->user['family_name'];
+            $newUser->email           = $user->user['email'];
             $newUser->google_id       = $user->id;
             $newUser->avatar          = $user->avatar;
             $newUser->avatar_original = $user->avatar_original;
+            $newUser->login = $user->user['email'];
+            $newUser->department = 'none';
+            $newUser->active = 1;
+            $newUser->company_id          = 1;
             $newUser->save();
             auth()->login($newUser, true);
         }

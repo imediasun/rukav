@@ -11,7 +11,7 @@
     <!-- Header of Slider -->
     <div class="portfolio_076_header">
         <h1>Популярные категории</h1>
-        <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit nam nibh nunc varius facilisis eros sed erat.</p>
+        <!--p>Lorem ipsum dolor sit amet consectetuer adipiscing elit nam nibh nunc varius facilisis eros sed erat.</p-->
     </div>
     <!-- /Header of Slider -->
 
@@ -35,11 +35,11 @@
                                 <li><a href="#">Инструменты,</a></li>
                                 <li><a href="#">Молярные работы</a></li>
 
-                            </ul>
-                            <div class="portfolio_076_link"> <!-- Icons -->
+                            </ul><!-- Icons -->
+                            <!--div class="portfolio_076_link">
                                 <a href="#"><span class="fal fa-link"></span></a>
                                 <a href="#"><span class="fal fa-search"></span></a>
-                            </div> <!-- /Icons -->
+                            </div--> <!-- /Icons -->
 
 
                         </div> <!-- /Text Content -->
