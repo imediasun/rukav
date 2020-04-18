@@ -37,12 +37,47 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/formplugins/cropperjs/cropper.css">
     <!-- page related demo css (for icons only) -->
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/fa-solid.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaZXMHQgJkoXZkkBbtelY8SLAwMOasg0Y&libraries=places"></script>
+
+    <link rel="stylesheet/less" type="text/css" href="/css/styles.less" />
+
 
     <style>
         .cropper-container{
             width:600px !important;
             height:400px !important;
         }
+        .pac-container {
+            background-color: #FFF;
+            z-index: 20;
+            position: fixed;
+            display: inline-block;
+            float: left;
+        }
+
+        .pac-container {
+            z-index: 10519 !important;
+        }
+
+        .ui-autocomplete {
+            z-index: 10519 !important;
+        }
+        .modal{
+            z-index: 9999 !important;
+        }
+        .modal-backdrop{
+            z-index: 10;
+        }​
+
+        @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+        body {margin:10%;font-family:'Montserrat',sans-serif;background:#eee;color:#666;}
+        h1 {font-size:1.3em;text-transform:uppercase;}
+        input {padding:6px;border:3px solid #999;background:none;font-family:'Montserrat',sans-serif;color:#666;font-size:16px;width:260px;}
+        input:focus {border-color:#00aeff;outline:0;background:#f9f9f9;}
+        input[type=submit] {width:80px;background:#00aeff;border-color:#00aeff;color:#eee;cursor:pointer;}
+        span.zip {margin:1em 0;display:block;text-transform:uppercase;font-size:0.9em;color:#999;} span.zip:before {content:'ZIP code: '}
+
     </style>
 @yield('styles')
     <!--<link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/your_styles.css">-->
@@ -115,6 +150,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                     <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
                                 </a>
                             </div>
+
+
                             <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
                                 <form method="POST" action="{{ route('admin.login.submit') }}">
                                     <div class="form-group">
@@ -227,7 +264,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                                                 </span>
                                                 </label>
                                             </div>
-                                            <div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
+                                            <div class="btn-group d-flex flex-nowrap" style="display:none !important" data-toggle="buttons">
                                                 <label class="btn btn-primary active">
                                                     <input type="radio" class="sr-only" id="viewMode0" name="viewMode" value="0" checked>
                                                     <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 0">
@@ -278,7 +315,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-9 docs-buttons">
+                                        <div class="col-lg-9 docs-buttons" style="display:none">
                                             <!-- <h3>Toolbar:</h3> -->
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Move">
@@ -482,8 +519,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                                                 </optgroup>
 
                                                             </select>
-                                                            <div class="help-block">Use data attribute <code>data-icon</code> to add icon name for each options. And use class <code>.js-select2-icons</code> to set icon with option.</div>
-                                                        </div>
+                                                            </div>
 
                                                         <div class="form-group">
                                                             <label class="form-label" for="name-f">Контактная информация по объявлению</label>
@@ -496,6 +532,11 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                                                 <input type="text" aria-label="First name" class="form-control email_input" required placeholder="Email" id="name-f">
                                                                 <input type="text" aria-label="Last name" class="form-control phone_input" required placeholder="Phone" id="name-l">
                                                             </div>
+                                                        </div>
+
+                                                        <div class="form-group auto_complete_form_group">
+
+
                                                         </div>
 
                                                     </div>
@@ -625,12 +666,11 @@ left:2px;
                     </a>
                 </div>
                 <div class="search">
-                    <form class="app-forms hidden-xs-down" role="search" action="page_search.html" autocomplete="off">
-                        <input type="text" id="search-field" placeholder="Search for anything" class="form-control" tabindex="1">
-                        <a href="#" onclick="return false;" class="btn-danger btn-search-close js-waves-off d-none" data-action="toggle" data-class="mobile-search-on">
-                            <i class="fal fa-times"></i>
-                        </a>
-                    </form>
+
+                        <input type="text" id="search-field" style="border: 3px solid #666;display:inline-flex" placeholder="Ищите что либо..." class="form-control" >
+                        <input  type="text" style="display:inline-flex" id="location_search" name="location" placeholder="City or ZIP code">
+                        <input type="submit" style="display:inline-flex" value="Искать" id="go">
+
                 </div>
                 <div class="ml-auto d-flex">
                     <!-- activate app search icon (mobile) -->
@@ -640,13 +680,13 @@ left:2px;
                         </a>
                     </div>
                     <!-- app settings -->
-                    <div class="hidden-md-down">
+                    <!--div class="hidden-md-down">
                         <a href="#" class="header-icon" data-toggle="modal" data-target=".js-modal-settings">
                             <i class="fal fa-cog"></i>
                         </a>
                     </div>
                     <!-- app shortcuts -->
-                    <div>
+                    <!--div>
                         <a href="#" class="header-icon" data-toggle="dropdown" title="My Apps">
                             <i class="fal fa-cube"></i>
                         </a>
@@ -813,12 +853,12 @@ left:2px;
                         </div>
                     </div>
                     <!-- app message -->
-                    <a href="#" class="header-icon" data-toggle="modal" data-target=".js-modal-messenger">
+                    <!--a href="#" class="header-icon" data-toggle="modal" data-target=".js-modal-messenger">
                         <i class="fal fa-globe"></i>
                         <span class="badge badge-icon">!</span>
                     </a>
                     <!-- app notification -->
-                    <div>
+                    <!--div>
                         <a href="#" class="header-icon" data-toggle="dropdown" title="You got 11 notifications">
                             <i class="fal fa-bell"></i>
                             <span class="badge badge-icon">11</span>
@@ -908,7 +948,7 @@ left:2px;
                                             <li>
                                                 <a href="#" class="d-flex align-items-center">
                                                             <span class="status status-success mr-2">
-                                                                <!-- <img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-h.png" class="profile-image rounded-circle" alt="Sarah McBrook" /> -->
+                                                                <!-- <img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-h.png" class="profile-image rounded-circle" alt="Sarah McBrook" /> >
                                                                 <span class="profile-image rounded-circle d-inline-block" style="background-image:url('/NewSmartAdmin/img/demo/avatars/avatar-h.png')"></span>
                                                             </span>
                                                     <span class="d-flex flex-column flex-1 ml-1">
@@ -978,7 +1018,7 @@ left:2px;
                                             </li>
                                             <li>
                                                 <div class="d-flex align-items-center show-child-on-hover">
-                                                    <!--<img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-k.png" class="profile-image rounded-circle" alt="k" />-->
+                                                    <!--<img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-k.png" class="profile-image rounded-circle" alt="k" />>
                                                     <div class="d-flex flex-column flex-1">
                                                                 <span class="name">
                                                                     Troy Norman'<span class="fw-300">s new connections</span>
@@ -1001,7 +1041,7 @@ left:2px;
                                             </li>
                                             <li>
                                                 <div class="d-flex align-items-center show-child-on-hover">
-                                                    <!--<img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-e.png" class="profile-image-sm rounded-circle align-self-start mt-1" alt="k" />-->
+                                                    <!--<img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-e.png" class="profile-image-sm rounded-circle align-self-start mt-1" alt="k" />>
                                                     <div class="d-flex flex-column flex-1">
                                                         <span class="name">Dr John Cook <span class="fw-300">sent a <span class="text-danger">new signal</span></span></span>
                                                         <span class="msg-a fs-sm mt-2">Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</span>
@@ -1039,7 +1079,7 @@ left:2px;
                                             </li>
                                             <li>
                                                 <div class="d-flex align-items-center show-child-on-hover">
-                                                    <!--<img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-h.png" class="profile-image rounded-circle align-self-start mt-1" alt="k" />-->
+                                                    <!--<img src="/NewSmartAdmin/img/demo/avatars/avatar-m.png" data-src="/NewSmartAdmin/img/demo/avatars/avatar-h.png" class="profile-image rounded-circle align-self-start mt-1" alt="k" />>
                                                     <div class="d-flex flex-column flex-1">
                                                         <div class="name mb-2">
                                                             Lisa Lamar<span class="fw-300"> updated project</span>
@@ -1176,26 +1216,28 @@ left:2px;
                     </div>
                     <!-- app user menu -->
                     <div>
+                        @if($user)
                         <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com" class="header-icon d-flex align-items-center justify-content-center ml-2">
-                            <img src="/NewSmartAdmin/img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                            <img src="@if($user->avatar){{ $user->avatar}}@else /NewSmartAdmin/img/demo/avatars/avatar-admin.png @endif" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
                             <!-- you can also add username next to the avatar with the codes below:
                             <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
                             <i class="ni ni-chevron-down hidden-xs-down"></i> -->
                         </a>
+
                         <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
                             <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
                                 <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
                                             <span class="mr-2">
-                                                <img src="/NewSmartAdmin/img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
+                                                <img src="@if($user->avatar){{ $user->avatar}}@else /NewSmartAdmin/img/demo/avatars/avatar-admin.png @endif" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
                                             </span>
                                     <div class="info-card-text">
-                                        <div class="fs-lg text-truncate text-truncate-lg">Dr. Codex Lantern</div>
-                                        <span class="text-truncate text-truncate-md opacity-80">drlantern@gotbootstrap.com</span>
+                                        <div class="fs-lg text-truncate text-truncate-lg">{{$user->name}} {{$user->sername}}</div>
+                                        <span class="text-truncate text-truncate-md opacity-80">{{$user->email}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="dropdown-divider m-0"></div>
-                            <a href="#" class="dropdown-item" data-action="app-reset">
+                            <!--a href="#" class="dropdown-item" data-action="app-reset">
                                 <span data-i18n="drpdwn.reset_layout">Reset Layout</span>
                             </a>
                             <a href="#" class="dropdown-item" data-toggle="modal" data-target=".js-modal-settings">
@@ -1222,13 +1264,14 @@ left:2px;
                                     <a href="#?lang=jp" class="dropdown-item" data-action="lang" data-lang="jp">日本語</a>
                                     <a href="#?lang=ch" class="dropdown-item" data-action="lang" data-lang="ch">中文</a>
                                 </div>
-                            </div>
+                            </div-->
                             <div class="dropdown-divider m-0"></div>
                             <a class="dropdown-item fw-500 pt-3 pb-3" href="/logout">
                                 <span data-i18n="drpdwn.page-logout">Logout</span>
-                                <span class="float-right fw-n">&commat;codexlantern</span>
+                                <span class="float-right fw-n">{{$user->email}}</span>
                             </a>
                         </div>
+                            @endif
                     </div>
                 </div>
             </header>
@@ -1247,6 +1290,29 @@ left:2px;
             <!-- BEGIN Page Content -->
             <!-- the #js-page-content id is needed for some plugins to initialize -->
             <main id="js-page-content" role="main" class="page-content">
+
+                <!--h1>places autocomplete testing</h1>
+
+                <input type="submit" value="GO" id="go">
+                <span class="zip"></span-->
+
+
+
+
+                <div class="input-group location_input" style="display:none;">
+                    <div class="input-group-prepend">
+                                                        <span class="input-group-text text-success">
+                                                            <i class="fal fa-compass"></i>
+                                                            <!--i class="ni ni-location fs-xl"></i-->
+                                                        </span>
+                        <input  type="text" id="location" style="width:47%" name="location" placeholder="City or ZIP code">
+                    </div>
+
+                </div>
+
+
+
+
                 @yield('content')
 
 
@@ -1992,20 +2058,21 @@ left:2px;
                 + waves.js (extension)
                 + smartpanels.js (extension)
                 + src/../jquery-snippets.js (core) -->
+
+@yield('additional_scripts')
+
 <script src="/NewSmartAdmin/js/vendors.bundle.js"></script>
 <script src="/NewSmartAdmin/js/app.bundle.js"></script>
 <script src="/NewSmartAdmin/js/formplugins/select2/select2.bundle.js"></script>
+
+
 <script src="/NewSmartAdmin/js/formplugins/summernote/summernote.js"></script>
 
-
-
 <script src="/NewSmartAdmin/js/formplugins/cropperjs/cropper.js"></script>
+
 <script type="text/javascript">
     /* Activate smart panels */
     $('#js-page-content').smartPanel();
-
-</script>
-<script>
 
 </script>
 
@@ -2019,25 +2086,6 @@ else{
 ?>
 
 <script>
-    $(document).ready(function(){
-        localStorage.setItem("personalBadegeCustomerId",0)
-
-        reloadPage();
-
-var auth={{$auth}}
-
-if(localStorage.getItem("openAddMessageModal")==1 && auth!=0){
-    console.log('openModal')
-            $('#badges_modal').modal('show')
-
-}
-console.log('auth',auth)
-
-
-
-
-
-    })
 
     jQuery(function ($) {
 
@@ -2140,7 +2188,13 @@ console.log('auth',auth)
         form.attr('id','clone_'+form.attr('id'))
         console.log('form=>',form);
         $(this).parent().parent().find('.sending_group').empty()
+
         form.find('.summerBlock').empty();
+
+
+
+
+
 
         //$(this).parent().parent().find('.sending_group').find('.badges_form').find('.summerBlock').empty();
         //$(this).parent().parent().find('.sending_group').find('.badges_form').find('.summerBlock').append('<div class="js-summernote" ></div>')
@@ -2196,13 +2250,20 @@ console.log('auth',auth)
                 //
 
         });
+        var autocomplete_form_group = form.find('.auto_complete_form_group')
 
+        $('.location_input').detach().appendTo(autocomplete_form_group).css('display','block').show()
+        var pacContainerInitialized = false;
+        $('#inputField').keypress(function() {
+            if (!pacContainerInitialized) {
+                $('.pac-container').css('z-index','9999');
+                pacContainerInitialized = true;
+            }
+        });
 
+        $('#viewMode3').parent().find('span').trigger('click')
 
-
-
-
-       /* $(this).parent().parent().find('.sending_group').find('.badges_form').each(function (index, value){*/
+        /* $(this).parent().parent().find('.sending_group').find('.badges_form').each(function (index, value){*/
             console.log('here')
             var form_id=form.attr('id')
         console.log('form_id=>',form_id);
@@ -2317,13 +2378,39 @@ console.log('TRY')
                 console.log('customer=>',customer)
                 console.log(message)
                 console.log(badge)
+
+                /*$('#go').click(function(){*/
+                    var location = window.autocomplete.getPlace();
+                    //location=JSON.stringify(location);
+                    geocoder = new google.maps.Geocoder();
+                    console.log(location)
+                location=location.place_id
+                  /*  lat = location['geometry']['location'].lat();
+                    lng = location['geometry']['location'].lng();
+                    var latlng = new google.maps.LatLng(lat,lng);
+
+                    // http://stackoverflow.com/a/5341468
+                    geocoder.geocode({'latLng': latlng}, function(results) {
+                        for(i=0; i < results.length; i++){
+                            for(var j=0;j < results[i].address_components.length; j++){
+                                for(var k=0; k < results[i].address_components[j].types.length; k++){
+                                    if(results[i].address_components[j].types[k] == "postal_code"){
+                                        zipcode = results[i].address_components[j].short_name;
+                                        $('span.zip').html(zipcode);
+                                    }
+                                }
+                            }
+                        }
+                    });*/
+
+               /* });*/
                 var category = $(this).find('.category_select option:selected').val()
                 $.ajax({
                     method: 'POST',
                     dataType: 'json',
                     async:false,
                     url: '/customer/badge/send',
-                    data: {customer: customer,message:message,category:category,title:title,visibility:visibility
+                    data: {location:location,customer: customer,message:message,category:category,title:title,visibility:visibility
                     },
                     beforeSend: function() {
                     },
@@ -2436,6 +2523,23 @@ console.log('TRY')
         $('#logo_create').submit(function(evt){
             evt.preventDefault();// to stop form submitting
         });
+
+       localStorage.setItem("personalBadegeCustomerId",0)
+
+       reloadPage();
+
+       var auth={{$auth}}
+
+       if(localStorage.getItem("openAddMessageModal")==1 && auth!=0){
+           console.log('openModal')
+           $('#badges_modal').modal('show')
+
+       }
+       console.log('auth',auth)
+
+
+
+
     });
 
 
@@ -3258,6 +3362,71 @@ console.log('TRY')
 
 
 
+
+<script>
+
+    $(function(){
+
+
+
+        window.autocomplete;
+        window.geocoder;
+        window.input = document.getElementById('location');//
+        window.options = {
+            componentRestrictions: {'country':'uk'},
+            types: ['(regions)'] // (cities)
+        };
+
+        window.autocomplete = new google.maps.places.Autocomplete(window.input,window.options);
+
+        var autocompleteSearch;
+        var geocoderSearch;
+        var inputSearch = document.getElementById('location_search');//
+        var optionsSearch = {
+            componentRestrictions: {'country':'uk'},
+            types: ['(regions)'] // (cities)
+        };
+
+        autocompleteSearch = new google.maps.places.Autocomplete(inputSearch,optionsSearch);
+        $('#go').click(function(){
+            var location = autocompleteSearch.getPlace();
+            var search_field = $('#search-field').val()
+            //location=JSON.stringify(location);
+            //geocoder = new google.maps.Geocoder();
+            console.log(location.place_id)
+            window.location.replace("/search?place_id="+location.place_id+"&search_string="+search_field+"");
+          /*  $.ajax({
+                method: 'GET',
+                dataType: 'html',
+                async:false,
+                url: '/search',
+                data: {location:location,search_field:search_field
+                },
+                beforeSend: function() {
+                },
+                complete: function() {
+                },
+                success: function (data) {
+
+                    console.log('success')
+
+                }
+            });*/
+
+
+
+        });
+
+    });
+
+
+
+
+
+
+
+
+</script>
 @yield('scripts')
 </body>
 </html>

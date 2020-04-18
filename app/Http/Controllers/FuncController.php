@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use DB;
 use App\Site_categories;
 use Auth;
-class FuncController extends Controller
+use Illuminate\Support\Facades\Input;
+use \App\Domain\Customer\Models\Message;
+class FuncController extends BaseController
 {
     //
 	private $parent_num=0;
@@ -279,6 +281,26 @@ class FuncController extends Controller
         else{
             return json_encode(null);
         }
+
+    }
+
+    public function search(Request $request){
+       $messages= Message::where(function ($query) {
+           $query->where('message', 'like', '%' . Input::get('search_string') . '%')
+               ->orWhere('title', 'like', '%' . Input::get('search_string') . '%');
+       })->where('place_id',Input::get('place_id'))->get();
+
+
+        $data=$this->mainSettings();
+        $data['menu']=$this->menu();
+        $data['rubrics']=$this->rubrics();
+        $data['spacial_customer_id']=null;
+        $data['title']="Додати товар";
+
+        $data['goods']=$messages;
+        $data['keywords']="Ukrainian industry platform";
+        $data['description']="Ukrainian industry platform";
+        return view('customer.category.index',$data);
 
     }
 

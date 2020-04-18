@@ -251,7 +251,6 @@ class CustomersController extends BaseController
     }
 
     public function sendBadgeMessage(Request $request){
-        var_dump($request->input('category'));
       $user=\Auth::user();
         $data['user_id']=$user->id;
         $data['company_id']=$user->company_id;
@@ -261,6 +260,7 @@ class CustomersController extends BaseController
         'company_id'=>$data['company_id'],
         'title'=>$request->input('title'),
         'message'=>$request->input('message'),
+         'place_id'=>$request->input('location'),
         'badge_id'=>1,
          'visibility'=>1,//$request->input('visibility')
     ];

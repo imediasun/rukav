@@ -8,7 +8,7 @@
 <!-- Main Template Styles-->
 <link id="mainStyles" rel="stylesheet" media="screen" href="/main_site/css/styles.min.css">
 <!-- Modernizr-->
-<script src="/main_site/js/modernizr.min.js"></script>
+
 @section('content')
 
 
@@ -356,7 +356,8 @@
 
 @endsection
 
-@section('scripts')
+@section('additional_scripts')
     <script src="/main_site/js/vendor.min.js"></script>
     <script src="/main_site/js/scripts.min.js"></script>
+    <script src="/main_site/js/modernizr.min.js"></script>
     @endsection

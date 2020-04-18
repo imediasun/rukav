@@ -9,7 +9,7 @@ Route::get('/redirect', 'Auth\SiteAdminLoginController@redirectToProvider');
 Route::get('/callback', 'Auth\SiteAdminLoginController@handleProviderCallback');
 
 Route::get('/', 'HomeController@index')->name('dashboard');
-
+Route::get('/search', 'FuncController@search');
 Route::post('/show_subcat', 'FuncController@show_subcat');
 Route::post('/show_subcat_all_levels', 'FuncController@show_subcat_all_levels');
 Route::post('/show_subcat_all_levels_back', 'FuncController@show_subcat_all_levels_back');
@@ -35,6 +35,8 @@ Route::group(['prefix' => 'customer'],function(){
     Route::post('/user_interface/dataSpecial', 'CustomersController@postDataSpecial');
     Route::post('/user_interface/getData', 'CustomersController@getData');
     Route::post('/badge/send', 'CustomersController@sendBadgeMessage');
+
+
     Route::get('/badge/get_addressant', 'CustomersController@getAddressant');
     Route::post('/get_customer_info', 'CustomersController@getCustomerInfo');
     Route::post('/golden_badge/check', 'CustomersController@checkGoldenBadgesCount');

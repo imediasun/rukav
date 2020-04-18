@@ -23,10 +23,12 @@ class HomeController extends BaseController
      */
     public function index()
     {
+
         $data=$this->mainSettings();
         $data['menu']=$this->menu();
         $data['rubrics']=$this->rubrics();
         $data['spacial_customer_id']=null;
+        $data['user']=(\Auth::user()) ? \Auth::user() : null;
         $data['title']="Додати товар";
         $data['keywords']="Ukrainian industry platform";
         $data['description']="Ukrainian industry platform";
