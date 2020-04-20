@@ -251,6 +251,7 @@ class CustomersController extends BaseController
     }
 
     public function sendBadgeMessage(Request $request){
+
       $user=\Auth::user();
         $data['user_id']=$user->id;
         $data['company_id']=$user->company_id;
@@ -261,10 +262,11 @@ class CustomersController extends BaseController
         'title'=>$request->input('title'),
         'message'=>$request->input('message'),
          'place_id'=>$request->input('location'),
+            'city'=>$request->input('city'),
+            'administrative'=>$request->input('administrative'),
         'badge_id'=>1,
          'visibility'=>1,//$request->input('visibility')
     ];
-
         $message['attributes']['id']=(null!=($request->input('customer_id')) && !empty($request->input('customer_id'))) ? $request->input('customer_id') : null;
         $id=Customer::updateMessage($message);
         $companyLogo['values']=['message_id'=>$id->id,'photo'=> \Session::get('temp_picture_filename')];

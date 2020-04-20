@@ -285,10 +285,8 @@ class FuncController extends BaseController
     }
 
     public function search(Request $request){
-       $messages= Message::where(function ($query) {
-           $query->where('message', 'like', '%' . Input::get('search_string') . '%')
-               ->orWhere('title', 'like', '%' . Input::get('search_string') . '%');
-       })->where('place_id',Input::get('place_id'))->get();
+
+
 
 
         $data=$this->mainSettings();
@@ -296,10 +294,27 @@ class FuncController extends BaseController
         $data['rubrics']=$this->rubrics();
         $data['spacial_customer_id']=null;
         $data['title']="Додати товар";
+        $data['user']=(\Auth::user()) ? \Auth::user() : null;
 
-        $data['goods']=$messages;
         $data['keywords']="Ukrainian industry platform";
         $data['description']="Ukrainian industry platform";
+
+        $currentPage = Input::get('page');;
+        // Make sure that you call the static method currentPageResolver()
+        // before querying users
+        \Illuminate\Pagination\Paginator::currentPageResolver(function () use ($currentPage) {
+            return $currentPage;
+        });
+        $messages= Message::where(function ($query) {
+            $query->where('message', 'like', '%' . Input::get('search_string') . '%')
+                ->orWhere('title', 'like', '%' . Input::get('search_string') . '%');
+        })->where('city',Input::get('city'))->where('administrative',Input::get('administrative'))
+            ->where('active',1)
+            ->paginate(3);
+        $data['goods']=$messages;
+        $data['search_string']=Input::get('search_string');
+        $data['city']=Input::get('city');
+        $data['administrative']=Input::get('administrative');
         return view('customer.category.index',$data);
 
     }

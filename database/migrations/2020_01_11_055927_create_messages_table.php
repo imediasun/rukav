@@ -22,6 +22,8 @@ class CreateMessagesTable extends Migration
             $table->integer('company_id');
             $table->string('title');
             $table->string('place_id');
+            $table->string('city');
+            $table->string('administrative');
             $table->string('message');
             $table->integer('badge_id');
             $table->integer('visibility');

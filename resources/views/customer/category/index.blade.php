@@ -1,13 +1,5 @@
-@extends('layouts.app')
-<link rel="stylesheet" href="/css/demo.css">
-<link rel="stylesheet" href="/css/font-awesome.css">
-<link rel="stylesheet" href="/css/sky-mega-menu.css">
+@extends('layouts.app_messages')
 
-<!-- Vendor Styles including: Bootstrap, Font Icons, Plugins, etc.-->
-<link rel="stylesheet" media="screen" href="/main_site/css/vendor.min.css">
-<!-- Main Template Styles-->
-<link id="mainStyles" rel="stylesheet" media="screen" href="/main_site/css/styles.min.css">
-<!-- Modernizr-->
 
 @section('content')
 
@@ -33,7 +25,7 @@
         <div class="container padding-bottom-3x mb-1">
             <div class="row">
                 <!-- Products-->
-                <div class="col-xl-9 col-lg-8 order-lg-2">
+                <div class="col-xl-9 col-lg-8 order-lg-2 messages_post">
                     <!-- Shop Toolbar-->
                     <div class="shop-toolbar padding-bottom-1x mb-2">
                         <div class="column">
@@ -50,7 +42,7 @@
                             </div>
                         </div>
                         <div class="column">
-                            <div class="shop-view"><a class="grid-view active" href="{{url()->current()}}"><span></span><span></span><span></span></a><a class="list-view" href="{{url()->current()}}/list"><span></span><span></span><span></span></a></div>
+                            <div class="shop-view"><a class="grid-view active" href="{{url()->current()}}"><span></span><span></span><span></span></a><a class="list-view" href="{{url()->current()}}?type=list"><span></span><span></span><span></span></a></div>
                         </div>
                     </div>
                     <!-- Products Grid-->
@@ -60,36 +52,40 @@
 
 
                     @foreach($goods as $good)
-                       <!-- Product-->
-                       @if($good->active)
-                            <div class="grid-item">
-                                <div class="product-card">
-                                   <h3 class="product-title"><a href="/message/{{$good->id}}">{{$good->title}}</a></h3>
-                                    <img src="/storage/pictures/{{$good->pictures->photo}}">
-                                    <div class="product-buttons">
-                                        <button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Whishlist"><i class="icon-heart"></i></button>
-                                        <button class="btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Product" data-toast-message="successfuly added to cart!">$49.99</button>
+                        <!-- Product-->
+                            @if($good->active)
+                                <div class="grid-item">
+                                    <div class="product-card">
+                                        <h3 class="product-title"><a href="/message/{{$good->id}}">{{$good->title}}</a></h3>
+                                        <img src="/storage/pictures/{{$good->pictures->photo}}">
+                                        <div class="product-buttons">
+                                            <button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Whishlist"><i class="icon-heart"></i></button>
+                                            <button class="btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Product" data-toast-message="successfuly added to cart!">$49.99</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                           @endif
-                            <!-- Product-->
+                            @endif
+                        <!-- Product-->
                         @endforeach
                     </div>
                     <!-- Pagination-->
-                    <nav class="pagination">
-                        <div class="column">
-                            <ul class="pages">
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li>...</li>
-                                <li><a href="#">12</a></li>
-                            </ul>
-                        </div>
-                        <div class="column text-right hidden-xs-down"><a class="btn btn-outline-secondary btn-sm" href="#">Next&nbsp;<i class="icon-arrow-right"></i></a></div>
-                    </nav>
+
+                {{ $goods->links() }}
+                <!--nav class="pagination">
+    <div class="column">
+        <ul class="pages">
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li>...</li>
+            <li><a href="#">12</a></li>
+        </ul>
+    </div>
+    <div class="column text-right hidden-xs-down"><a class="btn btn-outline-secondary btn-sm" href="#">Next&nbsp;<i class="icon-arrow-right"></i></a></div>
+</nav-->
+
+
                 </div>
                 <!-- Sidebar          -->
                 <div class="col-xl-3 col-lg-4 order-lg-1">
@@ -220,27 +216,28 @@
                         </section>
                         <!-- Widget Brand Filter-->
                         <section class="widget">
+                            <form class="area-range-slider" action="" method="get" >
                             <h3 class="widget-title">Фильтр по району</h3>
                             <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="adidas">
+                                <input class="custom-control-input" type="checkbox" id="adidas" name="area" value="Northern Ireland">
                                 <label class="custom-control-label" for="adidas">Северная Ирландия&nbsp;<span class="text-muted">(254)</span></label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="bilabong">
+                                <input class="custom-control-input" type="checkbox" id="bilabong" name="area" value="England">
                                 <label class="custom-control-label" for="bilabong">Англия&nbsp;<span class="text-muted">(39)</span></label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="klein">
+                                <input class="custom-control-input" type="checkbox" id="klein" name="area" value="Wales" >
                                 <label class="custom-control-label" for="klein">Уэльс&nbsp;<span class="text-muted">(128)</span></label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="nike">
+                                <input class="custom-control-input" type="checkbox" id="nike" name="area" value="Scotland">
                                 <label class="custom-control-label" for="nike">Шотландия&nbsp;<span class="text-muted">(310)</span></label>
                             </div>
-
+                            </form>
                         </section>
                         <!-- Widget Size Filter-->
-                        <section class="widget">
+                        <!--section class="widget">
                             <h3 class="widget-title">Filter by Size</h3>
                             <div class="custom-control custom-checkbox">
                                 <input class="custom-control-input" type="checkbox" id="xl">
@@ -258,15 +255,9 @@
                                 <input class="custom-control-input" type="checkbox" id="s">
                                 <label class="custom-control-label" for="s">S&nbsp;<span class="text-muted">(213)</span></label>
                             </div>
-                        </section>
+                        </section-->
                         <!-- Promo Banner-->
-                        <section class="promo-box" style="background-image: url(img/banners/02.jpg);">
-                            <!-- Choose between .overlay-dark (#000) or .overlay-light (#fff) with default opacity of 50%. You can overrride default color and opacity values via 'style' attribute.--><span class="overlay-dark" style="opacity: .45;"></span>
-                            <div class="promo-box-content text-center padding-top-3x padding-bottom-2x">
-                                <h4 class="text-light text-thin text-shadow">New Collection of</h4>
-                                <h3 class="text-bold text-light text-shadow">Sunglassess</h3><a class="btn btn-sm btn-primary" href="#">Shop Now</a>
-                            </div>
-                        </section>
+
                     </aside>
                 </div>
             </div>
@@ -325,8 +316,8 @@
                 <div class="row">
                     <div class="col-md-7 padding-bottom-1x">
                         <!-- Payment Methods-->
-                        <div class="margin-bottom-1x" style="max-width: 615px;"><img src="img/payment_methods.png" alt="Payment Methods">
-                        </div>
+                        <!--div class="margin-bottom-1x" style="max-width: 615px;"><img src="/img/payment_methods.png" alt="Payment Methods">
+                        </div-->
                     </div>
                     <div class="col-md-5 padding-bottom-1x">
                         <div class="margin-top-1x hidden-md-up"></div>
@@ -355,9 +346,42 @@
 
 
 @endsection
-
 @section('additional_scripts')
-    <script src="/main_site/js/vendor.min.js"></script>
-    <script src="/main_site/js/scripts.min.js"></script>
-    <script src="/main_site/js/modernizr.min.js"></script>
-    @endsection
+
+@endsection
+@section('post_scripts')
+    <script type="text/javascript">
+
+        $(function() {
+            $('body').on('click', '.pagination a', function(e) {
+                e.preventDefault();
+
+                //$('#load a').css('color', '#dfecf6');
+                //$('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="/images/loading.gif" />');
+                console.log('Event=>',e.toElement.text)
+                console.log('TEMP=>',url)
+                console.log('CATEGORY=>','{{(isset($category_id)) ? $category_id : ''}}')
+                var category='{{(isset($category_id)) ? $category_id : ''}}';
+                var type='{{(isset($type)) ? $type : ''}}';
+                var search_string='{{(isset($search_string)) ? $search_string : ''}}';
+                var city='{{(isset($city)) ? $city : ''}}';
+                var administrative='{{(isset($administrative)) ? $administrative : ''}}';
+
+                var url='/categories/data';
+                if(category!==''){
+                window.location.href=('/category/'+category+'?type='+type+'&page='+e.toElement.text)}
+                else{
+                    window.location.href=('/search?search_string='+search_string+'?city='+city+'?administrative='+administrative+'&page='+e.toElement.text)
+                }
+            });
+
+        });
+
+
+    </script>
+
+
+
+
+@endsection
+

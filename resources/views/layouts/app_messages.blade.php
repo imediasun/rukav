@@ -94,6 +94,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
     </style>
 
+
+@yield('additional_scripts')
 @yield('styles')
     <!--<link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/your_styles.css">-->
 </head>
@@ -1295,7 +1297,7 @@ left:2px;
             <div id="main_menu">
 
                 <!-- BEGIN PRIMARY NAVIGATION -->
-            @include('layouts.rubrics')
+            @include('layouts.rubrics_messages')
             <!-- END PRIMARY NAVIGATION -->
 
 
@@ -2060,12 +2062,18 @@ left:2px;
     </div>
 </div>
 
-
+<script src="/main_site/js/vendor.min.js"></script>
+<script src="/main_site/js/scripts.min.js"></script>
+<script src="/main_site/js/modernizr.min.js"></script>
 
 <script src="/NewSmartAdmin/js/vendors.bundle.js"></script>
+
 <script src="/NewSmartAdmin/js/app.bundle.js"></script>
 <script src="/NewSmartAdmin/js/formplugins/select2/select2.bundle.js"></script>
+
+
 <script src="/NewSmartAdmin/js/formplugins/summernote/summernote.js"></script>
+
 <script src="/NewSmartAdmin/js/formplugins/cropperjs/cropper.js"></script>
 
 
