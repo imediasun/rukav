@@ -74,9 +74,9 @@
 
 
                         @endforeach
-
+                {{ $goods->links() }}
                     <!-- Pagination-->
-                    <nav class="pagination">
+                    <!--nav class="pagination">
                         <div class="column">
                             <ul class="pages">
                                 <li class="active"><a href="#">1</a></li>
@@ -88,7 +88,7 @@
                             </ul>
                         </div>
                         <div class="column text-right hidden-xs-down"><a class="btn btn-outline-secondary btn-sm" href="#">Next&nbsp;<i class="icon-arrow-right"></i></a></div>
-                    </nav>
+                    </nav-->
                 </div>
                 <!-- Sidebar          -->
                 <div class="col-xl-3 col-lg-4 order-lg-1">
@@ -239,7 +239,7 @@
 
                         </section>
                         <!-- Widget Size Filter-->
-                        <section class="widget">
+                        <!--section class="widget">
                             <h3 class="widget-title">Filter by Size</h3>
                             <div class="custom-control custom-checkbox">
                                 <input class="custom-control-input" type="checkbox" id="xl">
@@ -257,15 +257,15 @@
                                 <input class="custom-control-input" type="checkbox" id="s">
                                 <label class="custom-control-label" for="s">S&nbsp;<span class="text-muted">(213)</span></label>
                             </div>
-                        </section>
+                        </section-->
                         <!-- Promo Banner-->
-                        <section class="promo-box" style="background-image: url(img/banners/02.jpg);">
+                        <!--section class="promo-box" style="background-image: url(img/banners/02.jpg);">
                             <!-- Choose between .overlay-dark (#000) or .overlay-light (#fff) with default opacity of 50%. You can overrride default color and opacity values via 'style' attribute.--><span class="overlay-dark" style="opacity: .45;"></span>
-                            <div class="promo-box-content text-center padding-top-3x padding-bottom-2x">
+                            <!--div class="promo-box-content text-center padding-top-3x padding-bottom-2x">
                                 <h4 class="text-light text-thin text-shadow">New Collection of</h4>
                                 <h3 class="text-bold text-light text-shadow">Sunglassess</h3><a class="btn btn-sm btn-primary" href="#">Shop Now</a>
                             </div>
-                        </section>
+                        </section-->
                     </aside>
                 </div>
             </div>
@@ -359,3 +359,29 @@
     <script src="/main_site/js/vendor.min.js"></script>
     <script src="/main_site/js/scripts.min.js"></script>
     @endsection
+
+@section('post_scripts')
+    <script type="text/javascript">
+
+        $(function() {
+            $('body').on('click', '.pagination a', function(e) {
+                e.preventDefault();
+
+                //$('#load a').css('color', '#dfecf6');
+                //$('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="/images/loading.gif" />');
+                console.log('Event=>',e.toElement.text)
+                console.log('TEMP=>',url)
+                console.log('CATEGORY=>','{{$category_id}}')
+                var url='/categories/data';
+                window.location.href=('/category/'+'{{$category_id}}'+'?type='+'{{$type}}'+'&page='+e.toElement.text)
+            });
+
+        });
+
+
+    </script>
+
+
+
+
+@endsection

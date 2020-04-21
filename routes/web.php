@@ -16,7 +16,7 @@ Route::post('/show_subcat_all_levels_back', 'FuncController@show_subcat_all_leve
 Route::post('/show_parent_cats', 'FuncController@show_parent_cats');
 
 Route::get('/message/{id}', 'MessageController@index')->name('message');
-Route::get('/category/{id}/{type?}', 'CategoryController@index')->name('category');
+Route::get('/category/{id}', 'CategoryController@index')->name('category');
 Route::get('/news_feed', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
 #Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('login');
@@ -43,6 +43,10 @@ Route::group(['prefix' => 'customer'],function(){
 
 
 
+});
+
+Route::group(['prefix' => 'categories'],function(){
+    Route::post('/data', 'CategoryController@postData');
 });
 
 
