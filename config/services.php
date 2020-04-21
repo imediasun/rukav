@@ -44,7 +44,7 @@ return [
     'facebook' => [
         'client_id' => '242771253750028',
         'client_secret' => 'c33c2e109a77dc30e1d9738441206889',
-        'redirect' => 'http://mirosh.com/callback',
+        'redirect' => 'https://imedia.in.ua/callback/facebook',
     ],
 
 

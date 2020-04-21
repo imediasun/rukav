@@ -61,12 +61,12 @@ class SiteAdminLoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
 
 
         try {
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver($provider)->user();
             //dd($user );
         } catch (\Exception $e) {
             return redirect('/login');
@@ -82,7 +82,7 @@ class SiteAdminLoginController extends Controller
             auth()->login($existingUser, true);
         } else {
             // create a new user
-
+if($provider=='google'){
             $newUser                  = new User;
             $newUser->name            = $user->user['given_name'];
             $newUser->sername            = $user->user['family_name'];
@@ -96,6 +96,11 @@ class SiteAdminLoginController extends Controller
             $newUser->company_id          = 1;
             $newUser->save();
             auth()->login($newUser, true);
+			}
+			elseif($provider=='facebook'){
+			$user = $this->createUser($user,$provider);
+			auth()->login($newUser, true);
+			}
         }
         return redirect()->to('/');
     }
@@ -109,15 +114,15 @@ class SiteAdminLoginController extends Controller
         return redirect()->to('/home');
     }
     function createUser($getInfo,$provider){
-        $user = User::where('provider_id', $getInfo->id)->first();
-        if (!$user) {
             $user = User::create([
                 'name'     => $getInfo->name,
                 'email'    => $getInfo->email,
-                'provider' => $provider,
-                'provider_id' => $getInfo->id
+                'avatar'    => $getInfo->avatar,
+				'department' => 'none',
+            'active' => 1,
+            'company_id'         => 1
             ]);
-        }
+       
         return $user;
     }
 
