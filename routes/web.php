@@ -6,10 +6,10 @@ Route::get('/logout', function () {
 });
 
 Route::get('/redirect', 'Auth\SiteAdminLoginController@redirectToProvider');
-Route::get('/callback', 'Auth\SiteAdminLoginController@handleProviderCallback');
+Route::get('/callback/{provider}', 'Auth\SiteAdminLoginController@handleProviderCallback');
 
 Route::get('/auth/redirect/facebook', 'Auth\SiteAdminLoginController@redirectToFacebook');
-Route::get('/callback/{provider}', 'Auth\SiteAdminLoginController@callbackFacebook');
+//Route::get('/callback/{provider}', 'Auth\SiteAdminLoginController@callbackFacebook');
 
 
 Route::get('/', 'HomeController@index')->name('dashboard');
