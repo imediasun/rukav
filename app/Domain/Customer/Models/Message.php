@@ -10,6 +10,7 @@ class Message extends Model
 
     protected $fillable = [
         'id', 'category_id','sender','company_id','title','message','active','badge_id','visibility','place_id','city','administrative'
+        ,'phone','email','price'
 
     ];
 

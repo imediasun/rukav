@@ -21,10 +21,13 @@ class CreateMessagesTable extends Migration
             $table->unsignedBigInteger('sender')->unsigned();
             $table->integer('company_id');
             $table->string('title');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->string('place_id');
             $table->string('city');
             $table->string('administrative');
             $table->string('message');
+            $table->float('price')->nullable();
             $table->integer('badge_id');
             $table->integer('visibility');
             $table->boolean('active')->default(false);

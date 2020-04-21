@@ -559,6 +559,18 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="price-f">Дополнительная информация по объявлению</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                        <span class="input-group-text text-success">
+                                                            <i class="ni ni-user fs-xl"></i>
+                                                        </span>
+                                                                </div>
+                                                                <input type="text" aria-label="First name" class="form-control price_input" required placeholder="Цена(необязательно)" id="price-f">
+                                                                <input type="text" aria-label="Last name" class="form-control title_input" required placeholder="Название" id="tytle-l">
+                                                            </div>
+                                                        </div>
 
                                                     </div>
                                                     <div class="form-group">
@@ -2384,6 +2396,10 @@ console.log('TRY')
                 var customer=$(this).find('.sending_badge_user').val()
                 var visibility=$(this).find('.form-group').find('.sending_badge_visibility').val()
                 var message=$(this).find('.form-group').find('.sending_badge_textarea').val()
+                var title=$(this).find('.form-group').find('.title_input').val()
+                var price=$(this).find('.form-group').find('.price_input').val()
+                var email=$(this).find('.form-group').find('.email_input').val()
+                var phone=$(this).find('.form-group').find('.phone_input').val()
                 console.log('Therd step',message)
                 message=localStorage.getItem("summernoteData")
                 console.log('Therd step',message)
@@ -2407,6 +2423,7 @@ console.log('TRY')
                 var category = $(this).find('.category_select option:selected').val()
                 window.location_place_id=location.place_id
                 window.customer=customer;window.message=message;window.category=category;window.title=title;window.visibility=visibility
+                window.phone=phone;window.price=price;window.email=email;
                 codeLatLng(latlng,true);
 
 
@@ -2497,7 +2514,7 @@ console.log('aJax=>',ajax)
             async:false,
             url: '/customer/badge/send',
             data: {location:window.location_place_id,city:city,administrative:addr.administrative,customer: window.customer,message:window.message,
-                category:window.category,title:window.title,visibility:window.visibility
+                category:window.category,title:window.title,visibility:window.visibility,price:window.price,phone:window.phone,email:window.email
             },
             beforeSend: function() {
             },
