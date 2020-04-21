@@ -201,9 +201,15 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                     <p style="margin-left:265px">OR</p>
                                     <br />
                                     <div class="form-group">
-                                        <div class="col-md-8 col-md-offset-4">
-                                            <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Google</a>
+                                        <div class="row">
+                                        <div class="col-md-2 col-md-offset-2">
+                                            <a href="{{url('/redirect')}}" class="btn btn-primary"><i class="fa fa-google"></i>Google</a>
                                         </div>
+
+                                        <div class="col-md-2 col-md-offset-2">
+                                            <a href="{{ url('/auth/redirect/facebook') }}" class="btn btn-primary"><i class="fa fa-facebook"></i> Facebook</a>
+                                        </div>
+                                    </div>
                                     </div>
                                     <div class="form-group text-left">
                                         <div class="custom-control custom-checkbox">
