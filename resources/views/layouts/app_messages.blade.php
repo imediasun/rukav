@@ -1470,7 +1470,7 @@ left:2px;
 <!-- END Page Wrapper -->
 <!-- BEGIN Quick Menu -->
 <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-<nav class="shortcut-menu d-none d-sm-block">
+<!--nav class="shortcut-menu d-none d-sm-block">
     <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
     <label for="menu_open" class="menu-open-button ">
         <span class="app-shortcut-icon d-block"></span>
@@ -1490,7 +1490,7 @@ left:2px;
     <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left" title="Voice command">
         <i class="fal fa-microphone"></i>
     </a>
-</nav>
+</nav-->
 <!-- END Quick Menu -->
 <!-- BEGIN Messenger -->
 <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">

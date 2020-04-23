@@ -30,6 +30,7 @@ class HomeController extends BaseController
         $data['spacial_customer_id']=null;
         $data['user']=(\Auth::user()) ? \Auth::user() : null;
         $data['title']="Додати товар";
+        $data['sliders']=\App\Domain\Company\Models\Slider::get();
         $data['keywords']="Ukrainian industry platform";
         $data['description']="Ukrainian industry platform";
 

@@ -171,34 +171,6 @@
         </ul>
     </div> <!-- END NAV FOOTER -->
     </div>
-    <div class="col-lg-12" style="max-height:500px">
-        <div class="card mb-g">
-            <div class="row row-grid no-gutters">
-                <div class="col-12">
-                    <div class="p-3">
-                        <h2 class="mb-0 fs-xl">
-                            Send Feedback
-                        </h2>
-                    </div>
-                </div>
 
-                @foreach($customers as $customer)
-                <div class="col-4">
-                    <a href="/customer/get_special/{{$customer->id}}" class="text-center p-3 d-flex flex-column hover-highlight" >
-                        <input type="hidden" class="personal_badege_customer_id" value="{{$customer->id}}">
-                        <span class="profile-image rounded-circle d-block m-auto" style="@if(isset($customer->getCustomersCompany)) background-image:url('/storage/avatars/{{$customer->getCustomersCompany->photo}}') @else  background-image:url('/storage/avatars/avatar-a.png')@endif; background-size: cover;"></span>
-                        <span class="d-block text-truncate text-muted fs-xs mt-1">{{$customer->name}} {{$customer->sername}}</span>
-                    </a>
-                </div>
-              @endforeach
-
-                <div class="col-12">
-                    <div class="p-3 text-center">
-                        <a href="javascript:void(0);" class="btn-link font-weight-bold">View all</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </aside>
 <!-- END NAVIGATION -->

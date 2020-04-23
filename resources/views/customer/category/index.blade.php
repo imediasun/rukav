@@ -9,14 +9,14 @@
         <div class="page-title">
             <div class="container">
                 <div class="column">
-                    <h1>Детская одежда</h1>
+                    <h1>{{$category_name}}</h1>
                 </div>
                 <div class="column">
                     <ul class="breadcrumbs">
-                        <li><a href="index.html">Home</a>
+                        <li><a href="/">Home</a>
                         </li>
                         <li class="separator">&nbsp;</li>
-                        <li>Детская одежда</li>
+                        <li>{{$category_name}}</li>
                     </ul>
                 </div>
             </div>
@@ -194,8 +194,11 @@
                         </section>
                         <!-- Widget Price Range-->
                         <section class="widget widget-categories">
+                            <?
+                            $url=url()->current();
+                            ?>
                             <h3 class="widget-title">Фильтр цены</h3>
-                            <form class="price-range-slider" method="post" data-start-min="250" data-start-max="650" data-min="0" data-max="1000" data-step="1">
+                            <form class="price-range-slider" method="get" action="{{$url}}" data-start-min="250" data-start-max="3050" data-min="0" data-max="5000" data-step="1">
                                 <div class="ui-range-slider"></div>
                                 <footer class="ui-range-slider-footer">
                                     <div class="column">
@@ -204,10 +207,10 @@
                                     <div class="column">
                                         <div class="ui-range-values">
                                             <div class="ui-range-value-min">$<span></span>
-                                                <input type="hidden">
+                                                <input type="hidden" name="price_from">
                                             </div>&nbsp;-&nbsp;
                                             <div class="ui-range-value-max">$<span></span>
-                                                <input type="hidden">
+                                                <input type="hidden" name="price_to">
                                             </div>
                                         </div>
                                     </div>
@@ -368,11 +371,17 @@
                 var administrative='{{(isset($administrative)) ? $administrative : ''}}';
 
                 var url='/categories/data';
-                if(category!==''){
-                window.location.href=('/category/'+category+'?type='+type+'&page='+e.toElement.text)}
-                else{
-                    window.location.href=('/search?search_string='+search_string+'?city='+city+'?administrative='+administrative+'&page='+e.toElement.text)
+                if($.trim(e.toElement.text)=='›' || $.trim(e.toElement.text)=='‹'){
+                    console.log('Elem==',e.toElement.text) }
+                    else{
+                    if(category!==''){
+                     window.location.href=('/category/'+category+'?type='+type+'&page='+e.toElement.text)}
+                     else{
+                     window.location.href=('/search?search_string='+search_string+'?city='+city+'?administrative='+administrative+'&page='+e.toElement.text)
+                     }
                 }
+
+
             });
 
         });

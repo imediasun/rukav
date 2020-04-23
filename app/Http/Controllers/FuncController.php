@@ -295,7 +295,7 @@ class FuncController extends BaseController
         $data['spacial_customer_id']=null;
         $data['title']="Додати товар";
         $data['user']=(\Auth::user()) ? \Auth::user() : null;
-
+        $data['category_name']='Результаты Вашего поиска';
         $data['keywords']="Ukrainian industry platform";
         $data['description']="Ukrainian industry platform";
 

@@ -89,6 +89,13 @@ Route::group(['prefix' => 'company'],function(){
 
 
 
+    Route::post('/slider/data', 'Admin\CompaniesController@postSliderData');
+    Route::post('/slider/get', 'Admin\CompaniesController@getSlider');
+    Route::post('/slider/delete', 'Admin\CompaniesController@postSliderDelete');
+    Route::post('/slider/saveSliderToSession', 'Ajax\CompanyController@saveSliderToSession');
+    Route::post('/slider/create', 'Ajax\CompanyController@postSaveSlider');
+    Route::post('/slider/update_status', 'Ajax\CompanyController@updateSliderStatus');
+
     Route::post('/logo/data', 'Admin\CompaniesController@postLogosData');
     Route::post('/logo/get', 'Admin\CompaniesController@getLogo');
     Route::post('/logo/delete', 'Admin\CompaniesController@postLogoDelete');
@@ -131,6 +138,7 @@ Route::group(['prefix' => 'admin'],function(){
     //Route::get('/categories','CategoryController@index');
 
     Route::get('/view_messages', 'Admin\MessageController@index');
+    Route::get('/view_slider', 'Admin\SliderController@index');
     Route::post('/messages/data', 'Admin\MessageController@postData');
     Route::post('/messages/delete', 'Admin\MessageController@postDelete');
     Route::post('/messages/message_activity_set', 'Admin\MessageController@setIsActive');

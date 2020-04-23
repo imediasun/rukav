@@ -141,8 +141,7 @@
                                 echo '<i class="fa '.$arr[$parent_id][$i]->icon.'"></i>';
                             }
 
-                            echo '
-                        <span class="nav-link-text">' . $arr[$parent_id][$i]->name . '</span>
+                            echo ' <span style="color:#bdafd1" class="nav-link-text" onMouseOver="this.style.color=`#fff`" onMouseOut="this.style.color=`#bdafd1`" >' . $arr[$parent_id][$i]->name . '</span>
                         <i class="arrow"></i>
                                     </a>';
                             //рекурсия - проверяем нет ли дочерних категорий

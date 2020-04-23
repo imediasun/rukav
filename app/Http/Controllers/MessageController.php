@@ -28,6 +28,7 @@ class MessageController extends BaseController
         $data['rubrics']=$this->rubrics();
         $data['spacial_customer_id']=null;
         $data['title']="Додати товар";
+        $data['user']= (\Auth::user()) ? \Auth::user() : null;
 
         $data['message']=\App\Domain\Customer\Models\Message::where('id',$id)->with('pictures')->first();
         $data['keywords']="Ukrainian industry platform";

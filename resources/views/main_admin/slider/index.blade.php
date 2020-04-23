@@ -17,16 +17,16 @@
 
         <div class="demo">
 
-            <button onclick="clearLogoAdding()" type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg-logo">
+            <button onclick="clearsliderAdding()" type="button" class="btn btn-lg btn-primary waves-effect waves-themed" data-toggle="modal" data-target=".default-example-modal-right-lg-slider">
                 <span class="fal fa-plus  mr-1"></span>
-                Создать новый логотип 2</button>
+                Создать новый слайд</button>
         </div>
 
 
         <div id="panel-7" class="panel">
             <div class="panel-hdr">
                 <h2>
-                    Таблица  <span class="fw-300"><i>всех логотипов компании</i></span>
+                    Таблица  <span class="fw-300"><i>всех слайдов главной страницы</i></span>
                 </h2>
                 <div class="panel-toolbar">
                 </div>
@@ -37,7 +37,7 @@
                         Вы можете редактировать информацию нажав на  <a href="utilities_color_pallet.html" title="Color Pallets">карандаш</a> справа от информации
                     </div>
                     <h5 class="frame-heading">
-                        Логотипы
+                        Слайды
                     </h5>
                     <div id="loader">
                         <div class="border p-3">
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-tag result_of_logos_table">
+                    <div class="panel-tag result_of_sliders_table">
 
 
                     </div>
@@ -58,22 +58,32 @@
         </div>
     </div>
 
-    <div id="modalOneModal" class="modal fade default-example-modal-right-lg-logo" tabindex="-1" role="dialog" aria-labelledby="modalOneLabel" aria-hidden="true" style="display: none;">
+    <div id="modalOneModal" class="modal fade default-example-modal-right-lg-slider" tabindex="-1" role="dialog" aria-labelledby="modalOneLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-right modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title h4">Форма добавления логотипа</h5>
-                    <input class="sending_logo_id" type="hidden" value="0">
+                    <h5 class="modal-title h4">Форма добавления слайда</h5>
+                    <input class="sending_slider_id" type="hidden" value="0">
                     <button type="button" class="close" onclick="refreshImg()" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fal fa-times"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" id="logo_create" novalidate onsubmit="theSubmitFunction(); return false;">
+                    <form class="needs-validation" id="slider_create" novalidate onsubmit="theSubmitFunction(); return false;">
                     <div class="form-group">
-                        <label class="form-label" for="logo_name">Название логотипа</label>
-                        <input type="text" id="logo_name" name="logo_name" class="form-control" required placeholder="Название логотипа компании">
+                        <label class="form-label" for="slider_name">Название слайда</label>
+                        <input type="text" id="slider_name" name="slider_name" class="form-control" required placeholder="Название слайда">
                     </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="slider_description">Описание слайда</label>
+                            <input type="text" id="slider_description" name="slider_name" class="form-control" required placeholder="Описание слайда">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="slider_link">Ссылка на категорию</label>
+                            <input type="text" id="slider_link" name="slider_link" class="form-control" required placeholder="Ссылка на категорию">
+                        </div>
 
 
 
@@ -110,65 +120,7 @@
                                                             <div class="img-preview preview-xs"></div>
                                                         </div>
                                                         <!-- <h3>Data:</h3> -->
-                                                        <div class="docs-data">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-prepend">
-                                                                    <label class="input-group-text" for="dataX">X</label>
-                                                                </span>
-                                                                <input type="text" class="form-control" id="dataX" placeholder="x">
-                                                                <span class="input-group-append">
-                                                                    <span class="input-group-text">px</span>
-                                                                </span>
-                                                            </div>
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-prepend">
-                                                                    <label class="input-group-text" for="dataY">Y</label>
-                                                                </span>
-                                                                <input type="text" class="form-control" id="dataY" placeholder="y">
-                                                                <span class="input-group-append">
-                                                                    <span class="input-group-text">px</span>
-                                                                </span>
-                                                            </div>
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-prepend">
-                                                                    <label class="input-group-text" for="dataWidth">Width</label>
-                                                                </span>
-                                                                <input type="text" class="form-control" id="dataWidth" placeholder="width">
-                                                                <span class="input-group-append">
-                                                                    <span class="input-group-text">px</span>
-                                                                </span>
-                                                            </div>
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-prepend">
-                                                                    <label class="input-group-text" for="dataHeight">Height</label>
-                                                                </span>
-                                                                <input type="text" class="form-control" id="dataHeight" placeholder="height">
-                                                                <span class="input-group-append">
-                                                                    <span class="input-group-text">px</span>
-                                                                </span>
-                                                            </div>
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-prepend">
-                                                                    <label class="input-group-text" for="dataRotate">Rotate</label>
-                                                                </span>
-                                                                <input type="text" class="form-control" id="dataRotate" placeholder="rotate">
-                                                                <span class="input-group-append">
-                                                                    <span class="input-group-text">deg</span>
-                                                                </span>
-                                                            </div>
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-prepend">
-                                                                    <label class="input-group-text" for="dataScaleX">ScaleX</label>
-                                                                </span>
-                                                                <input type="text" class="form-control" id="dataScaleX" placeholder="scaleX">
-                                                            </div>
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-prepend">
-                                                                    <label class="input-group-text" for="dataScaleY">ScaleY</label>
-                                                                </span>
-                                                                <input type="text" class="form-control" id="dataScaleY" placeholder="scaleY">
-                                                            </div>
-                                                        </div>
+
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -287,7 +239,7 @@
                                                             </span>
                                                         </button>
                                                         <div class="btn-group btn-group-crop">
-                                                            <button class="formLogo btn btn-success" style="display:none" type="button"  data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }">
+                                                            <button class="formslider btn btn-success" style="display:none" type="button"  data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }">
                                                                 <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 4096, maxHeight: 4096 })">
                                                                     Сформировать логотип
                                                                 </span>
@@ -340,30 +292,7 @@
                                                                     16:9
                                                                 </span>
                                                             </label>
-                                                            <label class="btn btn-primary">
-                                                                <input type="radio" class="sr-only" id="aspectRatio1" name="aspectRatio" value="1.3333333333333333">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 4 / 3">
-                                                                    4:3
-                                                                </span>
-                                                            </label>
-                                                            <label class="btn btn-primary">
-                                                                <input type="radio" class="sr-only" id="aspectRatio2" name="aspectRatio" value="1">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 1 / 1">
-                                                                    1:1
-                                                                </span>
-                                                            </label>
-                                                            <label class="btn btn-primary">
-                                                                <input type="radio" class="sr-only" id="aspectRatio3" name="aspectRatio" value="0.6666666666666666">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 2 / 3">
-                                                                    2:3
-                                                                </span>
-                                                            </label>
-                                                            <label class="btn btn-primary">
-                                                                <input type="radio" class="sr-only" id="aspectRatio4" name="aspectRatio" value="NaN">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: NaN">
-                                                                    Free
-                                                                </span>
-                                                            </label>
+
                                                         </div>
                                                         <div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
                                                             <label class="btn btn-primary active">
@@ -372,7 +301,7 @@
                                                                     VM0
                                                                 </span>
                                                             </label>
-                                                            <label class="btn btn-primary">
+                                                            <!--label class="btn btn-primary">
                                                                 <input type="radio" class="sr-only" id="viewMode1" name="viewMode" value="1">
                                                                 <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 1">
                                                                     VM1
@@ -389,7 +318,7 @@
                                                                 <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 3">
                                                                     VM3
                                                                 </span>
-                                                            </label>
+                                                            </label-->
                                                         </div>
 
                                                         <!-- /.dropdown -->
@@ -408,8 +337,8 @@
 
 
                         <div class="modal-footer">
-                            <button type="button" class="logo_create_close btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Закрыть</button>
-                            <button type="submit" class="logo_create btn btn-primary waves-effect waves-themed">Сохранить</button>
+                            <button type="button" class="slider_create_close btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Закрыть</button>
+                            <button type="submit" class="slider_create btn btn-primary waves-effect waves-themed">Сохранить</button>
                         </div>
 
                 </form>
@@ -460,6 +389,7 @@
             $('.modal-backdrop:last').css('zIndex',1051+modal_lv);
             $(e.currentTarget).css('zIndex',1052+modal_lv);
             modal_lv++
+            $('#aspectRatio0').click();
         });
 
         $('.modal').on('hidden.bs.modal', function (e) {
@@ -470,7 +400,7 @@
 
 
         $(document).ready(function() {
-            $('#logo_create').submit(function(evt){
+            $('#slider_create').submit(function(evt){
                 evt.preventDefault();// to stop form submitting
             });
         });
@@ -478,21 +408,23 @@
 
         function theSubmitFunction (){
             console.log(222)
-            var form=$('#logo_create')
+            var form=$('#slider_create')
             if (form[0].checkValidity() === false) {
 
             }
             else{
 
-                var logo_name=$('#logo_name').val()
-                var logo_id=$('.sending_logo_id').val()
-                var company_id=$('#company_id').val()
+                var slider_name=$('#slider_name').val()
+                var slider_description=$('#slider_description').val()
+                var slider_link=$('#slider_link').val()
+                var slider_id=$('.sending_slider_id').val()
+                var company_id=1
 
-                console.log(logo_name)
+                console.log(slider_name)
 
-                window.logo_name=logo_name
-                window.logo_id=logo_id
-                $('.formLogo').trigger('click')
+                window.slider_name=slider_name
+                window.slider_id=slider_id
+                $('.formslider').trigger('click')
 
             }
         }
@@ -720,15 +652,15 @@
                                         method: 'POST',
                                         dataType: 'json',
                                         async:false,
-                                        url: '/company/logo/saveLogoToSession',
-                                        data: {logo: result.toDataURL(uploadedImageType)
+                                        url: '/company/slider/saveSliderToSession',
+                                        data: {slider: result.toDataURL(uploadedImageType)
                                         },
                                         beforeSend: function() {
                                             console.log(0)
                                         },
                                         complete: function() {
                                             console.log(333)
-                                            logoCreation()
+                                            sliderCreation()
 
                                         },
                                         success: function (data) {
@@ -858,27 +790,31 @@
 
     <script>
 
-        function logoCreation(){
+        function sliderCreation(){
 
-            var logo_name=$('#logo_name').val()
-            var id=$('#logo_id').val()
+            var slider_name=$('#slider_name').val()
+            var slider_description=$('#slider_description').val()
+            var slider_link=$('#slider_link').val()
+            var id=$('#slider_id').val()
             //var company_id=$('#company_id').val()
             console.log(222,window.company_id)
-            console.log(223,window.logo_id)
-            console.log(logo_name)
-
+            console.log(223,window.slider_id)
+            console.log('slider_link',slider_link)
+            console.log(slider_name)
             $.ajax({
                 method: 'POST',
                 dataType: 'json',
                 async: false,
-                url: '/company/logo/create',
+                url: '/company/slider/create',
                 data: {
-                    company_id: company_id, logo_name: logo_name,id:window.logo_id
+                    company_id: 1, slider_name: slider_name,id:window.slider_id,slider_description: slider_description,slider_link: slider_link
                 },
+                cache : false,
+                processData: true,
                 beforeSend: function () {
                 },
                 complete: function () {
-                    $('.logo_create_close').click();
+                    $('.slider_create_close').click();
                     reloadData();
                 },
                 success: function (data) {
@@ -899,8 +835,9 @@
 
         reloadData();
         function reloadData(){
-            var module='admin.main_admin.company.logo.data'
-            var url='/company/logo/data';
+
+            var module='admin.main_admin.company.slider.data'
+            var url='/company/slider/data';
             $.ajax({
                 method: 'POST',
                 dataType: 'html',
@@ -915,7 +852,7 @@
                 },
                 success: function (data) {
 
-                    $('.result_of_logos_table').html(data);
+                    $('.result_of_sliders_table').html(data);
 
                 }
             });
@@ -929,7 +866,7 @@
             $("#image").removeAttr("src");
         }
 
-        function clearLogoAdding(){
+        function clearsliderAdding(){
 
 
 
@@ -1270,9 +1207,9 @@
 
 
 
-            $('#logo_name').val('')
+            $('#slider_name').val('')
 
-            $('.sending_logo_id').val(0)
+            $('.sending_slider_id').val(0)
 
             $('#image').attr('src','/storage/badge7.png')
 

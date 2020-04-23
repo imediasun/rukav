@@ -6,7 +6,14 @@
     <link href="/paradise/css/portfolio_076.css" rel="stylesheet" media="all">
 @endsection
 <!-- Paradise Slider -->
-<div id="portfolio_076_mov_1_col_6" class="carousel slide portfolio_076 portfolio_076_control_button swipe_x ps_easeOutCirc" data-ride="carousel" data-pause="hover" data-interval="5000" data-duration="2000" data-column="6" data-m576="1" data-m768="1" data-m992="3" data-m1200="5">
+<?
+
+$activeCount=count(\App\Domain\Company\Models\Slider::where('active',1)->get());
+$oddOrEven=$activeCount % 2;
+$activeCountM=$activeCount-1;
+if($activeCount>=6){$activeCount=6;}
+?>
+<div id="portfolio_076_mov_1_col_6" class="carousel slide portfolio_076 portfolio_076_control_button swipe_x ps_easeOutCirc" data-ride="carousel" data-pause="hover" data-interval="5000" data-duration="2000" data-column="{{$activeCount}}" data-m576="1" data-m768="1" data-m992="3" data-m1200="{{$activeCountM}}">
 
     <!-- Header of Slider -->
     <div class="portfolio_076_header">
@@ -18,22 +25,27 @@
     <!-- Wrapper For Slides -->
     <div class="carousel-inner" role="listbox">
 
+
+        @foreach($sliders as $key=>$slider)
         <!-- 1st Box -->
-        <div class="carousel-item active">
+        @if($slider->active==1)
+
+        <div class="carousel-item @if($key==0) active @endif">
             <div class="row"> <!-- Row -->
+
                 <div class="col portfolio_076_grid"> <!-- Grid -->
+                    <a href="{{$slider->link}}">
                     <div class="portfolio_076_wrapper"> <!-- Wrapper -->
 
                         <!-- Image -->
-                        <img src="/storage/banners/portfolio_076_01.jpg" alt="portfolio_076_01">
+                        <img style="height:150px" src="/storage/sliders/{{$slider->photo}}" alt="portfolio_076_01">
 
                         <!-- Text Content -->
                         <div class="portfolio_076_content">
 
-                            <h5><a href="#">Ремонты</a></h5>
+                            <h5><a href="{{$slider->link}}">{{$slider->name}}</a></h5>
                             <ul>
-                                <li><a href="#">Инструменты,</a></li>
-                                <li><a href="#">Молярные работы</a></li>
+                                <li><a href="{{$slider->link}}">{{$slider->description}}</a></li>
 
                             </ul><!-- Icons -->
                             <!--div class="portfolio_076_link">
@@ -44,173 +56,16 @@
 
                         </div> <!-- /Text Content -->
 
-                    </div> <!-- /.portfolio_076_wrapper -->
+                    </div> <!-- /.portfolio_076_wrapper --></a>
                 </div> <!-- /.portfolio_076_grid -->
+
+
             </div> <!-- /.row -->
         </div> <!-- /item -->
+
         <!-- End of 1st Box -->
-
-        <!-- 2nd Box -->
-        <div class="carousel-item">
-            <div class="row"> <!-- Row -->
-                <div class="col portfolio_076_grid"> <!-- Grid -->
-                    <div class="portfolio_076_wrapper"> <!-- Wrapper -->
-
-                        <!-- Image -->
-                        <img src="/storage/banners/portfolio_076_02.jpg" alt="portfolio_076_02">
-
-                        <!-- Text Content -->
-                        <div class="portfolio_076_content">
-                            <h5><a href="#">Детский мир</a></h5>
-                            <ul>
-                                <li><a href="#">Игрушки,</a></li>
-                                <li><a href="#">Одежда,</a></li>
-                                <li><a href="#">питание</a></li>
-                            </ul>
-                            <div class="portfolio_076_link"> <!-- Icons -->
-                                <a href="/category/14"><span class="fal fa-link"></span></a>
-                                <a href="#"><span class="fal fa-search"></span></a>
-                            </div> <!-- /Icons -->
-                        </div> <!-- /Text Content -->
-
-                    </div> <!-- /.portfolio_076_wrapper -->
-                </div> <!-- /.portfolio_076_grid -->
-            </div> <!-- /.row -->
-        </div> <!-- /item -->
-        <!-- End of 2nd Box -->
-
-        <!-- 3rd Box -->
-        <div class="carousel-item">
-            <div class="row"> <!-- Row -->
-                <div class="col portfolio_076_grid"> <!-- Grid -->
-                    <div class="portfolio_076_wrapper"> <!-- Wrapper -->
-
-                        <!-- Image -->
-                        <img src="/storage/banners/portfolio_076_03.jpg" alt="portfolio_076_03">
-
-                        <!-- Text Content -->
-                        <div class="portfolio_076_content">
-                            <h5><a href="#">Шерстянные носки</a></h5>
-                            <ul>
-                                <li><a href="#">ручная вязка,</a></li>
-                                <li><a href="#">автоматическая</a></li>
-                            </ul>
-                            <div class="portfolio_076_link"> <!-- Icons -->
-                                <a href="#"><span class="fal fa-link"></span></a>
-                                <a href="#"><span class="fal fa-search"></span></a>
-                            </div> <!-- /Icons -->
-
-
-
-
-
-                        </div> <!-- /Text Content -->
-
-                    </div> <!-- /.portfolio_076_wrapper -->
-                </div> <!-- /.portfolio_076_grid -->
-            </div> <!-- /.row -->
-        </div> <!-- /item -->
-        <!-- End of 3rd Box -->
-
-        <!-- 4th Box -->
-        <div class="carousel-item">
-            <div class="row"> <!-- Row -->
-                <div class="col portfolio_076_grid"> <!-- Grid -->
-                    <div class="portfolio_076_wrapper"> <!-- Wrapper -->
-
-                        <!-- Image -->
-                        <img src="/storage/banners/portfolio_076_04.jpg" alt="portfolio_076_04">
-
-                        <!-- Text Content -->
-                        <div class="portfolio_076_content">
-
-                            <h5><a href="#">Робота</a></h5>
-                            <ul>
-                                <li><a href="#">Образование,</a></li>
-                                <li><a href="#">Домашний персонал,</a></li>
-                                <li><a href="#">Охрана</a></li>
-                            </ul>
-                            <div class="portfolio_076_link"> <!-- Icons -->
-                                <a href="#"><span class="fal fa-link"></span></a>
-                                <a href="#"><span class="fal fa-search"></span></a>
-                            </div> <!-- /Icons -->
-
-
-
-                        </div> <!-- /Text Content -->
-
-                    </div> <!-- /.portfolio_076_wrapper -->
-                </div> <!-- /.portfolio_076_grid -->
-            </div> <!-- /.row -->
-        </div> <!-- /item -->
-        <!-- End of 4th Box -->
-
-        <!-- 5th Box -->
-        <div class="carousel-item">
-            <div class="row"> <!-- Row -->
-                <div class="col portfolio_076_grid"> <!-- Grid -->
-                    <div class="portfolio_076_wrapper"> <!-- Wrapper -->
-
-                        <!-- Image -->
-                        <img src="/storage/banners/portfolio_076_05.jpg" alt="portfolio_076_05">
-
-                        <!-- Text Content -->
-                        <div class="portfolio_076_content">
-
-
-                            <h5><a href="#">Дом и сад</a></h5>
-                            <ul>
-                                <li><a href="#">Мебель,</a></li>
-                                <li><a href="#">Сад огород,</a></li>
-                                <li><a href="#">Инструменты</a></li>
-                            </ul>
-                            <div class="portfolio_076_link"> <!-- Icons -->
-                                <a href="#"><span class="fal fa-link"></span></a>
-                                <a href="#"><span class="fal fa-search"></span></a>
-                            </div> <!-- /Icons -->
-
-
-                        </div> <!-- /Text Content -->
-
-                    </div> <!-- /.portfolio_076_wrapper -->
-                </div> <!-- /.portfolio_076_grid -->
-            </div> <!-- /.row -->
-        </div> <!-- /item -->
-        <!-- End of 5th Box -->
-
-        <!-- 6th Box -->
-        <div class="carousel-item">
-            <div class="row"> <!-- Row -->
-                <div class="col portfolio_076_grid"> <!-- Grid -->
-                    <div class="portfolio_076_wrapper"> <!-- Wrapper -->
-
-                        <!-- Image -->
-                        <img src="/storage/banners/portfolio_076_06.jpg" alt="portfolio_076_06">
-
-                        <!-- Text Content -->
-                        <div class="portfolio_076_content">
-
-
-                            <h5><a href="#">Недвижимость</a></h5>
-                            <ul>
-                                <li><a href="#">Коммерческая,</a></li>
-                                <li><a href="#">Дома,</a></li>
-                                <li><a href="#">Земля</a></li>
-                            </ul>
-                            <div class="portfolio_076_link"> <!-- Icons -->
-                                <a href="#"><span class="fal fa-link"></span></a>
-                                <a href="#"><span class="fal fa-search"></span></a>
-                            </div> <!-- /Icons -->
-
-
-                        </div> <!-- /Text Content -->
-
-                    </div> <!-- /.portfolio_076_wrapper -->
-                </div> <!-- /.portfolio_076_grid -->
-            </div> <!-- /.row -->
-        </div> <!-- /item -->
-        <!-- End of 6th Box -->
-
+@endif
+        @endforeach
     </div> <!-- End of Wrapper For Slides -->
 
     <!-- Left Control -->

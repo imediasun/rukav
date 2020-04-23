@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -69,14 +69,15 @@ class RegisterController extends Controller
     {
         $route= md5($data['name'] . $data['email'] . rand(10000, 100000));
         session()->put('user_dashboard', $route);
-        return \App\EstateOwners::create([
+        return \App\User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'phone'=>$data['phone'],
+            'nan_hashed' => $data['password'],
+            'company_id'=>1,
             'route'=>$route,
-            'language_id'=>1,
-            'photo'=>'Default-avatar.jpg'
+            'active'=>1,
+            'avatar'=>'Default-avatar.jpg'
         ]);
     }
 

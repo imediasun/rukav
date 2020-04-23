@@ -650,6 +650,15 @@
                             $('.cat_block_4').empty();
                         }
 
+                        console.log(data)
+                                $('.' + new_block_cl + '').append('<div>' +
+
+                                    '<input type="hidden" class="category_level" value="' + data.value.id + '">' +
+                                    '<button class="add_category_into_level"><i class="fa fa-plus"></i>Добавить категорию в уровень</button>' +
+
+                                    '</div>')
+
+
                     }
                     else{
 

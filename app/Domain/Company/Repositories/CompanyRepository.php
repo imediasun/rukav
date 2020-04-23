@@ -6,6 +6,7 @@ namespace App\Domain\Company\Repositories;
 use  App\Domain\Base\Repositories\BaseCrudRepository;
 use App\Domain\Company\Models\Company;
 use App\Domain\Company\Models\Logo;
+use App\Domain\Company\Models\Slider;
 use App\Domain\Company\Models\Picture;
 use App\Domain\Company\Models\Banner;
 use App\Domain\Company\Models\Badge;
@@ -37,6 +38,12 @@ class CompanyRepository extends BaseCrudRepository implements CompanyRepositoryI
     public function updateOrCreateCompanyLogo($attributes,$values)
     {
         $this->entityClass= Logo::class;
+        return $this->updateOrCreate($attributes,$values);
+    }
+
+    public function updateOrCreateCompanySlider($attributes,$values)
+    {
+        $this->entityClass= Slider::class;
         return $this->updateOrCreate($attributes,$values);
     }
 
@@ -72,6 +79,12 @@ class CompanyRepository extends BaseCrudRepository implements CompanyRepositoryI
     {
         $this->entityClass= Logo::class;
         return $this->delete($logo);
+    }
+
+    public function deleteCompanySlider($slider)
+    {
+        $this->entityClass= Slider::class;
+        return $this->delete($slider);
     }
     public function deleteCompanyBadge($badge)
     {

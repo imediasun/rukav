@@ -9,6 +9,7 @@ use App\Domain\Company\Models\Company as CompanyModel;
 use App\Domain\Company\Models\Badge as BadgeModel;
 use App\Domain\Company\Models\CompanyBadge as CompanyBadgesModel;
 use App\Domain\Company\Models\Logo as CompanyLogoModel;
+use App\Domain\Company\Models\Slider as CompanySliderModel;
 use App\Domain\Admin\Models\BadgesGroup as BadgesGroupModel;
 use App\Domain\Company\Models\Banner as BannersModel;
 
@@ -90,6 +91,13 @@ class CompaniesController extends BaseController
         return view('main_admin.companies.logo.table',$data);
     }
 
+    public function postSliderData(Request $request){
+
+        $data['title']="Company postSliderData";
+        $data['slides']=CompanySliderModel::get();
+        return view('main_admin.slider.table',$data);
+    }
+
     public function postBadgesData(Request $request){
 
         $data['title']="Company postBadgesData";
@@ -118,6 +126,12 @@ class CompaniesController extends BaseController
 
     public function getLogo(Request $request){
         $data=CompanyLogoModel::where('id',$request->input('logo_id'))->first();
+
+        return $data;
+    }
+
+    public function getSlider(Request $request){
+        $data=CompanySliderModel::where('id',$request->input('slider_id'))->first();
 
         return $data;
     }
@@ -159,6 +173,13 @@ class CompaniesController extends BaseController
     public function postLogoDelete(Request $request){
         $logo=CompanyLogoModel::where('id',$request->input('logo_id'))->first();
         $result=Company::deleteCompanyLogo($logo);
+
+        return \Response::json($result);
+    }
+
+    public function postSliderDelete(Request $request){
+        $slider=CompanySliderModel::where('id',$request->input('slider_id'))->first();
+        $result=Company::deleteCompanySlider($slider);
 
         return \Response::json($result);
     }

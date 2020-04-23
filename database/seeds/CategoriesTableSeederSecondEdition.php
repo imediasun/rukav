@@ -132,7 +132,7 @@ class CategoriesTableSeederSecondEdition extends Seeder
             /*14*/
             [
                 'parent_id' => 1,
-                'name' => 'Детская обежда',
+                'name' => 'Детская одежда',
                 'link'=> '/private_cabinet',
                 'icon'=>'fa-home',
                 'photo'=>'first_category.png'
@@ -666,6 +666,26 @@ class CategoriesTableSeederSecondEdition extends Seeder
                 'icon'=> 'fal fa-window',
                 'link'=> '/admin/view_messages',
                 'system_name'=>'view_messages',
+                'type'=>'linked',
+                'permission'=>null
+            ],
+            /*30*/  //Role=>company_admin
+            [
+                'parent_id' => 0,
+                'name' => 'Слайдер',
+                'icon'=> 'fal fa-window',
+                'link'=> '/customer/slider',
+                'system_name'=>'slider',
+                'type'=>'not_linked',
+                'permission'=>'view_slider'
+            ],
+            /*31*/  //Role=>company_admin 1)Impresonate by user
+            [
+                'parent_id' => 30,
+                'name' => 'Просмотр слайдера',
+                'icon'=> 'fal fa-window',
+                'link'=> '/admin/view_slider',
+                'system_name'=>'view_slider',
                 'type'=>'linked',
                 'permission'=>null
             ],

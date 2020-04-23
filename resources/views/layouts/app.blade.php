@@ -165,8 +165,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                     <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
                                 </a>
                             </div>
-
-
+                            <div id="loginForm">
                             <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
                                 <form method="POST" action="{{ route('admin.login.submit') }}">
                                     <div class="form-group">
@@ -219,13 +218,98 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                     </div>
                                     <button type="submit" class="btn btn-default float-right">Secure login</button>
                                 </form>
-                            </div>
+                        </div>
                             <div class="blankpage-footer text-center">
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     <strong>Recover Password</strong>
                                 </a>
-                                | <a href="#"><strong>Register Account</strong></a>
+                                | <a href="#" onclick="switchToRegister()"><strong>Register Account</strong></a>
                             </div>
+
+                            </div>
+
+
+
+                            <div id="registrationForm" style="display:none">
+                                <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
+
+                                    <form method="POST" action="{{ route('register') }}">
+                                        @csrf
+
+                                        <div class="form-group row">
+                                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+
+
+                                            <div class="col-md-6">
+                                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+
+                                                @if ($errors->has('name'))
+                                                    <span class="invalid-feedback">
+
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+
+                                            <div class="col-md-6">
+                                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                                                @if ($errors->has('email'))
+                                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+
+                                            <div class="col-md-6">
+                                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                                @if ($errors->has('password'))
+                                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+
+                                            <div class="col-md-6">
+                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-0">
+                                            <div class="col-md-6 offset-md-4">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Register
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div class="blankpage-footer text-center">
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        <strong>Recover Password</strong>
+                                    </a>
+                                    | <a href="#" onclick="switchToLogin()"><strong>Login</strong></a>
+                                </div>
+
+                            </div>
+
+
+
+
                         </div>
 
 
@@ -614,7 +698,7 @@ left:2px;
                                             @if($i%4==0 || $cnt==$i)
 
 
-                                                <div style="height:1350px;width:100%;background:#eee;position:relative;display:none;padding-top:25px" class="sending_group">
+                                                <div style="height:1550px;width:100%;background:#eee;position:relative;display:none;padding-top:25px" class="sending_group">
                                                     <!--input type="hidden" class="sending_badges_group" value=""-->
                                                     <!--input type="hidden" class="sending_badges_customer" value=""-->
 
@@ -1486,7 +1570,7 @@ left:2px;
 <!-- END Page Wrapper -->
 <!-- BEGIN Quick Menu -->
 <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-<nav class="shortcut-menu d-none d-sm-block">
+<!--nav class="shortcut-menu d-none d-sm-block">
     <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
     <label for="menu_open" class="menu-open-button ">
         <span class="app-shortcut-icon d-block"></span>
@@ -1506,7 +1590,7 @@ left:2px;
     <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left" title="Voice command">
         <i class="fal fa-microphone"></i>
     </a>
-</nav>
+</nav-->
 <!-- END Quick Menu -->
 <!-- BEGIN Messenger -->
 <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -3506,6 +3590,17 @@ console.log('aJax=>',ajax)
 
 
 
+function switchToRegister(){
+
+    $('#loginForm').hide();
+    $('#registrationForm').show();
+}
+
+    function switchToLogin(){
+
+        $('#loginForm').show();
+        $('#registrationForm').hide();
+    }
 
 
 

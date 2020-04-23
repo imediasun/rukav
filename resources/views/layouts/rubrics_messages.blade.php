@@ -23,7 +23,7 @@
 <ul class="sky-mega-menu sky-mega-menu-response-to-icons sky-mega-menu-anim-scale">
     <!-- home -->
     <li>
-        <a href="#"><i class="fa fa-single fa-home"></i></a>
+        <a href="/"><i class="fa fa-single fa-home"></i></a>
     </li>
     <!--/ home -->
 

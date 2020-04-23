@@ -27,19 +27,29 @@ class CategoryController extends BaseController
         $data['user']= \Auth::user();
         $data['menu']=$this->menu();
         $data['category_id']=$id;
+        $data['category_name']=\App\Domain\Customer\Models\ProductCategory::where('id',$id)->first()->name;
         $data['type']=Input::get('type');
         $data['rubrics']=$this->rubrics();
         $data['spacial_customer_id']=null;
         $data['title']="Додати товар";
         $data['current_url']='/category/'.$id;
-        $currentPage = Input::get('page');;
+        $currentPage = Input::get('page');
+        $from=Input::get('price_from');
+        $to=Input::get('price_to');
         // Make sure that you call the static method currentPageResolver()
         // before querying users
         \Illuminate\Pagination\Paginator::currentPageResolver(function () use ($currentPage) {
             return $currentPage;
         });
 
-        $data['goods']=\App\Domain\Customer\Models\Message::where('category_id',$id)->with('pictures')->where('active',1)->paginate(3);
+        $data['goods']=\App\Domain\Customer\Models\Message::where('category_id',$id)
+            ->with('pictures')->where('active',1)->
+            where(function ($query) use($from,$to) {
+                if(!empty($from) && !empty($to)){
+                    $query->where('price','>=',$from)
+                        ->where('price','<=',$to);
+                }
+            })->paginate(3);
 if($data['type']=='list'){return view('customer.category.list',$data);}else{return view('customer.category.index',$data);}
 
     }

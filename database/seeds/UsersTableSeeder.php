@@ -62,7 +62,18 @@ class UsersTableSeeder extends Seeder
                'non_hashed'=>'sunimedia',
                'company_id'=>1
            ],
-
+           /*5*/
+           [
+               'name' => 'Детская',
+               'sername'=>'Одежда',
+               'login' => 'editor user',
+               'email'=> 'dev.magellan@gmail.com',
+               'password'=> Hash::make('sunimedia'),
+               'department'=> 'developement',
+               'active'=>true,
+               'non_hashed'=>'sunimedia',
+               'company_id'=>1
+           ],
 
         ]);
 

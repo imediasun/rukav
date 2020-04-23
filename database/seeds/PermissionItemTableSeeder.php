@@ -184,6 +184,17 @@ class PermissionItemTableSeeder extends Seeder
                 'guard_name'=>'admin'
 
             ],
+            /*16*/
+            [
+
+                'name' => 'view_slider',
+                'process_name'=>'Просмотр и редактирование слайдера',
+                'process_slug'=>'view_slider',
+                'type_category'=>'Меню',
+                'type_name'=>'Меню',
+                'guard_name'=>'admin'
+
+            ],
 
 
 
@@ -298,6 +309,13 @@ class PermissionItemTableSeeder extends Seeder
             [
 
                 'permission_id' =>15 ,
+                'role_id'=>4
+
+
+            ],
+            [
+
+                'permission_id' =>16 ,
                 'role_id'=>4
 
 

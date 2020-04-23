@@ -157,6 +157,11 @@ class CompanyManager extends CompanyAbstract implements CompanyContract
         return $this->companyRepository->deleteCompanyLogo($logo);
     }
 
+    public function deleteCompanySlider($slider)
+    {
+        return $this->companyRepository->deleteCompanySlider($slider);
+    }
+
     public function deleteCompanyBadge($badge)
     {
         return $this->companyRepository->deleteCompanyBadge($badge);
@@ -166,6 +171,34 @@ class CompanyManager extends CompanyAbstract implements CompanyContract
     {
 
         return $this->adminRepository->setAdminByEmail($company,$request);
+    }
+
+
+    public function updateCompanySlider($companySlider)
+    {
+        $slider=$this->companyRepository->updateOrCreateCompanySlider($companySlider['attributes'],$companySlider['values']);
+
+ /*       $result=Logo::where('id','!=',$slider->id)->get();
+        $i=0;
+        foreach($result as $slide){
+            $companySlider['values']=[];
+            $companySlider['attributes']=[];
+
+            if($slider->active==true){
+                $status=false;
+            }
+            else{
+
+                if($i>0){$status=false;}else{$status=true;}
+
+            }
+            $companySlider['values']=['active'=>$status];
+            $companySlider['attributes']['id']=$slide->id;
+            $this->companyRepository->updateOrCreateCompanyLogo($companySlider['attributes'],$companySlider['values']);
+            $i++;
+        }*/
+        return $slider;
+
     }
 
 

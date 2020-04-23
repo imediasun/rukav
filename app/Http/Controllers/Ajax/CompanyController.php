@@ -39,6 +39,12 @@ class CompanyController extends Controller
     \Session::put('temp_logo_filename',$fileName);
 
 }
+    public function saveSliderToSession(Request $request){
+        \Session::forget('temp_slider_filename');
+        $fileName=$this->base64ToImage($request->input('slider'),'sliders');
+        \Session::put('temp_slider_filename',$fileName);
+
+    }
 
     public function savePictureToSession(Request $request){
         \Session::forget('temp_picture_filename');
@@ -62,6 +68,14 @@ class CompanyController extends Controller
 
 }
 
+    public function postSaveSlider(Request $request){
+        var_dump('REQUEST',$request->input());
+        $companyLogo['values']=['link'=>$request->input('slider_link'),'description'=>$request->input('slider_description'),'name'=>$request->input('slider_name'),'photo'=> \Session::get('temp_slider_filename'),'active'=> 0,'company_id'=>$request->input('company_id')];
+        $companyLogo['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
+        Company::updateCompanySlider($companyLogo);
+
+    }
+
     public function postSaveBanner(Request $request){
         var_dump('ID',$request->input('id'));
         $companyLogo['values']=['name'=>$request->input('banner_name'),'photo'=> \Session::get('temp_banner_filename'),'active'=> 0,'company_id'=>$request->input('company_id')];
@@ -77,6 +91,15 @@ class CompanyController extends Controller
         $companyLogo['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
 
         Company::updateCompanyLogo($companyLogo);
+    }
+
+    public function updateSliderStatus(Request $request){
+
+        $status=($request->input('status')=='true') ? 1 :0;
+        $companySlider['values']=['active'=>$status ];
+        $companySlider['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
+
+        Company::updateCompanySlider($companySlider);
     }
 
 

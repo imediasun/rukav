@@ -241,6 +241,14 @@
                     $childs_count=count($childs);
                     ?>
                     @if($rubric->parent_id==0)
+                        <?
+                                $messages=[];
+                            $messagesCount=0;
+                            foreach($childs as $ch){
+                                $messages[$ch->id]=count(\App\Domain\Customer\Models\Message::where('category_id',$ch->id)->get());
+                                $messagesCount=$messagesCount+$messages[$ch->id];
+                            }
+                        ?>
                     <div class="col-xl-4">
                         <div id="c_1" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="oliver kopyov">
                             <div class="card-body border-faded border-top-0 border-left-0 border-right-0 rounded-top">
@@ -253,7 +261,7 @@
                                             {{$rubric->name}}
                                             <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                                         </a>
-                                        <span class="text-truncate text-truncate-xl">10 объявлений размещены</span>
+                                        <span class="text-truncate text-truncate-xl">{{$messagesCount}} объявлений размещены</span>
                                     </div>
                                     <button class="js-expand-btn btn btn-sm btn-default d-none" data-toggle="collapse" data-target="#c_1 > .card-body + .card-body" aria-expanded="false">
                                         <span class="collapsed-hidden">+</span>
@@ -270,7 +278,7 @@
                             <div class="card-body p-0 collapse show">
                                 <div class="p-3">
                                     <a href="/category/{{$child->id}}" class="mt-1 d-block fs-sm fw-400 text-dark">
-                                        <i class="fas {{$child->icon}} text-muted mr-2"></i> {{$child->name}}</a>
+                                        <i class="fas {{$child->icon}} text-muted mr-2"></i> {{$child->name}} ({{$messages[$child->id]}})</a>
 
                                 </div>
                             </div>
