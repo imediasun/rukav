@@ -75,9 +75,9 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true,
-		"github-oauth": {
-      "github.com": "b20b655a89f1845f5f64a1081384d3ee1ded995f"
-      }
+        "github-oauth": {
+
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
