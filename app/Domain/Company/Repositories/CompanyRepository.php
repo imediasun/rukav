@@ -11,6 +11,7 @@ use App\Domain\Company\Models\Picture;
 use App\Domain\Company\Models\Banner;
 use App\Domain\Company\Models\Badge;
 use App\Domain\Company\Models\CompanySetting;
+use App\Domain\Customer\Models\ProductCategory;
 
 
 class CompanyRepository extends BaseCrudRepository implements CompanyRepositoryInterface
@@ -44,6 +45,12 @@ class CompanyRepository extends BaseCrudRepository implements CompanyRepositoryI
     public function updateOrCreateCompanySlider($attributes,$values)
     {
         $this->entityClass= Slider::class;
+        return $this->updateOrCreate($attributes,$values);
+    }
+
+    public function updateOrCreateProductCategory($attributes,$values)
+    {
+        $this->entityClass= ProductCategory::class;
         return $this->updateOrCreate($attributes,$values);
     }
 

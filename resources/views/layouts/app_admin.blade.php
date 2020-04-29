@@ -1577,7 +1577,7 @@ left:2px;
 <script src="/NewSmartAdmin/js/formplugins/select2/select2.bundle.js"></script>
 <script src="/NewSmartAdmin/js/formplugins/summernote/summernote.js"></script>
 
-
+<script src="https://kit.fontawesome.com/87c575d6be.js" crossorigin="anonymous"></script>
 
 
 <!-- iCheck -->

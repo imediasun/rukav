@@ -46,6 +46,13 @@ class CompanyController extends Controller
 
     }
 
+    public function saveRootCatPhotoToSession(Request $request){
+        \Session::forget('temp_root_cat_photo_filename');
+        $fileName=$this->base64ToImage($request->input('root_cat_photo'),'root_cat_photos');
+        \Session::put('temp_root_cat_photo_filename',$fileName);
+
+    }
+
     public function savePictureToSession(Request $request){
         \Session::forget('temp_picture_filename');
         $fileName=$this->base64ToImage($request->input('picture'),'pictures');
@@ -73,6 +80,14 @@ class CompanyController extends Controller
         $companyLogo['values']=['link'=>$request->input('slider_link'),'description'=>$request->input('slider_description'),'name'=>$request->input('slider_name'),'photo'=> \Session::get('temp_slider_filename'),'active'=> 0,'company_id'=>$request->input('company_id')];
         $companyLogo['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
         Company::updateCompanySlider($companyLogo);
+
+    }
+
+    public function postSaveRootCatPhoto(Request $request){
+        var_dump('REQUEST',$request->input());
+        $companyLogo['values']=['photo'=> \Session::get('temp_root_cat_photo_filename')];
+        $companyLogo['attributes']['id']=(null!=($request->input('id')) && !empty($request->input('id'))) ? $request->input('id') : null;
+        Company::updateCompanyRootCatPhoto($companyLogo);
 
     }
 

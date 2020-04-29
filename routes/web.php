@@ -93,8 +93,11 @@ Route::group(['prefix' => 'company'],function(){
     Route::post('/slider/get', 'Admin\CompaniesController@getSlider');
     Route::post('/slider/delete', 'Admin\CompaniesController@postSliderDelete');
     Route::post('/slider/saveSliderToSession', 'Ajax\CompanyController@saveSliderToSession');
+    Route::post('/photo/saveRootCatPhotoToSession', 'Ajax\CompanyController@saveRootCatPhotoToSession');
     Route::post('/slider/create', 'Ajax\CompanyController@postSaveSlider');
     Route::post('/slider/update_status', 'Ajax\CompanyController@updateSliderStatus');
+    Route::post('/root_cat_photos/create', 'Ajax\CompanyController@postSaveRootCatPhoto');
+
 
     Route::post('/logo/data', 'Admin\CompaniesController@postLogosData');
     Route::post('/logo/get', 'Admin\CompaniesController@getLogo');
@@ -133,6 +136,8 @@ Route::post('/profile/avatar/update_status', 'Ajax\AdminController@updateAvatarS
 
 Route::group(['prefix' => 'admin'],function(){
 
+
+    Route::post('/delete_cat','CategoryController@deleteCat');
     Route::post('/change_category_name','CategoryController@changeCatName');
     Route::get('/categories/add','CategoryController@add_show');
     //Route::get('/categories','CategoryController@index');

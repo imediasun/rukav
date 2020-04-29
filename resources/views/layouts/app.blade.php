@@ -682,7 +682,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                                                 <input type="hidden" class="badge_num" value="{{$i}}">
                                                 <input type="hidden" class="badge_id" value="{{$badges->id}}">
                                                 <input type="hidden" class="badge_name" value="{{$badges->name}}">
-                                                <img src="{{$badges->photo}}" style="position:absolute;width:150px" class="single_badge"> <h3 style="color:black;
+                                                <img src="/storage/root_cat_photos/{{$badges->photo}}" style="position:absolute;width:150px" class="single_badge"> <h3 style="color:black;
                                                 font: 20px Arial, sans-serif;
                                                 text-shadow: #cad5e2 1px 1px 0, #cad5e2 2px 2px 0,
                  #cad5e2 3px 3px 0, #cad5e2 4px 4px 0,

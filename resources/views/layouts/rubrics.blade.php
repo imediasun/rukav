@@ -98,9 +98,9 @@
 
 
 
-                                if($parent_id == 0){
-                                    echo '<i class="fal '.$arr[$parent_id][$i]->icon.'"></i>';
-                                }
+                                //if($parent_id == 0){
+                                    print ($arr[$parent_id][$i]->icon);
+                                //}
 
                                 echo '
                             <span class="nav-link-text">' . $arr[$parent_id][$i]->name . '</span>

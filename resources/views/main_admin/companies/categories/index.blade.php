@@ -10,6 +10,8 @@
 
 
 
+
+
     <style>
         .cat_block:hover{
             background:#ee9;
@@ -184,12 +186,13 @@
                                                         <div  class="cat_block" >
 
                                                             <input  class="fahover_cubes_input" type="hidden" value="{{$category->id}}">
-
+                                                            <button style="background:red;color:white" class="delete_cat"><i class="fa fa-trash"></i></button>
                                                             <button class="edit_cat"><i class="fa fa-pencil"></i></button>
+                                                            <button class="picture_cat" data-toggle="modal" data-target=".default-example-modal-right-lg-slider"><i class="fas fa-camera-retro"></i></i></button>
 
-                                                            <div style="display:inline-block" class="i-checks">
+                                                            <!--div style="display:inline-block" class="i-checks">
                                                                 <label> <input class="category_checkbox" type="checkbox" {{$category->checked}} value=""> </label>
-                                                            </div>
+                                                            </div-->
 
 
                                                             <span style="position:relative;padding-left:20px;">{{$category->name}}</span>
@@ -284,6 +287,11 @@
                                 <label>Название категории</label>
                                 <input class="form-control" id="cat_name" value="" placeholder="Text field" type="text">
                             </div>
+
+                            <div class="form-group">
+                                <label>Иконка категории  <a href="https://fontawesome.com/">Font Awesome</a></label>
+                                <input class="form-control" id="icon_name" value="" placeholder="<i class='fas fa-camera-retro'></i>" type="text">
+                            </div>
                         </fieldset>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -298,9 +306,280 @@
 
 
 
+    <!-- Modal center Large -->
+    <div class="modal fade default-example-modal-right-lg-slider"  role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h4">Форма добавления фото в корневую категорию</h5>
+                    <input class="sending_slider_id" type="hidden" value="0">
+                    <button type="button" class="close" onclick="refreshImg()" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" id="slider_create" novalidate onsubmit="theSubmitFunction(); return false;">
+                        <!-- BEGIN Page Content -->
+                        <!-- the #js-page-content id is needed for some plugins to initialize -->
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div id="panel-1" class="panel">
+                                    <div class="panel-hdr">
+                                        <h2>
+                                            Advanced <span class="fw-300"><i>Example</i></span>
+                                        </h2>
+                                        <div class="panel-toolbar">
+                                        </div>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+                                            <!-- Content -->
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-xl-9">
+                                                        <!-- <h3>Demo:</h3> -->
+                                                        <div class="img-container" style="min-height:250px !important;max-height:250px !important;height:250px !important;">
+                                                            <img id="image" src="/NewSmartAdmin/img/demo/gallery/3.jpg" alt="Picture">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-3">
+                                                        <!-- <h3>Preview:</h3> -->
+                                                        <div class="docs-preview clearfix">
+                                                            <div class="img-preview preview-lg"></div>
+                                                            <div class="img-preview preview-md"></div>
+                                                            <div class="img-preview preview-sm"></div>
+                                                            <div class="img-preview preview-xs"></div>
+                                                        </div>
+                                                        <!-- <h3>Data:</h3> -->
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-9 docs-buttons">
+                                                        <!-- <h3>Toolbar:</h3> -->
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Move">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
+                                                                    <span class="fas fa-arrows"></span>
+                                                                </span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="crop" title="Crop">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setDragMode&quot;, &quot;crop&quot;)">
+                                                                    <span class="fas fa-crop"></span>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, 0.1)">
+                                                                    <span class="fas fa-search-plus"></span>
+                                                                </span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, -0.1)">
+                                                                    <span class="fas fa-search-minus"></span>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-primary" data-method="move" data-option="-10" data-second-option="0" title="Move Left">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, -10, 0)">
+                                                                    <span class="fas fa-arrow-left"></span>
+                                                                </span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary" data-method="move" data-option="10" data-second-option="0" title="Move Right">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 10, 0)">
+                                                                    <span class="fas fa-arrow-right"></span>
+                                                                </span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="-10" title="Move Up">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 0, -10)">
+                                                                    <span class="fas fa-arrow-up"></span>
+                                                                </span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="10" title="Move Down">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 0, 10)">
+                                                                    <span class="fas fa-arrow-down"></span>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, -45)">
+                                                                    <span class="fas fa-undo"></span>
+                                                                </span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, 45)">
+                                                                    <span class="fas fa-redo"></span>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-primary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleX&quot;, -1)">
+                                                                    <span class="fas fa-arrows-h"></span>
+                                                                </span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary" data-method="scaleY" data-option="-1" title="Flip Vertical">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleY&quot;, -1)">
+                                                                    <span class="fal fa-arrows-v"></span>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-primary" data-method="crop" title="Crop">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;crop&quot;)">
+                                                                    <span class="fas fa-check"></span>
+                                                                </span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary" data-method="clear" title="Clear">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;clear&quot;)">
+                                                                    <span class="fas fa-times"></span>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-primary" data-method="disable" title="Disable">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;disable&quot;)">
+                                                                    <span class="fas fa-lock"></span>
+                                                                </span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary" data-method="enable" title="Enable">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;enable&quot;)">
+                                                                    <span class="fas fa-unlock"></span>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-primary" data-method="reset" title="Reset">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;reset&quot;)">
+                                                                    <span class="fas fa-sync"></span>
+                                                                </span>
+                                                            </button>
+                                                            <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
+                                                                <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="Import image with Blob URLs">
+                                                                    <span class="fas fa-image mr-1"></span> Upload
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        <button type="button" class="btn btn-danger" data-method="destroy" title="Destroy">
+                                                            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;destroy&quot;)">
+                                                                <span class="fas fa-power-off"></span>
+                                                            </span>
+                                                        </button>
+                                                        <div class="btn-group btn-group-crop">
+                                                            <button class="formslider btn btn-success" style="display:none" type="button"  data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 4096, maxHeight: 4096 })">
+                                                                    Сформировать логотип
+                                                                </span>
+                                                            </button>
+
+                                                        </div>
+                                                        <!-- Show the cropped image in modal -->
 
 
 
+
+
+
+
+
+
+
+
+
+
+                                                        <div class="modal fade docs-cropped" id="getCroppedCanvasModal2" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="getCroppedCanvasTitle">Cropped</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body"></div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.modal -->
+
+
+
+                                                    </div>
+                                                    <!-- /.docs-buttons -->
+                                                    <div class="col-lg-3 docs-toggles">
+                                                        <!-- <h3>Toggles:</h3> -->
+                                                        <div class="btn-group btn-group-sm d-flex flex-nowrap" data-toggle="buttons">
+                                                            <label class="btn btn-primary">
+                                                                <input type="radio" class="sr-only" id="aspectRatio2" name="aspectRatio" value="1">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 1 / 1">
+                                                                    1:1
+                                                                </span>
+                                                            </label>
+
+                                                        </div>
+                                                        <div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
+                                                            <label class="btn btn-primary active">
+                                                                <input type="radio" class="sr-only" id="viewMode0" name="viewMode" value="0" checked>
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 0">
+                                                                    VM0
+                                                                </span>
+                                                            </label>
+                                                            <!--label class="btn btn-primary">
+                                                                <input type="radio" class="sr-only" id="viewMode1" name="viewMode" value="1">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 1">
+                                                                    VM1
+                                                                </span>
+                                                            </label>
+                                                            <label class="btn btn-primary">
+                                                                <input type="radio" class="sr-only" id="viewMode2" name="viewMode" value="2">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 2">
+                                                                    VM2
+                                                                </span>
+                                                            </label>
+                                                            <label class="btn btn-primary">
+                                                                <input type="radio" class="sr-only" id="viewMode3" name="viewMode" value="3">
+                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 3">
+                                                                    VM3
+                                                                </span>
+                                                            </label-->
+                                                        </div>
+
+                                                        <!-- /.dropdown -->
+                                                    </div>
+                                                    <!-- /.docs-toggles -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- this overlay is activated only when mobile menu is triggered -->
+
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="slider_create_close btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Закрыть</button>
+                            <button type="submit" class="slider_create btn btn-primary waves-effect waves-themed">Сохранить</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!--div id="addtab" title="Изменение названия категории">
 
@@ -330,9 +609,12 @@
 
 @section('scripts')
     <!-- iCheck -->
-    <script src="{!! asset('/inspinia/js/plugins/iCheck/icheck.min.js') !!}"></script>
+    <!--script src="{!! asset('/inspinia/js/plugins/iCheck/icheck.min.js') !!}"></script-->
 
 
+
+
+    <script src="/NewSmartAdmin/js/formplugins/cropperjs/cropper.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -370,6 +652,8 @@
                 console.log('edit')
                 var action = 'edit'
                 var parent_id=window.cat_id
+                console.log('window.parent_cat_id=<=>',window.parent_cat_id)
+                var id_cat=window.parent_cat_id
             }
 
             $.ajax({
@@ -377,6 +661,7 @@
                 dataType: 'json',  // what to expect back from the PHP script, if anything
                 cache: false,
                 data: {
+                    icon: event.target.elements[4].value,
                     name: event.target.elements[3].value,
                     link: event.target.elements[2].value,
                     id: window.cat_id,
@@ -385,13 +670,20 @@
                 },
                 type: 'post',
                 success: function (data) {
+                    console.log(data)
                     if(window.cat_id == null && window.parent_cat_id != null){
+                        console.log('window.cat_id1=>',id_cat)
                         var id_cat=window.parent_cat_id
                     }
+                    else{
+                        console.log('window.cat_id2=>',id_cat)
+                        var id_cat=data.cat.parent_id
+                    }
                     window.parent_cat_id = null;
-
-                    show_subcut(id_cat)
-                    console.log('here')
+                    console.log('window.cat_id=>',id_cat)
+                    console.log('window.new_block_cl=>',window.new_block_cl)
+                    show_subcut(id_cat,window.new_block_cl)
+                    console.log('here modal submit')
                 }
             });
 
@@ -557,7 +849,7 @@
                             $('.'+block_class+'').append(' <a ><div class="cat_block" >' +
                                 '<input class="fahover_cubes_input" type="hidden" value="'+value.id+'">' +
 
-                                '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" type="checkbox" value=""> </label></div>\n' +
+                                '<!--div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" type="checkbox" value=""> </label></div-->\n' +
                                 value.name+
                                 '<span class="fa arrow" style="float:right"></span>' +
                                 '</div></a>')
@@ -570,7 +862,7 @@
                             $('.'+block_class+'').append(' <a ><div class="cat_block" >' +
                                 '<input class="fahover_cubes_input" type="hidden" value="'+value.id+'">' +
 
-                                '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" checked type="checkbox" value=""> </label></div>\n' +
+                                '<!--div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" checked type="checkbox" value=""> </label></div-->\n' +
                                 value.name+
                                 '<span class="fa arrow" style="float:right"></span>' +
                                 '</div></a>')
@@ -619,7 +911,7 @@
             $("#tab_content").val("");
         }
 
-        function show_subcut(id_cat){
+        function show_subcut(id_cat,new_block_cl){
 
             $.ajax({
                 method: 'POST',
@@ -628,7 +920,7 @@
                 url: "/show_subcat",
                 data: {id_cat: id_cat}, // serializes the form's elements.
                 success: function (data) {
-
+console.log('new_block_cl',new_block_cl)
                     if(data.message=='null'){
                         console.log(333)
                         //проверить чтобы соседние последующие блоки были пусты
@@ -683,7 +975,7 @@
                                     $('.' + new_block_cl + '').append(' <a ><div class="cat_block" >' +
                                         '<input class="fahover_cubes_input" type="hidden" value="' + value.id + '">' +
 
-                                        '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" type="checkbox" value=""> </label></div>\n' +
+                                        '<!--div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" type="checkbox" value=""> </label></div-->\n' +
                                         value.name +
                                         '</div></a>')
                                 }
@@ -691,7 +983,7 @@
                                     $('.' + new_block_cl + '').append(' <a ><div class="cat_block" >' +
                                         '<input class="fahover_cubes_input" type="hidden" value="' + value.id + '">' +
 
-                                        '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" checked type="checkbox" value=""> </label></div>\n' +
+                                        '<!--div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" checked type="checkbox" value=""> </label></div-->\n' +
                                         value.name +
                                         '</div></a>')
                                 }
@@ -700,7 +992,7 @@
 
                         }
                         else{
-
+console.log('new_block_cl ELSE')
                             $.each( data.value, function( key, value ) {
 
                                 if(key==0){
@@ -717,8 +1009,9 @@
 
                                     $('.'+new_block_cl+'').append(' <a ><div class="cat_block" >' +
                                         '<input class="fahover_cubes_input" type="hidden" value="'+value.id+'">' +
+                                        '<button style="background:red;color:white" class="delete_cat"><i class="fa fa-trash"></i></button>'+
                                         '<button class="edit_cat"><i class="fa fa-pencil"></i></button>'+
-                                        '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" type="checkbox" value=""> </label></div>\n' +
+                                        '<!--div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" type="checkbox" value=""> </label></div-->\n' +
                                         value.name+
                                         '<span class="fa arrow" style="float:right"></span>' +
                                         '</div></a>')
@@ -731,7 +1024,7 @@
                                     $('.'+new_block_cl+'').append(' <a ><div class="cat_block" >' +
                                         '<input class="fahover_cubes_input" type="hidden" value="'+value.id+'">' +
 
-                                        '<div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" checked type="checkbox" value=""> </label></div>\n' +
+                                        '<!--div style="display:inline-block" class="i-checks"><label> <input class="category_checkbox" checked type="checkbox" value=""> </label></div-->\n' +
                                         value.name+
                                         '<span class="fa arrow" style="float:right"></span>' +
                                         '</div></a>')
@@ -825,6 +1118,38 @@
 
             });*/
 
+            $('.categories').delegate('.delete_cat','click',function(event) {
+                console.log(338)
+                var cat_id=$(this).parent().find('.fahover_cubes_input').val()
+                var new_block_cl=$(this).parent().parent().parent().attr('class').split(' ')[1]
+                console.log('del_block_cl',new_block_cl)
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    url: '/admin/delete_cat',
+                    data: {id_cat:cat_id}, // serializes the form's elements.
+                    success: function (data) {
+                console.log(data.parent_id)
+                        if(data.parent_id!==0){
+
+                        show_subcut(data.parent_id,new_block_cl)}
+                        else{ location.reload()}
+                    }
+                });
+                return false;
+            })
+
+
+            $('.categories').delegate('.picture_cat','click',function(event) {
+                console.log(339,$(this).parent('div').find('.fahover_cubes_input').val())
+                $('.sending_slider_id').val($(this).parent('div').find('.fahover_cubes_input').val())
+                window.sending_slider_id=$(this).parent('div').find('.fahover_cubes_input').val()
+                $('.default-example-modal-right-lg-slider').modal({show:true})
+
+                return false;
+            })
+
+
 
             $('.categories').delegate('.edit_cat','click',function(event) {
                 console.log(334)
@@ -840,7 +1165,13 @@
 
 
             $('.categories').delegate('.add_category_into_level','click',function(event) {
-                console.log(334)
+                console.log(334,event)
+                var cl=$(this).parent().parent().attr('class').split(' ')[1];
+                var simbol=parseInt(cl.slice(10))+1
+                console.log('cl=>',cl)
+                window.new_block_cl=cl
+                //new_block_cl=cl.slice(0, 10)+simbol
+                console.log('new_block_cl_add',window.new_block_cl)
                 $('.default-example-modal-lg-center').modal({show:true})
                 window.parent_cat_id=$(this).parent().find('.category_level').val()
                 console.log('window.parent_cat_id',window.parent_cat_id)
@@ -872,8 +1203,10 @@
             cl=cl.split(' ')[1]
             var simbol=parseInt(cl.slice(10))+1
             new_block_cl=cl.slice(0, 10)+simbol
-
-            show_subcut(id_cat);
+            window.parent_cat_id=id_cat
+            console.log('window.parent_cat_id==>',window.parent_cat_id)
+console.log('new_block_cl_pre',new_block_cl)
+            show_subcut(id_cat,new_block_cl);
 
 
             $('.i-checks').iCheck({
@@ -939,6 +1272,839 @@
     </script>
 
 
+
+    <script>
+
+
+        var modal_lv = 0;
+        $('.modal').on('shown.bs.modal', function (e) {
+            $('.modal-backdrop:last').css('zIndex',1051+modal_lv);
+            $(e.currentTarget).css('zIndex',1052+modal_lv);
+            modal_lv++
+            $('#aspectRatio2').click();
+        });
+
+        $('.modal').on('hidden.bs.modal', function (e) {
+            modal_lv--
+        });
+
+
+
+
+        $(document).ready(function() {
+            $('#slider_create').submit(function(evt){
+                evt.preventDefault();// to stop form submitting
+            });
+        });
+
+
+        function theSubmitFunction (){
+            console.log(222)
+            var form=$('#slider_create')
+            if (form[0].checkValidity() === false) {
+
+            }
+            else{
+
+                var slider_name=$('#slider_name').val()
+                var slider_description=$('#slider_description').val()
+                var slider_link=$('#slider_link').val()
+                var slider_id=$('.sending_slider_id').val()
+                var company_id=1
+
+                console.log(slider_name)
+
+                window.slider_name=slider_name
+                window.slider_id=slider_id
+                $('.formslider').trigger('click')
+
+            }
+        }
+
+
+
+        $(function()
+        {
+            'use strict';
+
+            /*var console = window.console || {
+             log: function () {}
+             };*/
+
+            var URL = window.URL || window.webkitURL;
+            var $image = $('#image');
+            var $download = $('#download');
+            var $dataX = $('#dataX');
+            var $dataY = $('#dataY');
+            var $dataHeight = $('#dataHeight');
+            var $dataWidth = $('#dataWidth');
+            var $dataRotate = $('#dataRotate');
+            var $dataScaleX = $('#dataScaleX');
+            var $dataScaleY = $('#dataScaleY');
+            var options = {
+                aspectRatio: 16 / 9,
+                preview: '.img-preview',
+                crop: function(e)
+                {
+                    $dataX.val(Math.round(e.detail.x));
+                    $dataY.val(Math.round(e.detail.y));
+                    $dataHeight.val(Math.round(e.detail.height));
+                    $dataWidth.val(Math.round(e.detail.width));
+                    $dataRotate.val(e.detail.rotate);
+                    $dataScaleX.val(e.detail.scaleX);
+                    $dataScaleY.val(e.detail.scaleY);
+                }
+            };
+            var originalImageURL = $image.attr('src');
+            var uploadedImageName = 'cropped.jpg';
+            var uploadedImageType = 'image/jpeg';
+            var uploadedImageURL;
+
+            // Tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Cropper
+            $image.on(
+                {
+                    ready: function(e)
+                    {
+                        console.log(e.type);
+                    },
+                    cropstart: function(e)
+                    {
+                        console.log(e.type, e.detail.action);
+                    },
+                    cropmove: function(e)
+                    {
+                        console.log(e.type, e.detail.action);
+                    },
+                    cropend: function(e)
+                    {
+                        console.log(e.type, e.detail.action);
+                    },
+                    crop: function(e)
+                    {
+                        console.log(e.type);
+                    },
+                    zoom: function(e)
+                    {
+                        console.log(e.type, e.detail.ratio);
+                    }
+                }).cropper(options);
+
+            // Buttons
+            if (!$.isFunction(document.createElement('canvas').getContext))
+            {
+                $('button[data-method="getCroppedCanvas"]').prop('disabled', true);
+            }
+
+            if (typeof document.createElement('cropper').style.transition === 'undefined')
+            {
+                $('button[data-method="rotate"]').prop('disabled', true);
+                $('button[data-method="scale"]').prop('disabled', true);
+            }
+
+            // Download
+            if (typeof $download[0].download === 'undefined')
+            {
+                $download.addClass('disabled');
+            }
+
+            // Options
+            $('.docs-toggles').on('change', 'input', function()
+            {
+                var $this = $(this);
+                var name = $this.attr('name');
+                var type = $this.prop('type');
+                var cropBoxData;
+                var canvasData;
+
+                if (!$image.data('cropper'))
+                {
+                    return;
+                }
+
+                if (type === 'checkbox')
+                {
+                    options[name] = $this.prop('checked');
+                    cropBoxData = $image.cropper('getCropBoxData');
+                    canvasData = $image.cropper('getCanvasData');
+
+                    options.ready = function()
+                    {
+                        $image.cropper('setCropBoxData', cropBoxData);
+                        $image.cropper('setCanvasData', canvasData);
+                    };
+                }
+                else if (type === 'radio')
+                {
+                    options[name] = $this.val();
+                }
+
+                $image.cropper('destroy').cropper(options);
+            });
+
+            // Methods
+            $('.docs-buttons').on('click', '[data-method]', function()
+            {
+                var $this = $(this);
+                var data = $this.data();
+                var cropper = $image.data('cropper');
+                var cropped;
+                var $target;
+                var result;
+
+                if ($this.prop('disabled') || $this.hasClass('disabled'))
+                {
+                    return;
+                }
+
+                if (cropper && data.method)
+                {
+                    data = $.extend(
+                        {}, data); // Clone a new one
+
+                    if (typeof data.target !== 'undefined')
+                    {
+                        $target = $(data.target);
+
+                        if (typeof data.option === 'undefined')
+                        {
+                            try
+                            {
+                                data.option = JSON.parse($target.val());
+                            }
+                            catch (e)
+                            {
+                                console.log(e.message);
+                            }
+                        }
+                    }
+
+                    cropped = cropper.cropped;
+
+                    switch (data.method)
+                    {
+                        case 'rotate':
+                            if (cropped && options.viewMode > 0)
+                            {
+                                $image.cropper('clear');
+                            }
+
+                            break;
+
+                        case 'getCroppedCanvas':
+                            if (uploadedImageType === 'image/jpeg')
+                            {
+                                if (!data.option)
+                                {
+                                    data.option = {};
+                                }
+
+                                data.option.fillColor = '#fff';
+                            }
+
+                            break;
+                    }
+
+                    result = $image.cropper(data.method, data.option, data.secondOption);
+
+                    switch (data.method)
+                    {
+                        case 'rotate':
+                            if (cropped && options.viewMode > 0)
+                            {
+                                $image.cropper('crop');
+                            }
+
+                            break;
+
+                        case 'scaleX':
+                        case 'scaleY':
+                            $(this).data('option', -data.option);
+                            break;
+
+                        case 'getCroppedCanvas':
+                            if (result)
+                            {
+                                // Bootstrap's Modal
+                                //$('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+                                // $('#getCroppedCanvasModal').modal()
+                                if (!$download.hasClass('disabled'))
+                                {
+                                    download.download = uploadedImageName;
+                                    console.log('Download',result)
+                                    console.log('Download',result.toDataURL(uploadedImageType))
+                                    // $download.attr('href', result.toDataURL(uploadedImageType));
+
+
+                                    /*$('#download').click(function(){*/
+
+                                    $.ajax({
+                                        method: 'POST',
+                                        dataType: 'json',
+                                        async:false,
+                                        url: '/company/photo/saveRootCatPhotoToSession',
+                                        data: {root_cat_photo: result.toDataURL(uploadedImageType)
+                                        },
+                                        beforeSend: function() {
+                                            console.log(0)
+                                        },
+                                        complete: function() {
+                                            console.log(333)
+                                            sliderCreation()
+
+                                        },
+                                        success: function (data) {
+                                            console.log(111)
+                                        }
+                                    });
+                                    /* })*/
+
+
+                                }
+                            }
+
+                            break;
+
+                        case 'destroy':
+                            if (uploadedImageURL)
+                            {
+                                URL.revokeObjectURL(uploadedImageURL);
+                                uploadedImageURL = '';
+                                $image.attr('src', originalImageURL);
+                            }
+
+                            break;
+                    }
+
+                    if ($.isPlainObject(result) && $target)
+                    {
+                        try
+                        {
+                            $target.val(JSON.stringify(result));
+                        }
+                        catch (e)
+                        {
+                            console.log(e.message);
+                        }
+                    }
+                }
+            });
+
+            // Keyboard
+            $(document.body).on('keydown', function(e)
+            {
+                if (e.target !== this || !$image.data('cropper') || this.scrollTop > 300)
+                {
+                    return;
+                }
+
+                switch (e.which)
+                {
+                    case 37:
+                        e.preventDefault();
+                        $image.cropper('move', -1, 0);
+                        break;
+
+                    case 38:
+                        e.preventDefault();
+                        $image.cropper('move', 0, -1);
+                        break;
+
+                    case 39:
+                        e.preventDefault();
+                        $image.cropper('move', 1, 0);
+                        break;
+
+                    case 40:
+                        e.preventDefault();
+                        $image.cropper('move', 0, 1);
+                        break;
+                }
+            });
+
+            // Import image
+            var $inputImage = $('#inputImage');
+
+            if (URL)
+            {
+                $inputImage.change(function()
+                {
+                    var files = this.files;
+                    var file;
+
+                    if (!$image.data('cropper'))
+                    {
+                        return;
+                    }
+
+                    if (files && files.length)
+                    {
+                        file = files[0];
+
+                        if (/^image\/\w+$/.test(file.type))
+                        {
+                            uploadedImageName = file.name;
+                            uploadedImageType = file.type;
+
+                            if (uploadedImageURL)
+                            {
+                                URL.revokeObjectURL(uploadedImageURL);
+                            }
+
+                            uploadedImageURL = URL.createObjectURL(file);
+                            $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+                            $inputImage.val('');
+                        }
+                        else
+                        {
+                            window.alert('Please choose an image file.');
+                        }
+                    }
+                });
+            }
+            else
+            {
+                $inputImage.prop('disabled', true).parent().addClass('disabled');
+            }
+        });
+
+    </script>
+
+
+
+
+
+
+
+
+
+    <script>
+
+        function sliderCreation(){
+
+            var slider_name=$('#slider_name').val()
+            var slider_description=$('#slider_description').val()
+            var slider_link=$('#slider_link').val()
+            //var id=$('#slider_id').val()
+            var id=window.sending_slider_id
+            console.log('Slider_ID',id)
+            //var company_id=$('#company_id').val()
+            console.log(222,window.company_id)
+            console.log(223,window.slider_id)
+            console.log('slider_link',slider_link)
+            console.log(slider_name)
+            $.ajax({
+                method: 'POST',
+                dataType: 'json',
+                async: false,
+                url: '/company/root_cat_photos/create',
+                data: {
+                id:id
+                },
+                cache : false,
+                processData: true,
+                beforeSend: function () {
+                },
+                complete: function () {
+                    $('.slider_create_close').click();
+                },
+                success: function (data) {
+
+                    console.log('success')
+
+                }
+            });
+        }
+
+
+
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        })
+
+        function refreshImg(){
+            $("#image").removeAttr("src");
+        }
+
+        function clearsliderAdding(){
+
+
+
+
+
+            'use strict';
+
+            /*var console = window.console || {
+             log: function () {}
+             };*/
+
+            var URL = window.URL || window.webkitURL;
+            var $image = $('#image');
+            var $download = $('#download');
+            var $dataX = $('#dataX');
+            var $dataY = $('#dataY');
+            var $dataHeight = $('#dataHeight');
+            var $dataWidth = $('#dataWidth');
+            var $dataRotate = $('#dataRotate');
+            var $dataScaleX = $('#dataScaleX');
+            var $dataScaleY = $('#dataScaleY');
+            var options = {
+                aspectRatio: 16 / 9,
+                preview: '.img-preview',
+                crop: function(e)
+                {
+                    $dataX.val(Math.round(e.detail.x));
+                    $dataY.val(Math.round(e.detail.y));
+                    $dataHeight.val(Math.round(e.detail.height));
+                    $dataWidth.val(Math.round(e.detail.width));
+                    $dataRotate.val(e.detail.rotate);
+                    $dataScaleX.val(e.detail.scaleX);
+                    $dataScaleY.val(e.detail.scaleY);
+                }
+            };
+            var originalImageURL = $image.attr('src');
+            var uploadedImageName = 'cropped.jpg';
+            var uploadedImageType = 'image/jpeg';
+            var uploadedImageURL;
+
+            // Tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Cropper
+            $image.on(
+                {
+                    ready: function(e)
+                    {
+                        console.log(e.type);
+                    },
+                    cropstart: function(e)
+                    {
+                        console.log(e.type, e.detail.action);
+                    },
+                    cropmove: function(e)
+                    {
+                        console.log(e.type, e.detail.action);
+                    },
+                    cropend: function(e)
+                    {
+                        console.log(e.type, e.detail.action);
+                    },
+                    crop: function(e)
+                    {
+                        console.log(e.type);
+                    },
+                    zoom: function(e)
+                    {
+                        console.log(e.type, e.detail.ratio);
+                    }
+                }).cropper(options);
+
+            // Buttons
+            if (!$.isFunction(document.createElement('canvas').getContext))
+            {
+                $('button[data-method="getCroppedCanvas"]').prop('disabled', true);
+            }
+
+            if (typeof document.createElement('cropper').style.transition === 'undefined')
+            {
+                $('button[data-method="rotate"]').prop('disabled', true);
+                $('button[data-method="scale"]').prop('disabled', true);
+            }
+
+            // Download
+            if (typeof $download[0].download === 'undefined')
+            {
+                $download.addClass('disabled');
+            }
+
+            // Options
+            $('.docs-toggles').on('change', 'input', function()
+            {
+                var $this = $(this);
+                var name = $this.attr('name');
+                var type = $this.prop('type');
+                var cropBoxData;
+                var canvasData;
+
+                if (!$image.data('cropper'))
+                {
+                    return;
+                }
+
+                if (type === 'checkbox')
+                {
+                    options[name] = $this.prop('checked');
+                    cropBoxData = $image.cropper('getCropBoxData');
+                    canvasData = $image.cropper('getCanvasData');
+
+                    options.ready = function()
+                    {
+                        $image.cropper('setCropBoxData', cropBoxData);
+                        $image.cropper('setCanvasData', canvasData);
+                    };
+                }
+                else if (type === 'radio')
+                {
+                    options[name] = $this.val();
+                }
+
+                $image.cropper('destroy').cropper(options);
+            });
+
+            // Methods
+            $('.docs-buttons').on('click', '[data-method]', function()
+            {
+                var $this = $(this);
+                var data = $this.data();
+                var cropper = $image.data('cropper');
+                var cropped;
+                var $target;
+                var result;
+
+                if ($this.prop('disabled') || $this.hasClass('disabled'))
+                {
+                    return;
+                }
+
+                if (cropper && data.method)
+                {
+                    data = $.extend(
+                        {}, data); // Clone a new one
+
+                    if (typeof data.target !== 'undefined')
+                    {
+                        $target = $(data.target);
+
+                        if (typeof data.option === 'undefined')
+                        {
+                            try
+                            {
+                                data.option = JSON.parse($target.val());
+                            }
+                            catch (e)
+                            {
+                                console.log(e.message);
+                            }
+                        }
+                    }
+
+                    cropped = cropper.cropped;
+
+                    switch (data.method)
+                    {
+                        case 'rotate':
+                            if (cropped && options.viewMode > 0)
+                            {
+                                $image.cropper('clear');
+                            }
+
+                            break;
+
+                        case 'getCroppedCanvas':
+                            if (uploadedImageType === 'image/jpeg')
+                            {
+                                if (!data.option)
+                                {
+                                    data.option = {};
+                                }
+
+                                data.option.fillColor = '#fff';
+                            }
+
+                            break;
+                    }
+
+                    result = $image.cropper(data.method, data.option, data.secondOption);
+
+                    switch (data.method)
+                    {
+                        case 'rotate':
+                            if (cropped && options.viewMode > 0)
+                            {
+                                $image.cropper('crop');
+                            }
+
+                            break;
+
+                        case 'scaleX':
+                        case 'scaleY':
+                            $(this).data('option', -data.option);
+                            break;
+
+                        case 'getCroppedCanvas':
+                            if (result)
+                            {
+                                // Bootstrap's Modal
+                                //$('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+                                // $('#getCroppedCanvasModal').modal()
+                                if (!$download.hasClass('disabled'))
+                                {
+                                    download.download = uploadedImageName;
+                                    console.log('Download',result)
+                                    console.log('Download',result.toDataURL(uploadedImageType))
+                                    // $download.attr('href', result.toDataURL(uploadedImageType));
+
+
+                                    /*$('#download').click(function(){*/
+
+
+                                    /* })*/
+
+
+                                }
+                            }
+
+                            break;
+
+                        case 'destroy':
+                            if (uploadedImageURL)
+                            {
+                                URL.revokeObjectURL(uploadedImageURL);
+                                uploadedImageURL = '';
+                                $image.attr('src', originalImageURL);
+                            }
+
+                            break;
+                    }
+
+                    if ($.isPlainObject(result) && $target)
+                    {
+                        try
+                        {
+                            $target.val(JSON.stringify(result));
+                        }
+                        catch (e)
+                        {
+                            console.log(e.message);
+                        }
+                    }
+                }
+            });
+
+            // Keyboard
+            $(document.body).on('keydown', function(e)
+            {
+                if (e.target !== this || !$image.data('cropper') || this.scrollTop > 300)
+                {
+                    return;
+                }
+
+                switch (e.which)
+                {
+                    case 37:
+                        e.preventDefault();
+                        $image.cropper('move', -1, 0);
+                        break;
+
+                    case 38:
+                        e.preventDefault();
+                        $image.cropper('move', 0, -1);
+                        break;
+
+                    case 39:
+                        e.preventDefault();
+                        $image.cropper('move', 1, 0);
+                        break;
+
+                    case 40:
+                        e.preventDefault();
+                        $image.cropper('move', 0, 1);
+                        break;
+                }
+            });
+
+            // Import image
+            var $inputImage = $('#inputImage');
+
+            if (URL)
+            {
+                $inputImage.change(function()
+                {
+                    var files = this.files;
+                    var file;
+
+                    if (!$image.data('cropper'))
+                    {
+                        return;
+                    }
+
+                    if (files && files.length)
+                    {
+                        file = files[0];
+
+                        if (/^image\/\w+$/.test(file.type))
+                        {
+                            uploadedImageName = file.name;
+                            uploadedImageType = file.type;
+
+                            if (uploadedImageURL)
+                            {
+                                URL.revokeObjectURL(uploadedImageURL);
+                            }
+
+                            uploadedImageURL = URL.createObjectURL(file);
+                            $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+                            $inputImage.val('');
+                        }
+                        else
+                        {
+                            window.alert('Please choose an image file.');
+                        }
+                    }
+                });
+            }
+            else
+            {
+                $inputImage.prop('disabled', true).parent().addClass('disabled');
+            }
+
+
+
+
+
+
+
+
+
+
+            $('#slider_name').val('')
+
+            $('.sending_slider_id').val(0)
+
+            $('#image').attr('src','/storage/badge7.png')
+
+            $image.cropper('destroy').attr('src', '/storage/badge7.png').cropper(options);
+            $('input:radio[name="aspectRatio"]').filter('[value="1"]').attr('checked', true);
+            $('#aspectRatio2').parent('label').find('.docs-tooltip').trigger("click");
+        }
+
+
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+
+
+
+    </script>
 
 
 @endsection

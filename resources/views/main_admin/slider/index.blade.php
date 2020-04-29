@@ -1,10 +1,9 @@
 @extends('layouts.app_admin')
 @section('styles')
-    <!-- FYI: it has a demo CSS file concatinated, about 1kb, you can remove it from build.js if needed -->
+   <!-- FYI: it has a demo CSS file concatinated, about 1kb, you can remove it from build.js if needed -->
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/formplugins/cropperjs/cropper.css">
     <!-- page related demo css (for icons only) -->
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/fa-solid.css">
-    </head>
     @endsection
 @section('content')
 

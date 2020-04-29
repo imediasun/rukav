@@ -201,5 +201,13 @@ class CompanyManager extends CompanyAbstract implements CompanyContract
 
     }
 
+    public function updateCompanyRootCatPhoto($rootCatPhoto)
+    {
+        $slider=$this->companyRepository->updateOrCreateProductCategory($rootCatPhoto['attributes'],$rootCatPhoto['values']);
+
+        return $slider;
+
+    }
+
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Domain\Customer\Facades\ProductCategory;
 class CategoryController extends BaseController
 {
     /**
@@ -69,7 +70,8 @@ if($data['type']=='list'){return view('customer.category.list',$data);}else{retu
     public function changeCatName(Request $request){
         $data=[
             'link'=>$request->input('link'),
-            'name'=>$request->input('name')
+            'name'=>$request->input('name'),
+            'icon'=>$request->input('icon')
 
         ];
         if($request->input('action')=='add'){
@@ -78,8 +80,15 @@ if($data['type']=='list'){return view('customer.category.list',$data);}else{retu
         }
         else{
         \App\Domain\Customer\Models\ProductCategory::where('id',$request->input('id'))->update($data);}
+        $cat=\App\Domain\Customer\Models\ProductCategory::where('id',$request->input('id'))->first();
+        return json_encode(['message'=>'success','cat'=>json_decode($cat)]);
+    }
 
-        return json_encode(['message'=>'success']);
+    public function deleteCat(Request $request){
+        $result=\App\Domain\Customer\Models\ProductCategory::where('id',$request->input('id_cat'))->first();
+        \App\Domain\Customer\Models\ProductCategory::where('id',$request->input('id_cat'))->delete();
+        return \Response::json($result);
+
     }
 
 
