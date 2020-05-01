@@ -75,7 +75,7 @@ class Handler extends ExceptionHandler
                 $login = 'admin.login';
                 break;
            case 'web':
-                $login = 'login';
+                $login = 'web.login';
                 break;
 
             case 'partner':

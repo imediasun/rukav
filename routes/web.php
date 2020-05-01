@@ -7,6 +7,7 @@ Route::get('/logout', function () {
 
 Route::get('/redirect', 'Auth\SiteAdminLoginController@redirectToProvider');
 Route::get('/callback/{provider}', 'Auth\SiteAdminLoginController@handleProviderCallback');
+Route::get('/private_cabinet', 'CabinetController@index');
 
 Route::get('/auth/redirect/facebook', 'Auth\SiteAdminLoginController@redirectToFacebook');
 //Route::get('/callback/{provider}', 'Auth\SiteAdminLoginController@callbackFacebook');
@@ -15,6 +16,8 @@ Route::get('/auth/redirect/facebook', 'Auth\SiteAdminLoginController@redirectToF
     Route::post('/login', 'Auth\SiteAdminLoginController@login')->name('web.login.submit');
     Route::get('/logout', 'Auth\SiteAdminLoginController@getLogout');
 
+Route::get('/send_message_to_client', 'ConnectController@checkData')->name('send_message_to_client')->middleware('auth:web');
+Route::get('/connect_to_author/{message_id}', 'ConnectController@index')->name('connect')->middleware('auth:web');
 Route::get('/', 'HomeController@index')->name('dashboard');
 Route::get('/search', 'FuncController@search');
 Route::post('/show_subcat', 'FuncController@show_subcat');
@@ -30,6 +33,9 @@ Route::get('/category/{id}', 'CategoryController@index')->name('category');
 #Route::post('/login', 'Auth\CustomerLoginController@login')->name('login.submit');
 Route::get('/staff', 'StaffController@index');
 Route::post('/staff/data', 'StaffController@postData');
+Route::post('/cabinet/data', 'CabinetController@postData');
+Route::post('/cabinet/messagesData', 'CabinetController@messagesData');
+
 Route::post('/staff/role_update', 'StaffController@postSave');
 Route::post('/staff_permissions/data', 'StaffController@postPermissionsData');
 Route::group(['prefix' => 'customer'],function(){

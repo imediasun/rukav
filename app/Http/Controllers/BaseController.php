@@ -41,6 +41,7 @@ class BaseController extends Controller
         $companyBadgesGroups=\App\ProductCategory::where('parent_id',0)->get();
         $data['company_badges_groups']=$companyBadgesGroups;
         $data['customers']=\App\User::with('getCustomersCompany')->get();
+        $data['user']=(\Auth::user()) ? \Auth::user() : null;
 
         return $data;
     }
