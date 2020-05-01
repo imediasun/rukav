@@ -170,7 +170,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 
                             <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
-                                <form method="POST" action="{{ route('admin.login.submit') }}">
+                                <form method="POST" action="{{ route('web.login.submit') }}">
                                     <div class="form-group">
                                         <label class="form-label" for="username">Username</label>
                                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>

@@ -11,6 +11,9 @@ Route::get('/callback/{provider}', 'Auth\SiteAdminLoginController@handleProvider
 Route::get('/auth/redirect/facebook', 'Auth\SiteAdminLoginController@redirectToFacebook');
 //Route::get('/callback/{provider}', 'Auth\SiteAdminLoginController@callbackFacebook');
 
+    Route::get('/login', 'Auth\SiteAdminLoginController@showLoginForm')->name('web.login');
+    Route::post('/login', 'Auth\SiteAdminLoginController@login')->name('web.login.submit');
+    Route::get('/logout', 'Auth\SiteAdminLoginController@getLogout');
 
 Route::get('/', 'HomeController@index')->name('dashboard');
 Route::get('/search', 'FuncController@search');
@@ -21,8 +24,8 @@ Route::post('/show_parent_cats', 'FuncController@show_parent_cats');
 
 Route::get('/message/{id}', 'MessageController@index')->name('message');
 Route::get('/category/{id}', 'CategoryController@index')->name('category');
-Route::get('/news_feed', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
-Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
+//Route::get('/news_feed', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
+//Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('auth:admin');
 #Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('login');
 #Route::post('/login', 'Auth\CustomerLoginController@login')->name('login.submit');
 Route::get('/staff', 'StaffController@index');
@@ -147,10 +150,15 @@ Route::group(['prefix' => 'admin'],function(){
     Route::post('/messages/data', 'Admin\MessageController@postData');
     Route::post('/messages/delete', 'Admin\MessageController@postDelete');
     Route::post('/messages/message_activity_set', 'Admin\MessageController@setIsActive');
+/*
+    Route::get('/login', 'Auth\SiteAdminLoginController@showLoginForm')->name('web.login');
+    Route::post('/login', 'Auth\SiteAdminLoginController@login')->name('web.login.submit');
+    Route::get('/logout', 'Auth\SiteAdminLoginController@getLogout');*/
 
-    Route::get('/login', 'Auth\SiteAdminLoginController@showLoginForm')->name('admin.login');
-    Route::post('/login', 'Auth\SiteAdminLoginController@login')->name('admin.login.submit');
-    Route::get('/logout', 'Auth\SiteAdminLoginController@getLogout');
+
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/logout', 'Auth\AdminLoginController@getLogout');
 
     Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard');
     Route::get('/roles_and_permissions', 'Admin\StaffController@index')->name('admin.roles.index');

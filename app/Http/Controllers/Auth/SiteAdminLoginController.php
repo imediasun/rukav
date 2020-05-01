@@ -50,8 +50,8 @@ class SiteAdminLoginController extends Controller
 
         ]);
 
-        if(Auth::guard('admin')->attempt(['email'=>$request->email,'password'=>$request->password],$request->remember)){
-            return redirect()->intended(route('admin.dashboard'));
+        if(Auth::guard('web')->attempt(['email'=>$request->email,'password'=>$request->password],$request->remember)){
+            return redirect()->intended(route('dashboard'));
         }
         return redirect()->back()->withInput($request->only('email','remember'));
     }
