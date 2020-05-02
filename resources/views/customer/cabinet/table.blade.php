@@ -1,5 +1,3 @@
-<?
-dump($messages);?>
 @if(!count($messages))
 
     <div class="card bg-primary text-white text-center p-3">
@@ -16,6 +14,9 @@ dump($messages);?>
 
     @else
     @foreach($messages as $message)
+        <?
+        //$category=\App\ProductCategory::where('id',$message->category_id)->first()->parent_id;
+        ?>
         <div class="card border mb-0">
             <!-- notice the additions of utility paddings and display properties on .card-header -->
             <div class="card-header @if($message->active) bg-success-500 @else bg-trans-gradient @endif d-flex pr-2 align-items-center flex-wrap">
@@ -56,11 +57,22 @@ dump($messages);?>
                     <div class="col-md-2">
                         <b>Appeared in search:</b> 0
                     </div>
+                    <div class="col-md-2">
+                        <b>Some Item:</b> 0
+                    </div>
+                    <div class="col-md-2">
+                        <a href="javascript:void(0);" onclick="editMessage('{{$message->id}}');" class="btn btn-info">Редактировать</a>
+                    </div>
                 </div>
             </div>
         </div>
         @endforeach
 @endif
+
+<script>
+
+
+</script>
 
 
 

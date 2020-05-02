@@ -47,11 +47,44 @@ class CabinetController extends BaseController
     public function messagesData(Request $request){
 
         $data['title']="Staff postData";
-        $data['unique_messages']=Connect::where('receiver_id',\Auth::user()->id)->orWhere('sender_id',\Auth::user()->id)->with('sender')->with('message')->with('pictures')->orderBy('created_at')->get();
+        $data['conversations']=Connect::where('receiver_id',\Auth::user()->id)->orWhere('sender_id',\Auth::user()->id)->with('sender')->with('message')->with('pictures')->groupBy('message_id')->orderBy('created_at')->get();
 
         return view('customer.cabinet.messages',$data);
     }
 
+    public function conversationData(Request $request){
+        $example=Connect::where('id',$request->input('conversation'))->with('author')->first();
+        //Если хозяин объявления я то тянуть все конекты в которых receiver_id я и sender_id $example->sender_id
+        //Иначе тянуть все коннекты в которых receiver_id $example->receiver_id и sender_id я
+
+        $q=Connect::where(function ($query) use ($example) {
+            // subqueries goes here
+            if($example->author->id==\Auth::user()->id && ($example->sender_id !==\Auth::user()->id)){
+                $finder=$example->sender_id;
+            }
+            else{
+                $finder=$example->receiver_id;
+            }
+                $query->where(function ($query2) use ($example,$finder) {
+                    $query2->where('receiver_id',$finder )->orWhere('sender_id',$finder );
+                })->where('receiver_id',\Auth::user()->id)->orWhere('sender_id',\Auth::user()->id);
+            })->where('message_id',$example->message_id)->with('message')->with('author');
+
+        $data['conversation']=$q->orderBy('created_at')->get();
+        return view('customer.cabinet.messageList',$data);
+    }
+
+    public function reloadModelChangeProduct(Request $request){
+        $data['message']=Message::where('id',$request->input('message_id'))->first();
+        return view('customer.cabinet.reloadModal',$data);
+        //return json_encode([$message]);
+    }
+
+
+    public function getModelChangeProduct(Request $request){
+        $message=Message::where('id',$request->input('message_id'))->with('pictures')->first();
+        return json_encode([$message->pictures->photo]);
+    }
 
 
 }

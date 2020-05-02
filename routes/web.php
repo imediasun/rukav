@@ -35,6 +35,11 @@ Route::get('/staff', 'StaffController@index');
 Route::post('/staff/data', 'StaffController@postData');
 Route::post('/cabinet/data', 'CabinetController@postData');
 Route::post('/cabinet/messagesData', 'CabinetController@messagesData');
+Route::post('/cabinet/conversation', 'CabinetController@conversationData');
+Route::post('/cabinet/reloadModelChangeProduct', 'CabinetController@reloadModelChangeProduct');
+Route::post('/cabinet/getModelChangeProduct', 'CabinetController@getModelChangeProduct');
+
+
 
 Route::post('/staff/role_update', 'StaffController@postSave');
 Route::post('/staff_permissions/data', 'StaffController@postPermissionsData');

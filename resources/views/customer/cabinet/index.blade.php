@@ -202,7 +202,7 @@
             $.ajax({
                 method: 'POST',
                 dataType: 'html',
-                async:true,
+                async:false,
                 url: url,
                 data: {module: module},
                 beforeSend: function() {
@@ -218,6 +218,8 @@
                 }
             });
         }
+
+
 
 
     </script>

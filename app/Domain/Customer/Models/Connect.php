@@ -28,8 +28,19 @@ class Connect extends Model
 
     }
 
+    public function receiver(){
+        return $this->hasOne('App\User','id','receiver_id');
+
+    }
+
     public function pictures(){
-        return $this->hasOneThrough('App\Domain\Company\Models\Picture', 'App\Domain\Customer\Models\Message','id','id','receiver_id','id');
+        return $this->hasOneThrough('App\Domain\Company\Models\Picture', 'App\Domain\Customer\Models\Message','id','id','message_id','id');
+
+
+    }
+
+    public function author(){
+        return $this->hasOneThrough('App\User', 'App\Domain\Customer\Models\Message','id','id','message_id','sender');
 
 
     }

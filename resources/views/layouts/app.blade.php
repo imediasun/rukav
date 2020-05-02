@@ -2701,7 +2701,7 @@ console.log('aJax=>',ajax)
 
        reloadPage();
 
-       var auth={{$auth}}
+       var auth='{{$auth}}'
 
        if(localStorage.getItem("openAddMessageModal")==1 && auth!=0){
            console.log('openModal')
@@ -2710,6 +2710,24 @@ console.log('aJax=>',ajax)
        }
        console.log('auth',auth)
 
+
+      /* if(localStorage.getItem("openAddMessageModalWithProduct")!=0 ){
+           console.log('openModalWithProduct')
+           var badges=$('.single_badge');
+           $.each( badges, function( key, value ) {
+               console.log('VALUE_SINGLE_BADGE',$(this).parent('div').find('.badge_id').val())
+               console.log('VALUE_SINGLE_STORAGE',localStorage.getItem("openAddMessageModalWithCategory"))
+               if($(this).parent('div').find('.badge_id').val()==localStorage.getItem("openAddMessageModalWithCategory")){
+                   console.log('VALUE_SINGLE_BADGE_WIN!!1')
+                   $('#badges_modal').modal('show')
+                   $(this).trigger('click')
+               }
+
+
+           });
+
+
+       }*/
 
 
 
