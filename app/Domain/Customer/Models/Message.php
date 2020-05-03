@@ -37,4 +37,11 @@ class Message extends Model
         return $this->hasOne('App\Domain\Company\Models\Picture','message_id','id');
 
     }
+
+    public function parentCategory(){
+        return $this->hasOne('\App\Domain\Customer\Models\ProductCategory','id','category_id');
+
+    }
+
+
 }

@@ -35,9 +35,7 @@ public function __construct(User $customer){
         return (new MailMessage)
             ->greeting('Hello!')
             ->line('Вы получили новое сообщение в ответ на свое объявление')
-            ->action('Войти в админку', $url)
-            ->line('Логин: '.$this->customer->email)
-        ->line('Временный Пароль: PasswordYouCanChangeIT');
+            ->action('Войти на сайт', $url);
     }
 
     public function via($notifiable)

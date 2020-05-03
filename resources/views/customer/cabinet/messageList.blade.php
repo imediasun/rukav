@@ -9,6 +9,7 @@ if(\Auth::user()->id==$conversation->first()->message->sender){
 else{
     $recepient=$conversation->first()->receiver_id;
 }
+
 ?>
 <div class="flex-grow-0">
     <!-- inbox title -->

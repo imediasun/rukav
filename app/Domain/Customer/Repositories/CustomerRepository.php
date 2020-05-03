@@ -6,6 +6,7 @@ namespace App\Domain\Customer\Repositories;
 use  App\Domain\Base\Repositories\BaseCrudRepository;
 use App\Domain\Customer\Models\Customer;
 use App\Domain\Customer\Models\Message;
+use App\Domain\Customer\Models\Wishlist;
 
 
 class CustomerRepository extends BaseCrudRepository implements CustomerRepositoryInterface
@@ -21,6 +22,12 @@ class CustomerRepository extends BaseCrudRepository implements CustomerRepositor
     public function updateOrCreateCustomer($attributes,$values)
     {
          $this->entityClass= Customer::class;
+        return $this->updateOrCreate($attributes,$values);
+    }
+
+    public function updateOrCreateWishlist($attributes,$values)
+    {
+        $this->entityClass= Wishlist::class;
         return $this->updateOrCreate($attributes,$values);
     }
 

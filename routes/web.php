@@ -35,9 +35,11 @@ Route::get('/staff', 'StaffController@index');
 Route::post('/staff/data', 'StaffController@postData');
 Route::post('/cabinet/data', 'CabinetController@postData');
 Route::post('/cabinet/messagesData', 'CabinetController@messagesData');
+Route::post('/cabinet/favoritsData', 'CabinetController@favoritsData');
 Route::post('/cabinet/conversation', 'CabinetController@conversationData');
+Route::post('/cabinet/deleteFromFavorites', 'CustomersController@setWishListStatus');
+
 Route::post('/cabinet/reloadModelChangeProduct', 'CabinetController@reloadModelChangeProduct');
-Route::post('/cabinet/getModelChangeProduct', 'CabinetController@getModelChangeProduct');
 
 
 
@@ -53,11 +55,15 @@ Route::group(['prefix' => 'customer'],function(){
     Route::post('/user_interface/dataSpecial', 'CustomersController@postDataSpecial');
     Route::post('/user_interface/getData', 'CustomersController@getData');
     Route::post('/badge/send', 'CustomersController@sendBadgeMessage');
-
+    Route::post('/badge/update', 'CustomersController@updateBadgeMessage');
 
     Route::get('/badge/get_addressant', 'CustomersController@getAddressant');
     Route::post('/get_customer_info', 'CustomersController@getCustomerInfo');
     Route::post('/golden_badge/check', 'CustomersController@checkGoldenBadgesCount');
+
+    Route::post('/message/wishList', 'CustomersController@setWishListStatus');
+
+
 
 
 

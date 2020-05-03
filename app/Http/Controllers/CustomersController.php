@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\Customer\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Domain\Customer\Facades\Customer;
 use Illuminate\Support\Facades\Hash;
@@ -279,6 +280,28 @@ class CustomersController extends BaseController
     }
 
 
+    public function updateBadgeMessage(Request $request){
+        $user=\Auth::user();
+        $data['user_id']=$user->id;
+        $data['company_id']=$user->company_id;
+        $message['values']=[
+            'category_id'=>$request->input('category_id'),//$request->input('customer')
+            'title'=>$request->input('title'),
+            'price'=>$request->input('price'),
+            'email'=>$request->input('email'),
+            'phone'=>$request->input('phone'),
+            'message'=>$request->input('message'),
+        ];
+        $message['attributes']['id']=(null!=($request->input('message_id')) && !empty($request->input('message_id'))) ? $request->input('message_id') : null;
+        $id=Customer::updateMessage($message);
+        $companyLogo['values']=['message_id'=>$id->id,'photo'=> \Session::get('temp_picture_filename')];
+        var_dump(\Session::get('temp_picture_filename'));
+        $companyLogo['attributes']['id']= null;
+        Company::updateCompanyPicture($companyLogo);
+
+    }
+
+
     public function getAddressant(Request $request){
         //var_dump(\Auth::user()->id);
     $users=\App\User::where('company_id',\Auth::user()->company_id)->whereNotIn('id', [\Auth::user()->id])
@@ -358,6 +381,21 @@ class CustomersController extends BaseController
     public function messages(){
 
 
+    }
+
+    public function setWishListStatus(Request $request){
+        $result=Wishlist::where('message_id',$request->input('id'))->where('user_id',\Auth::user()->id)->first();
+
+        $message['values']=[
+            'active'=>$request->input('active'),
+            'user_id'=>\Auth::user()->id,
+            'message_id'=>$request->input('id'),
+        ];
+
+         $message['attributes']['id']=(null!=$result ) ? $result->id : null;
+
+
+        Customer::updateWishlist($message);
     }
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\Customer\Models\Connect;
 use App\Domain\Customer\Models\Message;
+use App\Domain\Customer\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Domain\Customer\Facades\Customer;
 use Illuminate\Support\Facades\Hash;
@@ -47,44 +48,41 @@ class CabinetController extends BaseController
     public function messagesData(Request $request){
 
         $data['title']="Staff postData";
-        $data['conversations']=Connect::where('receiver_id',\Auth::user()->id)->orWhere('sender_id',\Auth::user()->id)->with('sender')->with('message')->with('pictures')->groupBy('message_id')->orderBy('created_at')->get();
-
+        $data['conversations']=Connect::where('receiver_id',\Auth::user()->id)->orWhere('sender_id',\Auth::user()->id)
+            ->with('sender')->with('message')->with('pictures')
+            ->groupBy('message_id','receiver_id')->distinct()->orderBy('created_at')->get();
+//dump($data['conversations']);
         return view('customer.cabinet.messages',$data);
+    }
+
+    public function favoritsData(Request $request){
+
+        $data['title']="Staff postData";
+        $result=Wishlist::where('user_id',\Auth::user()->id)->where('active',1)->get();
+        $data['messages']=[];
+            foreach($result as $res){
+                $data['messages'][]=Message::where('id',$res->message_id)->with('pictures')->first();
+            }
+        return view('customer.cabinet.tableFavorits',$data);
     }
 
     public function conversationData(Request $request){
         $example=Connect::where('id',$request->input('conversation'))->with('author')->first();
         //Если хозяин объявления я то тянуть все конекты в которых receiver_id я и sender_id $example->sender_id
         //Иначе тянуть все коннекты в которых receiver_id $example->receiver_id и sender_id я
-
-        $q=Connect::where(function ($query) use ($example) {
-            // subqueries goes here
-            if($example->author->id==\Auth::user()->id && ($example->sender_id !==\Auth::user()->id)){
-                $finder=$example->sender_id;
-            }
-            else{
-                $finder=$example->receiver_id;
-            }
-                $query->where(function ($query2) use ($example,$finder) {
-                    $query2->where('receiver_id',$finder )->orWhere('sender_id',$finder );
-                })->where('receiver_id',\Auth::user()->id)->orWhere('sender_id',\Auth::user()->id);
-            })->where('message_id',$example->message_id)->with('message')->with('author');
+//dump($example);
+$recepients=[$example->sender_id,$example->receiver_id];
+        $q=Connect::where('message_id',$example->message_id)->whereIn('receiver_id',$recepients)->whereIn('sender_id',$recepients)->with('message')->with('author');
 
         $data['conversation']=$q->orderBy('created_at')->get();
+        //dump($data['conversation']);
         return view('customer.cabinet.messageList',$data);
     }
 
     public function reloadModelChangeProduct(Request $request){
-        $data['message']=Message::where('id',$request->input('message_id'))->first();
+        $data['message']=Message::where('id',$request->input('message_id'))->with('parentCategory')->with('pictures')->first();
         return view('customer.cabinet.reloadModal',$data);
         //return json_encode([$message]);
     }
-
-
-    public function getModelChangeProduct(Request $request){
-        $message=Message::where('id',$request->input('message_id'))->with('pictures')->first();
-        return json_encode([$message->pictures->photo]);
-    }
-
 
 }

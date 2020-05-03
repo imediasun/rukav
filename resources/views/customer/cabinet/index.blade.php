@@ -53,7 +53,7 @@
                     <ul class="nav nav-pills" role="tablist">
                         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_pill_border_icon-2"><i class="fal fa-folder mr-1"></i>Manage my Ads</a></li>
                         <li class="nav-item"><a id="messages" class="nav-link" onclick="reloadMessages()" data-toggle="tab" href="#js_pill_border_icon-3"><i class="fal fa-envelope mr-1"></i>Сообщения</a></li>
-                        <li class="nav-item"><a id="Favorites" class="nav-link" data-toggle="tab" href="#js_pill_border_icon-4"><i class="fal fa-heart mr-1"></i>Избранное</a></li>
+                        <li class="nav-item"><a id="Favorites" class="nav-link" onclick="reloadFavorits()" data-toggle="tab" href="#js_pill_border_icon-4"><i class="fal fa-heart mr-1"></i>Избранное</a></li>
                     </ul>
                     <div class="tab-content py-3">
                         <div class="tab-pane fade active show" id="js_pill_border_icon-1" role="tabpanel">
@@ -82,7 +82,7 @@
                             <div id="panel-1" class="panel">
                                 <div class="panel-hdr">
                                     <h2>
-                                        Роли
+                                        My adds
                                     </h2>
                                 </div>
 
@@ -140,6 +140,41 @@
                                             </div>
                                         </div>
                                         <div class="panel-tag result_of_messages_table">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="js_pill_border_icon-4" role="tabpanel">
+
+                            <div id="panel-1" class="panel">
+                                <div class="panel-hdr">
+                                    <h2>
+                                        My favorits
+                                    </h2>
+                                </div>
+
+
+                                <div class="panel-container show">
+                                    <div class="panel-content">
+                                        <div class="panel-tag">
+                                            <div class="demo">
+                                            </div>
+
+                                        </div>
+                                        <div id="loader3">
+                                            <div class="border p-3">
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="spinner-border" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-tag result_of_cabinet_favorits">
 
 
                                         </div>
@@ -217,6 +252,33 @@
 
                 }
             });
+        }
+
+        function reloadFavorits(){
+            var module='staff.roles'
+            console.log();
+            var url='/cabinet/favoritsData';
+            $.ajax({
+                method: 'POST',
+                dataType: 'html',
+                async:true,
+                url: url,
+                data: {module: module},
+                beforeSend: function() {
+                    $('#loader3').show();
+                },
+                complete: function() {
+                    $('#loader3').hide();
+                },
+                success: function (data) {
+
+                    $('.result_of_cabinet_favorits').html(data);
+
+                }
+            });
+
+
+
         }
 
 
