@@ -33,7 +33,7 @@ class HomeController extends BaseController
         $data['sliders']=\App\Domain\Company\Models\Slider::get();
         $data['keywords']="Ukrainian industry platform";
         $data['description']="Ukrainian industry platform";
-
-        return view('customer.dashboard.index',$data);
+        return view('new.customer.dashboard.index',$data);
+       // return view('customer.dashboard.index',$data); old rukav
     }
 }
