@@ -77,7 +77,8 @@
         "optimize-autoloader": true,
         "github-oauth": {
 
-        }
+        },
+        "disable-tls": false
     },
     "minimum-stability": "dev",
     "prefer-stable": true
