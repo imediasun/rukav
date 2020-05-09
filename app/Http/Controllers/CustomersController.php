@@ -398,5 +398,9 @@ class CustomersController extends BaseController
         Customer::updateWishlist($message);
     }
 
+    public function reloadPhotoSession(){
+        \Session::forget('temp_picture_filename');
+    }
+
 
 }

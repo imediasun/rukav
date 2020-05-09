@@ -135,6 +135,8 @@
                                 echo '<ul class="child_block" style="position:absolute;top:0px left:300px;">';
                             }
                             //перебираем в цикле массив и выводим на экран
+                            $colors=['bg-plum-plate','bg-ripe-malin','bg-malibu-beach','bg-grow-early'];
+                            $a=0;
                             for ($i = 0; $i < count($arr[$parent_id]); $i++) {
                             //Если пермишен присутствуют у текущего юзера выводить нулевой уровень
 
@@ -159,7 +161,7 @@
                                        <a class="d-flex px-3 align-items-center my-1 rounded dropdown-item " href="/category/'.$arr[$parent_id][$i]->id.'/'.$token.' ">
                                         <div class="align-box-row w-100">
                                             <div class="mr-3">
-                                                <div class="bg-ripe-malin text-center text-white d-40 rounded-circle">';
+                                                <div class="'.$colors[$a].' text-center text-white d-40 rounded-circle">';
                                                    print ($arr[$parent_id][$i]->icon);
                                                 echo '</div>
                                             </div>
@@ -188,6 +190,7 @@
                                         </a>';
 
                                 //рекурсия - проверяем нет ли дочерних категорий
+                                if($a>2){$a=0;}else{$a++;}
                                 $this->view_cat($arr, $arr[$parent_id][$i]->id, 1,$parents_approved);
                                 echo '</li> ';
 
@@ -212,7 +215,7 @@ if($rub->parent_id==0){
   <a class="d-flex px-3 align-items-center my-1 rounded dropdown-item main_category_list" href="/category/'.$rub->id.' ">
                                          <div class="align-box-row w-100  ">
                                             <div class="mr-3">
-                                                <div class="bg-ripe-malin text-center text-white d-40 rounded-circle">
+                                                <div class="bg-plum-plate text-center text-white d-40 rounded-circle">
                                                     '.$rub->icon.'
                                                 </div>
                                             </div>

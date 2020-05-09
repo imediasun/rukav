@@ -57,7 +57,18 @@ class CompanyRepository extends BaseCrudRepository implements CompanyRepositoryI
     public function updateOrCreateCompanyPicture($attributes,$values)
     {
         $this->entityClass= Picture::class;
-        return $this->updateOrCreate($attributes,$values);
+$result['message_id']=$values['message_id'];
+foreach($values['photo'] as $p){
+    $result['photo']=$p;
+    $this->updateOrCreate($attributes,$result);
+}
+
+
+
+
+        return true;
+
+
     }
 
     public function updateOrCreateCompanyBanner($attributes,$values)

@@ -33,15 +33,16 @@ class CabinetController extends BaseController
         $data['keywords']="Ukrainian industry platform";
         $data['description']="Ukrainian industry platform";
 
-        return view('customer.cabinet.index',$data);
+        return view('new.customer.cabinet.index',$data);
+        //return view('customer.cabinet.index',$data);
     }
 
     public function postData(Request $request){
 
         $data['title']="Staff postData";
         $data['messages']=Message::where('sender',\Auth::user()->id)->with('pictures')->get();
-
-        return view('customer.cabinet.table',$data);
+        return view('new.customer.cabinet.table',$data);
+        //return view('customer.cabinet.table',$data);
     }
 
 
