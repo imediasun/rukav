@@ -7,6 +7,8 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use App\Domain\Notifications\CustomerEmail;
+use App\Domain\Notifications\MessageMessageReceive;
 use Log;
 
 class SendEmailVerification implements ShouldQueue
@@ -29,7 +31,10 @@ class SendEmailVerification implements ShouldQueue
      */
     public function handle() 
     {
-		$this->user->sendEmailVerificationNotification();
+		//$this->user->sendEmailVerificationNotification();
+		
+		//$this->user->notify(new CustomerEmail($this->user));
+		$this->user->notify(new MessageMessageReceive($this->user));
 
     }
 }

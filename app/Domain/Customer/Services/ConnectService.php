@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Domain\Notifications\CustomerEmail;
 use App\Domain\Notifications\CustomerMessageReceive;
 use App\User;
+use App\Jobs\SendEmailVerification;
 
 class ConnectService implements \App\Domain\Customer\Services\ConnectServiceInterface
 
@@ -19,7 +20,9 @@ class ConnectService implements \App\Domain\Customer\Services\ConnectServiceInte
 
     public function sendCustomerEmailNotification(User $customer)
     {
-        return $this->sendNotification($customer);
+		
+		SendEmailVerification::dispatch($customer);
+        //return $this->sendNotification($customer);
     }
 
 

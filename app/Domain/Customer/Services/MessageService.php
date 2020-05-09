@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Domain\Notifications\MessageMessageReceive;
 use App\Domain\Notifications\MessageRegistrationDone;
 use App\User;
+use App\Jobs\SendEmailVerification;
 
 class MessageService implements \App\Domain\Customer\Services\MessageServiceInterface
 
@@ -31,7 +32,8 @@ class MessageService implements \App\Domain\Customer\Services\MessageServiceInte
     }
     public function sendCustomerReceiveMessageNotification(User $customer)
     {
-        return $this->sendMessageNotification($customer);
+		SendEmailVerification::dispatch($customer);
+        //return $this->sendMessageNotification($customer);
     }
 
 
