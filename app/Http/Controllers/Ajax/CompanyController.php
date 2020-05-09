@@ -7,7 +7,7 @@ use App\Domain\Company\Facades\Company;
 use App\Domain\User\Facades\User;
 use App\Http\Controllers\Controller;
 use App\Domain\Admin\Models\BadgesGroup as BadgesGroupModel;
-
+use Illuminate\Support\Facades\Session;
 class CompanyController extends Controller
 {
     /**
@@ -17,6 +17,32 @@ class CompanyController extends Controller
      */
     public function __construct()
     {
+    }
+
+    public function dropzone(Request $request){
+
+        var_dump(Session::get('temp_picture_filename'));
+        $ds = DIRECTORY_SEPARATOR;
+
+        $storeFolder = '/storage/'; // Указываем папку для загрузки
+        $entity='pictures';
+        if (!empty($_FILES)) { // Проверяем пришли ли файлы от клиента
+
+            $tempFile = $_FILES['file']['tmp_name']; //Получаем загруженные файлы из временного хранилища
+
+            $targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;
+            $fileName=uniqid().'.'.$_FILES['file']['name'];
+            $targetFile =  storage_path('/app/public/'.$entity.'/'. $fileName);
+
+            if(Session::has('temp_picture_filename')) {
+
+                session()->push('temp_picture_filename',$fileName);
+            } else {
+                session()->put('temp_picture_filename', array($fileName));
+            }
+
+            move_uploaded_file($tempFile,$targetFile); // Перемещаем загруженные файлы из временного хранилища в нашу папку uploads
+        }
     }
 
 

@@ -19,6 +19,8 @@ Route::get('/auth/redirect/facebook', 'Auth\SiteAdminLoginController@redirectToF
 Route::get('/send_message_to_client', 'ConnectController@checkData')->name('send_message_to_client')->middleware('auth:web');
 Route::get('/connect_to_author/{message_id}', 'ConnectController@index')->name('connect')->middleware('auth:web');
 Route::get('/', 'HomeController@index')->name('dashboard');
+
+Route::post('/dropzone', 'Ajax\CompanyController@dropzone');
 Route::get('/search', 'FuncController@search');
 Route::post('/show_subcat', 'FuncController@show_subcat');
 Route::post('/show_subcat_all_levels', 'FuncController@show_subcat_all_levels');
@@ -62,7 +64,7 @@ Route::group(['prefix' => 'customer'],function(){
     Route::post('/golden_badge/check', 'CustomersController@checkGoldenBadgesCount');
 
     Route::post('/message/wishList', 'CustomersController@setWishListStatus');
-
+    Route::post('/reload_photo_session', 'CustomersController@reloadPhotoSession');
 
 
 

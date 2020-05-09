@@ -40,8 +40,8 @@ class ConnectController extends BaseController
         $data['message']=\App\Domain\Customer\Models\Message::where('id',$message_id)->with('getSender')->first();
         $data['keywords']="Ukrainian industry platform";
         $data['description']="Ukrainian industry platform";
-
-        return view('customer.connect.index',$data);
+        return view('new.customer.connect.index',$data);
+        //return view('customer.connect.index',$data);
     }
 
     public function checkData(Request $request){

@@ -2,6 +2,10 @@
 <!doctype html>
 <html lang="en">
 
+
+
+
+
 <head>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +17,6 @@
     <link rel="shortcut icon" href="/Bamburgh/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="/Bamburgh/favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/Bamburgh/favicon/favicon-32x32.png">
-
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
 
@@ -22,12 +25,36 @@
     <link rel="stylesheet" type="text/css" href="/Bamburgh/assets/css/bamburgh.min.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaZXMHQgJkoXZkkBbtelY8SLAwMOasg0Y&libraries=places&language=en"></script>
     <link rel="stylesheet" media="screen, print" href="/NewSmartAdmin/css/formplugins/cropperjs/cropper.css">
-
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <style>
-        .popover.popover-custom-md {
-            width: 1214px;
-            max-width: 1214px;
+        .cropper-container{
+            width:600px !important;
+            height:400px !important;
         }
+        .pac-container {
+            background-color: #FFF;
+            z-index: 20;
+            position: fixed;
+            display: inline-block;
+            float: left;
+        }
+
+        .pac-container {
+            z-index: 10519 !important;
+        }
+
+        .ui-autocomplete {
+            z-index: 10519 !important;
+        }
+        .modal{
+            z-index: 9999 !important;
+        }
+        .modal-backdrop{
+            z-index: 10;
+        }​
+
+
+
 
         .strange{width:300px !important;}
 
@@ -38,12 +65,18 @@
         span.zip {margin:1em 0;display:block;text-transform:uppercase;font-size:0.9em;color:#999;} span.zip:before {content:'ZIP code: '}
 
 
+        .popover.popover-custom-md {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
     </style>
 
 
     @yield('styles')
 </head>
 <body id="app-top">
+
 
 <div class="modal fade" id="modal-bbb4" tabindex="-1" role="dialog" aria-labelledby="modal-bbb4" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -52,7 +85,8 @@
                 @if(!\Auth::user())
                     <h5 class="modal-title h4 sending_badge_title">Войдите в учетную запись чтобы подать объявление</h5>
                 @else
-                    <h5 class="modal-title h4 sending_badge_title">Подать Новое объявление</h5>
+                    <h5 class="modal-title h4 sending_badge_title">Подать Новое объявление </h5>
+                    <h5 style="cursor:pointer" class="Cat_name modal-title h4"></h5>
                 @endif
                 <button type="button" class="close categoryModalClose" data-dismiss="modal" aria-label="Close" onclick="localStorage.setItem('openAddMessageModal',0);">
                     <span aria-hidden="true"><i class="fal fa-times"></i></span>
@@ -259,252 +293,45 @@
             <div class="modal-body" @if(!\Auth::user()) style="display:none" @endif>
                 <input type="hidden" id="company_id" name="company_id" >
                 <div id="photoForm" style="display:none">
-                    <label class="form-label" >
-                        Добавляем фото к объявлению
-                    </label>
-                    <div class="panel-container show">
-                        <div class="panel-content">
-                            <!-- Content -->
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-xl-9">
-                                        <!-- <h3>Demo:</h3> -->
-                                        <div class="img-container" >
-                                            <img id="image" src="/NewSmartAdmin/img/demo/gallery/3.jpg" alt="Picture">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 docs-toggles">
-                                        <!-- <h3>Toggles:</h3> -->
-                                        <div class="btn-group btn-group-sm d-flex flex-nowrap" data-toggle="buttons">
-                                            <label class="btn btn-primary active">
-                                                <input type="radio" class="sr-only" id="aspectRatio0" name="aspectRatio" value="1.7777777777777777">
-                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 16 / 9">
-                                                                    16:9
-                                                                </span>
-                                            </label>
-                                            <label class="btn btn-primary">
-                                                <input type="radio" class="sr-only" id="aspectRatio1" name="aspectRatio" value="1.3333333333333333">
-                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 4 / 3">
-                                                                    4:3
-                                                                </span>
-                                            </label>
-                                            <label class="btn btn-primary">
-                                                <input type="radio" class="sr-only" id="aspectRatio2" name="aspectRatio" value="1">
-                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 1 / 1">
-                                                                    1:1
-                                                                </span>
-                                            </label>
-                                            <label class="btn btn-primary">
-                                                <input type="radio" class="sr-only" id="aspectRatio3" name="aspectRatio" value="0.6666666666666666">
-                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: 2 / 3">
-                                                                    2:3
-                                                                </span>
-                                            </label>
-                                            <label class="btn btn-primary">
-                                                <input type="radio" class="sr-only" id="aspectRatio4" name="aspectRatio" value="NaN">
-                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="aspectRatio: NaN">
-                                                                    Free
-                                                                </span>
-                                            </label>
-                                        </div>
-                                        <div class="btn-group d-flex flex-nowrap" style="display:none !important" data-toggle="buttons">
-                                            <label class="btn btn-primary active">
-                                                <input type="radio" class="sr-only" id="viewMode0" name="viewMode" value="0" checked>
-                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 0">
-                                                                    VM0
-                                                                </span>
-                                            </label>
-                                            <label class="btn btn-primary">
-                                                <input type="radio" class="sr-only" id="viewMode1" name="viewMode" value="1">
-                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 1">
-                                                                    VM1
-                                                                </span>
-                                            </label>
-                                            <label class="btn btn-primary">
-                                                <input type="radio" class="sr-only" id="viewMode2" name="viewMode" value="2">
-                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 2">
-                                                                    VM2
-                                                                </span>
-                                            </label>
-                                            <label class="btn btn-primary">
-                                                <input type="radio" class="sr-only" id="viewMode3" name="viewMode" value="3">
-                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="View Mode 3">
-                                                                    VM3
-                                                                </span>
-                                            </label>
-                                        </div>
+                <div class="example-box example-box-alt pb-5">
+                    <h4 class="heading-2 pb-4">Загрузка фотографий</h4>
 
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary" data-method="reset" title="Reset">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;reset&quot;)">
-                                                                    <span class="fas fa-sync"></span>
-                                                                </span>
-                                            </button>
-                                            <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
-                                                <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
-                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="Import image with Blob URLs">
-                                                                    <span class="fas fa-image mr-1"></span> Upload
-                                                                </span>
-                                            </label>
-                                        </div>
-                                        <button type="button" class="btn btn-danger" style="display:none" data-method="destroy" title="Destroy">
-                                                            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;destroy&quot;)">
-                                                                <span class="fas fa-power-off"></span>
-                                                            </span>
-                                        </button>
-
-
-                                        <!-- /.dropdown -->
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-9 docs-buttons" style="display:none">
-                                        <!-- <h3>Toolbar:</h3> -->
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Move">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
-                                                                    <span class="fas fa-arrows"></span>
-                                                                </span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="crop" title="Crop">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setDragMode&quot;, &quot;crop&quot;)">
-                                                                    <span class="fas fa-crop"></span>
-                                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, 0.1)">
-                                                                    <span class="fas fa-search-plus"></span>
-                                                                </span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, -0.1)">
-                                                                    <span class="fas fa-search-minus"></span>
-                                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary" data-method="move" data-option="-10" data-second-option="0" title="Move Left">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, -10, 0)">
-                                                                    <span class="fas fa-arrow-left"></span>
-                                                                </span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary" data-method="move" data-option="10" data-second-option="0" title="Move Right">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 10, 0)">
-                                                                    <span class="fas fa-arrow-right"></span>
-                                                                </span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="-10" title="Move Up">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 0, -10)">
-                                                                    <span class="fas fa-arrow-up"></span>
-                                                                </span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="10" title="Move Down">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 0, 10)">
-                                                                    <span class="fas fa-arrow-down"></span>
-                                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, -45)">
-                                                                    <span class="fas fa-undo"></span>
-                                                                </span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, 45)">
-                                                                    <span class="fas fa-redo"></span>
-                                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleX&quot;, -1)">
-                                                                    <span class="fas fa-arrows-h"></span>
-                                                                </span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary" data-method="scaleY" data-option="-1" title="Flip Vertical">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleY&quot;, -1)">
-                                                                    <span class="fal fa-arrows-v"></span>
-                                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary" data-method="crop" title="Crop">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;crop&quot;)">
-                                                                    <span class="fas fa-check"></span>
-                                                                </span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary" data-method="clear" title="Clear">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;clear&quot;)">
-                                                                    <span class="fas fa-times"></span>
-                                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary" data-method="disable" title="Disable">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;disable&quot;)">
-                                                                    <span class="fas fa-lock"></span>
-                                                                </span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary" data-method="enable" title="Enable">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;enable&quot;)">
-                                                                    <span class="fas fa-unlock"></span>
-                                                                </span>
-                                            </button>
-                                        </div>
-
-                                        <!-- Show the cropped image in modal -->
-
-                                        <div class="btn-group btn-group-crop">
-                                            <button style="display:none" id="getCroppedCanvasBtn" class="formLogo btn btn-success"   type="button"  data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }">
-                                                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 4096, maxHeight: 4096 })">
-                                                                    Сохранить фото
-                                                                </span>
-                                            </button>
-
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-                                        <div class="modal fade docs-cropped" id="getCroppedCanvasModal2" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="getCroppedCanvasTitle">Cropped</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body"></div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.modal -->
-
-
-
-                                    </div>
-                                    <!-- /.docs-buttons -->
-
-                                    <!-- /.docs-toggles -->
-                                </div>
+                    <div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple data-dropzone-url="/dropzone">
+                        <div class="fallback">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="dropzoneMultipleUpload" multiple>
+                                <label class="custom-file-label" for="dropzoneMultipleUpload">Choose file</label>
                             </div>
                         </div>
+                        <ul class="dz-preview dz-preview-multiple mt-5 list-group list-group-lg">
+                            <li class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col-md-3 text-center">
+                                        <img class="img-fluid w-50 rounded" src="" alt="" data-dz-thumbnail>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4 class="mb-1" data-dz-name>...</h4>
+                                        <p class="small text-muted mb-0" data-dz-size>...</p>
+                                    </div>
+                                    <div class="col-md-3 text-right">
+                    <span class="dropdown">
+                        <a href="#" class="btn btn-sm btn-primary" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="#" class="dropdown-item" data-dz-remove>
+                                Remove
+                            </a>
+                        </div>
+                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
+
+
+                </div>
                 </div>
                 <?$i=1;
 
@@ -551,19 +378,15 @@
                                     $subcats=\App\Domain\Customer\Models\ProductCategory::where('parent_id',$badges->id)->get();
 
                                     ?>
-                                    <div class="form-group">
-                                        <select data-placeholder="Select a state..." class="js-select2-icons form-control category_select" id="multiple-icons_{{$badges->id}}" >
-                                            <optgroup label="Подкатегории">
-
+                                    <div class="form-group mb-5">
+                                        <select class="form-control category_select" data-toggle="custom-select2" placeholder="Choose one entry..." data-allow-clear="1" id="select-single" >
                                                 @foreach($subcats as $cat)
                                                     <option value="{{$cat->id}}" data-icon="fa {{$cat->icon}} text-dark" selected="">{{$cat->name}}</option>
                                                 @endforeach
 
-                                            </optgroup>
 
                                         </select>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="form-label" for="name-f">Контактная информация по объявлению</label>
                                         <div class="input-group">
@@ -604,14 +427,17 @@
                                     <input type="hidden" class="form-control sending_badge_title" value="" />
                                 </div>
                                 <div class="form-group photo_form_place"></div>
-                                <label class="form-label" for="example-textarea">Сопроводительный текст</label>
-                                <div class="form-group summerBlock">
+                                <div class="container">
+                                    <div class="example-box example-box-alt pb-5">
+                                        <h4 class="heading-2 pb-4">Текст объявления</h4>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="quill" data-toggle="quill" ></div>
 
-
-
-                                    <!--textarea class="form-control sending_badge_textarea"  rows="5"></textarea-->
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
                                 <button type="submit"  data-target="#getCroppedCanvasModal_{{$badges->id}}"  data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }" class=" sending_badge_submit btn btn-primary waves-effect waves-themed">Отправить объявление</button>
                             </form>
 
@@ -666,14 +492,21 @@ left:2px;
 </div>
 
 <div class="hero-wrapper bg-composed-wrapper bg-white">
-    <div class="header-nav-wrapper header-nav-wrapper-lg d-none d-lg-flex"></div>
-    <div class="header-nav-wrapper header-nav-wrapper-lg w-100 navbar-dark headroom" id="headroom-header">
-        <div class="container">
-            <div class="header-nav-logo justify-content-start">
+    <div class="input-group location_input" style="display:none;z-index:9999;">
+        <div class="input-group-prepend">
+                                                        <span class="input-group-text text-success">
+                                                            <i class="fal fa-compass"></i>
+                                                            <!--i class="ni ni-location fs-xl"></i-->
+                                                        </span>
+            <input  type="text" id="location" style="width:47%" name="location" placeholder="City or ZIP code">
+        </div>
 
-                <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="270px" height="75px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                     viewBox="0 0 2706 755.26"
-                     xmlns:xlink="http://www.w3.org/1999/xlink">
+    </div>
+    <div class="header-nav-logo justify-content-start" style="z-index:9999;position:absolute;top:10px;left:10px;">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="270px" height="75px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+             viewBox="0 0 2706 755.26"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
  <defs>
      <style type="text/css">
          <![CDATA[
@@ -684,30 +517,33 @@ left:2px;
          ]]>
      </style>
  </defs>
-                    <g id="Слой_x0020_1">
-                        <metadata id="CorelCorpID_0Corel-Layer"/>
-                        <rect class="fil0" width="2706" height="755.26"/>
-                        <g id="_1090375648">
-                            <g>
-                                <path class="fil1" d="M920.35 571.72l0 -386.5 137.79 0c37.74,0 68.32,12.1 91.77,36.3 23.44,24.21 35.16,53.27 35.16,87.19 0,23.64 -6,44.98 -18.01,64.04 -12.01,19.06 -28.87,33.35 -50.6,42.88l73.18 156.09 -93.76 0 -62.9 -144.08 -28.58 0 0 144.08 -84.05 0zm84.05 -210.98l49.74 0c13.72,0 24.87,-4.76 33.45,-14.29 8.57,-9.53 12.86,-22.11 12.86,-37.74 0,-15.24 -4.38,-27.73 -13.15,-37.44 -8.77,-9.72 -19.82,-14.58 -33.16,-14.58l-49.74 0 0 104.05z"/>
-                                <path class="fil1" d="M1276.94 442.5l0 -257.28 84.05 0 0 250.42c0,22.49 5.62,40.12 16.87,52.89 11.24,12.77 26.2,19.15 44.88,19.15 18.68,0 33.64,-6.48 44.88,-19.44 11.25,-12.96 16.87,-30.49 16.87,-52.6l0 -250.42 84.04 0 0 257.28c0,39.64 -14.19,72.33 -42.59,98.06 -28.4,25.73 -62.8,38.59 -103.2,38.59 -40.79,0 -75.28,-12.77 -103.49,-38.31 -28.2,-25.54 -42.31,-58.31 -42.31,-98.34z"/>
-                                <polygon class="fil1" points="1659.72,571.72 1659.72,185.22 1743.77,185.22 1743.77,328.15 1843.82,185.22 1942.16,185.22 1818.09,353.88 1959.89,571.72 1860.4,571.72 1767.21,423.06 1743.77,455.08 1743.77,571.72 "/>
-                                <path class="fil1" d="M1999.93 571.72l116.06 -386.5 97.2 0 116.06 386.5 -85.19 0 -25.72 -93.2 -107.49 0 -25.73 93.2 -85.19 0zm129.79 -161.23l69.75 0 -20.01 -73.19c-4.58,-15.63 -9.53,-37.54 -14.87,-65.75 -3.81,20.58 -8.76,42.5 -14.86,65.75l-20.01 73.19z"/>
-                                <path class="fil1" d="M2444.95 571.72l-116.07 -386.5 85.19 0 64.61 234.41c4.19,14.87 9.15,37.74 14.87,68.61 5.71,-30.87 10.67,-53.74 14.86,-68.61l64.61 -234.41 85.19 0 -116.07 386.5 -97.19 0z"/>
-                            </g>
-                            <g>
-                                <path class="fil2" d="M386.58 38.84c187.11,0 338.79,151.68 338.79,338.79 0,187.11 -151.68,338.79 -338.79,338.79 -187.11,0 -338.79,-151.68 -338.79,-338.79 0,-187.11 151.68,-338.79 338.79,-338.79z"/>
-                                <path class="fil3" d="M448.3 710.8l-156.76 -158.15c-13.96,-10.6 -22.97,-27.37 -22.97,-46.25 0,-30.23 23.11,-55.06 52.63,-57.79 4.82,-0.45 11.6,-1 16.16,-1l70.66 0c22.11,0 40.76,-7.53 55.97,-22.89 15.36,-15.21 23.05,-33.87 23.05,-55.97 0,-21.95 -7.69,-40.61 -23.05,-55.97 -15.21,-15.21 -33.86,-22.89 -55.97,-22.89 -44.58,0 -88.36,-0.33 -132.81,-0.33 -1.93,0 -3.84,-0.08 -5.72,-0.23 -31.64,-0.47 -57.16,-26.27 -57.16,-58.03 0,-0.17 0.01,-0.35 0.01,-0.53 -0.08,-6.17 0.9,-12.02 2.88,-17.57 7.38,-22.49 28.13,-38.92 52.85,-39.89 0.92,-0.04 1.84,-0.06 2.77,-0.06l137.18 0c54.4,0 100.65,18.97 138.59,57.07 38.1,38.09 57.07,84.34 57.07,138.74 0,44.06 -13.33,83.72 -39.98,118.68 -26.65,34.96 -61.46,58.32 -104.26,70.08l107.13 106.86c-35.53,22.32 -75.49,38.24 -118.27,46.12z"/>
-                            </g>
-                        </g>
+            <g id="Слой_x0020_1">
+                <metadata id="CorelCorpID_0Corel-Layer"/>
+                <rect class="fil0" width="2706" height="755.26"/>
+                <g id="_1090375648">
+                    <g>
+                        <path class="fil1" d="M920.35 571.72l0 -386.5 137.79 0c37.74,0 68.32,12.1 91.77,36.3 23.44,24.21 35.16,53.27 35.16,87.19 0,23.64 -6,44.98 -18.01,64.04 -12.01,19.06 -28.87,33.35 -50.6,42.88l73.18 156.09 -93.76 0 -62.9 -144.08 -28.58 0 0 144.08 -84.05 0zm84.05 -210.98l49.74 0c13.72,0 24.87,-4.76 33.45,-14.29 8.57,-9.53 12.86,-22.11 12.86,-37.74 0,-15.24 -4.38,-27.73 -13.15,-37.44 -8.77,-9.72 -19.82,-14.58 -33.16,-14.58l-49.74 0 0 104.05z"/>
+                        <path class="fil1" d="M1276.94 442.5l0 -257.28 84.05 0 0 250.42c0,22.49 5.62,40.12 16.87,52.89 11.24,12.77 26.2,19.15 44.88,19.15 18.68,0 33.64,-6.48 44.88,-19.44 11.25,-12.96 16.87,-30.49 16.87,-52.6l0 -250.42 84.04 0 0 257.28c0,39.64 -14.19,72.33 -42.59,98.06 -28.4,25.73 -62.8,38.59 -103.2,38.59 -40.79,0 -75.28,-12.77 -103.49,-38.31 -28.2,-25.54 -42.31,-58.31 -42.31,-98.34z"/>
+                        <polygon class="fil1" points="1659.72,571.72 1659.72,185.22 1743.77,185.22 1743.77,328.15 1843.82,185.22 1942.16,185.22 1818.09,353.88 1959.89,571.72 1860.4,571.72 1767.21,423.06 1743.77,455.08 1743.77,571.72 "/>
+                        <path class="fil1" d="M1999.93 571.72l116.06 -386.5 97.2 0 116.06 386.5 -85.19 0 -25.72 -93.2 -107.49 0 -25.73 93.2 -85.19 0zm129.79 -161.23l69.75 0 -20.01 -73.19c-4.58,-15.63 -9.53,-37.54 -14.87,-65.75 -3.81,20.58 -8.76,42.5 -14.86,65.75l-20.01 73.19z"/>
+                        <path class="fil1" d="M2444.95 571.72l-116.07 -386.5 85.19 0 64.61 234.41c4.19,14.87 9.15,37.74 14.87,68.61 5.71,-30.87 10.67,-53.74 14.86,-68.61l64.61 -234.41 85.19 0 -116.07 386.5 -97.19 0z"/>
                     </g>
+                    <g>
+                        <path class="fil2" d="M386.58 38.84c187.11,0 338.79,151.68 338.79,338.79 0,187.11 -151.68,338.79 -338.79,338.79 -187.11,0 -338.79,-151.68 -338.79,-338.79 0,-187.11 151.68,-338.79 338.79,-338.79z"/>
+                        <path class="fil3" d="M448.3 710.8l-156.76 -158.15c-13.96,-10.6 -22.97,-27.37 -22.97,-46.25 0,-30.23 23.11,-55.06 52.63,-57.79 4.82,-0.45 11.6,-1 16.16,-1l70.66 0c22.11,0 40.76,-7.53 55.97,-22.89 15.36,-15.21 23.05,-33.87 23.05,-55.97 0,-21.95 -7.69,-40.61 -23.05,-55.97 -15.21,-15.21 -33.86,-22.89 -55.97,-22.89 -44.58,0 -88.36,-0.33 -132.81,-0.33 -1.93,0 -3.84,-0.08 -5.72,-0.23 -31.64,-0.47 -57.16,-26.27 -57.16,-58.03 0,-0.17 0.01,-0.35 0.01,-0.53 -0.08,-6.17 0.9,-12.02 2.88,-17.57 7.38,-22.49 28.13,-38.92 52.85,-39.89 0.92,-0.04 1.84,-0.06 2.77,-0.06l137.18 0c54.4,0 100.65,18.97 138.59,57.07 38.1,38.09 57.07,84.34 57.07,138.74 0,44.06 -13.33,83.72 -39.98,118.68 -26.65,34.96 -61.46,58.32 -104.26,70.08l107.13 106.86c-35.53,22.32 -75.49,38.24 -118.27,46.12z"/>
+                    </g>
+                </g>
+            </g>
 </svg>
-            </div>
+    </div>
+
+    <div class="header-nav-wrapper header-nav-wrapper-lg d-none d-lg-flex"></div>
+    <div class="header-nav-wrapper header-nav-wrapper-lg w-100 navbar-dark headroom" id="headroom-header">
+        <div class="container">
+
             <div class="header-nav-menu d-none d-lg-block">
                 <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link " href="ui-elements.html">UI Elements</a>
-                    </li>
+
                     <li class="nav-item dropdown d-flex align-items-center">
                         <a class="nav-link popover-custom
 
@@ -716,7 +552,7 @@ left:2px;
 
 
         " href="#" data-trigger="click" data-placement="bottom" data-popover-class="popover-custom-wrapper rounded shadow-lg popover-custom-md" data-rel="popover-close-outside" data-tip="header-nav-0">
-                            Components3
+                            Категории
                             <i class="fas fa-angle-down ml-2 opacity-5"></i>
                         </a>
                         <div id="header-nav-0" class="d-none" style="width:300px">
@@ -728,95 +564,12 @@ left:2px;
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link d-flex align-items-center popover-custom  active " href="#" data-trigger="click" data-placement="bottom" data-popover-class="popover-custom-wrapper rounded shadow-lg popover-custom-md" data-rel="popover-close-outside" data-tip="header-nav-1">
-                            Landing Pages
-                            <i class="fas fa-angle-down ml-2 opacity-5"></i>
-                        </a>
-                        <div id="header-nav-1" class="d-none">
-                            <div class="py-3 px-3">
-                                <div class="row no-gutters">
-                                    <div class="col-md-6">
-                                        <div class="list-group list-group-flush">
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-1.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 1
-                                                </div>
-                                            </a>
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-2.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 2
-                                                </div>
-                                            </a>
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-3.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 3
-                                                </div>
-                                            </a>
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-4.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 4
-                                                </div>
-                                            </a>
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-5.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 5
-                                                </div>
-                                            </a>
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-6.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 6
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="list-group list-group-flush">
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-7.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 7
-                                                </div>
-                                            </a>
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-8.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 8
-                                                </div>
-                                            </a>
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-9.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 9
-                                                </div>
-                                            </a>
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-10.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 10
-                                                </div>
-                                            </a>
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-11.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 11
-                                                </div>
-                                            </a>
-                                            <a class="d-flex px-3 my-1 rounded dropdown-item mx-1" href="landing-page-12.html">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="far fa-clone mr-2 opacity-3 font-size-lg"></i>
-                                                    Landing page 12
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="search">
+
+                            <input type="text" id="search-field" style="border: 3px solid #666;display:inline-flex;width:300px" placeholder="Ищите что либо..." class="form-control" >
+                            <input  type="text" style="display:inline-flex;width:200px;background:#fff" id="location_search" name="location" placeholder="City or ZIP code">
+                            <input type="submit" style="display:inline-flex" value="Искать" id="go">
+
                         </div>
                     </li>
                 </ul>
@@ -1038,94 +791,14 @@ left:2px;
 
         </div>
     </div>
-    <div style="width:100% !important"> @include('layouts.slider_portfolio')</div>
-
-    <div class="hero-footer pt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card-box-hover-rise card-box-hover card card-box-alt card-border-top border-success mb-5 pb-4">
-                        <h3 class="font-size-lg font-weight-bold mt-5 mb-4">Lightweight</h3>
-                        <p class="card-text px-4 mb-4">
-                            Insects and flies, then I feel the presence of the indescribable forms Almighty, who formed us in his own image.
-                        </p>
-                        <a href="#" class="btn btn-link btn-link-first mb-2 p-0" title="Find out more">
-                            <span>Find out more</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card-box-hover-rise card-box-hover card card-box-alt card-border-top border-first mb-5 pb-4">
-                        <h3 class="font-size-lg font-weight-bold mt-5 mb-4">Simple to use</h3>
-                        <p class="card-text px-4 mb-4">
-                            When, while the lovely valley teems with vapour present moment around me, and the meridian sun strike.
-                        </p>
-                        <a href="#" class="btn btn-link btn-link-first mb-2 p-0" title="Find out more">
-                            <span>Find out more</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card-box-hover-rise card-box-hover card card-box-alt card-border-top border-warning mb-5 pb-4">
-                        <h3 class="font-size-lg font-weight-bold mt-5 mb-4">Starter Templates</h3>
-                        <p class="card-text px-4 mb-4">
-                            Exquisite sense of mere tranquil existence, that I neglect my foliage world  trickling tree artist talents.
-                        </p>
-                        <a href="#" class="btn btn-link btn-link-first mb-2 p-0" title="Find out more">
-                            <span>Find out more</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="hero-footer pt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card-box-hover-rise card-box-hover card card-box-alt card-border-top border-success mb-5 pb-4">
-                        <h3 class="font-size-lg font-weight-bold mt-5 mb-4">Lightweight</h3>
-                        <p class="card-text px-4 mb-4">
-                            Insects and flies, then I feel the presence of the indescribable forms Almighty, who formed us in his own image.
-                        </p>
-                        <a href="#" class="btn btn-link btn-link-first mb-2 p-0" title="Find out more">
-                            <span>Find out more</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card-box-hover-rise card-box-hover card card-box-alt card-border-top border-first mb-5 pb-4">
-                        <h3 class="font-size-lg font-weight-bold mt-5 mb-4">Simple to use</h3>
-                        <p class="card-text px-4 mb-4">
-                            When, while the lovely valley teems with vapour present moment around me, and the meridian sun strike.
-                        </p>
-                        <a href="#" class="btn btn-link btn-link-first mb-2 p-0" title="Find out more">
-                            <span>Find out more</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card-box-hover-rise card-box-hover card card-box-alt card-border-top border-warning mb-5 pb-4">
-                        <h3 class="font-size-lg font-weight-bold mt-5 mb-4">Starter Templates</h3>
-                        <p class="card-text px-4 mb-4">
-                            Exquisite sense of mere tranquil existence, that I neglect my foliage world  trickling tree artist talents.
-                        </p>
-                        <a href="#" class="btn btn-link btn-link-first mb-2 p-0" title="Find out more">
-                            <span>Find out more</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@yield('content')
 
 </div>
 
 
 <!-- Bamburgh UI Kit Javascript Core -->
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="/Bamburgh/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -1200,7 +873,30 @@ left:2px;
 <script src="/NewSmartAdmin/js/formplugins/summernote/summernote.js"></script>
 <script src="/NewSmartAdmin/js/formplugins/cropperjs/cropper.js"></script>
 <script src="/NewSmartAdmin/js/formplugins/select2/select2.bundle.js"></script>
+<!--Dropzone-->
 
+<script src="/Bamburgh/assets/vendor/dropzone/js/dropzone.min.js"></script>
+
+<!--Dropzone init-->
+
+<script src="/Bamburgh/assets/js/demo/dropzone/dropzone.min.js"></script>
+
+<!-- Quill -->
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+
+<!-- Quill init -->
+
+<script type="text/javascript" src="/Bamburgh/assets/js/demo/quill-editor/quill-editor.min.js"></script>
+
+<!--Select2-->
+
+<script type="text/javascript" src="/Bamburgh/assets/vendor/select2/js/select2.min.js"></script>
+
+<!--Select2 init-->
+
+<script type="text/javascript" src="/Bamburgh/assets/js/demo/select2/select2.min.js"></script>
 
 @yield('scripts')
 <script>
@@ -1341,6 +1037,23 @@ else{
     }
 
     $('.single_badge').click(function(){
+
+
+        $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            async:false,
+            url: '/customer/reload_photo_session',
+            beforeSend: function() {
+            },
+            complete: function() {
+
+            },
+            success: function (data) {
+
+            }
+        });
+
         var badge=$(this).parent().find('.badge_id').val()
         window.badge=badge;
         console.log('window.badge=>',window.badge)
@@ -1363,8 +1076,6 @@ else{
         //$(this).parent().parent().find('.sending_group').find('.badges_form').find('.summerBlock').append('<div class="js-summernote" ></div>')
 
         window.slide_allow=0
-
-        localStorage.setItem("summernoteData","")
         //var badge_name_h=$(this).parent().parent().find('.sending_group').find('.badge_name')
         // var badge_title=$(this).parent().parent().find('.sending_group').find('.sending_badge_title')
         var badge_title=form.find('.sending_badge_title')
@@ -1382,15 +1093,13 @@ else{
         console.log('form=>',form)
 
         var sending_group=$(this).parent().parent().find('.sending_group')
-        badge_name_h.text(current_badge_name)
+        badge_name_h.html('<div class="to_root" style="cursor:pointer">< К корневым категориям</div>')
+        $('.Cat_name').append(' <  '+ current_badge_name)
         badge_title.val(current_badge_name)
         form.find('.photo_form_place').append(photo_form)
         $(this).parent().parent().find('.sending_group').append(form)
         photo_form.css('display','block');
 
-
-        form.find('.summerBlock').append('<div class="js-summernote" ></div>')
-        summernoteInit();
         form.css('display','block');
 
         var inputs = [form.find('.email_input'),form.find('.phone_input')];
@@ -1458,7 +1167,16 @@ else{
 
 
 
+$('.to_root').click(function(){
+    console.log(444)
 
+    $('.sending_group').slideUp({
+        duration: 'slow',
+        easing: 'linear'
+    })
+    $('.badge_border').show()
+    $('.Cat_name').empty()
+})
 
 
 
@@ -1466,6 +1184,8 @@ else{
             duration: 'slow',
             easing: 'linear'
         })
+        $('.badge_border').hide()
+
         //Проверить сколько золотых бэйджей отправлено в текущем месяце
 
         /*        $.ajax({
@@ -1635,13 +1355,19 @@ else{
      })*/
 
     function initContinued(addr,ajax) {
+        console.log('123')
         console.log('aJax=>',ajax)
+
+
         if(!addr.city){
             city=addr.postal_town
         }
         else{
             city=addr.city
         }
+window.message=$('.quill').text()
+        console.log(window.location_place_id,city,addr.administrative,window.customer,window.message,
+            window.category,window.title,window.visibility,window.price,window.phone,window.email)
         if(ajax){
             $.ajax({
                 method: 'POST',
@@ -1868,355 +1594,6 @@ else{
 
 
 
-    $(function()
-    {
-        'use strict';
-
-        /*var console = window.console || {
-         log: function () {}
-         };*/
-
-        var URL = window.URL || window.webkitURL;
-        var $image = $('#image');
-        var $download = $('#download');
-
-        var $dataX = $('#dataX');
-        var $dataY = $('#dataY');
-        var $dataHeight = $('#dataHeight');
-        var $dataWidth = $('#dataWidth');
-        var $dataRotate = $('#dataRotate');
-        var $dataScaleX = $('#dataScaleX');
-        var $dataScaleY = $('#dataScaleY');
-        var options = {
-            aspectRatio: 16 / 9,
-            preview: '.img-preview',
-            crop: function(e)
-            {
-                $dataX.val(Math.round(e.detail.x));
-                $dataY.val(Math.round(e.detail.y));
-                $dataHeight.val(Math.round(e.detail.height));
-                $dataWidth.val(Math.round(e.detail.width));
-                $dataRotate.val(e.detail.rotate);
-                $dataScaleX.val(e.detail.scaleX);
-                $dataScaleY.val(e.detail.scaleY);
-            }
-        };
-        var originalImageURL = $image.attr('src');
-        var uploadedImageName = 'cropped.jpg';
-        var uploadedImageType = 'image/jpeg';
-        var uploadedImageURL;
-
-        // Tooltip
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Cropper
-        $image.on(
-            {
-                ready: function(e)
-                {
-                    console.log(e.type);
-                },
-                cropstart: function(e)
-                {
-                    console.log(e.type, e.detail.action);
-                },
-                cropmove: function(e)
-                {
-                    console.log(e.type, e.detail.action);
-                },
-                cropend: function(e)
-                {
-                    console.log(e.type, e.detail.action);
-                },
-                crop: function(e)
-                {
-                    console.log(e.type);
-                },
-                zoom: function(e)
-                {
-                    console.log(e.type, e.detail.ratio);
-                }
-            }).cropper(options);
-
-        // Buttons
-        if (!$.isFunction(document.createElement('canvas').getContext))
-        {
-            console.log('button prop disabled');
-            $('button[data-method="getCroppedCanvas"]').prop('disabled', true);
-        }
-
-        if (typeof document.createElement('cropper').style.transition === 'undefined')
-        {
-            $('button[data-method="rotate"]').prop('disabled', true);
-            $('button[data-method="scale"]').prop('disabled', true);
-        }
-
-        // Download
-        if (typeof $download[0].download === 'undefined')
-        {
-            $download.addClass('disabled');
-        }
-
-        // Options
-        $('.docs-toggles').on('change', 'input', function()
-        {
-            var $this = $(this);
-            var name = $this.attr('name');
-            var type = $this.prop('type');
-            var cropBoxData;
-            var canvasData;
-
-            if (!$image.data('cropper'))
-            {
-                return;
-            }
-
-            if (type === 'checkbox')
-            {
-                options[name] = $this.prop('checked');
-                cropBoxData = $image.cropper('getCropBoxData');
-                canvasData = $image.cropper('getCanvasData');
-
-                options.ready = function()
-                {
-                    $image.cropper('setCropBoxData', cropBoxData);
-                    $image.cropper('setCanvasData', canvasData);
-                };
-            }
-            else if (type === 'radio')
-            {
-                options[name] = $this.val();
-            }
-
-            $image.cropper('destroy').cropper(options);
-        });
-
-        // Methods
-        $('.docs-buttons').on('click', '[data-method]', function()
-        {
-            console.log('.docs-buttons');
-            var $this = $(this);
-            var data = $this.data();
-            var cropper = $image.data('cropper');
-            var cropped;
-            var $target;
-            var result;
-
-            if ($this.prop('disabled') || $this.hasClass('disabled'))
-            {
-                return;
-            }
-
-            if (cropper && data.method)
-            {
-                data = $.extend(
-                    {}, data); // Clone a new one
-
-                if (typeof data.target !== 'undefined')
-                {
-                    $target = $(data.target);
-
-                    if (typeof data.option === 'undefined')
-                    {
-                        try
-                        {
-                            data.option = JSON.parse($target.val());
-                        }
-                        catch (e)
-                        {
-                            console.log(e.message);
-                        }
-                    }
-                }
-
-                cropped = cropper.cropped;
-
-                switch (data.method)
-                {
-                    case 'rotate':
-                        if (cropped && options.viewMode > 0)
-                        {
-                            $image.cropper('clear');
-                        }
-
-                        break;
-
-                    case 'getCroppedCanvas':
-                        if (uploadedImageType === 'image/jpeg')
-                        {
-                            if (!data.option)
-                            {
-                                data.option = {};
-                            }
-
-                            data.option.fillColor = '#fff';
-                        }
-
-                        break;
-                }
-
-                result = $image.cropper(data.method, data.option, data.secondOption);
-
-                switch (data.method)
-                {
-                    case 'rotate':
-                        if (cropped && options.viewMode > 0)
-                        {
-                            $image.cropper('crop');
-                        }
-
-                        break;
-
-                    case 'scaleX':
-                    case 'scaleY':
-                        $(this).data('option', -data.option);
-                        break;
-
-                    case 'getCroppedCanvas':
-                        if (result)
-                        {
-                            // Bootstrap's Modal
-                            //$('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
-                            // $('#getCroppedCanvasModal').modal()
-                            if (!$download.hasClass('disabled'))
-                            {
-                                download.download = uploadedImageName;
-                                console.log('Download',result)
-                                console.log('Download',result.toDataURL(uploadedImageType))
-                                // $download.attr('href', result.toDataURL(uploadedImageType));
-
-
-                                /*$('#download').click(function(){*/
-
-                                $.ajax({
-                                    method: 'POST',
-                                    dataType: 'json',
-                                    async:false,
-                                    url: '/company/picture/savePictureToSession',
-                                    data: {picture: result.toDataURL(uploadedImageType)
-                                    },
-                                    beforeSend: function() {
-                                        console.log(0)
-                                    },
-                                    complete: function() {
-                                        console.log(333)
-                                        logoCreation()
-
-                                    },
-                                    success: function (data) {
-                                        console.log(111)
-                                    }
-                                });
-                                /* })*/
-
-
-                            }
-                        }
-
-                        break;
-
-                    case 'destroy':
-                        if (uploadedImageURL)
-                        {
-                            URL.revokeObjectURL(uploadedImageURL);
-                            uploadedImageURL = '';
-                            $image.attr('src', originalImageURL);
-                        }
-
-                        break;
-                }
-
-                if ($.isPlainObject(result) && $target)
-                {
-                    try
-                    {
-                        $target.val(JSON.stringify(result));
-                    }
-                    catch (e)
-                    {
-                        console.log(e.message);
-                    }
-                }
-            }
-        });
-
-        // Keyboard
-        $(document.body).on('keydown', function(e)
-        {
-            if (e.target !== this || !$image.data('cropper') || this.scrollTop > 300)
-            {
-                return;
-            }
-
-            switch (e.which)
-            {
-                case 37:
-                    e.preventDefault();
-                    $image.cropper('move', -1, 0);
-                    break;
-
-                case 38:
-                    e.preventDefault();
-                    $image.cropper('move', 0, -1);
-                    break;
-
-                case 39:
-                    e.preventDefault();
-                    $image.cropper('move', 1, 0);
-                    break;
-
-                case 40:
-                    e.preventDefault();
-                    $image.cropper('move', 0, 1);
-                    break;
-            }
-        });
-
-        // Import image
-        var $inputImage = $('#inputImage');
-
-        if (URL)
-        {
-            $inputImage.change(function()
-            {
-                var files = this.files;
-                var file;
-
-                if (!$image.data('cropper'))
-                {
-                    return;
-                }
-
-                if (files && files.length)
-                {
-                    file = files[0];
-
-                    if (/^image\/\w+$/.test(file.type))
-                    {
-                        uploadedImageName = file.name;
-                        uploadedImageType = file.type;
-
-                        if (uploadedImageURL)
-                        {
-                            URL.revokeObjectURL(uploadedImageURL);
-                        }
-
-                        uploadedImageURL = URL.createObjectURL(file);
-                        $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
-                        $inputImage.val('');
-                    }
-                    else
-                    {
-                        window.alert('Please choose an image file.');
-                    }
-                }
-            });
-        }
-        else
-        {
-            $inputImage.prop('disabled', true).parent().addClass('disabled');
-        }
-    });
 
 
     (function() {
@@ -2246,357 +1623,6 @@ else{
 
 
 
-    function clearLogoAdding(){
-
-
-
-
-
-        'use strict';
-
-        /*var console = window.console || {
-         log: function () {}
-         };*/
-
-        var URL = window.URL || window.webkitURL;
-        var $image = $('#image_'+badge);
-        var $download = $('#download_'+badge);
-        var $dataX = $('#dataX_'+badge);
-        var $dataY = $('#dataY_'+badge);
-        var $dataHeight = $('#dataHeight_'+badge);
-        var $dataWidth = $('#dataWidth_'+badge);
-        var $dataRotate = $('#dataRotate_'+badge);
-        var $dataScaleX = $('#dataScaleX_'+badge);
-        var $dataScaleY = $('#dataScaleY_'+badge);
-        var options = {
-            aspectRatio: 16 / 9,
-            preview: '.img-preview',
-            crop: function(e)
-            {
-                $dataX.val(Math.round(e.detail.x));
-                $dataY.val(Math.round(e.detail.y));
-                $dataHeight.val(Math.round(e.detail.height));
-                $dataWidth.val(Math.round(e.detail.width));
-                $dataRotate.val(e.detail.rotate);
-                $dataScaleX.val(e.detail.scaleX);
-                $dataScaleY.val(e.detail.scaleY);
-            }
-        };
-        var originalImageURL = $image.attr('src');
-        var uploadedImageName = 'cropped.jpg';
-        var uploadedImageType = 'image/jpeg';
-        var uploadedImageURL;
-
-        // Tooltip
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Cropper
-        $image.on(
-            {
-                ready: function(e)
-                {
-                    console.log(e.type);
-                },
-                cropstart: function(e)
-                {
-                    console.log(e.type, e.detail.action);
-                },
-                cropmove: function(e)
-                {
-                    console.log(e.type, e.detail.action);
-                },
-                cropend: function(e)
-                {
-                    console.log(e.type, e.detail.action);
-                },
-                crop: function(e)
-                {
-                    console.log(e.type);
-                },
-                zoom: function(e)
-                {
-                    console.log(e.type, e.detail.ratio);
-                }
-            }).cropper(options);
-
-        // Buttons
-        if (!$.isFunction(document.createElement('canvas').getContext))
-        {
-            $('button[data-method="getCroppedCanvas"]').prop('disabled', true);
-        }
-
-        if (typeof document.createElement('cropper').style.transition === 'undefined')
-        {
-            $('button[data-method="rotate"]').prop('disabled', true);
-            $('button[data-method="scale"]').prop('disabled', true);
-        }
-
-        // Download
-        if (typeof $download[0].download === 'undefined')
-        {
-            $download.addClass('disabled');
-        }
-
-        // Options
-        $('.docs-toggles').on('change', 'input', function()
-        {
-            var $this = $(this);
-            var name = $this.attr('name');
-            var type = $this.prop('type');
-            var cropBoxData;
-            var canvasData;
-
-            if (!$image.data('cropper'))
-            {
-                return;
-            }
-
-            if (type === 'checkbox')
-            {
-                options[name] = $this.prop('checked');
-                cropBoxData = $image.cropper('getCropBoxData');
-                canvasData = $image.cropper('getCanvasData');
-
-                options.ready = function()
-                {
-                    $image.cropper('setCropBoxData', cropBoxData);
-                    $image.cropper('setCanvasData', canvasData);
-                };
-            }
-            else if (type === 'radio')
-            {
-                options[name] = $this.val();
-            }
-
-            $image.cropper('destroy').cropper(options);
-        });
-
-        // Methods
-        $('.docs-buttons').on('click', '[data-method]', function()
-        {
-            var $this = $(this);
-            var data = $this.data();
-            var cropper = $image.data('cropper');
-            var cropped;
-            var $target;
-            var result;
-
-            if ($this.prop('disabled') || $this.hasClass('disabled'))
-            {
-                return;
-            }
-
-            if (cropper && data.method)
-            {
-                data = $.extend(
-                    {}, data); // Clone a new one
-
-                if (typeof data.target !== 'undefined')
-                {
-                    $target = $(data.target);
-
-                    if (typeof data.option === 'undefined')
-                    {
-                        try
-                        {
-                            data.option = JSON.parse($target.val());
-                        }
-                        catch (e)
-                        {
-                            console.log(e.message);
-                        }
-                    }
-                }
-
-                cropped = cropper.cropped;
-
-                switch (data.method)
-                {
-                    case 'rotate':
-                        if (cropped && options.viewMode > 0)
-                        {
-                            $image.cropper('clear');
-                        }
-
-                        break;
-
-                    case 'getCroppedCanvas':
-                        if (uploadedImageType === 'image/jpeg')
-                        {
-                            if (!data.option)
-                            {
-                                data.option = {};
-                            }
-
-                            data.option.fillColor = '#fff';
-                        }
-
-                        break;
-                }
-
-                result = $image.cropper(data.method, data.option, data.secondOption);
-
-                switch (data.method)
-                {
-                    case 'rotate':
-                        if (cropped && options.viewMode > 0)
-                        {
-                            $image.cropper('crop');
-                        }
-
-                        break;
-
-                    case 'scaleX':
-                    case 'scaleY':
-                        $(this).data('option', -data.option);
-                        break;
-
-                    case 'getCroppedCanvas':
-                        if (result)
-                        {
-                            // Bootstrap's Modal
-                            //$('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
-                            // $('#getCroppedCanvasModal').modal()
-                            if (!$download.hasClass('disabled'))
-                            {
-                                download.download = uploadedImageName;
-                                console.log('Download',result)
-                                console.log('Download',result.toDataURL(uploadedImageType))
-                                // $download.attr('href', result.toDataURL(uploadedImageType));
-
-
-                                /*$('#download').click(function(){*/
-
-
-                                /* })*/
-
-
-                            }
-                        }
-
-                        break;
-
-                    case 'destroy':
-                        if (uploadedImageURL)
-                        {
-                            URL.revokeObjectURL(uploadedImageURL);
-                            uploadedImageURL = '';
-                            $image.attr('src', originalImageURL);
-                        }
-
-                        break;
-                }
-
-                if ($.isPlainObject(result) && $target)
-                {
-                    try
-                    {
-                        $target.val(JSON.stringify(result));
-                    }
-                    catch (e)
-                    {
-                        console.log(e.message);
-                    }
-                }
-            }
-        });
-
-        // Keyboard
-        $(document.body).on('keydown', function(e)
-        {
-            if (e.target !== this || !$image.data('cropper') || this.scrollTop > 300)
-            {
-                return;
-            }
-
-            switch (e.which)
-            {
-                case 37:
-                    e.preventDefault();
-                    $image.cropper('move', -1, 0);
-                    break;
-
-                case 38:
-                    e.preventDefault();
-                    $image.cropper('move', 0, -1);
-                    break;
-
-                case 39:
-                    e.preventDefault();
-                    $image.cropper('move', 1, 0);
-                    break;
-
-                case 40:
-                    e.preventDefault();
-                    $image.cropper('move', 0, 1);
-                    break;
-            }
-        });
-
-        // Import image
-        var $inputImage = $('#inputImage_'+badge);
-
-        if (URL)
-        {
-            $inputImage.change(function()
-            {
-                var files = this.files;
-                var file;
-
-                if (!$image.data('cropper'))
-                {
-                    return;
-                }
-
-                if (files && files.length)
-                {
-                    file = files[0];
-
-                    if (/^image\/\w+$/.test(file.type))
-                    {
-                        uploadedImageName = file.name;
-                        uploadedImageType = file.type;
-
-                        if (uploadedImageURL)
-                        {
-                            URL.revokeObjectURL(uploadedImageURL);
-                        }
-
-                        uploadedImageURL = URL.createObjectURL(file);
-                        $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
-                        $inputImage.val('');
-                    }
-                    else
-                    {
-                        window.alert('Please choose an image file.');
-                    }
-                }
-            });
-        }
-        else
-        {
-            $inputImage.prop('disabled', true).parent().addClass('disabled');
-        }
-
-
-
-
-
-
-
-
-
-
-        $('#logo_name_'+badge).val('')
-
-        $('.sending_logo_id').val(0)
-
-        $('#image_'+badge).attr('src','/storage/badge7.png')
-
-        $image.cropper('destroy').attr('src', '/storage/badge7.png').cropper(options);
-        $('input:radio[name="aspectRatio"]').filter('[value="1"]').attr('checked', true);
-        $('#aspectRatio2_'+badge).parent('label').find('.docs-tooltip').trigger("click");
-    }
 
 </script>
 
@@ -2612,13 +1638,15 @@ else{
         window.autocomplete;
         window.geocoder;
         window.input = document.getElementById('location');//
+
+        console.log('LOCATION',window.input)
         window.options = {
             componentRestrictions: {'country':'uk'},
             types: ['(regions)'] // (cities)
         };
 
         window.autocomplete = new google.maps.places.Autocomplete(window.input,window.options);
-
+console.log('AUTOCOMPLETE',window.autocomplete)
         var autocompleteSearch;
         var geocoderSearch;
         var inputSearch = document.getElementById('location_search');//
@@ -2673,9 +1701,7 @@ else{
 
 
 
-
 </script>
-
 
 
 </body>
