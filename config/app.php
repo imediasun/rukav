@@ -175,6 +175,7 @@ return [
         App\Domain\Manager\Providers\ManagerServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         App\Domain\Customer\Providers\MessageServiceProvider::class,
+        App\Domain\Customer\Providers\ConnectServiceProvider::class,
 
 
     ],
@@ -238,6 +239,7 @@ return [
         'Manager'=>App\Domain\Manager\Facades\Manager::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Message'=>App\Domain\Customer\Facades\Message::class,
+        'Connect'=>App\Domain\Customer\Facades\Message::class,
 
 
     ],

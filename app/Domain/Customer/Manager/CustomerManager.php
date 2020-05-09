@@ -42,6 +42,15 @@ class CustomerManager extends CustomerAbstract implements CustomerContract
 
     }
 
+    public function updateWishlist($customer)
+    {
+
+        $customer=$this->customerRepository->updateOrCreateWishlist($customer['attributes'],$customer['values']);
+
+        return $customer;
+
+    }
+
     public function deleteCustomer($customer)
     {
         return $this->customerRepository->deleteCustomer($customer);

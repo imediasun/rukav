@@ -106,7 +106,6 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <div class="page-inner">
 
 
-
         <div class="modal fade default-example-modal-right-lg" id="badges_modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-dialog-right modal-lg">
                 <div class="modal-content">
@@ -167,7 +166,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                             </div>
                             <div id="loginForm">
                             <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
-                                <form method="POST" action="{{ route('admin.login.submit') }}">
+                                <form method="POST" action="{{ route('web.login.submit') }}">
                                     <div class="form-group">
                                         <label class="form-label" for="username">Username</label>
                                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
@@ -1353,7 +1352,7 @@ left:2px;
                                     </div>
                                 </div>
                             </div>
-                            <div class="dropdown-divider m-0"></div>
+                            <div class="dropdown-divider m-1"></div>
                             <!--a href="#" class="dropdown-item" data-action="app-reset">
                                 <span data-i18n="drpdwn.reset_layout">Reset Layout</span>
                             </a>
@@ -1385,7 +1384,11 @@ left:2px;
                             <div class="dropdown-divider m-0"></div>
                             <a class="dropdown-item fw-500 pt-3 pb-3" href="/logout">
                                 <span data-i18n="drpdwn.page-logout">Logout</span>
-                                <span class="float-right fw-n">{{$user->email}}</span>
+
+                            </a>
+                            <a class="dropdown-item fw-500 pt-3 pb-3" href="/logout">
+                                <span class="float-right fw-n" data-i18n="drpdwn.page-logout">Logout {{$user->email}}</span>
+
                             </a>
                         </div>
                             @endif
@@ -1395,7 +1398,6 @@ left:2px;
 
 
             <div id="main_menu">
-
                 <!-- BEGIN PRIMARY NAVIGATION -->
             @include('layouts.rubrics')
             <!-- END PRIMARY NAVIGATION -->
@@ -2699,7 +2701,7 @@ console.log('aJax=>',ajax)
 
        reloadPage();
 
-       var auth={{$auth}}
+       var auth='{{$auth}}'
 
        if(localStorage.getItem("openAddMessageModal")==1 && auth!=0){
            console.log('openModal')
@@ -2708,6 +2710,24 @@ console.log('aJax=>',ajax)
        }
        console.log('auth',auth)
 
+
+      /* if(localStorage.getItem("openAddMessageModalWithProduct")!=0 ){
+           console.log('openModalWithProduct')
+           var badges=$('.single_badge');
+           $.each( badges, function( key, value ) {
+               console.log('VALUE_SINGLE_BADGE',$(this).parent('div').find('.badge_id').val())
+               console.log('VALUE_SINGLE_STORAGE',localStorage.getItem("openAddMessageModalWithCategory"))
+               if($(this).parent('div').find('.badge_id').val()==localStorage.getItem("openAddMessageModalWithCategory")){
+                   console.log('VALUE_SINGLE_BADGE_WIN!!1')
+                   $('#badges_modal').modal('show')
+                   $(this).trigger('click')
+               }
+
+
+           });
+
+
+       }*/
 
 
 

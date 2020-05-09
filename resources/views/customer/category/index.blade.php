@@ -52,6 +52,10 @@
 
 
                     @foreach($goods as $good)
+
+                        <?
+                        $wishlist=\App\Domain\Customer\Models\Wishlist::where('message_id',$good->id)->where('user_id',\Auth::user()->id)->first();
+                        ?>
                         <!-- Product-->
                             @if($good->active)
                                 <div class="grid-item">
@@ -59,7 +63,8 @@
                                         <h3 class="product-title"><a href="/message/{{$good->id}}">{{$good->title}}</a></h3>
                                         <img src="/storage/pictures/{{$good->pictures->photo}}">
                                         <div class="product-buttons">
-                                            <button class="btn btn-outline-secondary btn-sm btn-wishlist" data-toggle="tooltip" title="Whishlist"><i class="icon-heart"></i></button>
+                                            <input type="hidden" class="wishInputId" value="{{$good->id}}">
+                                            <button onclick="wishList(this)" class="btn btn-outline-secondary btn-sm btn-wishlist @if($wishlist && $wishlist->active==1) active @endif" data-toggle="tooltip" title="Whishlist"><i class="icon-heart"></i></button>
                                             <button class="btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Product" data-toast-message="successfuly added to cart!">$49.99</button>
                                         </div>
                                     </div>
@@ -394,3 +399,45 @@
 
 @endsection
 
+<script>
+    function wishList(event){
+        var id = $(event).parent().find('.wishInputId').val()
+        console.log(id)
+        if($(event).hasClass('active')){
+            console.log('not_active')
+            var active = 0;
+        }
+        else{
+                console.log('active')
+            var active =1;
+            }
+
+        $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            async:false,
+            url: '/customer/message/wishList',
+            data: {id:id,active:active
+            },
+            beforeSend: function() {
+            },
+            complete: function() {
+                //$('.company_create_close').trigger('click')
+                $('#badges_modal').modal("hide");
+            },
+            success: function (data) {
+
+                $('#badges_modal').modal("hide");
+                //$(".modal-backdrop").remove();
+                //$('.categoryModalClose').trigger('click')
+                //$('.company_create_close').trigger('click')
+                //$('.modal-backdrop').removeClass('show').addClass('hide')
+
+
+
+                console.log('success')
+
+            }
+        });
+    }
+</script>
