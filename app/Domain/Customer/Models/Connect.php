@@ -14,7 +14,7 @@ class Connect extends Model
 
     protected $table='connects';
     protected $fillable = [
-        'sender_id', 'message_id','receiver_id','text'
+        'sender_id', 'message_id','receiver_id','text','is_viewed'
 
     ];
 

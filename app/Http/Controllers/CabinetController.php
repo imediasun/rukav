@@ -49,11 +49,31 @@ class CabinetController extends BaseController
     public function messagesData(Request $request){
 
         $data['title']="Staff postData";
-        $data['conversations']=Connect::where('receiver_id',\Auth::user()->id)->orWhere('sender_id',\Auth::user()->id)
+        $conversations=Connect::where('receiver_id',\Auth::user()->id)->orWhere('sender_id',\Auth::user()->id)
             ->with('sender')->with('message')->with('pictures')
             ->groupBy('message_id','receiver_id')->distinct()->orderBy('created_at')->get();
+
+    $collection=collect($conversations)->map(function ($name) use ($conversations) {
+
+        foreach($conversations as $conv){
+            if($name->receiver_id == \Auth::user()->id && ($name->receiver_id==$conv->sender_id && $name->message_id==$conv->message_id ) ){
+                return $name;
+            }
+            continue;
+            }
+
+
+    });
+foreach($collection as $coll){
+    if(null!=$coll){
+        $data['conversations'][]=$coll;
+    }
+}
+        //dump($data['conversations']);
+        //dump(count($data['conversations']));
 //dump($data['conversations']);
-        return view('customer.cabinet.messages',$data);
+        return view('new.customer.cabinet.messages',$data);
+        //return view('customer.cabinet.messages',$data);
     }
 
     public function favoritsData(Request $request){
@@ -76,8 +96,10 @@ $recepients=[$example->sender_id,$example->receiver_id];
         $q=Connect::where('message_id',$example->message_id)->whereIn('receiver_id',$recepients)->whereIn('sender_id',$recepients)->with('message')->with('author');
 
         $data['conversation']=$q->orderBy('created_at')->get();
+
         //dump($data['conversation']);
-        return view('customer.cabinet.messageList',$data);
+        return view('new.customer.cabinet.messageList',$data);
+        //return view('customer.cabinet.messageList',$data);
     }
 
     public function reloadModelChangeProduct(Request $request){
