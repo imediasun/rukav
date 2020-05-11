@@ -11,137 +11,99 @@ else{
 }
 
 ?>
-<div class="flex-grow-0">
-    <!-- inbox title -->
-    <div class="d-flex align-items-center p-0 border-faded border-top-0 border-left-0 border-right-0 flex-shrink-0">
-        <div class="d-flex align-items-center w-100 pl-3 px-lg-4 py-2 position-relative">
-            <div class="d-flex flex-row align-items-center mt-1 mb-1">
-                <div class="mr-2 d-inline-block">
-                    <span class="rounded-circle profile-image d-block" style="background-image:url('{{$conversation->first()->author->avatar}}'); background-size: cover;"></span>
-                </div>
-                <div class="info-card-text">
-                    <a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg" data-toggle="dropdown" aria-expanded="false">
-                        {{$conversation->first()->author->name}}
-                        <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item px-3 py-2" href="#">Send Email</a>
-                        <a class="dropdown-item px-3 py-2" href="#">Create Appointment</a>
-                        <a class="dropdown-item px-3 py-2" href="#">Block User</a>
-                    </div>
-                    <span class="text-truncate text-truncate-md opacity-80">{{$conversation->first()->message->title}}</span>
-                </div>
-            </div>
-            <!--div class="ml-auto">
-                <a href="javascript:void(0);" data-toggle="button" class="btn btn-outline-danger btn-icon rounded-circle">
-                    <i class="fal fa-volume-mute fs-md"></i>
-                </a>
-                <a href="javascript:void(0);" class="btn btn-outline-info btn-icon rounded-circle ml-1">
-                    <i class="fal fa-phone fs-md"></i>
-                </a>
-                <a href="javascript:void(0);" class="btn btn-outline-info btn-icon rounded-circle ml-1">
-                    <i class="fal fa-video fs-md"></i>
-                </a>
-            </div-->
+<div class="app-content--inner__header rounded-0 card-header bg-white p-4 border-bottom">
+    <div class="card-header--title">
+        <div class="mr-2 d-inline-block">
+            <span class="rounded-circle profile-image d-block" style="background-image:url('{{$conversation->first()->author->avatar}}'); background-size: cover;"></span>
         </div>
-        <!-- button for mobile -->
-        <!--a href="javascript:void(0);" class="px-3 py-2 d-flex d-lg-none align-items-center justify-content-center mr-2 btn" data-action="toggle" data-class="slide-on-mobile-left-show" data-target="#js-chat-contact">
-            <i class="fal fa-ellipsis-v h1 mb-0 "></i>
-        </a-->
-        <!-- end button for mobile -->
+        <b>{{$conversation->first()->author->name}}</b>
     </div>
-    <!-- end inbox title -->
+    <div class="card-header--actions">
+        <a href="#" class="btn btn-sm btn-first" data-toggle="tooltip" title="Send new message">
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
 </div>
-<!-- end inbox header -->
-<!-- inbox message -->
-<div class="flex-wrap align-items-center flex-grow-1 position-relative bg-gray-50">
-    <div class="position-absolute pos-top pos-bottom w-100 overflow-hidden">
-        <div class="d-flex h-100 flex-column">
-            <!-- message list (the part that scrolls) -->
-            <!-- BEGIN msgr-list -->
-            <!-- END msgr-list -->
-            <!-- BEGIN msgr -->
-            <div class="msgr d-flex h-100 flex-column bg-white ">
+<div class="scrollbar-container">
+    <div class="chat-wrapper p-3">
 
-
-
-
-<!-- BEGIN custom-scroll -->
-<div class="custom-scroll flex-1 h-100">
-    <div id="chat_container" class="w-100 p-4">
-
-        @foreach($conversation as $segment)
+    @foreach($conversation as $segment)
         <!-- start .chat-segment -->
-        <!--div class="chat-segment">
-            <div class="time-stamp text-center mb-2 fw-400">
-                Jun 19
-            </div>
-        </div-->
+            <!--div class="chat-segment">
+                <div class="time-stamp text-center mb-2 fw-400">
+                    Jun 19
+                </div>
+            </div-->
+            <!--  end .chat-segment -->
+            <!-- start .chat-segment -->
+
+            @if(\Auth::user()->id!=$segment->receiver_id)
+                <div class="chat-item p-2 mb-2">
+                    <div class="align-box-row">
+                        <div class="avatar-icon-wrapper avatar-icon-lg align-self-start">
+
+                        </div>
+                        <div>
+                            <div class="chat-box bg-first text-white">
+                                <p>{{$segment->text}}</p>
+                            </div>
+                            <small class="mt-2 d-block text-black-50">
+                                <i class="fas fa-clock mr-1 opacity-5"></i>
+                                {{$segment->created_at}}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+            @endif
         <!--  end .chat-segment -->
-        <!-- start .chat-segment -->
-
-        @if(\Auth::user()->id!=$segment->receiver_id)
-        <div class="chat-segment chat-segment-sent">
-            <div class="chat-message">
-                <p>
-                    {{$segment->text}}
-                </p>
-            </div>
-            <div class="text-right fw-300 text-muted mt-1 fs-xs">
-                {{$segment->created_at}}
-            </div>
-        </div>
-        @endif
-        <!--  end .chat-segment -->
-        <!-- start .chat-segment -->
+            <!-- start .chat-segment -->
             @if(\Auth::user()->id==$segment->receiver_id)
-        <div class="chat-segment chat-segment-get">
-            <div class="chat-message">
-                <p>
-                    {{$segment->text}}
-                </p>
-            </div>
-            <div class="fw-300 text-muted mt-1 fs-xs">
-                {{$segment->created_at}}
-            </div>
-        </div>
+                <div class="chat-item chat-item-reverse p-2 mb-2">
+                    <div class="align-box-row flex-row-reverse">
+                        <div class="avatar-icon-wrapper avatar-icon-lg align-self-start">
+
+                        </div>
+                        <div>
+                            <div class="chat-box bg-first text-white">
+                                <p>{{$segment->text}}</p>
+
+                            </div>
+                            <small class="mt-2 d-block text-black-50">
+                                <i class="fas fa-clock mr-1 opacity-5"></i>
+                                {{$segment->created_at}}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
             @endif
         <!--  end .chat-segment -->
 
-       @endforeach
+        @endforeach
 
     </div>
 </div>
-<!-- END custom-scroll  -->
-<!-- BEGIN msgr__chatinput -->
-<div class="d-flex flex-column">
-    <div class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
-        <div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
-            <div id="msgr_input" contenteditable="true" data-placeholder="Type your message here..." class="height-10 form-content-editable"></div>
-        </div>
+<div class="app-content--inner__footer bg-white p-4 border-top">
+    <div>
+        <input id="msgr_input" class="form-control" placeholder="Write your message and hit enter to send...">
     </div>
-    <div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
-        <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1" data-toggle="tooltip" data-original-title="More options" data-placement="top">
-            <i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
-        </a>
-        <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Attach files" data-placement="top">
-            <i class="fal fa-paperclip color-fusion-300"></i>
-        </a>
-        <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Insert photo" data-placement="top">
-            <i class="fal fa-camera color-fusion-300"></i>
-        </a>
+    <div class="align-box-row mt-3">
+        <div class="align-items-center">
+            <a href="#" class="btn btn-link btn-link-primary p-0 font-size-xl text-success" data-toggle="tooltip" title="Add audio file">
+                <i class="far fa-file-audio"></i>
+            </a>
+            <a href="#" class="btn btn-link btn-link-primary p-0 font-size-xl mr-2 ml-2 text-danger" data-toggle="tooltip" title="Add video file">
+                <i class="far fa-file-video"></i>
+            </a>
+            <a href="#" class="btn btn-link btn-link-primary p-0 font-size-xl text-info" data-toggle="tooltip" title="Upload documents">
+                <i class="fas fa-file-excel"></i>
+            </a>
+        </div>
         <div class="ml-auto">
-            <a href="javascript:void(0);" onclick="sendMessage()" class="btn btn-info">Send</a>
-        </div>
-    </div>
-</div>
-<!-- END msgr__chatinput -->
-
-
-
-            </div>
-            <!-- END msgr -->
-            <!-- end message list -->
+            <a href="#" class="btn btn-primary" onclick="sendMessage()">
+                Send
+            </a>
         </div>
     </div>
 </div>
@@ -149,9 +111,10 @@ else{
 <script>
 
     function sendMessage(){
-        if($('#msgr_input').text().length>0){
+        console.log('TRY')
+        if($('#msgr_input').val().length>0){
 
-            var text = $('#msgr_input').text()
+            var text = $('#msgr_input').val()
             var url = '/send_message_to_client';console.log(text)
             var client_id='{{$recepient}}';
             var message_id='{{$conversation->first()->message_id}}';

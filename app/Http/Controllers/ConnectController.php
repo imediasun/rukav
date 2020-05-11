@@ -50,13 +50,15 @@ class ConnectController extends BaseController
         {
         dd("Contains an email");}
         else{
+            var_dump('popali');
             $message['values']=['text'=>$request->input('text'),
                 'receiver_id'=>$user->id,
                 'sender_id'=>\Auth::user()->id,
-                'message_id'=>$request->input('message_id')
+                'message_id'=>$request->input('message_id'),
+                'is_viewed'=>0
 
             ];
-            $message['attributes']['id']=(null!=($request->input('connect_id')) && !empty($request->input('connectr_id'))) ? $request->input('connect_id') : null;
+            $message['attributes']['id']=(null!=($request->input('connect_id')) && !empty($request->input('connect_id'))) ? $request->input('connect_id') : null;
 
             if($message){
 
