@@ -24,7 +24,8 @@
         "spatie/array-to-xml": "^2.7",
         "spatie/laravel-permission": "^2.37.0",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^8.0",
-        "zendframework/zend-http": "2.5.4"
+        "zendframework/zend-http": "2.5.4",
+		"cboden/ratchet":"^0.4.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

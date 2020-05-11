@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Domain\Notifications\CustomerRegistrationDone;
 use App\Domain\Notifications\CustomerMessageReceive;
 use App\User;
+use App\Jobs\SendEmailVerification;
 
 class CustomerService implements \App\Domain\Customer\Services\CustomerServiceInterface
 
@@ -32,8 +33,9 @@ class CustomerService implements \App\Domain\Customer\Services\CustomerServiceIn
 
     public function sendMessageNotification(Model $customer)
     {
-
-        $customer->notify(new CustomerMessageReceive($customer));
+\Log::info('sendCustomerReceiveMessageNotification: '.date("Y-m-d H:i:s"));
+		SendEmailVerification::dispatch($customer);
+        //$customer->notify(new CustomerMessageReceive($customer));
 
     }
     public function sendCustomerReceiveMessageNotification(User $customer)

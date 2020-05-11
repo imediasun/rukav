@@ -19,19 +19,20 @@ class MessageService implements \App\Domain\Customer\Services\MessageServiceInte
 
     public function sendNotification(Model $customer)
     {
-
+\Log::info('sendNotification: '.date("Y-m-d H:i:s"));
         $customer->notify(new MessageRegistrationDone($customer));
 
     }
 
     public function sendMessageNotification(Model $customer)
     {
-
+\Log::info('sendMessageNotification: '.date("Y-m-d H:i:s"));
         $customer->notify(new MessageMessageReceive($customer));
 
     }
     public function sendCustomerReceiveMessageNotification(User $customer)
     {
+		\Log::info('sendCustomerReceiveMessageNotification: '.date("Y-m-d H:i:s"));
 		SendEmailVerification::dispatch($customer);
         //return $this->sendMessageNotification($customer);
     }

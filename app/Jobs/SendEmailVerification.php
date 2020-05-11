@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Domain\Notifications\CustomerEmail;
 use App\Domain\Notifications\MessageMessageReceive;
+use App\Domain\Notifications\CustomerMessageReceive;
 use Log;
 
 class SendEmailVerification implements ShouldQueue
@@ -21,6 +22,8 @@ class SendEmailVerification implements ShouldQueue
     {
 		Log::info('SendEmailVerification.php: '.date("Y-m-d H:i:s").
 			'start process construct 22string');
+			
+			Log::info('user: ',array($user));
         $this->user=$user;
     }
 
@@ -34,7 +37,8 @@ class SendEmailVerification implements ShouldQueue
 		//$this->user->sendEmailVerificationNotification();
 		
 		//$this->user->notify(new CustomerEmail($this->user));
-		$this->user->notify(new MessageMessageReceive($this->user));
+		Log::info('handle: '.date("Y-m-d H:i:s"));
+		$this->user->notify(new CustomerMessageReceive($this->user));
 
     }
 }

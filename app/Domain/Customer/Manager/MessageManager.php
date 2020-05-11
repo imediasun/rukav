@@ -37,6 +37,7 @@ class MessageManager extends MessageAbstract implements MessageContract
 
     public function updateMessage($message)
     {
+		\Log::info('updateMessage: '.date("Y-m-d H:i:s"));
         $message=$this->messageRepository->updateOrCreateMessage($message['attributes'],$message['values']);
         if($message && $message['attributes']['id'] ){
         $customer=\App\User::where('id',$message->sender)->first();
