@@ -6,6 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=7.2.0",
+        "beyondcode/laravel-websockets": "^1.4",
+        "cboden/ratchet": "^0.4.1",
         "davejamesmiller/laravel-breadcrumbs": "5.2.1",
         "doctrine/dbal": "^2.8",
         "elibyy/tcpdf-laravel": "5.8.*",
@@ -21,11 +23,12 @@
         "php-imap/php-imap": "^3.0",
         "phpmailer/phpmailer": "^6.0",
         "phpseclib/phpseclib": "^2.0",
+        "pusher/pusher-php-server": "^4.1",
+        "react/zmq": "0.4.0",
         "spatie/array-to-xml": "^2.7",
         "spatie/laravel-permission": "^2.37.0",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^8.0",
-        "zendframework/zend-http": "2.5.4",
-		"cboden/ratchet":"^0.4.2"
+        "zendframework/zend-http": "2.5.4"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

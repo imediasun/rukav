@@ -1,9 +1,41 @@
 <?php
+use App\Events\Test;
 Auth::routes(['verify' => true]);
 Route::get('/logout', function () {
     Auth::logout();
 
 });
+
+
+Route::get('/socket', function () {
+  $data = [
+        'topic_id' => 'onNewData',
+        'data' => 'SomeData : ' . rand(1, 100)
+    ];
+    //\App\Classes\Socket\Pusher::sendDataToServer($data);
+	event(new Test('hello world'));
+	var_dump('hello world');
+    var_dump($data);
+	
+	
+/* 	$options = array(
+    'cluster' => 'eu',
+    'useTLS' => true
+  );
+  $pusher = new Pusher\Pusher(
+    '500e0547867ccfe184af',
+    'b8d3a1076b93fe80dd50',
+    '1000615',
+    $options
+  );
+
+  $data['message'] = 'hello world';
+  $pusher->trigger('my-channel', 'my-event', $data); */
+
+});
+
+
+
 
 Route::get('/redirect', 'Auth\SiteAdminLoginController@redirectToProvider');
 Route::get('/callback/{provider}', 'Auth\SiteAdminLoginController@handleProviderCallback');

@@ -5,7 +5,7 @@
 
     <div class="container">
 
-
+<button onclick="send();" class="title">Send</button>
         <div class="card card-box mb-5">
             <div class="card-header">
                 <h5 class="my-3">
@@ -84,8 +84,26 @@
 @endsection
 
 @section('scripts')
-    <script>
+<script src="/js/autobahn.js"></script>
+<script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+  <script>
 
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('500e0547867ccfe184af', {
+      cluster: 'eu'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+
+	
+	
+	
+	
         /*        $.ajaxSetup({
          headers:{
          'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')

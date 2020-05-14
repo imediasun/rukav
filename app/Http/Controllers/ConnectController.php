@@ -63,7 +63,22 @@ class ConnectController extends BaseController
             if($message){
 
 
-                Connect::updateConnect($message);
+                $con=Connect::updateConnect($message);
+				var_dump($con);
+				var_dump('receiver-'.$user->id.'-');
+				$options = array(
+				'cluster' => 'eu',
+				'useTLS' => true
+			  );
+			  $pusher = new \Pusher\Pusher(
+				'500e0547867ccfe184af',
+				'b8d3a1076b93fe80dd50',
+				'1000615',
+				$options
+			  );
+
+			  $data['message'] = 'hello world';
+			  $pusher->trigger('my-channel', /* 'my-event' */'receiver-'.$user->id.'-', $data);
 
             }
         }

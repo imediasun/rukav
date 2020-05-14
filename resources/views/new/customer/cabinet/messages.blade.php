@@ -1,3 +1,5 @@
+
+
 <div class="app-content app-content-aside" style="padding: 0px 0 0 0px;">
     <div class="d-flex d-lg-none p-4 order-0 justify-content-between align-items-center">
         <button type="button" class="btn btn-sm btn-primary px-3 toggle-inner-sidebar" data-target="#sidebar-inner-1">
@@ -29,7 +31,7 @@
                     //dump($conversation['nonreaded']);
                     ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="reloadMessageList('{{$conversation->id}}')">
+                    <a class="nav-link" href="#" onclick="reloadMessageList('{{$conversation->id}}',this)">
                         <div class="align-box-row">
 
 
@@ -38,8 +40,10 @@
                                 <div class="card-body px-4 py-3">
                                     <div class="avatar-icon-wrapper avatar-icon-md" style="display:inline-block !important">
                                         <span class="badge badge-circle badge-success">Online</span>
-                                        <div class="avatar-icon rounded-circle"><img src="/storage/pictures/{{$conversation->pictures->photo}}" alt="">
-
+                                        <div class="avatar-icon rounded-circle">
+										@if($conversation->pictures)
+										<img src="/storage/pictures/{{$conversation->pictures->photo}}" alt="">
+										@endif
 
                                        </div>
                                     </div>
@@ -56,7 +60,7 @@
                                         </div>
 
                                     <div class="d-flex align-items-center justify-content-start">
-                                        @if($conversation['nonreaded']) <div class="badge badge-first px-3">новое сообщение</div> @endif
+                                        @if($conversation['nonreaded']) <div class="badge badge-first px-3 noreaded">новое сообщение</div> @endif
 
                                         <div class="font-size-sm text-danger px-2">
                                             <i class="far fa-clock mr-1"></i>
@@ -126,11 +130,12 @@
 
 
 <script>
+
     $(document).ready(function(){
         //reloadMessageList('{{$conversations[0]->id}}')
     })
 
-    function reloadMessageList(conversation){
+    function reloadMessageList(conversation,e){
 
         var module='conversation'
         console.log('conversation',conversation);
@@ -149,9 +154,15 @@
             },
             success: function (data) {
 //console.log(data)
+console.log($(e).find('.card-indicator'))
+$(e).find('.card-indicator').removeClass('bg-first')
+$(e).find('.noreaded').remove()
+
                 $('.result_of_messageList_table').html(data);
 
             }
         });
     }
+	
+
 </script>

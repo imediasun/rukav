@@ -53,17 +53,18 @@ class CabinetController extends BaseController
             ->with('sender')->with('message')->with('pictures')
             ->groupBy('message_id','receiver_id')->distinct()->orderBy('created_at')->get();
 
-    $collection=collect($conversations)->map(function ($name) use ($conversations) {
+    $collection=collect($conversations)->map(function ($conver) use ($conversations) {
 
         foreach($conversations as $conv){
-            if($name->receiver_id == \Auth::user()->id && ($name->receiver_id==$conv->sender_id && $name->message_id==$conv->message_id ) ){
-                return $name;
+            if($conver->receiver_id == \Auth::user()->id && (($conver->receiver_id==$conv->sender_id || count($conversations)==1) && $conver->message_id==$conv->message_id ) ){
+                return $conver;
             }
             continue;
             }
 
 
     });
+	$data['conversations']=[];
 foreach($collection as $coll){
     if(null!=$coll){
         $data['conversations'][]=$coll;
@@ -88,7 +89,16 @@ foreach($collection as $coll){
     }
 
     public function conversationData(Request $request){
+		//отправлять в базу менять о том что последнее сообщение в переписке прочитано
+		$update=[
+		'is_viewed'=>1
+		];
+		
+		
         $example=Connect::where('id',$request->input('conversation'))->with('author')->first();
+		if(isset($example->sender_id)){
+		Connect::where('receiver_id',\Auth::user()->id)->where('sender_id',$example->sender_id)
+		->where('message_id',$example->message_id)->update($update);}
         //Если хозяин объявления я то тянуть все конекты в которых receiver_id я и sender_id $example->sender_id
         //Иначе тянуть все коннекты в которых receiver_id $example->receiver_id и sender_id я
 //dump($example);

@@ -107,7 +107,7 @@ else{
         </div>
     </div>
 </div>
-
+<script src="https://js.pusher.com/6.0/pusher.min.js"></script>
 <script>
 
     function sendMessage(){
@@ -116,6 +116,7 @@ else{
 
             var text = $('#msgr_input').val()
             var url = '/send_message_to_client';console.log(text)
+			
             var client_id='{{$recepient}}';
             var message_id='{{$conversation->first()->message_id}}';
             $.ajax({
@@ -129,15 +130,34 @@ else{
                 },
                 complete: function() {
                     $('#loader').hide();
+					console.log('complete')
+					 console.log({{$conversation->first()->id}})
+                reloadMessageList({{$conversation->first()->id}})
+					
                 },
                 success: function (data) {
-
+console.log('success')
                 console.log(data)
-                    console.log({{$conversation->first()->message_id}})
-                reloadMessageList({{$conversation->first()->message_id}})
+                    console.log({{$conversation->first()->id}})
+                //reloadMessageList({{$conversation->first()->message_id}})
 
                 }
             });
         }
     }
+	
+	    Pusher.logToConsole = true;
+var user='{{\Auth::user()->id}}'
+var receiver='receiver-'+user+'-'
+console.log(receiver)
+    var pusher = new Pusher('500e0547867ccfe184af', {
+      cluster: 'eu'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind(receiver, function(data) {
+      alert(JSON.stringify(data));
+    });
+	
+	//reloadMessageList({{$conversation->first()->id}})
 </script>

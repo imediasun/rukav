@@ -52,8 +52,8 @@ class PushServer extends Command
 		$pull->bind("tcp://127.0.0.1:5555");
 		$pull->on('message', [$pusher,'broadcast']);
 		
-		$webSock=new ReactServer($loop);
-		$webSock->listen(3030,'0.0.0.0');
+		$webSock=new ReactServer('0.0.0.0:3030',$loop);
+		//$webSock->listen(3030,'0.0.0.0');
 		$webServer=new IoServer(
 	   new HttpServer(
 		new WsServer(
