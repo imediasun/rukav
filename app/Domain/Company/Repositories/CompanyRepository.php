@@ -7,6 +7,7 @@ use  App\Domain\Base\Repositories\BaseCrudRepository;
 use App\Domain\Company\Models\Company;
 use App\Domain\Company\Models\Logo;
 use App\Domain\Company\Models\Slider;
+use App\Domain\Customer\Models\StaticPage;
 use App\Domain\Company\Models\Picture;
 use App\Domain\Company\Models\Banner;
 use App\Domain\Company\Models\Badge;
@@ -45,6 +46,12 @@ class CompanyRepository extends BaseCrudRepository implements CompanyRepositoryI
     public function updateOrCreateCompanySlider($attributes,$values)
     {
         $this->entityClass= Slider::class;
+        return $this->updateOrCreate($attributes,$values);
+    }
+
+    public function updateOrCreateCompanyStaticPage($attributes,$values)
+    {
+        $this->entityClass= StaticPage::class;
         return $this->updateOrCreate($attributes,$values);
     }
 
