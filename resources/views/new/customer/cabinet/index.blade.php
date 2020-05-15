@@ -89,7 +89,7 @@
   <script>
 
     // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+/*     Pusher.logToConsole = true;
 
     var pusher = new Pusher('500e0547867ccfe184af', {
       cluster: 'eu'
@@ -98,7 +98,7 @@
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
       alert(JSON.stringify(data));
-    });
+    }); */
 
 	
 	

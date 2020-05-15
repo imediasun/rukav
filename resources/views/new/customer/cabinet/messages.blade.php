@@ -36,7 +36,7 @@
 
 
                             <div class="card card-box my-3" style="width:100%">
-                                <div class="card-indicator @if($conversation['nonreaded']) bg-first @endif"></div>
+                                <div id="id_receiver_{{$conversation->receiver_id}}_sender_{{$conversation->sender_id}}_message_{{$conversation->message_id}}" class="card-indicator receiver_indicator receiver_{{$conversation->receiver_id}}_sender_{{$conversation->sender_id}}_message_{{$conversation->message_id}} @if($conversation['nonreaded']) bg-first @endif"></div>
                                 <div class="card-body px-4 py-3">
                                     <div class="avatar-icon-wrapper avatar-icon-md" style="display:inline-block !important">
                                         <span class="badge badge-circle badge-success">Online</span>
@@ -60,8 +60,9 @@
                                         </div>
 
                                     <div class="d-flex align-items-center justify-content-start">
+									<div class="noreaded_block">
                                         @if($conversation['nonreaded']) <div class="badge badge-first px-3 noreaded">новое сообщение</div> @endif
-
+									</div>
                                         <div class="font-size-sm text-danger px-2">
                                             <i class="far fa-clock mr-1"></i>
                                             14:22
@@ -131,9 +132,6 @@
 
 <script>
 
-    $(document).ready(function(){
-        //reloadMessageList('{{$conversations[0]->id}}')
-    })
 
     function reloadMessageList(conversation,e){
 
@@ -157,12 +155,32 @@
 console.log($(e).find('.card-indicator'))
 $(e).find('.card-indicator').removeClass('bg-first')
 $(e).find('.noreaded').remove()
-
+$('.notify_badge').empty();
+$('.result_of_messageList_table').empty();
                 $('.result_of_messageList_table').html(data);
 
             }
         });
     }
 	
+
+   var pusher = new Pusher('500e0547867ccfe184af', {
+      cluster: 'eu'
+    });
+var channel = pusher.subscribe('my-channel');
+
+Pusher.logToConsole = true;
+var user='{{\Auth::user()->id}}'
+console.log('receiver - mid=>',window.message_id)
+var receiver='receiver-'+user+'-'//+window.message_id
+console.log(receiver)
+console.log(receiver.length)
+
+
+
+
+
+ 
+
 
 </script>

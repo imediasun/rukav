@@ -27,9 +27,37 @@
     <div class="app-sidebar  app-sidebar--dark ">
         <div class="app-sidebar--header">
             <div class="nav-logo w-100 text-center">
-                <a href="/BamburghAdmin/index.html" class="d-block" data-toggle="tooltip" title="Bamburgh HTML5 Admin Dashboard with Bootstrap PRO">
-                    <img src="/BamburghAdmin/assets/img/admin-logo.png" alt="">
-                </a>
+               		                 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="135px" height="37px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                      viewBox="0 0 2706 755.26"
+                      xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+     <style type="text/css">
+         <![CDATA[
+    .fil0 {fill:none}
+         .fil2 {fill:#A269F7}
+         .fil1 {fill:black;fill-rule:nonzero}
+         .fil3 {fill:white;fill-rule:nonzero}
+         ]]>
+     </style>
+ </defs>
+                     <g id="Слой_x0020_1">
+                         <metadata id="CorelCorpID_0Corel-Layer"/>
+                         <rect class="fil0" width="2706" height="755.26"/>
+                         <g id="_1090375648">
+                             <g>
+                                 <path class="fil1" d="M920.35 571.72l0 -386.5 137.79 0c37.74,0 68.32,12.1 91.77,36.3 23.44,24.21 35.16,53.27 35.16,87.19 0,23.64 -6,44.98 -18.01,64.04 -12.01,19.06 -28.87,33.35 -50.6,42.88l73.18 156.09 -93.76 0 -62.9 -144.08 -28.58 0 0 144.08 -84.05 0zm84.05 -210.98l49.74 0c13.72,0 24.87,-4.76 33.45,-14.29 8.57,-9.53 12.86,-22.11 12.86,-37.74 0,-15.24 -4.38,-27.73 -13.15,-37.44 -8.77,-9.72 -19.82,-14.58 -33.16,-14.58l-49.74 0 0 104.05z"/>
+                                 <path class="fil1" d="M1276.94 442.5l0 -257.28 84.05 0 0 250.42c0,22.49 5.62,40.12 16.87,52.89 11.24,12.77 26.2,19.15 44.88,19.15 18.68,0 33.64,-6.48 44.88,-19.44 11.25,-12.96 16.87,-30.49 16.87,-52.6l0 -250.42 84.04 0 0 257.28c0,39.64 -14.19,72.33 -42.59,98.06 -28.4,25.73 -62.8,38.59 -103.2,38.59 -40.79,0 -75.28,-12.77 -103.49,-38.31 -28.2,-25.54 -42.31,-58.31 -42.31,-98.34z"/>
+                                 <polygon class="fil1" points="1659.72,571.72 1659.72,185.22 1743.77,185.22 1743.77,328.15 1843.82,185.22 1942.16,185.22 1818.09,353.88 1959.89,571.72 1860.4,571.72 1767.21,423.06 1743.77,455.08 1743.77,571.72 "/>
+                                 <path class="fil1" d="M1999.93 571.72l116.06 -386.5 97.2 0 116.06 386.5 -85.19 0 -25.72 -93.2 -107.49 0 -25.73 93.2 -85.19 0zm129.79 -161.23l69.75 0 -20.01 -73.19c-4.58,-15.63 -9.53,-37.54 -14.87,-65.75 -3.81,20.58 -8.76,42.5 -14.86,65.75l-20.01 73.19z"/>
+                                 <path class="fil1" d="M2444.95 571.72l-116.07 -386.5 85.19 0 64.61 234.41c4.19,14.87 9.15,37.74 14.87,68.61 5.71,-30.87 10.67,-53.74 14.86,-68.61l64.61 -234.41 85.19 0 -116.07 386.5 -97.19 0z"/>
+                             </g>
+                             <g>
+                                 <path class="fil2" d="M386.58 38.84c187.11,0 338.79,151.68 338.79,338.79 0,187.11 -151.68,338.79 -338.79,338.79 -187.11,0 -338.79,-151.68 -338.79,-338.79 0,-187.11 151.68,-338.79 338.79,-338.79z"/>
+                                 <path class="fil3" d="M448.3 710.8l-156.76 -158.15c-13.96,-10.6 -22.97,-27.37 -22.97,-46.25 0,-30.23 23.11,-55.06 52.63,-57.79 4.82,-0.45 11.6,-1 16.16,-1l70.66 0c22.11,0 40.76,-7.53 55.97,-22.89 15.36,-15.21 23.05,-33.87 23.05,-55.97 0,-21.95 -7.69,-40.61 -23.05,-55.97 -15.21,-15.21 -33.86,-22.89 -55.97,-22.89 -44.58,0 -88.36,-0.33 -132.81,-0.33 -1.93,0 -3.84,-0.08 -5.72,-0.23 -31.64,-0.47 -57.16,-26.27 -57.16,-58.03 0,-0.17 0.01,-0.35 0.01,-0.53 -0.08,-6.17 0.9,-12.02 2.88,-17.57 7.38,-22.49 28.13,-38.92 52.85,-39.89 0.92,-0.04 1.84,-0.06 2.77,-0.06l137.18 0c54.4,0 100.65,18.97 138.59,57.07 38.1,38.09 57.07,84.34 57.07,138.74 0,44.06 -13.33,83.72 -39.98,118.68 -26.65,34.96 -61.46,58.32 -104.26,70.08l107.13 106.86c-35.53,22.32 -75.49,38.24 -118.27,46.12z"/>
+                             </g>
+                         </g>
+                     </g>
+</svg>
             </div>
             <button class="toggle-sidebar rounded-circle btn btn-sm bg-white shadow-sm-dark text-primary" data-toggle="tooltip" data-placement="right" title="Expand sidebar" type="button">
                 <i class="fas fa-arrows-alt-h"></i>
@@ -37,431 +65,9 @@
         </div>
         <div class="app-sidebar--content scrollbar-container">
             <div class="sidebar-navigation">
-                <ul id="sidebar-nav">
-                    <li class="sidebar-header">Examples</li>
-                    <li>
-                        <a href="#" aria-expanded="true">
-                    <span>
-                        <i data-feather="truck"></i>
-                        <span>Dashboards</span>
-                    </span>
-                            <i class="fas fa-angle-right"></i>
-                        </a>
-                        <ul aria-expanded="true" class="animated fade">
-                            <li >
-                                <a href="/BamburghAdmin/index.html">
-                                    Web analytics
-                                </a>
-                            </li>
-                            <li >
-                                <a class="pr-2" href="dashboard-alt.html">
-                        <span>
-                            <span>Monitoring</span>
-                        </span>
-                                    <div class="badge badge-first">
-                                        New
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" aria-expanded="true">
-                <span>
-                    <i data-feather="battery-charging"></i>
-                    <span>Layouts</span>
-                </span>
-                            <i class="fas fa-angle-right"></i>
-                        </a>
-                        <ul aria-expanded="true" class="animated fade">
-                            <li >
-                                <a href="light-sidebar.html">
-                                    Light sidebar
-                                </a>
-                            </li>
-                            <li >
-                                <a href="dark-sidebar.html">
-                                    Dark sidebar
-                                </a>
-                            </li>
-                            <li >
-                                <a href="gradient-sidebar.html">
-                                    Gradient sidebar 1
-                                </a>
-                            </li>
-                            <li >
-                                <a href="gradient-sidebar-2.html">
-                                    Gradient sidebar 2
-                                </a>
-                            </li>
-                            <li >
-                                <a href="primary-sidebar.html">
-                                    Primary sidebar
-                                </a>
-                            </li>
-                            <li >
-                                <a href="chat.html">
-                                    Collapsed sidebar
-                                </a>
-                            </li>
-                            <li >
-                                <a href="mail.html">
-                                    Collapsed sidebar light
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-header">
-                        Pages
-                    </li>
-                    <li>
-                        <a href="#" aria-expanded="false">
-                <span>
-                    <i data-feather="sunset"></i>
-                    <span>Applications</span>
-                </span>
-                            <i class="fas fa-angle-right"></i>
-                        </a>
-                        <ul aria-expanded="false" class="animated fade">
-                            <li >
-                                <a href="app-widgets.html">
-                                    Apps widgets
-                                </a>
-                            </li>
-                            <li >
-                                <a href="chat.html">
-                                    Chat
-                                </a>
-                            </li>
-                            <li >
-                                <a href="contacts.html">
-                                    Contacts
-                                </a>
-                            </li>
-                            <li >
-                                <a href="file-manager.html">
-                                    File manager
-                                </a>
-                            </li>
-                            <li >
-                                <a href="mail.html">
-                                    Mail
-                                </a>
-                            </li>
-                            <li >
-                                <a href="events.html">
-                                    Events calendar
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" aria-expanded="false">
-                <span>
-                    <i data-feather="navigation"></i>
-                    <span>User pages</span>
-                </span>
-                            <i class="fas fa-angle-right"></i>
-                        </a>
-                        <ul aria-expanded="false" class="animated fade">
-                            <li >
-                                <a href="login.html">
-                                    Login
-                                </a>
-                            </li>
-                            <li >
-                                <a href="register.html">
-                                    Register
-                                </a>
-                            </li>
-                            <li >
-                                <a href="recover-password.html">
-                                    Recover password
-                                </a>
-                            </li>
-                            <li >
-                                <a href="profile.html">
-                                    Profile
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" aria-expanded="false">
-                <span>
-                    <i data-feather="layout"></i>
-                    <span>Other pages</span>
-                </span>
-                            <i class="fas fa-angle-right"></i>
-                        </a>
-                        <ul aria-expanded="false" class="animated fade">
-                            <li >
-                                <a href="error1.html">
-                                    Error 404
-                                </a>
-                            </li>
-                            <li >
-                                <a href="error2.html">
-                                    Error 500
-                                </a>
-                            </li>
-                            <li >
-                                <a href="error3.html">
-                                    Error 505
-                                </a>
-                            </li>
-                            <li >
-                                <a href="invoice.html">
-                                    Invoice
-                                </a>
-                            </li>
-                            <li >
-                                <a href="pricing-table-1.html">
-                                    Pricing tables
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li >
-                        <a href="presentation-blocks.html">
-                <span>
-                    <i data-feather="check-circle"></i>
-                    <span>UI Kit PRO</span>
-                </span>
-                            <div class="badge badge-success">
-                                included
-                            </div>
-                        </a>
-                    </li>
-                    <li class="sidebar-header">
-                        Components
-                    </li>
-                    <li>
-                        <a href="#" aria-expanded="false">
-                <span>
-                    <i data-feather="wind"></i>
-                    <span>UI Elements</span>
-                </span>
-                            <i class="fas fa-angle-right"></i>
-                        </a>
-                        <ul aria-expanded="false" class="animated fade">
-                            <li >
-                                <a href="colors.html">
-                                    Colors
-                                </a>
-                            </li>
-                            <li >
-                                <a href="buttons.html">
-                                    Buttons
-                                </a>
-                            </li>
-                            <li >
-                                <a href="badges.html">
-                                    Badges
-                                </a>
-                            </li>
-                            <li >
-                                <a href="avatars.html">
-                                    Avatars
-                                </a>
-                            </li>
-                            <li >
-                                <a href="progress-bars.html">
-                                    Progress bars
-                                </a>
-                            </li>
-                            <li >
-                                <a href="navigation.html">
-                                    Navigation
-                                </a>
-                            </li>
-                            <li >
-                                <a href="alerts.html">
-                                    Alerts
-                                </a>
-                            </li>
-                            <li >
-                                <a href="spinners.html">
-                                    Spinners
-                                </a>
-                            </li>
-                            <li >
-                                <a href="icons.html">
-                                    Icons
-                                </a>
-                            </li>
-                            <li >
-                                <a href="timelines.html">
-                                    Timelines
-                                </a>
-                            </li>
-                            <li >
-                                <a href="cards.html">
-                                    Cards
-                                </a>
-                            </li>
-                            <li >
-                                <a href="lists.html">
-                                    Lists
-                                </a>
-                            </li>
-                            <li >
-                                <a href="modals.html">
-                                    Modals
-                                </a>
-                            </li>
-                            <li >
-                                <a href="tooltips.html">
-                                    Tooltips
-                                </a>
-                            </li>
-                            <li >
-                                <a href="popovers.html">
-                                    Popovers
-                                </a>
-                            </li>
-                            <li >
-                                <a href="carousels.html">
-                                    Carousels
-                                </a>
-                            </li>
-                            <li >
-                                <a href="dropdowns.html">
-                                    Dropdowns
-                                </a>
-                            </li>
-                            <li >
-                                <a href="scrollable.html">
-                                    Scrollable
-                                </a>
-                            </li>
-                            <li >
-                                <a href="tabs.html">
-                                    Tabs
-                                </a>
-                            </li>
-                            <li >
-                                <a href="accordions.html">
-                                    Accordions
-                                </a>
-                            </li>
-                            <li >
-                                <a href="notifications.html">
-                                    Notifications
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" aria-expanded="false">
-                <span>
-                    <i data-feather="watch"></i>
-                    <span>Statistics boxes</span>
-                </span>
-                            <i class="fas fa-angle-right"></i>
-                        </a>
-                        <ul aria-expanded="false" class="animated fade">
-                            <li >
-                                <a href="horizontal-boxes.html">
-                                    Horizontal boxes
-                                </a>
-                            </li>
-                            <li  class="mm-active" >
-                                <a href="blocks.html">
-                                    Blocks
-                                </a>
-                            </li>
-                            <li >
-                                <a href="simple-blocks.html">
-                                    Simple blocks
-                                </a>
-                            </li>
-                            <li >
-                                <a href="chart-boxes.html">
-                                    Chart boxes
-                                </a>
-                            </li>
-                            <li >
-                                <a href="card-blocks.html">
-                                    Card blocks
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" aria-expanded="false">
-            <span>
-                <i data-feather="globe"></i>
-                <span>Tables</span>
-            </span>
-                            <i class="fas fa-angle-right"></i>
-                        </a>
-                        <ul aria-expanded="false" class="animated fade">
-                            <li >
-                                <a href="tables-regular.html">
-                                    Regular
-                                </a>
-                            </li>
-                            <li >
-                                <a href="datatables.html">
-                                    DataTables
-                                </a>
-                            </li>
-                            <li >
-                                <a href="tables-sortable.html">
-                                    Sortable
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" aria-expanded="false">
-            <span>
-                <i data-feather="clipboard"></i>
-                <span>Forms</span>
-            </span>
-                            <i class="fas fa-angle-right"></i>
-                        </a>
-                        <ul aria-expanded="false" class="animated fade">
-                            <li >
-                                <a href="forms-elements.html">
-                                    Elements
-                                </a>
-                            </li>
-                            <li >
-                                <a href="forms-widgets.html">
-                                    Widgets
-                                </a>
-                            </li>
-                            <li >
-                                <a href="forms-fullcalendar.html">
-                                    FullCalendar
-                                </a>
-                            </li>
-                            <li >
-                                <a href="forms-wizards.html">
-                                    Wizards
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li >
-                        <a href="maps.html">
-                <span>
-                    <i data-feather="activity"></i>
-                    <span>Maps</span>
-                </span>
-                        </a>
-                    </li>
-                    <li >
-                        <a href="charts.html">
-                <span>
-                    <i data-feather="umbrella"></i>
-                    <span>Charts</span>
-                </span>
-                        </a>
-                    </li>
-                </ul>
+	
+             @include('new.layouts.nav_rukav')
+			 
             </div>
 
         </div>
@@ -499,17 +105,10 @@
                 </div>
             </div>
             <div class="d-flex align-items-center">
-        <span data-toggle="tooltip" title="You have <b>0</b> new notifications" data-tooltip-class="tooltip-success" data-trigger="hover" data-html="true" data-placement="bottom">
-            <button type="button" class="btn bg-neutral-success text-success font-size-lg mr-2 p-0 d-inline-block shadow-none text-center d-44 rounded position-relative" data-toggle="modal" data-target="#modal-notifications">
-                <span class="badge badge-circle badge-success">New notifications</span>
-                <i class="far fa-bell"></i>
-            </button>
+        <span class="notify_badge" data-toggle="tooltip" title="You have <b>0</b> new notifications" data-tooltip-class="tooltip-success" data-trigger="hover" data-html="true" data-placement="bottom">
+            
         </span>
-                <button class="btn bg-neutral-danger text-danger font-size-lg mr-2 p-0 d-inline-block shadow-none text-center d-44 rounded popover-custom position-relative" type="button" data-trigger="click" data-placement="auto" data-popover-class="popover-secondary popover-custom-wrapper popover-custom-lg" data-rel="popover-close-outside" data-tip="settings-popover">
-                    <span class="badge badge-circle badge-danger badge-header-alt">Online</span>
-                    <i class="far fa-comment"></i>
-                </button>
-                <button type="button" data-trigger="click" data-placement="auto" data-popover-class="popover-second popover-custom-wrapper popover-custom-lg shadow-lg" data-rel="popover-close-outside" data-tip="menu-header-popover" class="btn bg-neutral-first text-first font-size-lg mr-2 p-0 d-inline-block shadow-none text-center d-44 rounded popover-custom">
+                  <button type="button" data-trigger="click" data-placement="auto" data-popover-class="popover-second popover-custom-wrapper popover-custom-lg shadow-lg" data-rel="popover-close-outside" data-tip="menu-header-popover" class="btn bg-neutral-first text-first font-size-lg mr-2 p-0 d-inline-block shadow-none text-center d-44 rounded popover-custom">
                     <i class="fas fa-th"></i>
                 </button>
                 <div class="user-box ml-2">
@@ -1059,8 +658,40 @@
 
 <script src="/BamburghAdmin/assets/js/bamburgh.min.js"></script>
 
+<script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+
+<script>
+console.log('totify pusher')
+   var notify_pusher = new Pusher('500e0547867ccfe184af', {
+      cluster: 'eu'
+    });
+var notify_channel = notify_pusher.subscribe('notification-channel');
+
+Pusher.logToConsole = true;
+var notify_user='{{\Auth::user()->id}}'
+console.log('notify - mid=>',notify_user)
+var notify='notification-'+notify_user+'-'
+console.log(notify)
+	notify_channel.unbind();
+
+	notify_channel.bind(notify, function(data) {
+
+	$('.notify_badge').append(
+	' <button type="button" class="btn bg-neutral-success text-success font-size-lg mr-2 p-0 d-inline-block shadow-none text-center d-44 rounded position-relative" data-toggle="modal" data-target="#modal-notifications">'+
+                '<span class="badge badge-circle badge-success">New notifications</span>'+
+                '<i class="far fa-comment"></i>'+
+            '</button>'
+	);
+	 
+	  
+	  
+    });
+</script>
+
 @yield('scripts')
 @yield('scripts_table')
+
+
 
 </body>
 </html>

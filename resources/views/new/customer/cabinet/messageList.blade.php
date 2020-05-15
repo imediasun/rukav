@@ -25,7 +25,7 @@ else{
     </div>
 </div>
 <div class="scrollbar-container">
-    <div class="chat-wrapper p-3">
+    <div class="chat-wrapper p-3 container_for_messages">
 
     @foreach($conversation as $segment)
         <!-- start .chat-segment -->
@@ -38,7 +38,7 @@ else{
             <!-- start .chat-segment -->
 
             @if(\Auth::user()->id!=$segment->receiver_id)
-                <div class="chat-item p-2 mb-2">
+                <div class="chat-item p-2 mb-2 ">
                     <div class="align-box-row">
                         <div class="avatar-icon-wrapper avatar-icon-lg align-self-start">
 
@@ -107,9 +107,67 @@ else{
         </div>
     </div>
 </div>
-<script src="https://js.pusher.com/6.0/pusher.min.js"></script>
-<script>
 
+<script>
+	
+	channel.unbind();
+
+	channel.bind(receiver, function(data) {
+		
+      console.log('success length',$('.container_for_messages').length);
+	  if('{{$conversation->first()->message_id}}'==data.message_id){
+ 	  $('.container_for_messages').append(
+	   ' <div class="chat-item chat-item-reverse p-2 mb-2">'+
+                    '<div class="align-box-row flex-row-reverse">'+
+                        '<div class="avatar-icon-wrapper avatar-icon-lg align-self-start">'+
+
+                        '</div>'+
+                        '<div>'+
+                            '<div class="chat-box bg-first text-white">'+
+                                '<p>'+data.text+'</p>'+
+                            '</div>'+
+                            '<small class="mt-2 d-block text-black-50">'+
+                                '<i class="fas fa-clock mr-1 opacity-5"></i>'+data.created+
+                            '</small>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'
+	  ); 
+	  }
+	  
+	  
+    });
+	
+	channel.bind(receiver, function(data) {
+		
+      console.log('binding message_id');
+	  $.each($('.receiver_indicator'),function(index,event){
+		  console.log()
+		  var classList=$(event).attr('class').split(/\s+/)
+		  th=$(this)
+		  console.log($(event).attr('class').split(/\s+/))
+		  $(classList).each(function(index,cl){
+console.log('CL=>',cl)
+if(cl=='receiver_{{\Auth::user()->id}}_sender_'+data.sender_id+'_message_'+data.message_id || cl=='receiver_'+data.sender_id+'_sender_{{\Auth::user()->id}}_message_'+data.message_id
+){
+	$(th).addClass('bg-first')
+	$(th).parent().find('.justify-content-start').find('.noreaded_block').append('<div class="badge badge-first px-3 noreaded">новое сообщение</div>')
+	
+	console.log('ID=>',$(th).attr('id'))
+}
+
+});
+		  
+		  
+	  })
+	 
+	  
+	  
+    });
+
+
+window.message_id='{{$conversation->first()->message_id}}'
+console.log('WINDOW_MESSAGE_ID=>',window.message_id)
     function sendMessage(){
         console.log('TRY')
         if($('#msgr_input').val().length>0){
@@ -145,19 +203,7 @@ console.log('success')
             });
         }
     }
-	
-	    Pusher.logToConsole = true;
-var user='{{\Auth::user()->id}}'
-var receiver='receiver-'+user+'-'
-console.log(receiver)
-    var pusher = new Pusher('500e0547867ccfe184af', {
-      cluster: 'eu'
-    });
 
-    var channel = pusher.subscribe('my-channel');
-    channel.bind(receiver, function(data) {
-      alert(JSON.stringify(data));
-    });
 	
 	//reloadMessageList({{$conversation->first()->id}})
 </script>

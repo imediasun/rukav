@@ -52,24 +52,39 @@ class CabinetController extends BaseController
         $conversations=Connect::where('receiver_id',\Auth::user()->id)->orWhere('sender_id',\Auth::user()->id)
             ->with('sender')->with('message')->with('pictures')
             ->groupBy('message_id','receiver_id')->distinct()->orderBy('created_at')->get();
+//dump($conversations);
 
-    $collection=collect($conversations)->map(function ($conver) use ($conversations) {
+$tmp_msg=[];
+$tmp=[];
+ /*    $collection=collect($conversations)->map(function ($conver) use ($tmp,$tmp_msg) { */
 
-        foreach($conversations as $conv){
-            if($conver->receiver_id == \Auth::user()->id && (($conver->receiver_id==$conv->sender_id || count($conversations)==1) && $conver->message_id==$conv->message_id ) ){
+foreach($conversations as $conver){
+        /* foreach($conversations as $conv){ */
+			if( (in_array($conver->sender_id,$tmp) && in_array($conver->receiver_id,$tmp))&& in_array($conver->message_id,$tmp_msg)){
+			
+			}
+			else{
+				$tmp[]=$conver->sender_id;
+				$tmp[]=$conver->receiver_id;
+				$tmp_msg[]=$conver->message_id;
+				$data['conversations'][]= $conver;
+			}
+			
+            /*if($conver->receiver_id == \Auth::user()->id  && (($conver->receiver_id==$conv->sender_id || count($conversations)==1)  && $conver->message_id==$conv->message_id ) ){
                 return $conver;
-            }
-            continue;
-            }
+            }*/
+         
+          /*   } */
 
 
-    });
-	$data['conversations']=[];
-foreach($collection as $coll){
+    /* }); */
+	}
+	
+/* foreach($collection as $coll){
     if(null!=$coll){
         $data['conversations'][]=$coll;
     }
-}
+} */
         //dump($data['conversations']);
         //dump(count($data['conversations']));
 //dump($data['conversations']);
@@ -96,6 +111,7 @@ foreach($collection as $coll){
 		
 		
         $example=Connect::where('id',$request->input('conversation'))->with('author')->first();
+
 		if(isset($example->sender_id)){
 		Connect::where('receiver_id',\Auth::user()->id)->where('sender_id',$example->sender_id)
 		->where('message_id',$example->message_id)->update($update);}

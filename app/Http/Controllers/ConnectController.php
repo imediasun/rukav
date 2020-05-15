@@ -77,8 +77,13 @@ class ConnectController extends BaseController
 				$options
 			  );
 
-			  $data['message'] = 'hello world';
+			  $data['message_id'] = $request->input('message_id');
+			  $data['sender_id'] = \Auth::user()->id;
+			  $data['text'] = $request->input('text');
+			  $data['created'] = $con->created_at;
 			  $pusher->trigger('my-channel', /* 'my-event' */'receiver-'.$user->id.'-', $data);
+			  $notification['created'] = $con->created_at;
+			  $pusher->trigger('notification-channel', /* 'my-event' */'notification-'.$user->id.'-', $notification);
 
             }
         }
