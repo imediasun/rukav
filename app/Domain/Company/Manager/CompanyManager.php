@@ -203,6 +203,33 @@ class CompanyManager extends CompanyAbstract implements CompanyContract
 
     }
 
+    public function updateCompanyStaticPage($companyStaticPage)
+    {
+        $staticPage=$this->companyRepository->updateOrCreateCompanyStaticPage($companyStaticPage['attributes'],$companyStaticPage['values']);
+
+        /*       $result=Logo::where('id','!=',$slider->id)->get();
+               $i=0;
+               foreach($result as $slide){
+                   $companySlider['values']=[];
+                   $companySlider['attributes']=[];
+
+                   if($slider->active==true){
+                       $status=false;
+                   }
+                   else{
+
+                       if($i>0){$status=false;}else{$status=true;}
+
+                   }
+                   $companySlider['values']=['active'=>$status];
+                   $companySlider['attributes']['id']=$slide->id;
+                   $this->companyRepository->updateOrCreateCompanyLogo($companySlider['attributes'],$companySlider['values']);
+                   $i++;
+               }*/
+        return $staticPage;
+
+    }
+
     public function updateCompanyRootCatPhoto($rootCatPhoto)
     {
         $slider=$this->companyRepository->updateOrCreateProductCategory($rootCatPhoto['attributes'],$rootCatPhoto['values']);

@@ -176,6 +176,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         App\Domain\Customer\Providers\MessageServiceProvider::class,
         App\Domain\Customer\Providers\ConnectServiceProvider::class,
+        App\Domain\Customer\Providers\StaticPageServiceProvider::class,
 
 
     ],
@@ -240,6 +241,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Message'=>App\Domain\Customer\Facades\Message::class,
         'Connect'=>App\Domain\Customer\Facades\Message::class,
+        'StaticPage'=>App\Domain\Customer\Facades\StaticPage::class,
 
 
     ],

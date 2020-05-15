@@ -197,10 +197,17 @@ Route::group(['prefix' => 'admin'],function(){
     //Route::get('/categories','CategoryController@index');
 
     Route::get('/view_messages', 'Admin\MessageController@index');
+    Route::get('/view_static_pages', 'Admin\StaticPagesController@index');
+
     Route::get('/view_slider', 'Admin\SliderController@index');
     Route::post('/messages/data', 'Admin\MessageController@postData');
     Route::post('/messages/delete', 'Admin\MessageController@postDelete');
     Route::post('/messages/message_activity_set', 'Admin\MessageController@setIsActive');
+
+    Route::post('/staticpages/data', 'Admin\StaticPagesController@postData');
+    Route::post('/staticpages/delete', 'Admin\StaticPagesController@postDelete');
+    Route::post('/staticpages/staticpage_activity_set', 'Admin\StaticPagesController@setIsActive');
+    Route::post('/staticpages/update_status', 'Admin\StaticPagesController@updateStaticPageStatus');
 /*
     Route::get('/login', 'Auth\SiteAdminLoginController@showLoginForm')->name('web.login');
     Route::post('/login', 'Auth\SiteAdminLoginController@login')->name('web.login.submit');
